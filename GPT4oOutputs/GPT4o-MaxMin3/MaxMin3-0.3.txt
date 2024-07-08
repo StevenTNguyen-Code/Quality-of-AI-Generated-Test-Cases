@@ -1,0 +1,100 @@
+Certainly! Below is the Java unit test code for the provided `MaxMin3` class using JUnit 4 framework. The test cases cover all decisions, include boundary values, and ensure all conditional expressions assume true and false values.
+
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+
+public class MaxMin3Test {
+
+    private MaxMin3 maxMin3;
+
+    @Before
+    public void setUp() {
+        maxMin3 = new MaxMin3();
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin3EvenLength() throws Exception {
+        int[] input = {1, 3, 5, 7, 9, 11};
+        int[] expected = {11, 1};
+        assertArrayEquals(expected, MaxMin3.maxMin3(input, input.length));
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin3OddLength() throws Exception {
+        int[] input = {2, 4, 6, 8, 10};
+        int[] expected = {10, 2};
+        assertArrayEquals(expected, MaxMin3.maxMin3(input, input.length));
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin3SingleElement() throws Exception {
+        int[] input = {5};
+        int[] expected = {5, 5};
+        assertArrayEquals(expected, MaxMin3.maxMin3(input, input.length));
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin3NegativeValues() throws Exception {
+        int[] input = {-1, -3, -5, -7, -9, -11};
+        int[] expected = {-1, -11};
+        assertArrayEquals(expected, MaxMin3.maxMin3(input, input.length));
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin3MixedValues() throws Exception {
+        int[] input = {-1, 3, -5, 7, -9, 11};
+        int[] expected = {11, -9};
+        assertArrayEquals(expected, MaxMin3.maxMin3(input, input.length));
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin3BoundaryValues() throws Exception {
+        int[] input = {Integer.MAX_VALUE, Integer.MIN_VALUE};
+        int[] expected = {Integer.MAX_VALUE, Integer.MIN_VALUE};
+        assertArrayEquals(expected, MaxMin3.maxMin3(input, input.length));
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin3EmptyArray() throws Exception {
+        int[] input = {};
+        int[] expected = {0, 0};
+        assertArrayEquals(expected, MaxMin3.maxMin3(input, input.length));
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin3TwoElements() throws Exception {
+        int[] input = {5, 3};
+        int[] expected = {5, 3};
+        assertArrayEquals(expected, MaxMin3.maxMin3(input, input.length));
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin3AllEqualElements() throws Exception {
+        int[] input = {5, 5, 5, 5, 5, 5};
+        int[] expected = {5, 5};
+        assertArrayEquals(expected, MaxMin3.maxMin3(input, input.length));
+    }
+}
+```
+
+### Explanation:
+1. **Setup**: The `setUp` method initializes the `MaxMin3` object before each test.
+2. **Test Cases**:
+   - **testMaxMin3EvenLength**: Tests with an even number of elements.
+   - **testMaxMin3OddLength**: Tests with an odd number of elements.
+   - **testMaxMin3SingleElement**: Tests with a single element.
+   - **testMaxMin3NegativeValues**: Tests with all negative values.
+   - **testMaxMin3MixedValues**: Tests with mixed positive and negative values.
+   - **testMaxMin3BoundaryValues**: Tests with boundary values (Integer.MAX_VALUE and Integer.MIN_VALUE).
+   - **testMaxMin3EmptyArray**: Tests with an empty array.
+   - **testMaxMin3TwoElements**: Tests with exactly two elements.
+   - **testMaxMin3AllEqualElements**: Tests with all elements being the same.
+
+### Notes:
+- Each test method includes `timeout=1000` to ensure the test completes within 1 second.
+- The `assertArrayEquals` method is used to compare the expected and actual results.
+- The test methods cover various scenarios, including boundary values and different array lengths.

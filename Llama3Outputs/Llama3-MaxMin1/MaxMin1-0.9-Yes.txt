@@ -1,0 +1,90 @@
+Here is the Java unit test code according to the prompt:
+```
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+import ds.*;
+
+public class MaxMin1Test {
+
+    @Before
+    public void setup() {}
+
+    @Test(timeout=1000)
+    public void testMaxMin1_DefaultConstructor() throws Exception {
+        new MaxMin1();
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin1_EmptyArray() throws Exception {
+        int[] v = new int[0];
+        try {
+            MaxMin1.maxMin1(v, 0);
+            fail("Expected ArrayIndexOutOfBoundsException");
+        } catch (ArrayIndexOutOfBoundsException e) {
+            // expected
+        }
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin1_SingleElementArray() throws Exception {
+        int[] v = new int[] {5};
+        int[] result = MaxMin1.maxMin1(v, 1);
+        assertEquals(5, result[0]);
+        assertEquals(5, result[1]);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin1_MultipleElementsArray_PositiveValues() throws Exception {
+        int[] v = new int[] {3, 1, 4, 2};
+        int[] result = MaxMin1.maxMin1(v, 4);
+        assertEquals(4, result[0]);
+        assertEquals(1, result[1]);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin1_MultipleElementsArray_NegativeValues() throws Exception {
+        int[] v = new int[] {-3, -1, -4, -2};
+        int[] result = MaxMin1.maxMin1(v, 4);
+        assertEquals(-1, result[0]);
+        assertEquals(-4, result[1]);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin1_MultipleElementsArray_MixedValues() throws Exception {
+        int[] v = new int[] {3, -1, 4, -2};
+        int[] result = MaxMin1.maxMin1(v, 4);
+        assertEquals(4, result[0]);
+        assertEquals(-2, result[1]);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin1_BoundaryValues_MinInt() throws Exception {
+        int[] v = new int[] {Integer.MIN_VALUE, 0, 1};
+        int[] result = MaxMin1.maxMin1(v, 3);
+        assertEquals(1, result[0]);
+        assertEquals(Integer.MIN_VALUE, result[1]);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin1_BoundaryValues_MaxInt() throws Exception {
+        int[] v = new int[] {0, 1, Integer.MAX_VALUE};
+        int[] result = MaxMin1.maxMin1(v, 3);
+        assertEquals(Integer.MAX_VALUE, result[0]);
+        assertEquals(0, result[1]);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin1_NullArray() throws Exception {
+        try {
+            MaxMin1.maxMin1(null, 0);
+            fail("Expected NullPointerException");
+        } catch (NullPointerException e) {
+            // expected
+        }
+    }
+}
+```
+Note: The test cases cover all the decision paths in the `maxMin1` method, including boundary values, positive and negative values, and null inputs. The `@Test` annotation is used with the `timeout=1000` parameter to specify a timeout for each test method. The `@Before` annotation is used to set up the test environment. The `assertEquals` method is used to verify the expected results.

@@ -1,0 +1,98 @@
+Here is the Java unit test class for the given Java code:
+
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+import java.util.Arrays;
+
+public class MaxMin2Test {
+
+    @Before
+    public void setUp() throws Exception {
+        // No setup needed
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin2DefaultConstructor() throws Exception {
+        MaxMin2 maxMin2 = new MaxMin2();
+        assertNotNull(maxMin2);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin2Normal() throws Exception {
+        int v[] = {1, 2, 3, 4, 5};
+        int n = 5;
+        int[] result = MaxMin2.maxMin2(v, n);
+        assertEquals(5, result[0]);
+        assertEquals(1, result[1]);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin2SingleElement() throws Exception {
+        int v[] = {10};
+        int n = 1;
+        int[] result = MaxMin2.maxMin2(v, n);
+        assertEquals(10, result[0]);
+        assertEquals(10, result[1]);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin2NegativeValues() throws Exception {
+        int v[] = {-1, -2, -3, -4, -5};
+        int n = 5;
+        int[] result = MaxMin2.maxMin2(v, n);
+        assertEquals(-1, result[0]);
+        assertEquals(-5, result[1]);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin2MixedValues() throws Exception {
+        int v[] = {-1, 0, 1, 2, 3};
+        int n = 5;
+        int[] result = MaxMin2.maxMin2(v, n);
+        assertEquals(3, result[0]);
+        assertEquals(-1, result[1]);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin2NullInput() throws Exception {
+        try {
+            int v[] = null;
+            int n = 0;
+            MaxMin2.maxMin2(v, n);
+            fail("Expected NullPointerException");
+        } catch (NullPointerException e) {
+            // Expected
+        }
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin2EmptyInput() throws Exception {
+        try {
+            int v[] = new int[0];
+            int n = 0;
+            MaxMin2.maxMin2(v, n);
+            fail("Expected ArrayIndexOutOfBoundsException");
+        } catch (ArrayIndexOutOfBoundsException e) {
+            // Expected
+        }
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin2InvalidInput() throws Exception {
+        try {
+            int v[] = new int[5];
+            int n = -1;
+            MaxMin2.maxMin2(v, n);
+            fail("Expected ArrayIndexOutOfBoundsException");
+        } catch (ArrayIndexOutOfBoundsException e) {
+            // Expected
+        }
+    }
+}
+```
+
+This test class covers all the possible test cases for the `maxMin2` method, including normal input, single element input, negative values, mixed values, null input, empty input, and invalid input. Each test method is annotated with `@Test(timeout = 1000)` as per the requirements. The `setUp` method is empty as there is no setup needed for this test class.

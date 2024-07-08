@@ -1,0 +1,116 @@
+Sure! Below is the Java Unit Test for the `MaxMin3` class created in accordance with your requirements. 
+
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+
+public class MaxMin3Test {
+
+    private MaxMin3 maxMin3TestInstance;
+    
+    @Before
+    public void setUp() throws Exception {
+        maxMin3TestInstance = new MaxMin3();
+    }
+
+    @Test(timeout=1000)
+    public void testDefaultConstructor() throws Exception {
+        assertNotNull(maxMin3TestInstance);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin3WithEvenNumberElements() throws Exception {
+        int[] array = {4, 1, 6, 8, 2, 7};
+        int n = 6;
+        int[] expected = {8, 1};
+
+        assertArrayEquals(expected, MaxMin3.maxMin3(array, n));
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin3WithOddNumberElements() throws Exception {
+        int[] array = {4, 1, 6, 8, 2};
+        int n = 5;
+        int[] extendedArray = {4, 1, 6, 8, 2, 2}; // an added element that's equal to the last element
+        int[] expected = {8, 1};
+
+        assertArrayEquals(expected, MaxMin3.maxMin3(extendedArray, n));
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin3WithSingleElement() throws Exception {
+        int[] array = {5};
+        int n = 1;
+        int[] extendedArray = {5, 5}; // an added element that's equal to the first element
+        int[] expected = {5, 5};
+
+        assertArrayEquals(expected, MaxMin3.maxMin3(extendedArray, n));
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin3WithEmptyArray() throws Exception {
+        int[] array = {};
+        int n = 0;
+        // This will throw ArrayIndexOutOfBoundsException, expected behavior for empty input
+        int[] expected = new int[0];
+        
+        try {
+            MaxMin3.maxMin3(array, n);
+            fail("Expected an ArrayIndexOutOfBoundsException to be thrown");
+        } catch (ArrayIndexOutOfBoundsException e) {
+            assertEquals(null, e.getMessage());
+        }
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin3WithAllIdenticalElements() throws Exception {
+        int[] array = {3, 3, 3, 3, 3};
+        int n = 5;
+        int[] extendedArray = {3, 3, 3, 3, 3, 3}; // an added element that's equal to the first element
+        int[] expected = {3, 3};
+
+        assertArrayEquals(expected, MaxMin3.maxMin3(extendedArray, n));
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin3WithNegativeElements() throws Exception {
+        int[] array = {-1, -3, -2, -8, -7, -6};
+        int n = 6;
+        int[] expected = {-1, -8};
+
+        assertArrayEquals(expected, MaxMin3.maxMin3(array, n));
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin3WithMixedPositiveAndNegativeElements() throws Exception {
+        int[] array = {-1, 3, -2, 8, 7, -6};
+        int n = 6;
+        int[] expected = {8, -6};
+
+        assertArrayEquals(expected, MaxMin3.maxMin3(array, n));
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin3WithZeros() throws Exception {
+        int[] array = {0, 0, 0, 0, 0};
+        int n = 5;
+        int[] extendedArray = {0, 0, 0, 0, 0, 0}; // an added element that's equal to the first element
+        int[] expected = {0, 0};
+
+        assertArrayEquals(expected, MaxMin3.maxMin3(extendedArray, n));
+    }
+}
+```
+
+### Explanation:
+
+- Each method in the class under test (`MaxMin3`) is covered.
+- A test for the default constructor of `MaxMin3` is included.
+- Test cases are provided for various scenarios, including boundary values and different orders of input.
+- Timeout of 1000 ms added to each test method.
+- Proper handling of an expected exception scenario (empty array) is incorporated.
+- Test cases cover positive, negative, and mixed numeric data ensuring all branches (decisions) of conditional expressions and loops are tested.
+- The setup method (`setUp()`) initializes the test object before each test is run.

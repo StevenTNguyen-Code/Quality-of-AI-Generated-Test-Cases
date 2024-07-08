@@ -1,0 +1,146 @@
+Here is the test class for the given Java class `CasamentoExato`:
+```
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+import ds.CasamentoExato;
+
+public class CasamentoExatoTest {
+
+    @Before
+    public void setup() {
+        // No setup required for this class
+    }
+
+    @Test(timeout = 1000)
+    public void testForcaBruta() throws Exception {
+        String T = "hello";
+        int n = T.length();
+        String P = "ell";
+        int m = P.length();
+        CasamentoExato.forcaBruta(T, n, P, m);
+    }
+
+    @Test(timeout = 1000)
+    public void testForcaBrutaEmptyPattern() throws Exception {
+        String T = "hello";
+        int n = T.length();
+        String P = "";
+        int m = P.length();
+        CasamentoExato.forcaBruta(T, n, P, m);
+    }
+
+    @Test(timeout = 1000)
+    public void testForcaBrutaNullPattern() throws Exception {
+        String T = "hello";
+        int n = T.length();
+        String P = null;
+        int m = 0;
+        try {
+            CasamentoExato.forcaBruta(T, n, P, m);
+            fail("Expected NullPointerException");
+        } catch (NullPointerException e) {
+            // expected
+        }
+    }
+
+    @Test(timeout = 1000)
+    public void testShiftAndExato() throws Exception {
+        String T = "hello";
+        int n = T.length();
+        String P = "ell";
+        int m = P.length();
+        CasamentoExato.shiftAndExato(T, n, P, m);
+    }
+
+    @Test(timeout = 1000)
+    public void testShiftAndExatoEmptyPattern() throws Exception {
+        String T = "hello";
+        int n = T.length();
+        String P = "";
+        int m = P.length();
+        CasamentoExato.shiftAndExato(T, n, P, m);
+    }
+
+    @Test(timeout = 1000)
+    public void testShiftAndExatoNullPattern() throws Exception {
+        String T = "hello";
+        int n = T.length();
+        String P = null;
+        int m = 0;
+        try {
+            CasamentoExato.shiftAndExato(T, n, P, m);
+            fail("Expected NullPointerException");
+        } catch (NullPointerException e) {
+            // expected
+        }
+    }
+
+    @Test(timeout = 1000)
+    public void testBmh() throws Exception {
+        String T = "hello";
+        int n = T.length();
+        String P = "ell";
+        int m = P.length();
+        CasamentoExato.bmh(T, n, P, m);
+    }
+
+    @Test(timeout = 1000)
+    public void testBmhEmptyPattern() throws Exception {
+        String T = "hello";
+        int n = T.length();
+        String P = "";
+        int m = P.length();
+        CasamentoExato.bmh(T, n, P, m);
+    }
+
+    @Test(timeout = 1000)
+    public void testBmhNullPattern() throws Exception {
+        String T = "hello";
+        int n = T.length();
+        String P = null;
+        int m = 0;
+        try {
+            CasamentoExato.bmh(T, n, P, m);
+            fail("Expected NullPointerException");
+        } catch (NullPointerException e) {
+            // expected
+        }
+    }
+
+    @Test(timeout = 1000)
+    public void testBmhs() throws Exception {
+        String T = "hello";
+        int n = T.length();
+        String P = "ell";
+        int m = P.length();
+        CasamentoExato.bmhs(T, n, P, m);
+    }
+
+    @Test(timeout = 1000)
+    public void testBmhsEmptyPattern() throws Exception {
+        String T = "hello";
+        int n = T.length();
+        String P = "";
+        int m = P.length();
+        CasamentoExato.bmhs(T, n, P, m);
+    }
+
+    @Test(timeout = 1000)
+    public void testBmhsNullPattern() throws Exception {
+        String T = "hello";
+        int n = T.length();
+        String P = null;
+        int m = 0;
+        try {
+            CasamentoExato.bmhs(T, n, P, m);
+            fail("Expected NullPointerException");
+        } catch (NullPointerException e) {
+            // expected
+        }
+    }
+}
+```
+Note that I've added test cases for each method with valid inputs, empty patterns, and null patterns. I've also added a `@Before` method to setup any necessary state before each test, although in this case, no setup is required. Each test method has a `timeout=1000` annotation to ensure that the test doesn't take too long to complete.

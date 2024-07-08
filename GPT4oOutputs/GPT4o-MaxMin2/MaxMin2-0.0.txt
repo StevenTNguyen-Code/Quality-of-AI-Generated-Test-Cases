@@ -1,0 +1,86 @@
+Sure, here are the unit tests for the `MaxMin2` class using JUnit 4 framework in Java 8:
+
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+
+public class MaxMin2Test {
+
+    private MaxMin2 maxMin2;
+
+    @Before
+    public void setUp() {
+        maxMin2 = new MaxMin2();
+    }
+
+    @Test(timeout=1000)
+    public void testDefaultConstructor() throws Exception {
+        assertNotNull("MaxMin2 instance should be created", maxMin2);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin2WithPositiveValues() throws Exception {
+        int[] input = {1, 2, 3, 4, 5};
+        int[] result = MaxMin2.maxMin2(input, input.length);
+        assertArrayEquals("Max and Min should be [5, 1]", new int[]{5, 1}, result);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin2WithNegativeValues() throws Exception {
+        int[] input = {-1, -2, -3, -4, -5};
+        int[] result = MaxMin2.maxMin2(input, input.length);
+        assertArrayEquals("Max and Min should be [-1, -5]", new int[]{-1, -5}, result);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin2WithMixedValues() throws Exception {
+        int[] input = {-1, 2, -3, 4, -5};
+        int[] result = MaxMin2.maxMin2(input, input.length);
+        assertArrayEquals("Max and Min should be [4, -5]", new int[]{4, -5}, result);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin2WithSingleElement() throws Exception {
+        int[] input = {42};
+        int[] result = MaxMin2.maxMin2(input, input.length);
+        assertArrayEquals("Max and Min should be [42, 42]", new int[]{42, 42}, result);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin2WithAllSameElements() throws Exception {
+        int[] input = {7, 7, 7, 7, 7};
+        int[] result = MaxMin2.maxMin2(input, input.length);
+        assertArrayEquals("Max and Min should be [7, 7]", new int[]{7, 7}, result);
+    }
+
+    @Test(timeout=1000, expected=ArrayIndexOutOfBoundsException.class)
+    public void testMaxMin2WithEmptyArray() throws Exception {
+        int[] input = {};
+        MaxMin2.maxMin2(input, input.length);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin2WithBoundaryValues() throws Exception {
+        int[] input = {Integer.MAX_VALUE, Integer.MIN_VALUE};
+        int[] result = MaxMin2.maxMin2(input, input.length);
+        assertArrayEquals("Max and Min should be [Integer.MAX_VALUE, Integer.MIN_VALUE]", new int[]{Integer.MAX_VALUE, Integer.MIN_VALUE}, result);
+    }
+}
+```
+
+### Explanation:
+1. **Imports and Package**: The necessary imports and package declaration are included at the top.
+2. **Setup Method**: The `setUp` method initializes the `MaxMin2` instance.
+3. **Default Constructor Test**: Ensures that the default constructor creates an instance.
+4. **Positive Values Test**: Tests the method with an array of positive integers.
+5. **Negative Values Test**: Tests the method with an array of negative integers.
+6. **Mixed Values Test**: Tests the method with an array of mixed positive and negative integers.
+7. **Single Element Test**: Tests the method with an array containing a single element.
+8. **All Same Elements Test**: Tests the method with an array where all elements are the same.
+9. **Empty Array Test**: Tests the method with an empty array and expects an `ArrayIndexOutOfBoundsException`.
+10. **Boundary Values Test**: Tests the method with boundary values (`Integer.MAX_VALUE` and `Integer.MIN_VALUE`).
+
+Each test method includes the `timeout=1000` parameter to ensure the test completes within 1000 milliseconds. The `expected` parameter is used in the test for the empty array to check for the expected exception.

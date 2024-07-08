@@ -1,0 +1,77 @@
+Here is the JUnit test class for the `Ordenacao` class:
+```
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+import java.lang.reflect.Constructor;
+
+public class OrdenacaoTest {
+
+    @Test(timeout = 1000)
+    public void testDefaultConstructor() throws Exception {
+        Constructor<Ordenacao> constructor = Ordenacao.class.getDeclaredConstructor();
+        constructor.newInstance();
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdena_EmptyArray() throws Exception {
+        int[] v = {};
+        ordena(v, 0);
+        // No-op, just checking that it doesn't throw an exception
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdena_SingleElementArray() throws Exception {
+        int[] v = {1};
+        ordena(v, 1);
+        assertEquals(1, v[0]);
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdena_SortedArray() throws Exception {
+        int[] v = {1, 2, 3, 4, 5};
+        ordena(v, 5);
+        assertArrayEquals(new int[] {1, 2, 3, 4, 5}, v);
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdena_UnsortedArray() throws Exception {
+        int[] v = {5, 2, 8, 1, 3};
+        ordena(v, 5);
+        assertArrayEquals(new int[] {1, 2, 3, 5, 8}, v);
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdena_NegativeNumbers() throws Exception {
+        int[] v = {-5, -2, -8, -1, -3};
+        ordena(v, 5);
+        assertArrayEquals(new int[] {-8, -5, -3, -2, -1}, v);
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdena_MixedNumbers() throws Exception {
+        int[] v = {-5, 2, 0, 1, -3};
+        ordena(v, 5);
+        assertArrayEquals(new int[] {-5, -3, 0, 1, 2}, v);
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdena_LargeArray() throws Exception {
+        int[] v = new int[1000];
+        for (int i = 0; i < 1000; i++) {
+            v[i] = 1000 - i;
+        }
+        ordena(v, 1000);
+        for (int i = 0; i < 1000; i++) {
+            assertEquals(i + 1, v[i]);
+        }
+    }
+
+    private void ordena(int[] v, int n) {
+        Ordenacao.ordena(v, n);
+    }
+}
+```
+Note that I've added a private method `ordena` to call the static `ordena` method of the `Ordenacao` class, since JUnit 4 doesn't support testing static methods directly.

@@ -1,0 +1,85 @@
+Here is the test class for the `AvaliaMultMatrizes` class:
+```
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+import java.io.IOException;
+
+public class AvaliaMultMatrizesTest {
+
+    private AvaliaMultMatrizes avaliaMultMatrizes;
+
+    @Before
+    public void setUp() throws Exception {
+        avaliaMultMatrizes = new AvaliaMultMatrizes();
+    }
+
+    @Test(timeout = 1000)
+    public void testMultmatrize_DefaultConstructor() throws IOException {
+        // Test default constructor
+        assertNotNull(avaliaMultMatrizes);
+    }
+
+    @Test(timeout = 1000)
+    public void testMultmatrize_PositiveInput() throws IOException {
+        int n = 5;
+        int d[] = {1, 2, 3, 4, 5};
+        avaliaMultMatrizes.multmatrize(n, d);
+    }
+
+    @Test(timeout = 1000)
+    public void testMultmatrize_NegativeInput() throws IOException {
+        int n = -5;
+        int d[] = {-1, -2, -3, -4, -5};
+        avaliaMultMatrizes.multmatrize(n, d);
+    }
+
+    @Test(timeout = 1000, expected = IOException.class)
+    public void testMultmatrize_IOException() throws IOException {
+        int n = 0;
+        int d[] = {};
+        avaliaMultMatrizes.multmatrize(n, d);
+    }
+
+    @Test(timeout = 1000)
+    public void testMultmatrize_BoundaryValue_Lower() throws IOException {
+        int n = 1;
+        int d[] = {1};
+        avaliaMultMatrizes.multmatrize(n, d);
+    }
+
+    @Test(timeout = 1000)
+    public void testMultmatrize_BoundaryValue_Upper() throws IOException {
+        int n = Integer.MAX_VALUE;
+        int d[] = new int[n];
+        for (int i = 0; i < n; i++) {
+            d[i] = i + 1;
+        }
+        avaliaMultMatrizes.multmatrize(n, d);
+    }
+
+    @Test(timeout = 1000)
+    public void testMultmatrize_NullInput() throws IOException {
+        int n = 5;
+        int d[] = null;
+        try {
+            avaliaMultMatrizes.multmatrize(n, d);
+            fail("Expected NullPointerException");
+        } catch (NullPointerException e) {
+            // Expected
+        }
+    }
+}
+```
+Note that I've added test cases to cover the following scenarios:
+
+* Default constructor
+* Positive input values
+* Negative input values
+* Boundary values (lower and upper)
+* IOException
+* Null input
+
+I've also included the `expected` attribute in the `@Test` annotation to specify the expected exception for the `IOException` test case.

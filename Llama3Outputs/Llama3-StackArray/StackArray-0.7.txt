@@ -1,0 +1,71 @@
+Here are the unit tests for the `Pilha` class according to the prompt:
+
+```java
+package ds;
+
+import org.junit.Before;
+import org.junit.Test;
+import static org.junit.Assert.*;
+
+public class PilhaTest {
+
+    private Pilha pilha;
+
+    @Before
+    public void setup() {
+        pilha = new Pilha();
+    }
+
+    @Test(timeout = 1000)
+    public void testDefaultConstructor() throws Exception {
+        assertNotNull(pilha);
+        assertEquals(0, pilha.tamanho());
+    }
+
+    @Test(timeout = 1000)
+    public void testVazia() throws Exception {
+        assertTrue(pilha.vazia());
+    }
+
+    @Test(timeout = 1000)
+    public void testVazia_False() throws Exception {
+        pilha.empilha(new Object());
+        assertFalse(pilha.vazia());
+    }
+
+    @Test(timeout = 1000)
+    public void testTamanho() throws Exception {
+        assertEquals(0, pilha.tamanho());
+        pilha.empilha(new Object());
+        assertEquals(1, pilha.tamanho());
+    }
+
+    @Test(timeout = 1000)
+    public void testEmpilha() throws Exception {
+        pilha.empilha(new Object());
+        assertEquals(1, pilha.tamanho());
+    }
+
+    @Test(timeout = 1000, expected = Exception.class)
+    public void testEmpilha_FullStack() throws Exception {
+        for (int i = 0; i < 1000; i++) {
+            pilha.empilha(new Object());
+        }
+        pilha.empilha(new Object()); // should throw Exception
+    }
+
+    @Test(timeout = 1000)
+    public void testDesempilha() throws Exception {
+        pilha.empilha(new Object());
+        assertNotNull(pilha.desempilha());
+        assertEquals(0, pilha.tamanho());
+    }
+
+    @Test(timeout = 1000, expected = Exception.class)
+    public void testDesempilha_EmptyStack() throws Exception {
+        pilha.desempilha(); // should throw Exception
+    }
+}
+```
+
+These tests cover all the methods of the `Pilha` class, including the default constructor, and test for both true and false values of conditional expressions. They also include tests with boundary values (e.g., an empty stack and a full stack) and test for exceptions.

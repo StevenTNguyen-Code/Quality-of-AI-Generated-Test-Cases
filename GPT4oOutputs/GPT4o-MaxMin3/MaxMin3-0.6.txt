@@ -1,0 +1,101 @@
+Certainly! Here is a set of JUnit 4 test cases for the `MaxMin3` class as specified. These tests cover various scenarios including boundary values, positive and negative values, and different array lengths.
+
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+
+public class MaxMin3Test {
+
+    private MaxMin3 maxMin3;
+
+    @Before
+    public void setUp() throws Exception {
+        maxMin3 = new MaxMin3();
+    }
+
+    @Test(timeout=1000)
+    public void testDefaultConstructor() throws Exception {
+        assertNotNull("Default constructor failed to create an instance", maxMin3);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin3EvenLengthArray() throws Exception {
+        int[] input = {4, 2, 7, 1, 5, 3};
+        int[] expected = {7, 1};
+        assertArrayEquals("Even length array test failed", expected, MaxMin3.maxMin3(input, input.length));
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin3OddLengthArray() throws Exception {
+        int[] input = {4, 2, 7, 1, 5};
+        int[] expected = {7, 1};
+        assertArrayEquals("Odd length array test failed", expected, MaxMin3.maxMin3(input, input.length));
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin3SingleElementArray() throws Exception {
+        int[] input = {4};
+        int[] expected = {4, 4};
+        assertArrayEquals("Single element array test failed", expected, MaxMin3.maxMin3(input, input.length));
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin3TwoElementArray() throws Exception {
+        int[] input = {4, 2};
+        int[] expected = {4, 2};
+        assertArrayEquals("Two element array test failed", expected, MaxMin3.maxMin3(input, input.length));
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin3WithNegativeValues() throws Exception {
+        int[] input = {-4, -2, -7, -1, -5, -3};
+        int[] expected = {-1, -7};
+        assertArrayEquals("Negative values array test failed", expected, MaxMin3.maxMin3(input, input.length));
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin3WithMixedValues() throws Exception {
+        int[] input = {4, -2, 7, -1, 5, -3};
+        int[] expected = {7, -3};
+        assertArrayEquals("Mixed values array test failed", expected, MaxMin3.maxMin3(input, input.length));
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin3WithBoundaryValues() throws Exception {
+        int[] input = {Integer.MAX_VALUE, Integer.MIN_VALUE};
+        int[] expected = {Integer.MAX_VALUE, Integer.MIN_VALUE};
+        assertArrayEquals("Boundary values array test failed", expected, MaxMin3.maxMin3(input, input.length));
+    }
+
+    @Test(timeout=1000, expected=ArrayIndexOutOfBoundsException.class)
+    public void testMaxMin3EmptyArray() throws Exception {
+        int[] input = {};
+        MaxMin3.maxMin3(input, input.length);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin3AllSameValues() throws Exception {
+        int[] input = {5, 5, 5, 5, 5, 5};
+        int[] expected = {5, 5};
+        assertArrayEquals("All same values array test failed", expected, MaxMin3.maxMin3(input, input.length));
+    }
+}
+```
+
+### Explanation:
+
+1. **Default Constructor Test**: Ensures the default constructor creates an instance of `MaxMin3`.
+2. **Even Length Array Test**: Tests the method with an even-length array.
+3. **Odd Length Array Test**: Tests the method with an odd-length array.
+4. **Single Element Array Test**: Tests the method with an array containing a single element.
+5. **Two Element Array Test**: Tests the method with an array containing two elements.
+6. **Negative Values Test**: Tests the method with an array containing negative values.
+7. **Mixed Values Test**: Tests the method with an array containing both positive and negative values.
+8. **Boundary Values Test**: Tests the method with boundary values (`Integer.MAX_VALUE` and `Integer.MIN_VALUE`).
+9. **Empty Array Test**: Tests the method with an empty array, expecting an `ArrayIndexOutOfBoundsException`.
+10. **All Same Values Test**: Tests the method with an array where all values are the same.
+
+These tests aim to cover all decision points and boundary values as required.

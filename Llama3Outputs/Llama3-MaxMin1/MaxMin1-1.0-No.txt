@@ -1,0 +1,89 @@
+Here are the test cases for the `MaxMin1` class according to the requirements:
+
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+import ds.MaxMin1;
+
+public class MaxMin1Test {
+    
+    private MaxMin1 maxMin1;
+    
+    @Before
+    public void setup() {
+        maxMin1 = new MaxMin1();
+    }
+    
+    @Test(timeout=1000)
+    public void testMaxMin1DefaultConstructor() {
+        assertNotNull(maxMin1);
+    }
+    
+    @Test(timeout=1000, expected=ArrayIndexOutOfBoundsException.class)
+    public void testMaxMin1NullArray() throws ArrayIndexOutOfBoundsException {
+        int v[] = null;
+        maxMin1.maxMin1(v, 0);
+    }
+    
+    @Test(timeout=1000, expected=ArrayIndexOutOfBoundsException.class)
+    public void testMaxMin1EmptyArray() throws ArrayIndexOutOfBoundsException {
+        int v[] = new int[0];
+        maxMin1.maxMin1(v, 0);
+    }
+    
+    @Test(timeout=1000)
+    public void testMaxMin1PositiveNumbers() {
+        int v[] = {1, 2, 3, 4, 5};
+        int result[] = maxMin1.maxMin1(v, v.length);
+        assertEquals(5, result[0]);
+        assertEquals(1, result[1]);
+    }
+    
+    @Test(timeout=1000)
+    public void testMaxMin1NegativeNumbers() {
+        int v[] = {-1, -2, -3, -4, -5};
+        int result[] = maxMin1.maxMin1(v, v.length);
+        assertEquals(-1, result[0]);
+        assertEquals(-5, result[1]);
+    }
+    
+    @Test(timeout=1000)
+    public void testMaxMin1MixedNumbers() {
+        int v[] = {-1, 0, 1};
+        int result[] = maxMin1.maxMin1(v, v.length);
+        assertEquals(1, result[0]);
+        assertEquals(-1, result[1]);
+    }
+    
+    @Test(timeout=1000)
+    public void testMaxMin1DuplicateNumbers() {
+        int v[] = {1, 1, 1, 1, 1};
+        int result[] = maxMin1.maxMin1(v, v.length);
+        assertEquals(1, result[0]);
+        assertEquals(1, result[1]);
+    }
+    
+    @Test(timeout=1000)
+    public void testMaxMin1LargeArray() {
+        int v[] = new int[1000];
+        for (int i = 0; i < 1000; i++) {
+            v[i] = i;
+        }
+        int result[] = maxMin1.maxMin1(v, v.length);
+        assertEquals(999, result[0]);
+        assertEquals(0, result[1]);
+    }
+}
+```
+This test class includes 8 test methods, covering various scenarios:
+
+1. `testMaxMin1DefaultConstructor`: Test the default constructor of the `MaxMin1` class.
+2. `testMaxMin1NullArray` and `testMaxMin1EmptyArray`: Test the `maxMin1` method with null and empty arrays, expecting an `ArrayIndexOutOfBoundsException`.
+3. `testMaxMin1PositiveNumbers`, `testMaxMin1NegativeNumbers`, and `testMaxMin1MixedNumbers`: Test the `maxMin1` method with positive, negative, and mixed arrays of numbers.
+4. `testMaxMin1DuplicateNumbers`: Test the `maxMin1` method with an array of duplicate numbers.
+5. `testMaxMin1LargeArray`: Test the `maxMin1` method with a large array of numbers.
+
+All tests are annotated with `@Test(timeout=1000)`, and some tests also include `expected` exceptions.

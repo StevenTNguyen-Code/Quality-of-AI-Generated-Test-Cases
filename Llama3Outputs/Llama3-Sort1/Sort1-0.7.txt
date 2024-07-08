@@ -1,0 +1,110 @@
+Here is the Java Unit Test class for the `Ordenacao` class:
+```
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+import java.lang.reflect.Constructor;
+
+public class OrdenacaoTest {
+
+    private Ordenacao ordenacao;
+
+    @Before
+    public void setUp() throws Exception {
+        ordenacao = new Ordenacao();
+    }
+
+    @Test(timeout = 1000)
+    public void testDefaultConstructor() throws Exception {
+        // Test default constructor
+        Constructor<Ordenacao> constructor = Ordenacao.class.getConstructor();
+        assertNotNull(constructor.newInstance());
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdenaNullArray() throws Exception {
+        // Test with null array
+        try {
+            Ordenacao.ordena(null, 0);
+            fail("Expected NullPointerException");
+        } catch (NullPointerException e) {
+            // Expected
+        }
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdenaNegativeN() throws Exception {
+        // Test with negative n
+        try {
+            int[] v = {1, 2, 3};
+            Ordenacao.ordena(v, -1);
+            fail("Expected ArrayIndexOutOfBoundsException");
+        } catch (ArrayIndexOutOfBoundsException e) {
+            // Expected
+        }
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdenaEmptyArray() throws Exception {
+        // Test with empty array
+        int[] v = new int[0];
+        Ordenacao.ordena(v, 0);
+        assertEquals(0, v.length);
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdenaOneElementArray() throws Exception {
+        // Test with one element array
+        int[] v = {1};
+        Ordenacao.ordena(v, 1);
+        assertEquals(1, v[0]);
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdenaSortedArray() throws Exception {
+        // Test with already sorted array
+        int[] v = {1, 2, 3, 4, 5};
+        Ordenacao.ordena(v, 5);
+        assertArrayEquals(new int[] {1, 2, 3, 4, 5}, v);
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdenaUnsortedArray() throws Exception {
+        // Test with unsorted array
+        int[] v = {5, 2, 8, 1, 3};
+        Ordenacao.ordena(v, 5);
+        assertArrayEquals(new int[] {1, 2, 3, 5, 8}, v);
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdenaArrayWithNegativeNumbers() throws Exception {
+        // Test with array containing negative numbers
+        int[] v = {-5, 2, -8, 1, 3};
+        Ordenacao.ordena(v, 5);
+        assertArrayEquals(new int[] {-8, -5, 1, 2, 3}, v);
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdenaArrayWithPositiveAndNegativeNumbers() throws Exception {
+        // Test with array containing both positive and negative numbers
+        int[] v = {-5, 2, 8, -1, 3};
+        Ordenacao.ordena(v, 5);
+        assertArrayEquals(new int[] {-5, -1, 2, 3, 8}, v);
+    }
+}
+```
+Note that I've covered all the possible scenarios for the `ordena` method, including:
+
+* Testing the default constructor
+* Testing with null array
+* Testing with negative n
+* Testing with empty array
+* Testing with one element array
+* Testing with already sorted array
+* Testing with unsorted array
+* Testing with array containing negative numbers
+* Testing with array containing both positive and negative numbers
+
+I've also made sure to include the `timeout=1000` in all `@Test` annotations, and thrown exceptions in all test method declarations.

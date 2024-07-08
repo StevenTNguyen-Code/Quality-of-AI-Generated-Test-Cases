@@ -1,0 +1,63 @@
+Here is the test class for the Fibonacci class:
+```
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+import ds.*;
+
+public class FibonacciTest {
+
+    private Fibonacci fibonacci;
+
+    @Before
+    public void setup() throws Exception {
+        fibonacci = new Fibonacci();
+    }
+
+    @Test(timeout = 1000)
+    public void testFibIter_NegativeInput_ThrowsException() throws Exception {
+        try {
+            fibonacci.fibIter(-1);
+            fail("Expected Exception for negative input");
+        } catch (Exception e) {
+            // expected
+        }
+    }
+
+    @Test(timeout = 1000)
+    public void testFibIter_ZeroInput_ReturnsZero() throws Exception {
+        assertEquals(0, fibonacci.fibIter(0));
+    }
+
+    @Test(timeout = 1000)
+    public void testFibIter_PositiveInput_ReturnsFibonacciNumber() throws Exception {
+        assertEquals(1, fibonacci.fibIter(1));
+        assertEquals(1, fibonacci.fibIter(2));
+        assertEquals(2, fibonacci.fibIter(3));
+        assertEquals(3, fibonacci.fibIter(4));
+        assertEquals(5, fibonacci.fibIter(5));
+    }
+
+    @Test(timeout = 1000)
+    public void testFibIter_BoundaryValue_LargeInput_ReturnsFibonacciNumber() throws Exception {
+        assertEquals(55, fibonacci.fibIter(10));
+        assertEquals(89, fibonacci.fibIter(11));
+    }
+
+    @Test(timeout = 1000)
+    public void testDefaultConstructor() throws Exception {
+        new Fibonacci();
+    }
+}
+```
+Note that I've added a `setup()` method to create an instance of the `Fibonacci` class, which is used in all test methods. I've also added test cases to cover the following scenarios:
+
+* Negative input: test that an exception is thrown
+* Zero input: test that the method returns 0
+* Positive input: test that the method returns the correct Fibonacci number
+* Boundary value: test that the method returns the correct Fibonacci number for large inputs
+* Default constructor: test that the default constructor works as expected
+
+Each test method has a timeout of 1000 milliseconds, as required. I've also used `assertEquals()` to verify the expected results, and `fail()` to verify that an exception is thrown when expected.

@@ -1,0 +1,100 @@
+Certainly! Below is the Java unit test code for the `MaxMin2` class using JUnit 4, adhering to all the requirements mentioned:
+
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+
+public class MaxMin2Test {
+
+    private MaxMin2 maxMin2;
+
+    @Before
+    public void setUp() throws Exception {
+        maxMin2 = new MaxMin2();
+    }
+
+    @Test(timeout=1000)
+    public void testDefaultConstructor() throws Exception {
+        // Test the default constructor
+        assertNotNull(new MaxMin2());
+    }
+    
+    @Test(timeout=1000)
+    public void testMaxMin2WithPositiveValues() throws Exception {
+        int[] input = {3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5};
+        int[] result = MaxMin2.maxMin2(input, input.length);
+        assertEquals(9, result[0]);
+        assertEquals(1, result[1]);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin2WithNegativeValues() throws Exception {
+        int[] input = {-3, -1, -4, -1, -5, -9, -2, -6, -5, -3, -5};
+        int[] result = MaxMin2.maxMin2(input, input.length);
+        assertEquals(-1, result[0]);
+        assertEquals(-9, result[1]);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin2WithMixedValues() throws Exception {
+        int[] input = {3, -1, 4, 1, -5, 9, -2, 6, -5, 3, 5};
+        int[] result = MaxMin2.maxMin2(input, input.length);
+        assertEquals(9, result[0]);
+        assertEquals(-5, result[1]);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin2WithSingleValue() throws Exception {
+        int[] input = {42};
+        int[] result = MaxMin2.maxMin2(input, input.length);
+        assertEquals(42, result[0]);
+        assertEquals(42, result[1]);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin2WithTwoValues() throws Exception {
+        int[] input = {10, 20};
+        int[] result = MaxMin2.maxMin2(input, input.length);
+        assertEquals(20, result[0]);
+        assertEquals(10, result[1]);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin2WithEqualValues() throws Exception {
+        int[] input = {7, 7, 7, 7, 7};
+        int[] result = MaxMin2.maxMin2(input, input.length);
+        assertEquals(7, result[0]);
+        assertEquals(7, result[1]);
+    }
+
+    @Test(timeout=1000, expected = ArrayIndexOutOfBoundsException.class)
+    public void testMaxMin2WithEmptyArray() throws Exception {
+        int[] input = {};
+        MaxMin2.maxMin2(input, input.length);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin2WithBoundaryValues() throws Exception {
+        int[] input = {Integer.MAX_VALUE, Integer.MIN_VALUE};
+        int[] result = MaxMin2.maxMin2(input, input.length);
+        assertEquals(Integer.MAX_VALUE, result[0]);
+        assertEquals(Integer.MIN_VALUE, result[1]);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin2WithLargeArray() throws Exception {
+        int[] input = new int[1000];
+        for (int i = 0; i < 1000; i++) {
+            input[i] = i - 500;
+        }
+        int[] result = MaxMin2.maxMin2(input, input.length);
+        assertEquals(499, result[0]);
+        assertEquals(-500, result[1]);
+    }
+}
+```
+
+This set of unit tests ensures that all decisions in the `maxMin2` method are covered, including boundary values and various types of input arrays. The tests are designed to compile and run successfully in the JUnit 4 framework using Java 8.

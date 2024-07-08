@@ -1,0 +1,65 @@
+Here is the test class for the Fibonacci class:
+```
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+import ds.*;
+
+public class FibonacciTest {
+
+    private Fibonacci fibonacci;
+
+    @Before
+    public void setUp() throws Exception {
+        fibonacci = new Fibonacci();
+    }
+
+    @Test(timeout = 1000)
+    public void testFibIter_DefaultConstructor() throws Exception {
+        // Test default constructor
+        assertNotNull(fibonacci);
+    }
+
+    @Test(timeout = 1000)
+    public void testFibIter_PositiveInput() throws Exception {
+        // Test with positive input
+        int result = fibonacci.fibIter(5);
+        assertEquals(5, result);
+    }
+
+    @Test(timeout = 1000)
+    public void testFibIter_NegativeInput() throws Exception {
+        // Test with negative input
+        try {
+            fibonacci.fibIter(-1);
+            fail("Expected IllegalArgumentException");
+        } catch (IllegalArgumentException e) {
+            // Expected
+        }
+    }
+
+    @Test(timeout = 1000)
+    public void testFibIter_BoundaryValueZero() throws Exception {
+        // Test with boundary value 0
+        int result = fibonacci.fibIter(0);
+        assertEquals(0, result);
+    }
+
+    @Test(timeout = 1000)
+    public void testFibIter_BoundaryValueOne() throws Exception {
+        // Test with boundary value 1
+        int result = fibonacci.fibIter(1);
+        assertEquals(1, result);
+    }
+
+    @Test(timeout = 1000)
+    public void testFibIter_LargeInput() throws Exception {
+        // Test with large input
+        int result = fibonacci.fibIter(20);
+        assertEquals(6765, result);
+    }
+}
+```
+Note that I've added a `setUp` method to create an instance of the `Fibonacci` class, and then used that instance in each test method. I've also added tests for the default constructor, as well as tests for positive, negative, and boundary values. Additionally, I've added a test for a large input to ensure the method can handle it correctly.

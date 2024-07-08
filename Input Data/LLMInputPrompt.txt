@@ -1,0 +1,17 @@
+I need functional test cases to cover all decisions in the methods of the class under testing. 
+All conditional expressions must assume true and false values. 
+Tests with Boundary Values are also mandatory. 
+For numeric data, always use positive and negative values. 
+Include all necessary imports. 
+It is mandatory to throw Exceptions in all test method declarations. 
+It is mandatory to include timeout=1000 in all @Test annotations. 
+It is mandatory to test for the default constructor. 
+Each method in the class under test must have at least one test case. 
+Even simple or void methods must have a test calling it with valid inputs. 
+@Test(expected= must be used only if the method under testing explicitly throws an exception. 
+Test must be in JUnit 4 framework format. 
+Test must be in Java 8. 
+Test must run and compile successfully. 
+Test set heather package and import dependencies: package ds; import org.junit.Test; import org.junit.Before; import static org.junit.Assert.*; import ds.*; 
+
+

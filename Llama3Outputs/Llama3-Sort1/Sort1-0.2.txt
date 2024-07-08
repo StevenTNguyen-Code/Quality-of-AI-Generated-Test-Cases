@@ -1,0 +1,102 @@
+Here is the test class for the `Ordenacao` class:
+```
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+import ds.*;
+
+public class OrdenacaoTest {
+
+    private int[] array;
+    private int n;
+
+    @Before
+    public void setup() {
+        array = new int[] {5, 2, 8, 3, 1, 6, 4};
+        n = array.length;
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdena_DefaultConstructor() throws Exception {
+        Ordenacao ordenacao = new Ordenacao();
+        assertNotNull(ordenacao);
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdena_SortedArray() throws Exception {
+        int[] sortedArray = new int[] {1, 2, 3, 4, 5, 6, 8};
+        Ordenacao.ordena(sortedArray, sortedArray.length);
+        assertArrayEquals(sortedArray, new int[] {1, 2, 3, 4, 5, 6, 8});
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdena_ReversedArray() throws Exception {
+        int[] reversedArray = new int[] {8, 6, 5, 4, 3, 2, 1};
+        Ordenacao.ordena(reversedArray, reversedArray.length);
+        assertArrayEquals(reversedArray, new int[] {1, 2, 3, 4, 5, 6, 8});
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdena_ArrayWithDuplicates() throws Exception {
+        int[] arrayWithDuplicates = new int[] {5, 2, 8, 3, 1, 6, 4, 2, 5};
+        Ordenacao.ordena(arrayWithDuplicates, arrayWithDuplicates.length);
+        assertArrayEquals(arrayWithDuplicates, new int[] {1, 2, 2, 3, 4, 5, 5, 6, 8});
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdena_EmptyArray() throws Exception {
+        int[] emptyArray = new int[] {};
+        Ordenacao.ordena(emptyArray, emptyArray.length);
+        assertArrayEquals(emptyArray, new int[] {});
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdena_ArrayWithNegativeNumbers() throws Exception {
+        int[] arrayWithNegativeNumbers = new int[] {-5, 2, -8, 3, -1, 6, -4};
+        Ordenacao.ordena(arrayWithNegativeNumbers, arrayWithNegativeNumbers.length);
+        assertArrayEquals(arrayWithNegativeNumbers, new int[] {-8, -5, -4, -1, 2, 3, 6});
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdena_ArrayWithZero() throws Exception {
+        int[] arrayWithZero = new int[] {5, 2, 0, 3, 1, 6, 4};
+        Ordenacao.ordena(arrayWithZero, arrayWithZero.length);
+        assertArrayEquals(arrayWithZero, new int[] {0, 1, 2, 3, 4, 5, 6});
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdena_NullArray() throws Exception {
+        try {
+            Ordenacao.ordena(null, 0);
+            fail("Expected NullPointerException");
+        } catch (NullPointerException e) {
+            // expected
+        }
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdena_NegativeN() throws Exception {
+        try {
+            Ordenacao.ordena(array, -1);
+            fail("Expected ArrayIndexOutOfBoundsException");
+        } catch (ArrayIndexOutOfBoundsException e) {
+            // expected
+        }
+    }
+}
+```
+Note that I've covered all the possible scenarios for the `ordena` method, including:
+
+* Testing the default constructor
+* Testing with a sorted array
+* Testing with a reversed array
+* Testing with an array with duplicates
+* Testing with an empty array
+* Testing with an array with negative numbers
+* Testing with an array with zero
+* Testing with a null array
+* Testing with a negative value for `n`
+
+I've also used `assertArrayEquals` to compare the expected and actual results, and `fail` to ensure that the expected exceptions are thrown.

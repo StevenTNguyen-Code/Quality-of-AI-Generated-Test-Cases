@@ -1,0 +1,101 @@
+Certainly! Below is the Java Unit Test code for the `MaxMin3` class using JUnit 4 framework format. This code includes functional test cases to cover all decisions in the methods, boundary values, positive and negative values, and necessary imports. Each method in the class under test has at least one test case, and the default constructor is tested as well.
+
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+
+public class MaxMin3Test {
+
+    private MaxMin3 maxMin3;
+
+    @Before
+    public void setUp() throws Exception {
+        maxMin3 = new MaxMin3();
+    }
+
+    @Test(timeout=1000)
+    public void testDefaultConstructor() throws Exception {
+        assertNotNull("Default constructor should create an instance", new MaxMin3());
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin3EvenLength() throws Exception {
+        int[] input = {1, 3, 5, 7, 9, 2};
+        int[] expected = {9, 1};
+        assertArrayEquals("Test with even length array", expected, MaxMin3.maxMin3(input, input.length));
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin3OddLength() throws Exception {
+        int[] input = {1, 3, 5, 7, 9};
+        int[] expected = {9, 1};
+        assertArrayEquals("Test with odd length array", expected, MaxMin3.maxMin3(input, input.length));
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin3NegativeValues() throws Exception {
+        int[] input = {-1, -3, -5, -7, -9, -2};
+        int[] expected = {-1, -9};
+        assertArrayEquals("Test with negative values", expected, MaxMin3.maxMin3(input, input.length));
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin3MixedValues() throws Exception {
+        int[] input = {-1, 3, -5, 7, -9, 2};
+        int[] expected = {7, -9};
+        assertArrayEquals("Test with mixed positive and negative values", expected, MaxMin3.maxMin3(input, input.length));
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin3SingleElement() throws Exception {
+        int[] input = {5};
+        int[] expected = {5, 5};
+        assertArrayEquals("Test with single element array", expected, MaxMin3.maxMin3(input, input.length));
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin3TwoElements() throws Exception {
+        int[] input = {5, 10};
+        int[] expected = {10, 5};
+        assertArrayEquals("Test with two elements array", expected, MaxMin3.maxMin3(input, input.length));
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin3BoundaryValues() throws Exception {
+        int[] input = {Integer.MAX_VALUE, Integer.MIN_VALUE};
+        int[] expected = {Integer.MAX_VALUE, Integer.MIN_VALUE};
+        assertArrayEquals("Test with boundary values", expected, MaxMin3.maxMin3(input, input.length));
+    }
+
+    @Test(timeout=1000, expected=NullPointerException.class)
+    public void testMaxMin3NullArray() throws Exception {
+        MaxMin3.maxMin3(null, 0);
+    }
+
+    @Test(timeout=1000, expected=ArrayIndexOutOfBoundsException.class)
+    public void testMaxMin3EmptyArray() throws Exception {
+        int[] input = {};
+        MaxMin3.maxMin3(input, input.length);
+    }
+}
+```
+
+### Explanation:
+1. **Imports and Setup**: The necessary imports and setup for JUnit 4 are provided. The `setUp` method initializes the `MaxMin3` instance.
+2. **Default Constructor Test**: Ensures the default constructor creates an instance of `MaxMin3`.
+3. **Various Test Cases**: Cover different scenarios:
+   - **Even Length Array**: Tests with an array of even length.
+   - **Odd Length Array**: Tests with an array of odd length.
+   - **Negative Values**: Tests with all negative values.
+   - **Mixed Values**: Tests with a mix of positive and negative values.
+   - **Single Element**: Tests with an array containing a single element.
+   - **Two Elements**: Tests with an array containing two elements.
+   - **Boundary Values**: Tests with the maximum and minimum integer values.
+4. **Exception Tests**: 
+   - **Null Array**: Tests the method with a null array, expecting a `NullPointerException`.
+   - **Empty Array**: Tests the method with an empty array, expecting an `ArrayIndexOutOfBoundsException`.
+
+Each test method includes `timeout=1000` to ensure the tests complete within a reasonable time frame. The `expected` attribute is used only if the method under test explicitly throws an exception.

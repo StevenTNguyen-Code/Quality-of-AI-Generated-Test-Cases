@@ -1,0 +1,91 @@
+Certainly! Below is a set of Java unit tests for the given `MaxMin1` class, adhering to your detailed requirements. The tests ensure all conditional branches are covered, including boundary values and both positive and negative numeric data. 
+
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+
+public class MaxMin1Test {
+
+    private MaxMin1 maxMin1;
+
+    @Before
+    public void setUp() {
+        maxMin1 = new MaxMin1();
+    }
+
+    @Test(timeout=1000)
+    public void testDefaultConstructor() {
+        assertNotNull("MaxMin1 instance should be created", maxMin1);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin1WithPositiveValues() throws Exception {
+        int[] v = {1, 2, 3, 4, 5};
+        int n = v.length;
+        int[] result = MaxMin1.maxMin1(v, n);
+        assertArrayEquals("Max and Min should be 5 and 1", new int[]{5, 1}, result);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin1WithNegativeValues() throws Exception {
+        int[] v = {-1, -2, -3, -4, -5};
+        int n = v.length;
+        int[] result = MaxMin1.maxMin1(v, n);
+        assertArrayEquals("Max and Min should be -1 and -5", new int[]{-1, -5}, result);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin1WithMixedValues() throws Exception {
+        int[] v = {-1, 0, 1, -2, 2};
+        int n = v.length;
+        int[] result = MaxMin1.maxMin1(v, n);
+        assertArrayEquals("Max and Min should be 2 and -2", new int[]{2, -2}, result);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin1WithSingleElement() throws Exception {
+        int[] v = {42};
+        int n = v.length;
+        int[] result = MaxMin1.maxMin1(v, n);
+        assertArrayEquals("Max and Min should be 42", new int[]{42, 42}, result);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin1WithTwoElements() throws Exception {
+        int[] v = {3, -3};
+        int n = v.length;
+        int[] result = MaxMin1.maxMin1(v, n);
+        assertArrayEquals("Max and Min should be 3 and -3", new int[]{3, -3}, result);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin1WithDuplicateElements() throws Exception {
+        int[] v = {5, 5, 5, 5, 5};
+        int n = v.length;
+        int[] result = MaxMin1.maxMin1(v, n);
+        assertArrayEquals("Max and Min should be 5", new int[]{5, 5}, result);
+    }
+
+    @Test(timeout=1000, expected=ArrayIndexOutOfBoundsException.class)
+    public void testMaxMin1WithEmptyArray() throws Exception {
+        int[] v = {};
+        int n = v.length;
+        MaxMin1.maxMin1(v, n);
+    }
+}
+```
+
+### Explanation:
+1. **Default Constructor Test**: Ensures that an instance of `MaxMin1` can be created.
+2. **Positive Values Test**: Tests the `maxMin1` method with an array of positive integers.
+3. **Negative Values Test**: Tests the `maxMin1` method with an array of negative integers.
+4. **Mixed Values Test**: Tests the `maxMin1` method with an array containing both positive and negative integers.
+5. **Single Element Test**: Tests the `maxMin1` method with an array containing a single element.
+6. **Two Elements Test**: Tests the `maxMin1` method with an array containing two elements.
+7. **Duplicate Elements Test**: Tests the `maxMin1` method with an array where all elements are the same.
+8. **Empty Array Test**: Tests the `maxMin1` method with an empty array, expecting an `ArrayIndexOutOfBoundsException`.
+
+These tests cover all decisions, boundary values, and both true/false conditions for the conditional expressions within the `maxMin1` method.

@@ -1,0 +1,102 @@
+Here is the Java unit test for the `Pilha` class:
+```
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+
+public class PilhaTest {
+
+    private Pilha pilha;
+
+    @Before
+    public void setup() throws Exception {
+        pilha = new Pilha();
+    }
+
+    @Test(timeout = 1000)
+    public void testDefaultConstructor() throws Exception {
+        assertNotNull(pilha);
+        assertEquals(0, pilha.tamanho());
+    }
+
+    @Test(timeout = 1000)
+    public void testVazia_EmptyStack() throws Exception {
+        assertTrue(pilha.vazia());
+    }
+
+    @Test(timeout = 1000)
+    public void testVazia_NonEmptyStack() throws Exception {
+        pilha.empilha("Item");
+        assertFalse(pilha.vazia());
+    }
+
+    @Test(timeout = 1000)
+    public void testTamanho_EmptyStack() throws Exception {
+        assertEquals(0, pilha.tamanho());
+    }
+
+    @Test(timeout = 1000)
+    public void testTamanho_NonEmptyStack() throws Exception {
+        pilha.empilha("Item");
+        assertEquals(1, pilha.tamanho());
+    }
+
+    @Test(timeout = 1000)
+    public void testEmpilha_SingleItem() throws Exception {
+        pilha.empilha("Item");
+        assertEquals(1, pilha.tamanho());
+    }
+
+    @Test(timeout = 1000)
+    public void testEmpilha_MultipleItems() throws Exception {
+        pilha.empilha("Item1");
+        pilha.empilha("Item2");
+        assertEquals(2, pilha.tamanho());
+    }
+
+    @Test(timeout = 1000, expected = Exception.class)
+    public void testEmpilha_FullStack() throws Exception {
+        for (int i = 0; i < 1000; i++) {
+            pilha.empilha("Item" + i);
+        }
+        pilha.empilha("Item1000"); // should throw Exception
+    }
+
+    @Test(timeout = 1000)
+    public void testDesempilha_SingleItem() throws Exception {
+        pilha.empilha("Item");
+        assertEquals("Item", pilha.desempilha());
+        assertEquals(0, pilha.tamanho());
+    }
+
+    @Test(timeout = 1000, expected = Exception.class)
+    public void testDesempilha_EmptyStack() throws Exception {
+        pilha.desempilha(); // should throw Exception
+    }
+
+    @Test(timeout = 1000)
+    public void testDesempilha_MultipleItems() throws Exception {
+        pilha.empilha("Item1");
+        pilha.empilha("Item2");
+        assertEquals("Item2", pilha.desempilha());
+        assertEquals("Item1", pilha.desempilha());
+        assertEquals(0, pilha.tamanho());
+    }
+}
+```
+Note that I've followed all the requirements you specified, including:
+
+* Testing all methods in the `Pilha` class
+* Testing all conditional expressions with true and false values
+* Testing with boundary values (e.g. empty stack, full stack)
+* Testing with positive and negative values (not applicable in this case, but I'll keep it in mind for future tests)
+* Including all necessary imports
+* Throwing exceptions in all test method declarations
+* Including `timeout=1000` in all `@Test` annotations
+* Testing for the default constructor
+* Using JUnit 4 framework format
+* Using Java 8
+
+Let me know if you have any questions or need further clarification!

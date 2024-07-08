@@ -1,0 +1,99 @@
+Here is the test class for the `Ordenacao` class:
+```
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+import ds.*;
+
+public class OrdenacaoTest {
+
+    private int[] array;
+
+    @Before
+    public void setup() {
+        array = new int[] {5, 2, 8, 3, 1, 4, 6};
+    }
+
+    @Test(timeout = 1000)
+    public void testMerge() throws Exception {
+        // Test with valid inputs
+        Ordenacao.merge(array, 0, 3, 6);
+        int[] expected = new int[] {1, 2, 3, 4, 5, 6, 8};
+        assertArrayEquals(expected, array);
+
+        // Test with empty array
+        array = new int[0];
+        Ordenacao.merge(array, 0, -1, 0);
+        assertArrayEquals(new int[0], array);
+
+        // Test with single element array
+        array = new int[] {1};
+        Ordenacao.merge(array, 0, 0, 0);
+        assertArrayEquals(new int[] {1}, array);
+
+        // Test with negative indices
+        array = new int[] {5, 2, 8, 3, 1, 4, 6};
+        try {
+            Ordenacao.merge(array, -1, 3, 6);
+            fail("Expected ArrayIndexOutOfBoundsException");
+        } catch (ArrayIndexOutOfBoundsException e) {
+            // Expected
+        }
+
+        // Test with indices out of bounds
+        array = new int[] {5, 2, 8, 3, 1, 4, 6};
+        try {
+            Ordenacao.merge(array, 0, 10, 6);
+            fail("Expected ArrayIndexOutOfBoundsException");
+        } catch (ArrayIndexOutOfBoundsException e) {
+            // Expected
+        }
+    }
+
+    @Test(timeout = 1000)
+    public void testMergeSort() throws Exception {
+        // Test with valid inputs
+        array = new int[] {5, 2, 8, 3, 1, 4, 6};
+        Ordenacao.mergeSort(array, 0, 6);
+        int[] expected = new int[] {1, 2, 3, 4, 5, 6, 8};
+        assertArrayEquals(expected, array);
+
+        // Test with empty array
+        array = new int[0];
+        Ordenacao.mergeSort(array, 0, -1);
+        assertArrayEquals(new int[0], array);
+
+        // Test with single element array
+        array = new int[] {1};
+        Ordenacao.mergeSort(array, 0, 0);
+        assertArrayEquals(new int[] {1}, array);
+
+        // Test with negative indices
+        array = new int[] {5, 2, 8, 3, 1, 4, 6};
+        try {
+            Ordenacao.mergeSort(array, -1, 6);
+            fail("Expected ArrayIndexOutOfBoundsException");
+        } catch (ArrayIndexOutOfBoundsException e) {
+            // Expected
+        }
+
+        // Test with indices out of bounds
+        array = new int[] {5, 2, 8, 3, 1, 4, 6};
+        try {
+            Ordenacao.mergeSort(array, 0, 10);
+            fail("Expected ArrayIndexOutOfBoundsException");
+        } catch (ArrayIndexOutOfBoundsException e) {
+            // Expected
+        }
+    }
+
+    @Test(timeout = 1000)
+    public void testDefaultConstructor() throws Exception {
+        // Test that the class can be instantiated
+        new Ordenacao();
+    }
+}
+```
+Note that I've added a `setup` method to initialize the `array` field, which is used in multiple test methods. I've also added test cases for the `merge` and `mergeSort` methods, covering various scenarios such as valid inputs, empty arrays, single element arrays, negative indices, and indices out of bounds. Additionally, I've added a test case for the default constructor to ensure that the class can be instantiated.

@@ -1,0 +1,69 @@
+Here are the unit tests for the `Ordenacao` class according to the prompt:
+```
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+
+public class OrdenacaoTest {
+
+    private int[] array;
+
+    @Before
+    public void setUp() {
+        array = new int[]{5, 2, 8, 3, 1, 4, 6};
+    }
+
+    @Test(timeout = 1000)
+    public void testDefaultConstructor() {
+        new Ordenacao();
+    }
+
+    @Test(timeout = 1000)
+    public void testMerge() {
+        int[] temp = new int[]{2, 1};
+        merge(temp, 0, 0, 1);
+        assertArrayEquals(new int[]{1, 2}, temp);
+    }
+
+    @Test(timeout = 1000)
+    public void testMerge_BoundaryValues() {
+        int[] temp = new int[]{Integer.MAX_VALUE, Integer.MIN_VALUE};
+        merge(temp, 0, 0, 1);
+        assertArrayEquals(new int[]{Integer.MIN_VALUE, Integer.MAX_VALUE}, temp);
+    }
+
+    @Test(timeout = 1000)
+    public void testMergeSort() {
+        mergeSort(array, 0, array.length - 1);
+        int[] expected = new int[]{1, 2, 3, 4, 5, 6, 8};
+        assertArrayEquals(expected, array);
+    }
+
+    @Test(timeout = 1000)
+    public void testMergeSort_SingleElement() {
+        int[] singleElementArray = new int[]{5};
+        mergeSort(singleElementArray, 0, 0);
+        assertArrayEquals(new int[]{5}, singleElementArray);
+    }
+
+    @Test(timeout = 1000)
+    public void testMergeSort_EmptyArray() {
+        int[] emptyArray = new int[0];
+        mergeSort(emptyArray, 0, -1);
+        assertArrayEquals(new int[0], emptyArray);
+    }
+
+    @Test(timeout = 1000)
+    public void testMergeSort_NullArray() {
+        try {
+            mergeSort(null, 0, 0);
+            fail("Expected NullPointerException");
+        } catch (NullPointerException e) {
+            // expected
+        }
+    }
+}
+```
+Note that I've added tests for the default constructor, as well as tests for the `merge` and `mergeSort` methods with various input scenarios, including boundary values and edge cases. I've also included a test for the `mergeSort` method with a single-element array, an empty array, and a null array.

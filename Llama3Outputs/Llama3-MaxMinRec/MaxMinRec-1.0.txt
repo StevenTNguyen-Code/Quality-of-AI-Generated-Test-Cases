@@ -1,0 +1,99 @@
+Here is the test class in JUnit 4 framework format, written in Java 8, with all the required test cases:
+```
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+import ds.MaxMin4;
+
+public class MaxMin4Test {
+
+    private int[] v;
+    private int linf;
+    private int lsup;
+
+    @Before
+    public void setUp() {
+        v = new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+        linf = 0;
+        lsup = 9;
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4_defaultConstructor() {
+        // Test default constructor
+        MaxMin4 maxMin4 = new MaxMin4();
+        assertNotNull(maxMin4);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4_simpleCase() {
+        int[] result = MaxMin4.maxMin4(v, linf, lsup);
+        assertEquals(10, result[0]); // max
+        assertEquals(1, result[1]); // min
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4_edgeCase_linfEqualsLsup() {
+        int[] result = MaxMin4.maxMin4(v, 0, 0);
+        assertEquals(v[0], result[0]); // max
+        assertEquals(v[0], result[1]); // min
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4_edgeCase_linfPlusOneEqualsLsup() {
+        int[] result = MaxMin4.maxMin4(v, 0, 1);
+        assertEquals(v[1], result[0]); // max
+        assertEquals(v[0], result[1]); // min
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4_positiveValues() {
+        int[] vPositive = new int[]{10, 20, 30, 40, 50, 60, 70, 80, 90, 100};
+        int[] result = MaxMin4.maxMin4(vPositive, 0, 9);
+        assertEquals(100, result[0]); // max
+        assertEquals(10, result[1]); // min
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4_negativeValues() {
+        int[] vNegative = new int[]{-10, -20, -30, -40, -50, -60, -70, -80, -90, -100};
+        int[] result = MaxMin4.maxMin4(vNegative, 0, 9);
+        assertEquals(-10, result[0]); // max
+        assertEquals(-100, result[1]); // min
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4_mixedValues() {
+        int[] vMixed = new int[]{-10, 0, 10, 20, -30, 40, -50, 60, 70, -80};
+        int[] result = MaxMin4.maxMin4(vMixed, 0, 9);
+        assertEquals(70, result[0]); // max
+        assertEquals(-80, result[1]); // min
+    }
+
+    @Test(timeout = 1000, expected = NullPointerException.class)
+    public void testMaxMin4_nullArray() {
+        MaxMin4.maxMin4(null, 0, 9);
+    }
+
+    @Test(timeout = 1000, expected = ArrayIndexOutOfBoundsException.class)
+    public void testMaxMin4_linfOutOfRange() {
+        MaxMin4.maxMin4(v, -1, 9);
+    }
+
+    @Test(timeout = 1000, expected = ArrayIndexOutOfBoundsException.class)
+    public void testMaxMin4_lsupOutOfRange() {
+        MaxMin4.maxMin4(v, 0, 10);
+    }
+}
+```
+Note that I've covered all the decision points in the `maxMin4` method, including:
+
+* Simple case
+* Edge cases (e.g., `linf` equals `lsup`, `linf + 1` equals `lsup`)
+* Positive, negative, and mixed values
+* Boundary values (e.g., `linf` and `lsup` at the extremes of the array)
+* Error handling (e.g., `NullPointerException`, `ArrayIndexOutOfBoundsException`)
+
+I've also included a test for the default constructor, as required.

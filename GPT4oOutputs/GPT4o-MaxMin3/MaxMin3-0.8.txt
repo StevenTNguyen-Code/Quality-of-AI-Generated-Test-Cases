@@ -1,0 +1,110 @@
+Sure, here is a complete set of JUnit 4 test cases for the `MaxMin3` class provided, covering all decisions, boundary values, and including the specified requirements:
+
+```java
+package ds;
+
+import org.junit.Test;
+import static org.junit.Assert.*;
+
+public class MaxMin3Test {
+
+    private MaxMin3 maxMin3Class;
+
+    @Before
+    public void setUp() {
+        maxMin3Class = new MaxMin3();
+    }
+
+    @Test(timeout=1000)
+    public void testDefaultConstructor() throws Exception {
+        assertNotNull("Default constructor should create an instance", new MaxMin3());
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin3EvenNumberOfElements() throws Exception {
+        int[] input = {1, 2, 3, 4};
+        int[] result = MaxMin3.maxMin3(input, 4);
+        assertNotNull(result);
+        assertEquals(2, result.length);
+        assertEquals(4, result[0]);
+        assertEquals(1, result[1]);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin3OddNumberOfElements() throws Exception {
+        int[] input = {1, 2, 3};
+        int[] result = MaxMin3.maxMin3(input, 3);
+        assertNotNull(result);
+        assertEquals(2, result.length);
+        assertEquals(3, result[0]);
+        assertEquals(1, result[1]);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin3AllElementsSame() throws Exception {
+        int[] input = {2, 2, 2, 2};
+        int[] result = MaxMin3.maxMin3(input, 4);
+        assertNotNull(result);
+        assertEquals(2, result.length);
+        assertEquals(2, result[0]);
+        assertEquals(2, result[1]);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin3NegativeValues() throws Exception {
+        int[] input = {-1, -2, -3, -4};
+        int[] result = MaxMin3.maxMin3(input, 4);
+        assertNotNull(result);
+        assertEquals(2, result.length);
+        assertEquals(-1, result[0]);
+        assertEquals(-4, result[1]);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin3MixedValues() throws Exception {
+        int[] input = {3, -2, 5, 1};
+        int[] result = MaxMin3.maxMin3(input, 4);
+        assertNotNull(result);
+        assertEquals(2, result.length);
+        assertEquals(5, result[0]);
+        assertEquals(-2, result[1]);
+    }
+
+    @Test(timeout=1000, expected=ArrayIndexOutOfBoundsException.class)
+    public void testMaxMin3EmptyArray() throws Exception {
+        int[] input = {};
+        MaxMin3.maxMin3(input, 0);
+    }
+
+    @Test(timeout=1000, expected=ArrayIndexOutOfBoundsException.class)
+    public void testMaxMin3SingleElementArray() throws Exception {
+        int[] input = {1};
+        MaxMin3.maxMin3(input, 1);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin3BoundaryValues() throws Exception {
+        int[] input = {Integer.MAX_VALUE, Integer.MIN_VALUE, 0, -1, 1};
+        int[] result = MaxMin3.maxMin3(input, 5);
+        assertNotNull(result);
+        assertEquals(2, result.length);
+        assertEquals(Integer.MAX_VALUE, result[0]);
+        assertEquals(Integer.MIN_VALUE, result[1]);
+    }
+}
+```
+
+### Explanation:
+1. **Setup Method**: The `setUp` method initializes an instance of the `MaxMin3` class.
+2. **Constructor Test**: The `testDefaultConstructor` checks if the default constructor creates an instance successfully.
+3. **Functional Tests**: Each method in the `MaxMin3` class has at least one corresponding test case covering different scenarios including:
+    - Even number of elements
+    - Odd number of elements
+    - All elements being the same
+    - Negative values
+    - Mixed positive and negative values
+4. **Boundary Tests**: The tests handle boundary values like empty arrays, single element arrays, and arrays containing `Integer.MAX_VALUE` and `Integer.MIN_VALUE`.
+5. **Exception Handling Tests**: Tests to ensure correct behavior when the array doesn't meet the expected criteria are included, using `@Test(expected=...)` for expected exceptions.
+6. **Timeouts**: Each test method includes `timeout=1000` to ensure tests do not run indefinitely.
+
+This test suite fully covers the `MaxMin3` method requirements as specified.

@@ -1,0 +1,109 @@
+Here is the Java unit test for the `MaxMin4` class:
+```
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+import ds.*;
+
+public class MaxMin4Test {
+
+    @Before
+    public void setup() {
+        // No setup needed for this test
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4_defaultConstructor() throws Exception {
+        // Test that the default constructor works
+        MaxMin4 maxMin4 = new MaxMin4();
+        assertNotNull(maxMin4);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4_lsupMinusLinfLessThanEqualOne() throws Exception {
+        // Test when lsup - linf <= 1
+        int[] v = {1, 2};
+        int linf = 0;
+        int lsup = 1;
+        int[] result = MaxMin4.maxMin4(v, linf, lsup);
+        assertEquals(2, result[0]);
+        assertEquals(1, result[1]);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4_lsupMinusLinfGreaterThanOne() throws Exception {
+        // Test when lsup - linf > 1
+        int[] v = {1, 2, 3, 4};
+        int linf = 0;
+        int lsup = 3;
+        int[] result = MaxMin4.maxMin4(v, linf, lsup);
+        assertEquals(4, result[0]);
+        assertEquals(1, result[1]);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4_lsupMinusLinfZero() throws Exception {
+        // Test when lsup - linf == 0
+        int[] v = {1};
+        int linf = 0;
+        int lsup = 0;
+        int[] result = MaxMin4.maxMin4(v, linf, lsup);
+        assertEquals(1, result[0]);
+        assertEquals(1, result[1]);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4_lsupMinusLinfNegative() throws Exception {
+        // Test when lsup - linf < 0
+        int[] v = {1, 2};
+        int linf = 1;
+        int lsup = 0;
+        try {
+            MaxMin4.maxMin4(v, linf, lsup);
+            fail("Expected ArrayIndexOutOfBoundsException");
+        } catch (ArrayIndexOutOfBoundsException e) {
+            // Expected
+        }
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4_vNull() throws Exception {
+        // Test when v is null
+        int[] v = null;
+        int linf = 0;
+        int lsup = 1;
+        try {
+            MaxMin4.maxMin4(v, linf, lsup);
+            fail("Expected NullPointerException");
+        } catch (NullPointerException e) {
+            // Expected
+        }
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4_vEmpty() throws Exception {
+        // Test when v is empty
+        int[] v = new int[0];
+        int linf = 0;
+        int lsup = 0;
+        try {
+            MaxMin4.maxMin4(v, linf, lsup);
+            fail("Expected ArrayIndexOutOfBoundsException");
+        } catch (ArrayIndexOutOfBoundsException e) {
+            // Expected
+        }
+    }
+}
+```
+Note that I've covered all the possible scenarios for the `maxMin4` method, including:
+
+* `lsup - linf <= 1`
+* `lsup - linf > 1`
+* `lsup - linf == 0`
+* `lsup - linf < 0` (which should throw an `ArrayIndexOutOfBoundsException`)
+* `v` is null (which should throw a `NullPointerException`)
+* `v` is empty (which should throw an `ArrayIndexOutOfBoundsException`)
+
+I've also included a test for the default constructor, as required.

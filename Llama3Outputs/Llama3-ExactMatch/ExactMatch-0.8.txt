@@ -1,0 +1,131 @@
+Here are the unit tests for the CasamentoExato class:
+```
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+import ds.*;
+
+public class CasamentoExatoTest {
+
+    @Before
+    public void setUp() throws Exception {
+        // No setup required for this test class
+    }
+
+    @Test(timeout = 1000)
+    public void testForcaBruta() throws Exception {
+        String T = "abcdefg";
+        int n = T.length();
+        String P = "cd";
+        int m = P.length();
+        CasamentoExato.forcaBruta(T, n, P, m);
+    }
+
+    @Test(timeout = 1000)
+    public void testForcaBruta_EmptyPattern() throws Exception {
+        String T = "abcdefg";
+        int n = T.length();
+        String P = "";
+        int m = P.length();
+        CasamentoExato.forcaBruta(T, n, P, m);
+    }
+
+    @Test(timeout = 1000)
+    public void testForcaBruta_EmptyText() throws Exception {
+        String T = "";
+        int n = T.length();
+        String P = "cd";
+        int m = P.length();
+        CasamentoExato.forcaBruta(T, n, P, m);
+    }
+
+    @Test(timeout = 1000)
+    public void testShiftAndExato() throws Exception {
+        String T = "abcdefgh";
+        int n = T.length();
+        String P = "cd";
+        int m = P.length();
+        CasamentoExato.shiftAndExato(T, n, P, m);
+    }
+
+    @Test(timeout = 1000)
+    public void testShiftAndExato_EmptyPattern() throws Exception {
+        String T = "abcdefgh";
+        int n = T.length();
+        String P = "";
+        int m = P.length();
+        CasamentoExato.shiftAndExato(T, n, P, m);
+    }
+
+    @Test(timeout = 1000)
+    public void testShiftAndExato_EmptyText() throws Exception {
+        String T = "";
+        int n = T.length();
+        String P = "cd";
+        int m = P.length();
+        CasamentoExato.shiftAndExato(T, n, P, m);
+    }
+
+    @Test(timeout = 1000)
+    public void testBmh() throws Exception {
+        String T = "abcdefgh";
+        int n = T.length();
+        String P = "cd";
+        int m = P.length();
+        CasamentoExato.bmh(T, n, P, m);
+    }
+
+    @Test(timeout = 1000)
+    public void testBmh_EmptyPattern() throws Exception {
+        String T = "abcdefgh";
+        int n = T.length();
+        String P = "";
+        int m = P.length();
+        CasamentoExato.bmh(T, n, P, m);
+    }
+
+    @Test(timeout = 1000)
+    public void testBmh_EmptyText() throws Exception {
+        String T = "";
+        int n = T.length();
+        String P = "cd";
+        int m = P.length();
+        CasamentoExato.bmh(T, n, P, m);
+    }
+
+    @Test(timeout = 1000)
+    public void testBmhs() throws Exception {
+        String T = "abcdefgh";
+        int n = T.length();
+        String P = "cd";
+        int m = P.length();
+        CasamentoExato.bmhs(T, n, P, m);
+    }
+
+    @Test(timeout = 1000)
+    public void testBmhs_EmptyPattern() throws Exception {
+        String T = "abcdefgh";
+        int n = T.length();
+        String P = "";
+        int m = P.length();
+        CasamentoExato.bmhs(T, n, P, m);
+    }
+
+    @Test(timeout = 1000)
+    public void testBmhs_EmptyText() throws Exception {
+        String T = "";
+        int n = T.length();
+        String P = "cd";
+        int m = P.length();
+        CasamentoExato.bmhs(T, n, P, m);
+    }
+
+    @Test(timeout = 1000)
+    public void testDefaultConstructor() throws Exception {
+        new CasamentoExato();
+    }
+}
+```
+Note that these tests only cover the basic functionality of the methods and do not exhaustively test all possible input combinations. You may want to add additional tests to ensure that the methods behave correctly in all scenarios.

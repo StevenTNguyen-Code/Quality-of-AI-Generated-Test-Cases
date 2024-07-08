@@ -1,0 +1,55 @@
+Here is the test class for the Fibonacci class:
+
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+import ds.*;
+
+public class FibonacciTest {
+
+    private Fibonacci fibonacci;
+
+    @Before
+    public void setup() throws Exception {
+        fibonacci = new Fibonacci();
+    }
+
+    @Test(timeout = 1000)
+    public void testFibIterPositive() throws Exception {
+        assertEquals(0, fibonacci.fibIter(0));
+        assertEquals(1, fibonacci.fibIter(1));
+        assertEquals(1, fibonacci.fibIter(2));
+        assertEquals(2, fibonacci.fibIter(3));
+        assertEquals(3, fibonacci.fibIter(4));
+        assertEquals(5, fibonacci.fibIter(5));
+        assertEquals(8, fibonacci.fibIter(6));
+        assertEquals(13, fibonacci.fibIter(7));
+    }
+
+    @Test(timeout = 1000)
+    public void testFibIterNegative() throws Exception {
+        try {
+            fibonacci.fibIter(-1);
+            fail("Expected Exception for negative input");
+        } catch (Exception e) {
+            // Expected
+        }
+    }
+
+    @Test(timeout = 1000)
+    public void testFibIterBoundary() throws Exception {
+        assertEquals(0, fibonacci.fibIter(0));
+        assertEquals(1, fibonacci.fibIter(1));
+    }
+
+    @Test(timeout = 1000)
+    public void testDefaultConstructor() throws Exception {
+        assertNotNull(fibonacci);
+    }
+}
+```
+
+This test class covers all the decisions in the `fibIter` method of the `Fibonacci` class. It tests the method with positive and negative values, boundary values, and also tests the default constructor. The `testFibIterNegative` method tests that an exception is thrown when a negative value is passed to the `fibIter` method.

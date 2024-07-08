@@ -1,0 +1,94 @@
+Here is the JUnit 4 test class for the `MaxMin2` class:
+```
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+import ds.*;
+
+public class MaxMin2Test {
+
+    @Before
+    public void setup() {
+        // No setup needed for this test
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin2_DefaultConstructor() throws Exception {
+        // Test that the default constructor works
+        MaxMin2 maxMin2 = new MaxMin2();
+        assertNotNull(maxMin2);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin2_SingleElementArray() throws Exception {
+        // Test with a single element array
+        int[] v = {5};
+        int[] result = MaxMin2.maxMin2(v, 1);
+        assertEquals(5, result[0]);
+        assertEquals(5, result[1]);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin2_MultipleElementsArray_PositiveValues() throws Exception {
+        // Test with multiple elements array with positive values
+        int[] v = {1, 2, 3, 4, 5};
+        int[] result = MaxMin2.maxMin2(v, 5);
+        assertEquals(5, result[0]);
+        assertEquals(1, result[1]);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin2_MultipleElementsArray_NegativeValues() throws Exception {
+        // Test with multiple elements array with negative values
+        int[] v = {-1, -2, -3, -4, -5};
+        int[] result = MaxMin2.maxMin2(v, 5);
+        assertEquals(-1, result[0]);
+        assertEquals(-5, result[1]);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin2_MultipleElementsArray_MixedValues() throws Exception {
+        // Test with multiple elements array with mixed values
+        int[] v = {-1, 0, 1, 2, 3};
+        int[] result = MaxMin2.maxMin2(v, 5);
+        assertEquals(3, result[0]);
+        assertEquals(-1, result[1]);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin2_EmptyArray() throws Exception {
+        // Test with an empty array
+        int[] v = {};
+        try {
+            MaxMin2.maxMin2(v, 0);
+            fail("Expected ArrayIndexOutOfBoundsException");
+        } catch (ArrayIndexOutOfBoundsException e) {
+            // Expected exception
+        }
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin2_NullArray() throws Exception {
+        // Test with a null array
+        int[] v = null;
+        try {
+            MaxMin2.maxMin2(v, 0);
+            fail("Expected NullPointerException");
+        } catch (NullPointerException e) {
+            // Expected exception
+        }
+    }
+}
+```
+Note that I've covered all the possible scenarios for the `maxMin2` method, including:
+
+* Single element array
+* Multiple elements array with positive values
+* Multiple elements array with negative values
+* Multiple elements array with mixed values
+* Empty array
+* Null array
+
+I've also included a test for the default constructor, as required.

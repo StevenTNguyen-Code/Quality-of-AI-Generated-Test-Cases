@@ -1,0 +1,81 @@
+Here is the test class for the `Ordenacao` class:
+```
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+
+public class OrdenacaoTest {
+
+    private int[] array;
+
+    @Before
+    public void setUp() {
+        array = new int[] {5, 2, 8, 3, 1, 6, 4};
+    }
+
+    @Test(timeout = 1000)
+    public void testMerge() throws Exception {
+        // Test with valid inputs
+        int[] temp = new int[] {2, 3, 5};
+        Ordenacao.merge(temp, 0, 1, 2);
+        assertArrayEquals(new int[] {2, 3, 5}, temp);
+
+        // Test with empty array
+        int[] empty = new int[0];
+        Ordenacao.merge(empty, 0, -1, 0);
+        assertArrayEquals(new int[0], empty);
+
+        // Test with single element array
+        int[] single = new int[] {1};
+        Ordenacao.merge(single, 0, 0, 0);
+        assertArrayEquals(new int[] {1}, single);
+
+        // Test with negative indices
+        int[] negative = new int[] {5, 2, 8, 3, 1, 6, 4};
+        Ordenacao.merge(negative, -1, 0, 1);
+        assertArrayEquals(new int[] {2, 5}, negative);
+
+        // Test with boundary values
+        int[] boundary = new int[] {Integer.MAX_VALUE, Integer.MIN_VALUE};
+        Ordenacao.merge(boundary, 0, 0, 1);
+        assertArrayEquals(new int[] {Integer.MIN_VALUE, Integer.MAX_VALUE}, boundary);
+    }
+
+    @Test(timeout = 1000)
+    public void testMergeSort() throws Exception {
+        // Test with valid inputs
+        int[] valid = new int[] {5, 2, 8, 3, 1, 6, 4};
+        Ordenacao.mergeSort(valid, 0, valid.length - 1);
+        assertArrayEquals(new int[] {1, 2, 3, 4, 5, 6, 8}, valid);
+
+        // Test with empty array
+        int[] empty = new int[0];
+        Ordenacao.mergeSort(empty, 0, -1);
+        assertArrayEquals(new int[0], empty);
+
+        // Test with single element array
+        int[] single = new int[] {1};
+        Ordenacao.mergeSort(single, 0, 0);
+        assertArrayEquals(new int[] {1}, single);
+
+        // Test with negative indices
+        int[] negative = new int[] {5, 2, 8, 3, 1, 6, 4};
+        Ordenacao.mergeSort(negative, -1, 0);
+        assertArrayEquals(new int[] {1, 2, 3, 4, 5, 6, 8}, negative);
+
+        // Test with boundary values
+        int[] boundary = new int[] {Integer.MAX_VALUE, Integer.MIN_VALUE};
+        Ordenacao.mergeSort(boundary, 0, 1);
+        assertArrayEquals(new int[] {Integer.MIN_VALUE, Integer.MAX_VALUE}, boundary);
+    }
+
+    @Test(timeout = 1000)
+    public void testDefaultConstructor() throws Exception {
+        // Test that the default constructor does not throw any exceptions
+        new Ordenacao();
+    }
+}
+```
+Note that I've covered all the conditional expressions and boundary values in the test cases. I've also included tests for the default constructor, as well as tests for the `merge` and `mergeSort` methods with valid, empty, single element, and negative indices inputs.

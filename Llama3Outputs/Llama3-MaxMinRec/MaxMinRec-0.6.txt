@@ -1,0 +1,111 @@
+Here is the test class with JUnit 4 framework format and Java 8:
+
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+import ds.*;
+
+public class MaxMin4Test {
+
+    private MaxMin4 maxMin4;
+
+    @Before
+    public void setup() {
+        maxMin4 = new MaxMin4(); // test for default constructor
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4SmallRange() throws Exception {
+        int v[] = {1, 2};
+        int linf = 0;
+        int lsup = 1;
+        int[] result = MaxMin4.maxMin4(v, linf, lsup);
+        assertEquals(2, result[0]);
+        assertEquals(1, result[1]);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4SmallRangeReversed() throws Exception {
+        int v[] = {2, 1};
+        int linf = 0;
+        int lsup = 1;
+        int[] result = MaxMin4.maxMin4(v, linf, lsup);
+        assertEquals(2, result[0]);
+        assertEquals(1, result[1]);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4LargeRange() throws Exception {
+        int v[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+        int linf = 0;
+        int lsup = 9;
+        int[] result = MaxMin4.maxMin4(v, linf, lsup);
+        assertEquals(10, result[0]);
+        assertEquals(1, result[1]);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4LargeRangeReversed() throws Exception {
+        int v[] = {10, 9, 8, 7, 6, 5, 4, 3, 2, 1};
+        int linf = 0;
+        int lsup = 9;
+        int[] result = MaxMin4.maxMin4(v, linf, lsup);
+        assertEquals(10, result[0]);
+        assertEquals(1, result[1]);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4SingleElement() throws Exception {
+        int v[] = {1};
+        int linf = 0;
+        int lsup = 0;
+        int[] result = MaxMin4.maxMin4(v, linf, lsup);
+        assertEquals(1, result[0]);
+        assertEquals(1, result[1]);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4NullArray() throws Exception {
+        int v[] = null;
+        int linf = 0;
+        int lsup = 0;
+        try {
+            MaxMin4.maxMin4(v, linf, lsup);
+            fail("Expected NullPointerException");
+        } catch (NullPointerException e) {
+            // expected
+        }
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4EmptyArray() throws Exception {
+        int v[] = {};
+        int linf = 0;
+        int lsup = 0;
+        try {
+            MaxMin4.maxMin4(v, linf, lsup);
+            fail("Expected ArrayIndexOutOfBoundsException");
+        } catch (ArrayIndexOutOfBoundsException e) {
+            // expected
+        }
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4InvalidRange() throws Exception {
+        int v[] = {1, 2};
+        int linf = 1;
+        int lsup = 0;
+        try {
+            MaxMin4.maxMin4(v, linf, lsup);
+            fail("Expected ArrayIndexOutOfBoundsException");
+        } catch (ArrayIndexOutOfBoundsException e) {
+            // expected
+        }
+    }
+}
+```
+
+This test class covers all the decisions in the `maxMin4` method, including the base case and the recursive case. It also tests the method with different types of input, such as small and large ranges, single element, null array, empty array, and invalid range.

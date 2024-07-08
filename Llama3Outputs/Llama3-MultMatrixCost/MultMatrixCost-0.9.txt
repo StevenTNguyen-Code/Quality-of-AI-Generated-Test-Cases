@@ -1,0 +1,96 @@
+Here is the JUnit test class for the `AvaliaMultMatrizes` class:
+```
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+import java.io.IOException;
+
+public class AvaliaMultMatrizesTest {
+
+    @Before
+    public void setUp() throws Exception {
+        // Initialize any test data or setup requirements here
+    }
+
+    @Test(timeout=1000)
+    public void testMultmatrize_DefaultConstructor() throws IOException {
+        AvaliaMultMatrizes multMatrizes = new AvaliaMultMatrizes();
+        assertNotNull(multMatrizes);
+    }
+
+    @Test(timeout=1000)
+    public void testMultmatrize_SimpleCase() throws IOException {
+        int n = 2;
+        int d[] = {1, 2, 3};
+        AvaliaMultMatrizes.multmatrize(n, d);
+        // Verify the output or side effects of the method
+    }
+
+    @Test(timeout=1000, expected=IOException.class)
+    public void testMultmatrize_IoException() throws IOException {
+        int n = 2;
+        int d[] = null;
+        AvaliaMultMatrizes.multmatrize(n, d);
+    }
+
+    @Test(timeout=1000)
+    public void testMultmatrize_BoundaryValue_nZero() throws IOException {
+        int n = 0;
+        int d[] = {1, 2, 3};
+        AvaliaMultMatrizes.multmatrize(n, d);
+        // Verify the output or side effects of the method
+    }
+
+    @Test(timeout=1000)
+    public void testMultmatrize_BoundaryValue_nOne() throws IOException {
+        int n = 1;
+        int d[] = {1, 2, 3};
+        AvaliaMultMatrizes.multmatrize(n, d);
+        // Verify the output or side effects of the method
+    }
+
+    @Test(timeout=1000)
+    public void testMultmatrize_BoundaryValue_dNull() throws IOException {
+        int n = 2;
+        int d[] = null;
+        AvaliaMultMatrizes.multmatrize(n, d);
+        // Verify the output or side effects of the method
+    }
+
+    @Test(timeout=1000)
+    public void testMultmatrize_BoundaryValue_dEmpty() throws IOException {
+        int n = 2;
+        int d[] = {};
+        AvaliaMultMatrizes.multmatrize(n, d);
+        // Verify the output or side effects of the method
+    }
+
+    @Test(timeout=1000)
+    public void testMultmatrize_NegativeValue_n() throws IOException {
+        int n = -1;
+        int d[] = {1, 2, 3};
+        AvaliaMultMatrizes.multmatrize(n, d);
+        // Verify the output or side effects of the method
+    }
+
+    @Test(timeout=1000)
+    public void testMultmatrize_NegativeValue_d() throws IOException {
+        int n = 2;
+        int d[] = {-1, -2, -3};
+        AvaliaMultMatrizes.multmatrize(n, d);
+        // Verify the output or side effects of the method
+    }
+}
+```
+Note that I've added tests for:
+
+* Default constructor
+* Simple case with valid inputs
+* IOException test case
+* Boundary values for `n` (0, 1) and `d` (null, empty)
+* Negative values for `n` and `d`
+* Each test method has a timeout of 1000ms and throws IOException except for the IOException test case.
+
+You may need to modify the test cases to suit your specific requirements, such as verifying the output or side effects of the `multmatrize` method.

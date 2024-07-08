@@ -1,0 +1,97 @@
+Here is the Java unit test for the `MaxMin4` class:
+```
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+import ds.*;
+
+public class MaxMin4Test {
+
+    @Before
+    public void setup() {
+        // No setup needed for this test
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4_defaultConstructor() throws Exception {
+        MaxMin4 maxMin4 = new MaxMin4();
+        assertNotNull(maxMin4);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4_linfEqualsLsup() throws Exception {
+        int[] v = {1, 2, 3, 4, 5};
+        int[] result = MaxMin4.maxMin4(v, 0, 0);
+        assertEquals(1, result[0]);
+        assertEquals(1, result[1]);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4_linfLessThanLsup() throws Exception {
+        int[] v = {1, 2, 3, 4, 5};
+        int[] result = MaxMin4.maxMin4(v, 0, 1);
+        assertEquals(2, result[0]);
+        assertEquals(1, result[1]);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4_linfGreaterThanLsup() throws Exception {
+        int[] v = {1, 2, 3, 4, 5};
+        try {
+            MaxMin4.maxMin4(v, 1, 0);
+            fail("Expected ArrayIndexOutOfBoundsException");
+        } catch (ArrayIndexOutOfBoundsException e) {
+            // Expected
+        }
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4_linfEqualsLsupBoundaryValue() throws Exception {
+        int[] v = {Integer.MAX_VALUE, Integer.MIN_VALUE};
+        int[] result = MaxMin4.maxMin4(v, 0, 0);
+        assertEquals(Integer.MAX_VALUE, result[0]);
+        assertEquals(Integer.MIN_VALUE, result[1]);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4_linfLessThanLsupBoundaryValue() throws Exception {
+        int[] v = {Integer.MAX_VALUE, Integer.MIN_VALUE};
+        int[] result = MaxMin4.maxMin4(v, 0, 1);
+        assertEquals(Integer.MAX_VALUE, result[0]);
+        assertEquals(Integer.MIN_VALUE, result[1]);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4_linfGreaterThanLsupBoundaryValue() throws Exception {
+        int[] v = {Integer.MAX_VALUE, Integer.MIN_VALUE};
+        try {
+            MaxMin4.maxMin4(v, 1, 0);
+            fail("Expected ArrayIndexOutOfBoundsException");
+        } catch (ArrayIndexOutOfBoundsException e) {
+            // Expected
+        }
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4_nullInput() throws Exception {
+        try {
+            MaxMin4.maxMin4(null, 0, 1);
+            fail("Expected NullPointerException");
+        } catch (NullPointerException e) {
+            // Expected
+        }
+    }
+}
+```
+Note that I've covered all the possible scenarios for the `maxMin4` method, including:
+
+* Default constructor test
+* `linf` equals `lsup` test
+* `linf` less than `lsup` test
+* `linf` greater than `lsup` test (which should throw an `ArrayIndexOutOfBoundsException`)
+* Boundary value tests for `linf` equals `lsup`, `linf` less than `lsup`, and `linf` greater than `lsup`
+* Test for null input (which should throw a `NullPointerException`)
+
+I've also included the `timeout=1000` annotation for each test method, as required.

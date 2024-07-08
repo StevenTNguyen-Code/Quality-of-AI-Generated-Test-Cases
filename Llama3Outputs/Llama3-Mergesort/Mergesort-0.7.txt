@@ -1,0 +1,102 @@
+Here is the unit test class for the `Ordenacao` class:
+```
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+import ds.Ordenacao;
+
+public class OrdenacaoTest {
+
+    @Before
+    public void setup() {
+        // No setup needed for this test class
+    }
+
+    @Test(timeout=1000)
+    public void testMerge_SimpleCase() throws Exception {
+        int[] v = {3, 1, 2, 4};
+        int i = 0;
+        int m = 1;
+        int j = 3;
+        Ordenacao.merge(v, i, m, j);
+        assertArrayEquals(new int[] {1, 2, 3, 4}, v);
+    }
+
+    @Test(timeout=1000)
+    public void testMerge_EmptyArray() throws Exception {
+        int[] v = {};
+        int i = 0;
+        int m = 0;
+        int j = 0;
+        Ordenacao.merge(v, i, m, j);
+        assertArrayEquals(new int[] {}, v);
+    }
+
+    @Test(timeout=1000)
+    public void testMerge_SingleElementArray() throws Exception {
+        int[] v = {1};
+        int i = 0;
+        int m = 0;
+        int j = 0;
+        Ordenacao.merge(v, i, m, j);
+        assertArrayEquals(new int[] {1}, v);
+    }
+
+    @Test(timeout=1000)
+    public void testMerge_BoundaryValues() throws Exception {
+        int[] v = {Integer.MIN_VALUE, -1, 0, 1, Integer.MAX_VALUE};
+        int i = 0;
+        int m = 2;
+        int j = 4;
+        Ordenacao.merge(v, i, m, j);
+        assertArrayEquals(new int[] {-1, 0, 1, Integer.MIN_VALUE, Integer.MAX_VALUE}, v);
+    }
+
+    @Test(timeout=1000)
+    public void testMergeSort_SimpleCase() throws Exception {
+        int[] v = {3, 1, 2, 4};
+        int i = 0;
+        int j = 3;
+        Ordenacao.mergeSort(v, i, j);
+        assertArrayEquals(new int[] {1, 2, 3, 4}, v);
+    }
+
+    @Test(timeout=1000)
+    public void testMergeSort_EmptyArray() throws Exception {
+        int[] v = {};
+        int i = 0;
+        int j = 0;
+        Ordenacao.mergeSort(v, i, j);
+        assertArrayEquals(new int[] {}, v);
+    }
+
+    @Test(timeout=1000)
+    public void testMergeSort_SingleElementArray() throws Exception {
+        int[] v = {1};
+        int i = 0;
+        int j = 0;
+        Ordenacao.mergeSort(v, i, j);
+        assertArrayEquals(new int[] {1}, v);
+    }
+
+    @Test(timeout=1000)
+    public void testMergeSort_BoundaryValues() throws Exception {
+        int[] v = {Integer.MIN_VALUE, -1, 0, 1, Integer.MAX_VALUE};
+        int i = 0;
+        int j = 4;
+        Ordenacao.mergeSort(v, i, j);
+        assertArrayEquals(new int[] {Integer.MIN_VALUE, -1, 0, 1, Integer.MAX_VALUE}, v);
+    }
+
+    @Test(timeout=1000)
+    public void testDefaultConstructor() throws Exception {
+        // No-op, just testing that the default constructor works
+        new Ordenacao();
+    }
+}
+```
+Note that I've added tests for the `merge` method as well, since it's a static method that's used by the `mergeSort` method. I've also added tests for the default constructor, even though it doesn't do anything in this case.
+
+I've used a mix of simple cases, edge cases (empty arrays, single-element arrays), and boundary values (integer min and max values) to test the `merge` and `mergeSort` methods. Let me know if you'd like me to add any additional tests!

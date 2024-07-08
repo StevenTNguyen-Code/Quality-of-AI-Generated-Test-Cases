@@ -1,0 +1,99 @@
+Sure, here are the unit tests for the `MaxMin3` class using JUnit 4:
+
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+
+public class MaxMin3Test {
+    
+    private MaxMin3 maxMin3;
+
+    @Before
+    public void setUp() {
+        maxMin3 = new MaxMin3();
+    }
+
+    @Test(timeout=1000)
+    public void testDefaultConstructor() throws Exception {
+        assertNotNull(new MaxMin3());
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin3EvenNumberOfElements() throws Exception {
+        int[] input = {3, 5, 1, 8, 4, 7};
+        int[] result = MaxMin3.maxMin3(input, input.length);
+        assertEquals(8, result[0]);
+        assertEquals(1, result[1]);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin3OddNumberOfElements() throws Exception {
+        int[] input = {3, 5, 1, 8, 4};
+        int[] result = MaxMin3.maxMin3(input, input.length);
+        assertEquals(8, result[0]);
+        assertEquals(1, result[1]);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin3SingleElement() throws Exception {
+        int[] input = {3};
+        int[] result = MaxMin3.maxMin3(input, input.length);
+        assertEquals(3, result[0]);
+        assertEquals(3, result[1]);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin3AllSameElements() throws Exception {
+        int[] input = {5, 5, 5, 5, 5, 5};
+        int[] result = MaxMin3.maxMin3(input, input.length);
+        assertEquals(5, result[0]);
+        assertEquals(5, result[1]);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin3NegativeElements() throws Exception {
+        int[] input = {-3, -5, -1, -8, -4, -7};
+        int[] result = MaxMin3.maxMin3(input, input.length);
+        assertEquals(-1, result[0]);
+        assertEquals(-8, result[1]);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin3EmptyArray() throws Exception {
+        int[] input = {};
+        try {
+            MaxMin3.maxMin3(input, input.length);
+            fail("Expected an ArrayIndexOutOfBoundsException to be thrown");
+        } catch (ArrayIndexOutOfBoundsException e) {
+            assertTrue(true);
+        }
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin3BoundaryValues() throws Exception {
+        int[] input = {Integer.MIN_VALUE, Integer.MAX_VALUE};
+        int[] result = MaxMin3.maxMin3(input, input.length);
+        assertEquals(Integer.MAX_VALUE, result[0]);
+        assertEquals(Integer.MIN_VALUE, result[1]);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin3MixedValues() throws Exception {
+        int[] input = {1, -1, 0, 100, -100, 50};
+        int[] result = MaxMin3.maxMin3(input, input.length);
+        assertEquals(100, result[0]);
+        assertEquals(-100, result[1]);
+    }
+}
+```
+
+Explanation:
+- **Default Constructor Test**: Ensures an instance of `MaxMin3` can be created.
+- **Various Scenarios**: Tests the `maxMin3` method with different scenarios including even number of elements, odd number of elements, single element, all same elements, negative elements, empty array, boundary values, and mixed values.
+- **Timeout and Exception Handling**: Each test method has a timeout of 1000ms and proper exception handling where necessary.
+- **Boundary Values**: Tests scenarios with minimum and maximum integer values to check for boundary conditions.
+
+Please make sure that the `MaxMin3` class is correctly placed in the `ds` package for the tests to run successfully.

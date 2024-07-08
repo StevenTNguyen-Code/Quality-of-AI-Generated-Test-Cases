@@ -1,0 +1,80 @@
+Here is the unit test class for the `Fibonacci` class:
+```
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+import ds.*;
+
+public class FibonacciTest {
+
+    private Fibonacci fibonacci;
+
+    @Before
+    public void setup() {
+        fibonacci = new Fibonacci();
+    }
+
+    @Test(timeout = 1000)
+    public void testFibIter_DefaultConstructor() throws Exception {
+        // Test default constructor
+        assertNotNull(fibonacci);
+    }
+
+    @Test(timeout = 1000)
+    public void testFibIter_PositiveInput() throws Exception {
+        // Test with positive input
+        int result = fibonacci.fibIter(5);
+        assertEquals(5, result);
+    }
+
+    @Test(timeout = 1000)
+    public void testFibIter_NegativeInput() throws Exception {
+        // Test with negative input
+        try {
+            fibonacci.fibIter(-1);
+            fail("Expected IllegalArgumentException");
+        } catch (IllegalArgumentException e) {
+            // Expected
+        }
+    }
+
+    @Test(timeout = 1000)
+    public void testFibIter_BoundaryValueZero() throws Exception {
+        // Test with boundary value 0
+        int result = fibonacci.fibIter(0);
+        assertEquals(0, result);
+    }
+
+    @Test(timeout = 1000)
+    public void testFibIter_BoundaryValueOne() throws Exception {
+        // Test with boundary value 1
+        int result = fibonacci.fibIter(1);
+        assertEquals(1, result);
+    }
+
+    @Test(timeout = 1000)
+    public void testFibIter_LargeInput() throws Exception {
+        // Test with large input
+        int result = fibonacci.fibIter(20);
+        assertEquals(6765, result);
+    }
+
+    @Test(timeout = 1000, expected = ArithmeticException.class)
+    public void testFibIter_Overflow() throws Exception {
+        // Test with input that causes overflow
+        fibonacci.fibIter(100);
+    }
+}
+```
+Note that I've added a `setup()` method to create an instance of the `Fibonacci` class before each test, and I've added test cases to cover all the decisions in the `fibIter()` method, including:
+
+* Testing the default constructor
+* Testing with positive input
+* Testing with negative input (which should throw an `IllegalArgumentException`)
+* Testing with boundary values 0 and 1
+* Testing with a large input
+* Testing with an input that causes an overflow (which should throw an `ArithmeticException`)
+
+I've also included the necessary imports and annotations as per your requirements.

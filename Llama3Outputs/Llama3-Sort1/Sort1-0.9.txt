@@ -1,0 +1,115 @@
+Here is the test class for the `Ordenacao` class:
+```
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+import ds.*;
+
+public class OrdenacaoTest {
+
+    private int[] array;
+    private int n;
+
+    @Before
+    public void setup() {
+        array = new int[] {5, 2, 8, 3, 1, 4, 6};
+        n = array.length;
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdena_DefaultConstructor() throws Exception {
+        Ordenacao ordenacao = new Ordenacao();
+        assertNotNull(ordenacao);
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdena_SmallArray() throws Exception {
+        int[] array = new int[] {3, 1, 2};
+        int n = array.length;
+        Ordenacao.ordena(array, n);
+        assertArrayEquals(new int[] {1, 2, 3}, array);
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdena_LargeArray() throws Exception {
+        int[] array = new int[100];
+        for (int i = 0; i < 100; i++) {
+            array[i] = 100 - i;
+        }
+        int n = array.length;
+        Ordenacao.ordena(array, n);
+        for (int i = 0; i < 100; i++) {
+            assertEquals(i + 1, array[i]);
+        }
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdena_NegativeNumbers() throws Exception {
+        int[] array = new int[] {-3, -1, -2};
+        int n = array.length;
+        Ordenacao.ordena(array, n);
+        assertArrayEquals(new int[] {-3, -2, -1}, array);
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdena_PositiveAndNegativeNumbers() throws Exception {
+        int[] array = new int[] {3, -1, 2, -2};
+        int n = array.length;
+        Ordenacao.ordena(array, n);
+        assertArrayEquals(new int[] {-2, -1, 2, 3}, array);
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdena_BoundaryValues() throws Exception {
+        int[] array = new int[] {Integer.MIN_VALUE, 0, Integer.MAX_VALUE};
+        int n = array.length;
+        Ordenacao.ordena(array, n);
+        assertArrayEquals(new int[] {Integer.MIN_VALUE, 0, Integer.MAX_VALUE}, array);
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdena_NullArray() throws Exception {
+        int[] array = null;
+        int n = 0;
+        try {
+            Ordenacao.ordena(array, n);
+            fail("Expected NullPointerException");
+        } catch (NullPointerException e) {
+            // Expected exception
+        }
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdena_NegativeN() throws Exception {
+        int[] array = new int[] {5, 2, 8, 3, 1, 4, 6};
+        int n = -1;
+        try {
+            Ordenacao.ordena(array, n);
+            fail("Expected ArrayIndexOutOfBoundsException");
+        } catch (ArrayIndexOutOfBoundsException e) {
+            // Expected exception
+        }
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdena_NegativeLengthArray() throws Exception {
+        int[] array = new int[] {};
+        int n = 0;
+        Ordenacao.ordena(array, n);
+        assertArrayEquals(new int[] {}, array);
+    }
+}
+```
+Note that I've included a variety of test cases to cover different scenarios, including:
+
+* Testing the default constructor
+* Testing small and large arrays
+* Testing arrays with negative numbers, positive and negative numbers, and boundary values
+* Testing with null arrays and negative `n` values
+* Testing with an empty array
+
+I've also used `assertArrayEquals` to check that the array is sorted correctly, and `assertEquals` to check that individual elements are correct.
+
+Note that I've followed the requirements you specified, including using JUnit 4, Java 8, and including the necessary imports.

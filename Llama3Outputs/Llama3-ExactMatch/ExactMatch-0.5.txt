@@ -1,0 +1,117 @@
+Here is the test class for the provided Java class:
+
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+
+public class CasamentoExatoTest {
+
+    private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+    private final PrintStream originalOut = System.out;
+
+    @Before
+    public void setUpStreams() {
+        System.setOut(new PrintStream(outContent));
+    }
+
+    @After
+    public void restoreStreams() {
+        System.setOut(originalOut);
+    }
+
+    @Test(timeout = 1000)
+    public void testForcaBruta() throws Exception {
+        CasamentoExato.forcaBruta("ABABDABACDABAA", 12, "ABAA", 4);
+        assertEquals("Casamento na posicao: 0\r\nCasamento na posicao: 10\r\n", outContent.toString());
+    }
+
+    @Test(timeout = 1000)
+    public void testForcaBrutaEmptyString() throws Exception {
+        CasamentoExato.forcaBruta("", 0, "", 0);
+        assertEquals("", outContent.toString());
+    }
+
+    @Test(timeout = 1000)
+    public void testForcaBrutaNullString() throws Exception {
+        try {
+            CasamentoExato.forcaBruta(null, 0, "", 0);
+            fail("Expected NullPointerException");
+        } catch (NullPointerException e) {
+            // expected
+        }
+    }
+
+    @Test(timeout = 1000)
+    public void testShiftAndExato() throws Exception {
+        CasamentoExato.shiftAndExato("ABABDABACDABAA", 12, "ABAA", 4);
+        assertEquals("Casamento na posicao: 0\r\nCasamento na posicao: 10\r\n", outContent.toString());
+    }
+
+    @Test(timeout = 1000)
+    public void testShiftAndExatoEmptyString() throws Exception {
+        CasamentoExato.shiftAndExato("", 0, "", 0);
+        assertEquals("", outContent.toString());
+    }
+
+    @Test(timeout = 1000)
+    public void testShiftAndExatoNullString() throws Exception {
+        try {
+            CasamentoExato.shiftAndExato(null, 0, "", 0);
+            fail("Expected NullPointerException");
+        } catch (NullPointerException e) {
+            // expected
+        }
+    }
+
+    @Test(timeout = 1000)
+    public void testBmh() throws Exception {
+        CasamentoExato.bmh("ABABDABACDABAA", 12, "ABAA", 4);
+        assertEquals("Casamento na posicao: 0\r\nCasamento na posicao: 10\r\n", outContent.toString());
+    }
+
+    @Test(timeout = 1000)
+    public void testBmhEmptyString() throws Exception {
+        CasamentoExato.bmh("", 0, "", 0);
+        assertEquals("", outContent.toString());
+    }
+
+    @Test(timeout = 1000)
+    public void testBmhNullString() throws Exception {
+        try {
+            CasamentoExato.bmh(null, 0, "", 0);
+            fail("Expected NullPointerException");
+        } catch (NullPointerException e) {
+            // expected
+        }
+    }
+
+    @Test(timeout = 1000)
+    public void testBmhs() throws Exception {
+        CasamentoExato.bmhs("ABABDABACDABAA", 12, "ABAA", 4);
+        assertEquals("Casamento na posicao: 0\r\nCasamento na posicao: 10\r\n", outContent.toString());
+    }
+
+    @Test(timeout = 1000)
+    public void testBmhsEmptyString() throws Exception {
+        CasamentoExato.bmhs("", 0, "", 0);
+        assertEquals("", outContent.toString());
+    }
+
+    @Test(timeout = 1000)
+    public void testBmhsNullString() throws Exception {
+        try {
+            CasamentoExato.bmhs(null, 0, "", 0);
+            fail("Expected NullPointerException");
+        } catch (NullPointerException e) {
+            // expected
+        }
+    }
+}
+```
+
+This test class covers all the methods in the `CasamentoExato` class with different test cases, including empty strings, null strings, and valid inputs. The `@Before` and `@After` methods are used to redirect the system output to a `ByteArrayOutputStream` to capture the output of the methods. The `assertEquals` method is used to verify the expected output.

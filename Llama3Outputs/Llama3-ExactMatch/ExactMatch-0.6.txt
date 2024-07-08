@@ -1,0 +1,112 @@
+Here is the test class for the `CasamentoExato` class:
+```
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+import ds.CasamentoExato;
+
+public class CasamentoExatoTest {
+
+    @Before
+    public void setup() {
+        // No setup needed for this class
+    }
+
+    @Test(timeout = 1000)
+    public void testDefaultConstructor() throws Exception {
+        // Test that the default constructor doesn't throw any exceptions
+        new CasamentoExato();
+    }
+
+    @Test(timeout = 1000)
+    public void testForcaBruta() throws Exception {
+        // Test with valid inputs
+        CasamentoExato.forcaBruta("hello", 5, "ell", 3);
+        CasamentoExato.forcaBruta("hello", 5, "he", 2);
+        CasamentoExato.forcaBruta("hello", 5, "o", 1);
+
+        // Test with invalid inputs
+        try {
+            CasamentoExato.forcaBruta(null, 5, "ell", 3);
+            fail("Expected NullPointerException");
+        } catch (NullPointerException e) {
+            // Expected
+        }
+        try {
+            CasamentoExato.forcaBruta("hello", -1, "ell", 3);
+            fail("Expected ArrayIndexOutOfBoundsException");
+        } catch (ArrayIndexOutOfBoundsException e) {
+            // Expected
+        }
+    }
+
+    @Test(timeout = 1000)
+    public void testShiftAndExato() throws Exception {
+        // Test with valid inputs
+        CasamentoExato.shiftAndExato("hello", 5, "ell", 3);
+        CasamentoExato.shiftAndExato("hello", 5, "he", 2);
+        CasamentoExato.shiftAndExato("hello", 5, "o", 1);
+
+        // Test with invalid inputs
+        try {
+            CasamentoExato.shiftAndExato(null, 5, "ell", 3);
+            fail("Expected NullPointerException");
+        } catch (NullPointerException e) {
+            // Expected
+        }
+        try {
+            CasamentoExato.shiftAndExato("hello", -1, "ell", 3);
+            fail("Expected ArrayIndexOutOfBoundsException");
+        } catch (ArrayIndexOutOfBoundsException e) {
+            // Expected
+        }
+    }
+
+    @Test(timeout = 1000)
+    public void testBmh() throws Exception {
+        // Test with valid inputs
+        CasamentoExato.bmh("hello", 5, "ell", 3);
+        CasamentoExato.bmh("hello", 5, "he", 2);
+        CasamentoExato.bmh("hello", 5, "o", 1);
+
+        // Test with invalid inputs
+        try {
+            CasamentoExato.bmh(null, 5, "ell", 3);
+            fail("Expected NullPointerException");
+        } catch (NullPointerException e) {
+            // Expected
+        }
+        try {
+            CasamentoExato.bmh("hello", -1, "ell", 3);
+            fail("Expected ArrayIndexOutOfBoundsException");
+        } catch (ArrayIndexOutOfBoundsException e) {
+            // Expected
+        }
+    }
+
+    @Test(timeout = 1000)
+    public void testBmhs() throws Exception {
+        // Test with valid inputs
+        CasamentoExato.bmhs("hello", 5, "ell", 3);
+        CasamentoExato.bmhs("hello", 5, "he", 2);
+        CasamentoExato.bmhs("hello", 5, "o", 1);
+
+        // Test with invalid inputs
+        try {
+            CasamentoExato.bmhs(null, 5, "ell", 3);
+            fail("Expected NullPointerException");
+        } catch (NullPointerException e) {
+            // Expected
+        }
+        try {
+            CasamentoExato.bmhs("hello", -1, "ell", 3);
+            fail("Expected ArrayIndexOutOfBoundsException");
+        } catch (ArrayIndexOutOfBoundsException e) {
+            // Expected
+        }
+    }
+}
+```
+Note that I've added tests for the default constructor, as well as tests for each of the four methods in the `CasamentoExato` class. I've also added tests for invalid inputs, such as null strings and negative indices, to ensure that the methods handle these cases correctly.

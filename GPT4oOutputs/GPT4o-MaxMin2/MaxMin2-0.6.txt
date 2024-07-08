@@ -1,0 +1,103 @@
+Certainly! Below is the Java unit test code for the `MaxMin2` class using JUnit 4 framework format as per your requirements:
+
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+
+public class MaxMin2Test {
+
+    private MaxMin2 maxMin2;
+
+    @Before
+    public void setUp() throws Exception {
+        maxMin2 = new MaxMin2();
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin2_AllPositive() throws Exception {
+        int[] v = {1, 2, 3, 4, 5};
+        int n = 5;
+        int[] result = MaxMin2.maxMin2(v, n);
+        assertArrayEquals(new int[]{5, 1}, result);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin2_AllNegative() throws Exception {
+        int[] v = {-1, -2, -3, -4, -5};
+        int n = 5;
+        int[] result = MaxMin2.maxMin2(v, n);
+        assertArrayEquals(new int[]{-1, -5}, result);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin2_PositiveAndNegative() throws Exception {
+        int[] v = {-1, 2, -3, 4, -5};
+        int n = 5;
+        int[] result = MaxMin2.maxMin2(v, n);
+        assertArrayEquals(new int[]{4, -5}, result);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin2_SingleElement() throws Exception {
+        int[] v = {42};
+        int n = 1;
+        int[] result = MaxMin2.maxMin2(v, n);
+        assertArrayEquals(new int[]{42, 42}, result);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin2_DuplicateElements() throws Exception {
+        int[] v = {3, 3, 3, 3, 3};
+        int n = 5;
+        int[] result = MaxMin2.maxMin2(v, n);
+        assertArrayEquals(new int[]{3, 3}, result);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin2_BoundaryValues() throws Exception {
+        int[] v = {Integer.MAX_VALUE, Integer.MIN_VALUE};
+        int n = 2;
+        int[] result = MaxMin2.maxMin2(v, n);
+        assertArrayEquals(new int[]{Integer.MAX_VALUE, Integer.MIN_VALUE}, result);
+    }
+
+    @Test(timeout=1000, expected=ArrayIndexOutOfBoundsException.class)
+    public void testMaxMin2_EmptyArray() throws Exception {
+        int[] v = {};
+        int n = 0;
+        MaxMin2.maxMin2(v, n);
+    }
+
+    @Test(timeout=1000, expected=ArrayIndexOutOfBoundsException.class)
+    public void testMaxMin2_NegativeN() throws Exception {
+        int[] v = {1, 2, 3, 4, 5};
+        int n = -1;
+        MaxMin2.maxMin2(v, n);
+    }
+}
+```
+
+### Explanation:
+
+1. **Imports and Setup**:
+   - Imported necessary JUnit classes.
+   - Added a `setUp` method to initialize the `MaxMin2` instance.
+
+2. **Test Cases**:
+   - **`testMaxMin2_AllPositive`**: Tests with all positive integers.
+   - **`testMaxMin2_AllNegative`**: Tests with all negative integers.
+   - **`testMaxMin2_PositiveAndNegative`**: Tests with a mix of positive and negative integers.
+   - **`testMaxMin2_SingleElement`**: Tests with a single element array.
+   - **`testMaxMin2_DuplicateElements`**: Tests with an array where all elements are the same.
+   - **`testMaxMin2_BoundaryValues`**: Tests with boundary values (Integer.MAX_VALUE and Integer.MIN_VALUE).
+   - **`testMaxMin2_EmptyArray`**: Tests with an empty array to check for `ArrayIndexOutOfBoundsException`.
+   - **`testMaxMin2_NegativeN`**: Tests with a negative value for `n` to check for `ArrayIndexOutOfBoundsException`.
+
+3. **Annotations**:
+   - Used `@Test(timeout=1000)` to enforce a timeout of 1000 milliseconds for each test.
+   - Used `@Test(expected=ArrayIndexOutOfBoundsException.class)` for tests where an exception is expected.
+
+These tests cover all decisions and conditional logic in the `maxMin2` method and include boundary value tests.

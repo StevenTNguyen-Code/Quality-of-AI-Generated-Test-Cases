@@ -1,0 +1,85 @@
+Here is the Java unit test code for the `AvaliaMultMatrizes` class:
+```
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+import java.io.IOException;
+
+public class AvaliaMultMatrizesTest {
+
+    private AvaliaMultMatrizes avaliaMultMatrizes;
+
+    @Before
+    public void setup() {
+        avaliaMultMatrizes = new AvaliaMultMatrizes();
+    }
+
+    @Test(timeout = 1000)
+    public void testMultmatrize_DefaultConstructor() throws IOException {
+        // Test default constructor
+        assertNotNull(avaliaMultMatrizes);
+    }
+
+    @Test(timeout = 1000)
+    public void testMultmatrize_PositiveValues() throws IOException {
+        int n = 5;
+        int d[] = {1, 2, 3, 4, 5};
+        avaliaMultMatrizes.multmatrize(n, d);
+    }
+
+    @Test(timeout = 1000)
+    public void testMultmatrize_NegativeValues() throws IOException {
+        int n = -5;
+        int d[] = {-1, -2, -3, -4, -5};
+        avaliaMultMatrizes.multmatrize(n, d);
+    }
+
+    @Test(timeout = 1000, expected = IOException.class)
+    public void testMultmatrize_IOException() throws IOException {
+        int n = 0;
+        int d[] = {};
+        avaliaMultMatrizes.multmatrize(n, d);
+    }
+
+    @Test(timeout = 1000)
+    public void testMultmatrize_BoundaryValues() throws IOException {
+        int n = 1;
+        int d[] = {1};
+        avaliaMultMatrizes.multmatrize(n, d);
+
+        n = Integer.MAX_VALUE;
+        d = new int[n];
+        for (int i = 0; i < n; i++) {
+            d[i] = i;
+        }
+        avaliaMultMatrizes.multmatrize(n, d);
+    }
+
+    @Test(timeout = 1000)
+    public void testMultmatrize_NullArray() throws IOException {
+        int n = 5;
+        int d[] = null;
+        try {
+            avaliaMultMatrizes.multmatrize(n, d);
+            fail("Expected NullPointerException");
+        } catch (NullPointerException e) {
+            // Expected
+        }
+    }
+
+    @Test(timeout = 1000)
+    public void testMultmatrize_EmptyArray() throws IOException {
+        int n = 5;
+        int d[] = new int[0];
+        try {
+            avaliaMultMatrizes.multmatrize(n, d);
+            fail("Expected ArrayIndexOutOfBoundsException");
+        } catch (ArrayIndexOutOfBoundsException e) {
+            // Expected
+        }
+    }
+}
+```
+Note that I've covered all the conditional expressions in the `multmatrize` method, including the boundary values, positive and negative values, and null/empty array cases. I've also included a test for the default constructor and a test that expects an `IOException` to be thrown.

@@ -1,0 +1,105 @@
+Here are the unit tests for the `MaxMin2` class:
+```
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+import ds.*;
+
+public class MaxMin2Test {
+
+    @Before
+    public void setUp() throws Exception {
+        // No setup needed for this test
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin2_DefaultConstructor() throws Exception {
+        // Testing default constructor
+        MaxMin2 maxMin2 = new MaxMin2();
+        assertNotNull(maxMin2);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin2_SingleElementArray() throws Exception {
+        // Testing with a single element array
+        int[] v = {10};
+        int[] result = MaxMin2.maxMin2(v, 1);
+        assertEquals(10, result[0]);
+        assertEquals(10, result[1]);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin2_MultipleElementsArray() throws Exception {
+        // Testing with a multiple element array
+        int[] v = {10, 20, 5, 30, 15};
+        int[] result = MaxMin2.maxMin2(v, 5);
+        assertEquals(30, result[0]);
+        assertEquals(5, result[1]);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin2_EmptyArray() throws Exception {
+        // Testing with an empty array
+        int[] v = {};
+        try {
+            MaxMin2.maxMin2(v, 0);
+            fail("Expected ArrayIndexOutOfBoundsException");
+        } catch (ArrayIndexOutOfBoundsException e) {
+            // Expected exception
+        }
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin2_NullArray() throws Exception {
+        // Testing with a null array
+        int[] v = null;
+        try {
+            MaxMin2.maxMin2(v, 5);
+            fail("Expected NullPointerException");
+        } catch (NullPointerException e) {
+            // Expected exception
+        }
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin2_NegativeNumbers() throws Exception {
+        // Testing with negative numbers
+        int[] v = {-10, -20, -5, -30, -15};
+        int[] result = MaxMin2.maxMin2(v, 5);
+        assertEquals(-5, result[0]);
+        assertEquals(-30, result[1]);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin2_PositiveAndNegativeNumbers() throws Exception {
+        // Testing with positive and negative numbers
+        int[] v = {-10, 20, -5, 30, 15};
+        int[] result = MaxMin2.maxMin2(v, 5);
+        assertEquals(30, result[0]);
+        assertEquals(-10, result[1]);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin2_BoundaryValues() throws Exception {
+        // Testing with boundary values
+        int[] v = {Integer.MAX_VALUE, Integer.MIN_VALUE};
+        int[] result = MaxMin2.maxMin2(v, 2);
+        assertEquals(Integer.MAX_VALUE, result[0]);
+        assertEquals(Integer.MIN_VALUE, result[1]);
+    }
+}
+```
+Note that I've covered all the possible scenarios, including:
+
+* Testing the default constructor
+* Testing with single element array
+* Testing with multiple element array
+* Testing with empty array
+* Testing with null array
+* Testing with negative numbers
+* Testing with positive and negative numbers
+* Testing with boundary values
+
+I've also included tests for exceptions, such as `ArrayIndexOutOfBoundsException` and `NullPointerException`, to ensure that the method behaves correctly in these scenarios.

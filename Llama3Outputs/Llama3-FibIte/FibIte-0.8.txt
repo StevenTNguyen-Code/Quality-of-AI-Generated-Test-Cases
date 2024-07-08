@@ -1,0 +1,72 @@
+Here is the test class for the Fibonacci class:
+```
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+
+public class FibonacciTest {
+
+    private Fibonacci fibonacci;
+
+    @Before
+    public void setup() {
+        fibonacci = new Fibonacci();
+    }
+
+    @Test(timeout = 1000)
+    public void testFibIter_DefaultConstructor() {
+        // Test default constructor
+        assertNotNull(fibonacci);
+    }
+
+    @Test(timeout = 1000)
+    public void testFibIter_PositiveInput() throws Exception {
+        // Test with positive input
+        int result = fibonacci.fibIter(5);
+        assertEquals(5, result);
+    }
+
+    @Test(timeout = 1000)
+    public void testFibIter_NegativeInput() throws Exception {
+        // Test with negative input
+        int result = fibonacci.fibIter(-1);
+        assertEquals(0, result);
+    }
+
+    @Test(timeout = 1000)
+    public void testFibIter_BoundaryValueZero() throws Exception {
+        // Test with boundary value 0
+        int result = fibonacci.fibIter(0);
+        assertEquals(0, result);
+    }
+
+    @Test(timeout = 1000)
+    public void testFibIter_BoundaryValueOne() throws Exception {
+        // Test with boundary value 1
+        int result = fibonacci.fibIter(1);
+        assertEquals(1, result);
+    }
+
+    @Test(timeout = 1000)
+    public void testFibIter_LargeInput() throws Exception {
+        // Test with large input
+        int result = fibonacci.fibIter(20);
+        assertEquals(6765, result);
+    }
+}
+```
+Note that I've added a `setup()` method to create an instance of the `Fibonacci` class, and all test methods use this instance to call the `fibIter()` method.
+
+I've also added test cases to cover the following scenarios:
+
+* Positive input
+* Negative input
+* Boundary value 0
+* Boundary value 1
+* Large input
+
+Each test method has a `timeout=1000` annotation to ensure that the test does not take too long to execute.
+
+I've also included a test for the default constructor to ensure that it returns a non-null instance of the `Fibonacci` class.

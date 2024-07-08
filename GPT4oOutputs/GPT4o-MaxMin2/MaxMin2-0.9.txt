@@ -1,0 +1,92 @@
+Certainly! Below is the Java unit test code following your requirements for the `MaxMin2` class using JUnit 4 framework and Java 8:
+
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+import ds.*;
+
+public class MaxMin2Test {
+
+    private int[] emptyArray;
+    private int[] singleElementArray;
+    private int[] positiveArray;
+    private int[] negativeArray;
+    private int[] mixedArray;
+
+    @Before
+    public void setUp() {
+        // Initializing test arrays
+        emptyArray = new int[]{};
+        singleElementArray = new int[]{5};
+        positiveArray = new int[]{1, 2, 3, 4, 5};
+        negativeArray = new int[]{-1, -2, -3, -4, -5};
+        mixedArray = new int[]{-1, 0, 1, -2, 2};
+    }
+
+    @Test(timeout=1000)
+    public void testDefaultConstructor() throws Exception {
+        MaxMin2 maxMin2 = new MaxMin2();
+        assertNotNull(maxMin2);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin2WithSingleElement() throws Exception {
+        int[] result = MaxMin2.maxMin2(singleElementArray, singleElementArray.length);
+        int[] expected = {5, 5};
+        assertArrayEquals(expected, result);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin2WithPositiveArray() throws Exception {
+        int[] result = MaxMin2.maxMin2(positiveArray, positiveArray.length);
+        int[] expected = {5, 1};
+        assertArrayEquals(expected, result);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin2WithNegativeArray() throws Exception {
+        int[] result = MaxMin2.maxMin2(negativeArray, negativeArray.length);
+        int[] expected = {-1, -5};
+        assertArrayEquals(expected, result);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin2WithMixedArray() throws Exception {
+        int[] result = MaxMin2.maxMin2(mixedArray, mixedArray.length);
+        int[] expected = {2, -2};
+        assertArrayEquals(expected, result);
+    }
+
+    @Test(timeout=1000, expected=ArrayIndexOutOfBoundsException.class)
+    public void testMaxMin2WithEmptyArray() throws Exception {
+        // This test is expected to throw an ArrayIndexOutOfBoundsException
+        MaxMin2.maxMin2(emptyArray, emptyArray.length);
+    }
+}
+```
+
+### Explanation:
+
+1. **Setup Method (`@Before`)**:
+    - Initializes arrays with different test scenarios. 
+    - Arrays including empty, single element, all positive, all negative, and mixed values are set up for testing.
+
+2. **Test for Default Constructor**:
+    - Tests the default constructor of the `MaxMin2` class to ensure it can be instantiated.
+
+3. **Test Methods**:
+    - Each method tests the `maxMin2()` function with different array scenarios:
+        - **Single Element Array**: Ensures that the single value is both the max and min.
+        - **Positive Array**: Tests finding max and min in an array of positive numbers.
+        - **Negative Array**: Tests finding max and min in an array of negative numbers.
+        - **Mixed Array**: Tests finding max and min in an array with both negative and positive numbers.
+        - **Empty Array**: Ensures that an `ArrayIndexOutOfBoundsException` is thrown when attempting to find max and min in an empty array.
+
+4. **Annotations**:
+    - `@Test(timeout=1000)`: Ensures each test completes within 1000 milliseconds.
+    - `@Test(expected=ArrayIndexOutOfBoundsException.class)`: Specifies that an exception is expected for the empty array scenario.
+
+The above unit tests cover different decision points, handle boundary values, and follow the guidelines provided.

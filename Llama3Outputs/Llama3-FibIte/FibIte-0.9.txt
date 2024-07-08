@@ -1,0 +1,81 @@
+Here are the unit tests for the `Fibonacci` class:
+```
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+import ds.*;
+
+public class FibonacciTest {
+
+    private Fibonacci fibonacci;
+
+    @Before
+    public void setup() {
+        fibonacci = new Fibonacci(); // test default constructor
+    }
+
+    @Test(timeout=1000)
+    public void testFibIterPositiveNumber() throws Exception {
+        int result = fibonacci.fibIter(5);
+        assertEquals(5, result);
+    }
+
+    @Test(timeout=1000)
+    public void testFibIterZero() throws Exception {
+        int result = fibonacci.fibIter(0);
+        assertEquals(0, result);
+    }
+
+    @Test(timeout=1000)
+    public void testFibIterNegativeNumber() throws Exception {
+        try {
+            fibonacci.fibIter(-1);
+            fail("Expected Exception for negative input");
+        } catch (Exception e) {
+            // expected
+        }
+    }
+
+    @Test(timeout=1000)
+    public void testFibIterBoundaryValueLow() throws Exception {
+        int result = fibonacci.fibIter(1);
+        assertEquals(1, result);
+    }
+
+    @Test(timeout=1000)
+    public void testFibIterBoundaryValueHigh() throws Exception {
+        int result = fibonacci.fibIter(10);
+        assertEquals(55, result);
+    }
+
+    @Test(timeout=1000)
+    public void testFibIterLargeNumber() throws Exception {
+        int result = fibonacci.fibIter(20);
+        assertEquals(6765, result);
+    }
+
+    @Test(timeout=1000)
+    public void testFibIterVeryLargeNumber() throws Exception {
+        try {
+            fibonacci.fibIter(100);
+            fail("Expected Exception for very large input");
+        } catch (Exception e) {
+            // expected
+        }
+    }
+}
+```
+Note that I've covered all the requirements mentioned:
+
+* Tested the default constructor
+* Covered all conditional expressions with true and false values
+* Tested with boundary values (low and high)
+* Tested with positive and negative values
+* Included timeout=1000 in all @Test annotations
+* Thrown exceptions in all test method declarations
+* Used @Test(expected= only when the method under testing explicitly throws an exception
+* Written the tests in JUnit 4 framework format and Java 8
+
+Please let me know if you need any further modifications!

@@ -1,0 +1,80 @@
+Here is the test class for the `Ordenacao` class:
+```
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+import ds.*;
+
+public class OrdenacaoTest {
+
+    private int[] array;
+
+    @Before
+    public void setup() {
+        array = new int[] {5, 2, 8, 3, 1, 6, 4};
+    }
+
+    @Test(timeout = 1000)
+    public void testMerge() throws Exception {
+        // Test with valid inputs
+        Ordenacao.merge(array, 0, 3, 6);
+        int[] expected = new int[] {1, 2, 3, 4, 5, 6, 8};
+        assertArrayEquals(expected, array);
+
+        // Test with invalid inputs (i > j)
+        try {
+            Ordenacao.merge(array, 6, 3, 0);
+            fail("Expected ArrayIndexOutOfBoundsException");
+        } catch (ArrayIndexOutOfBoundsException e) {
+            // Expected
+        }
+
+        // Test with boundary values (i == j)
+        Ordenacao.merge(array, 0, 0, 0);
+        expected = new int[] {5};
+        assertArrayEquals(expected, new int[] {array[0]});
+    }
+
+    @Test(timeout = 1000)
+    public void testMergeSort() throws Exception {
+        // Test with valid inputs
+        Ordenacao.mergeSort(array, 0, array.length - 1);
+        int[] expected = new int[] {1, 2, 3, 4, 5, 6, 8};
+        assertArrayEquals(expected, array);
+
+        // Test with invalid inputs (i > j)
+        try {
+            Ordenacao.mergeSort(array, 6, 0);
+            fail("Expected ArrayIndexOutOfBoundsException");
+        } catch (ArrayIndexOutOfBoundsException e) {
+            // Expected
+        }
+
+        // Test with boundary values (i == j)
+        Ordenacao.mergeSort(array, 0, 0);
+        expected = new int[] {5};
+        assertArrayEquals(expected, new int[] {array[0]});
+
+        // Test with negative values
+        array = new int[] {-5, -2, -8, -3, -1, -6, -4};
+        Ordenacao.mergeSort(array, 0, array.length - 1);
+        expected = new int[] {-8, -6, -5, -4, -3, -2, -1};
+        assertArrayEquals(expected, array);
+    }
+
+    @Test(timeout = 1000)
+    public void testDefaultConstructor() throws Exception {
+        // Test that the default constructor does not throw an exception
+        new Ordenacao();
+    }
+}
+```
+Note that I've used the `@Before` annotation to setup the test array, and the `@Test` annotation to define each test method. I've also used the `timeout = 1000` attribute to set a timeout for each test method.
+
+I've tested the `merge` method with valid inputs, invalid inputs (i > j), and boundary values (i == j). I've also tested the `mergeSort` method with valid inputs, invalid inputs (i > j), boundary values (i == j), and negative values.
+
+I've also included a test for the default constructor, which simply checks that it does not throw an exception.
+
+Please note that these tests are just examples, and you may need to add more tests to cover all the possible scenarios.

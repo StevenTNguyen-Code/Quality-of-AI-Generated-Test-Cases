@@ -1,0 +1,80 @@
+Here are the unit tests for the `Pilha` class:
+```
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+import ds.*;
+
+public class PilhaTest {
+
+    private Pilha pilha;
+
+    @Before
+    public void setup() throws Exception {
+        pilha = new Pilha();
+    }
+
+    @Test(timeout=1000)
+    public void testDefaultConstructor() throws Exception {
+        assertNotNull(pilha);
+        assertEquals(0, pilha.tamanho());
+    }
+
+    @Test(timeout=1000)
+    public void testEmpilhaNull() throws Exception {
+        pilha.empilha(null);
+        assertEquals(1, pilha.tamanho());
+    }
+
+    @Test(timeout=1000)
+    public void testEmpilhaObject() throws Exception {
+        Object obj = new Object();
+        pilha.empilha(obj);
+        assertEquals(1, pilha.tamanho());
+    }
+
+    @Test(timeout=1000, expected=Exception.class)
+    public void testEmpilhaFullStack() throws Exception {
+        for (int i = 0; i < 1000; i++) {
+            pilha.empilha(new Object());
+        }
+        pilha.empilha(new Object()); // should throw an exception
+    }
+
+    @Test(timeout=1000, expected=Exception.class)
+    public void testDesempilhaEmptyStack() throws Exception {
+        pilha.desempilha();
+    }
+
+    @Test(timeout=1000)
+    public void testDesempilha() throws Exception {
+        Object obj = new Object();
+        pilha.empilha(obj);
+        assertEquals(obj, pilha.desempilha());
+        assertEquals(0, pilha.tamanho());
+    }
+
+    @Test(timeout=1000)
+    public void testVaziaTrue() throws Exception {
+        assertTrue(pilha.vazia());
+    }
+
+    @Test(timeout=1000)
+    public void testVaziaFalse() throws Exception {
+        pilha.empilha(new Object());
+        assertFalse(pilha.vazia());
+    }
+
+    @Test(timeout=1000)
+    public void testTamanho() throws Exception {
+        assertEquals(0, pilha.tamanho());
+        pilha.empilha(new Object());
+        assertEquals(1, pilha.tamanho());
+        pilha.empilha(new Object());
+        assertEquals(2, pilha.tamanho());
+    }
+}
+```
+Note that I've covered all the methods in the `Pilha` class, including the default constructor. I've also tested all the conditional expressions in each method, including boundary values. Additionally, I've tested for both positive and negative scenarios, such as testing `empilha` with a null object and testing `desempilha` with an empty stack.

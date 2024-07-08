@@ -1,0 +1,91 @@
+Here is the JUnit test class for the `MaxMin1` class:
+```
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+import ds.*;
+
+public class MaxMin1Test {
+
+    @Test(timeout = 1000)
+    public void testMaxMin1DefaultConstructor() throws Exception {
+        MaxMin1 maxMin1 = new MaxMin1();
+        assertNotNull(maxMin1);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin1NullInput() throws Exception {
+        try {
+            MaxMin1.maxMin1(null, 0);
+            fail("Expected NullPointerException");
+        } catch (NullPointerException e) {
+            // expected
+        }
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin1EmptyArray() throws Exception {
+        int[] v = new int[0];
+        try {
+            MaxMin1.maxMin1(v, 0);
+            fail("Expected ArrayIndexOutOfBoundsException");
+        } catch (ArrayIndexOutOfBoundsException e) {
+            // expected
+        }
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin1SingleElementArray() throws Exception {
+        int[] v = new int[]{1};
+        int[] result = MaxMin1.maxMin1(v, 1);
+        assertEquals(1, result[0]);
+        assertEquals(1, result[1]);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin1MultipleElementsArray() throws Exception {
+        int[] v = new int[]{1, 2, 3, 4, 5};
+        int[] result = MaxMin1.maxMin1(v, 5);
+        assertEquals(5, result[0]);
+        assertEquals(1, result[1]);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin1NegativeValuesArray() throws Exception {
+        int[] v = new int[]{-1, -2, -3, -4, -5};
+        int[] result = MaxMin1.maxMin1(v, 5);
+        assertEquals(-1, result[0]);
+        assertEquals(-5, result[1]);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin1MixedValuesArray() throws Exception {
+        int[] v = new int[]{-1, 0, 1, 2, 3};
+        int[] result = MaxMin1.maxMin1(v, 5);
+        assertEquals(3, result[0]);
+        assertEquals(-1, result[1]);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin1BoundaryValuesArray() throws Exception {
+        int[] v = new int[]{Integer.MAX_VALUE, Integer.MIN_VALUE};
+        int[] result = MaxMin1.maxMin1(v, 2);
+        assertEquals(Integer.MAX_VALUE, result[0]);
+        assertEquals(Integer.MIN_VALUE, result[1]);
+    }
+}
+```
+Note that I've covered all the possible scenarios:
+
+* Testing the default constructor
+* Testing with null input
+* Testing with an empty array
+* Testing with a single element array
+* Testing with multiple elements array
+* Testing with negative values array
+* Testing with mixed values array
+* Testing with boundary values array
+
+I've also used `timeout=1000` in all `@Test` annotations as per your requirement.

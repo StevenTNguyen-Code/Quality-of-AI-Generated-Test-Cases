@@ -1,0 +1,113 @@
+Here is the JUnit 4 test class for the `Ordenacao` class:
+```
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+import ds.*;
+
+public class OrdenacaoTest {
+
+    private int[] v;
+    private int n;
+
+    @Before
+    public void setup() {
+        v = new int[5];
+        v[0] = 5;
+        v[1] = 2;
+        v[2] = 8;
+        v[3] = 3;
+        v[4] = 1;
+        n = 5;
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdena() throws Exception {
+        Ordenacao.ordena(v, n);
+        int[] expected = {1, 2, 3, 5, 8};
+        assertArrayEquals(expected, v);
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdenaEmptyArray() throws Exception {
+        v = new int[0];
+        n = 0;
+        Ordenacao.ordena(v, n);
+        assertArrayEquals(new int[0], v);
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdenaSingleElementArray() throws Exception {
+        v = new int[1];
+        v[0] = 5;
+        n = 1;
+        Ordenacao.ordena(v, n);
+        assertArrayEquals(new int[]{5}, v);
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdenaNegativeValues() throws Exception {
+        v = new int[5];
+        v[0] = -5;
+        v[1] = -2;
+        v[2] = -8;
+        v[3] = -3;
+        v[4] = -1;
+        n = 5;
+        Ordenacao.ordena(v, n);
+        int[] expected = {-8, -5, -3, -2, -1};
+        assertArrayEquals(expected, v);
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdenaBoundaryValues() throws Exception {
+        v = new int[5];
+        v[0] = Integer.MAX_VALUE;
+        v[1] = Integer.MIN_VALUE;
+        v[2] = 0;
+        v[3] = 1;
+        v[4] = -1;
+        n = 5;
+        Ordenacao.ordena(v, n);
+        int[] expected = {Integer.MIN_VALUE, -1, 0, 1, Integer.MAX_VALUE};
+        assertArrayEquals(expected, v);
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdenaNullArray() throws Exception {
+        v = null;
+        n = 5;
+        try {
+            Ordenacao.ordena(v, n);
+            fail("Expected NullPointerException");
+        } catch (NullPointerException e) {
+            // expected
+        }
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdenaNegativeN() throws Exception {
+        v = new int[5];
+        n = -1;
+        try {
+            Ordenacao.ordena(v, n);
+            fail("Expected ArrayIndexOutOfBoundsException");
+        } catch (ArrayIndexOutOfBoundsException e) {
+            // expected
+        }
+    }
+}
+```
+Note that I've added test cases to cover the following scenarios:
+
+* `testOrdena`: test the `ordena` method with a sample array
+* `testOrdenaEmptyArray`: test the `ordena` method with an empty array
+* `testOrdenaSingleElementArray`: test the `ordena` method with a single-element array
+* `testOrdenaNegativeValues`: test the `ordena` method with an array containing negative values
+* `testOrdenaBoundaryValues`: test the `ordena` method with an array containing boundary values (e.g. `Integer.MAX_VALUE`, `Integer.MIN_VALUE`, etc.)
+* `testOrdenaNullArray`: test the `ordena` method with a null array
+* `testOrdenaNegativeN`: test the `ordena` method with a negative value for `n`
+
+Each test method has a timeout of 1000 milliseconds, as per the requirements.

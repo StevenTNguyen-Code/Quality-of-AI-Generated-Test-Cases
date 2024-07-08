@@ -1,0 +1,104 @@
+Here is the unit test for the `MaxMin4` class:
+```
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+import ds.*;
+
+public class MaxMin4Test {
+
+    @Test(timeout=1000)
+    public void testDefaultConstructor() throws Exception {
+        MaxMin4 maxMin4 = new MaxMin4();
+        assertNotNull(maxMin4);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin4_SingleElementArray() throws Exception {
+        int[] v = {1};
+        int[] result = MaxMin4.maxMin4(v, 0, 0);
+        assertEquals(1, result[0]);
+        assertEquals(1, result[1]);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin4_TwoElementArray_FirstElementIsMax() throws Exception {
+        int[] v = {2, 1};
+        int[] result = MaxMin4.maxMin4(v, 0, 1);
+        assertEquals(2, result[0]);
+        assertEquals(1, result[1]);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin4_TwoElementArray_SecondElementIsMax() throws Exception {
+        int[] v = {1, 2};
+        int[] result = MaxMin4.maxMin4(v, 0, 1);
+        assertEquals(2, result[0]);
+        assertEquals(1, result[1]);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin4_MultiElementArray() throws Exception {
+        int[] v = {3, 1, 4, 2};
+        int[] result = MaxMin4.maxMin4(v, 0, 3);
+        assertEquals(4, result[0]);
+        assertEquals(1, result[1]);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin4_ArrayWithNegativeNumbers() throws Exception {
+        int[] v = {-3, -1, -4, -2};
+        int[] result = MaxMin4.maxMin4(v, 0, 3);
+        assertEquals(-1, result[0]);
+        assertEquals(-4, result[1]);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin4_ArrayWithPositiveAndNegativeNumbers() throws Exception {
+        int[] v = {-3, 1, -4, 2};
+        int[] result = MaxMin4.maxMin4(v, 0, 3);
+        assertEquals(2, result[0]);
+        assertEquals(-4, result[1]);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin4_BoundaryValue_LowerBound() throws Exception {
+        int[] v = {1, 2, 3, 4};
+        int[] result = MaxMin4.maxMin4(v, 0, 0);
+        assertEquals(1, result[0]);
+        assertEquals(1, result[1]);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin4_BoundaryValue_UpperBound() throws Exception {
+        int[] v = {1, 2, 3, 4};
+        int[] result = MaxMin4.maxMin4(v, 3, 3);
+        assertEquals(4, result[0]);
+        assertEquals(4, result[1]);
+    }
+
+    @Test(timeout=1000, expected=ArrayIndexOutOfBoundsException.class)
+    public void testMaxMin4_InvalidLowerBound() throws Exception {
+        int[] v = {1, 2, 3, 4};
+        MaxMin4.maxMin4(v, -1, 3);
+    }
+
+    @Test(timeout=1000, expected=ArrayIndexOutOfBoundsException.class)
+    public void testMaxMin4_InvalidUpperBound() throws Exception {
+        int[] v = {1, 2, 3, 4};
+        MaxMin4.maxMin4(v, 0, 4);
+    }
+}
+```
+Note that I've covered all the possible scenarios, including:
+
+* Testing the default constructor
+* Testing with single-element arrays
+* Testing with two-element arrays with different max and min values
+* Testing with multi-element arrays
+* Testing with arrays containing negative numbers
+* Testing with arrays containing both positive and negative numbers
+* Testing with boundary values (lower and upper bounds)
+* Testing with invalid lower and upper bounds (expected to throw `ArrayIndexOutOfBoundsException`)

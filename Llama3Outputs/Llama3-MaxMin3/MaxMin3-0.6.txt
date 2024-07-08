@@ -1,0 +1,77 @@
+Here is the test class for the `MaxMin3` class:
+```
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+import ds.*;
+
+public class MaxMin3Test {
+
+    @Test(timeout=1000)
+    public void testMaxMin3DefaultConstructor() throws Exception {
+        new MaxMin3(); // Test default constructor
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin3EvenLengthArray() throws Exception {
+        int[] v = {1, 2, 3, 4};
+        int[] result = MaxMin3.maxMin3(v, 4);
+        assertEquals(4, result[0]);
+        assertEquals(1, result[1]);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin3OddLengthArray() throws Exception {
+        int[] v = {1, 2, 3, 4, 5};
+        int[] result = MaxMin3.maxMin3(v, 5);
+        assertEquals(5, result[0]);
+        assertEquals(1, result[1]);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin3PositiveValues() throws Exception {
+        int[] v = {10, 20, 30, 40};
+        int[] result = MaxMin3.maxMin3(v, 4);
+        assertEquals(40, result[0]);
+        assertEquals(10, result[1]);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin3NegativeValues() throws Exception {
+        int[] v = {-10, -20, -30, -40};
+        int[] result = MaxMin3.maxMin3(v, 4);
+        assertEquals(-10, result[0]);
+        assertEquals(-40, result[1]);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin3MixedValues() throws Exception {
+        int[] v = {-10, 20, -30, 40};
+        int[] result = MaxMin3.maxMin3(v, 4);
+        assertEquals(40, result[0]);
+        assertEquals(-30, result[1]);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin3BoundaryValues() throws Exception {
+        int[] v = {Integer.MAX_VALUE, Integer.MIN_VALUE, 0, 0};
+        int[] result = MaxMin3.maxMin3(v, 4);
+        assertEquals(Integer.MAX_VALUE, result[0]);
+        assertEquals(Integer.MIN_VALUE, result[1]);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin3NullInput() throws Exception {
+        int[] v = null;
+        try {
+            MaxMin3.maxMin3(v, 4);
+            fail("Expected NullPointerException");
+        } catch (NullPointerException e) {
+            // Expected
+        }
+    }
+}
+```
+Note that I've covered all the decisions in the `maxMin3` method, including the conditional expressions, boundary values, and different types of input values. I've also included a test for the default constructor and a test for null input, which should throw a `NullPointerException`.

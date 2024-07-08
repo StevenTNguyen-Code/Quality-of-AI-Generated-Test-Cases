@@ -1,0 +1,93 @@
+Here is the Java unit test for the `MaxMin4` class:
+```
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+import ds.*;
+
+public class MaxMin4Test {
+
+    @Before
+    public void setUp() throws Exception {
+        // No setup needed
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4_DefaultConstructor() throws Exception {
+        new MaxMin4(); // Test default constructor
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4_SimpleCase() throws Exception {
+        int[] v = {1, 2, 3, 4, 5};
+        int[] result = MaxMin4.maxMin4(v, 0, 4);
+        assertEquals(5, result[0]);
+        assertEquals(1, result[1]);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4_BoundaryCase_LinfEqualLsup() throws Exception {
+        int[] v = {1, 2, 3, 4, 5};
+        int[] result = MaxMin4.maxMin4(v, 0, 0);
+        assertEquals(1, result[0]);
+        assertEquals(1, result[1]);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4_BoundaryCase_LinfPlusOneEqualLsup() throws Exception {
+        int[] v = {1, 2, 3, 4, 5};
+        int[] result = MaxMin4.maxMin4(v, 0, 1);
+        assertEquals(2, result[0]);
+        assertEquals(1, result[1]);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4_NegativeValues() throws Exception {
+        int[] v = {-5, -4, -3, -2, -1};
+        int[] result = MaxMin4.maxMin4(v, 0, 4);
+        assertEquals(-1, result[0]);
+        assertEquals(-5, result[1]);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4_MixedValues() throws Exception {
+        int[] v = {-5, 0, 3, -2, 1};
+        int[] result = MaxMin4.maxMin4(v, 0, 4);
+        assertEquals(3, result[0]);
+        assertEquals(-5, result[1]);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4_ArrayLengthOne() throws Exception {
+        int[] v = {1};
+        int[] result = MaxMin4.maxMin4(v, 0, 0);
+        assertEquals(1, result[0]);
+        assertEquals(1, result[1]);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4_NullArray() throws Exception {
+        int[] v = null;
+        try {
+            MaxMin4.maxMin4(v, 0, 0);
+            fail("Expected NullPointerException");
+        } catch (NullPointerException e) {
+            // Expected
+        }
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4_LinfGreaterThanLsup() throws Exception {
+        int[] v = {1, 2, 3, 4, 5};
+        try {
+            MaxMin4.maxMin4(v, 5, 0);
+            fail("Expected IndexOutOfBoundsException");
+        } catch (IndexOutOfBoundsException e) {
+            // Expected
+        }
+    }
+}
+```
+Note that I've covered all the decisions in the `maxMin4` method, including boundary cases, negative values, mixed values, and edge cases like an array with a single element and a null array. I've also tested the default constructor and thrown exceptions as expected.

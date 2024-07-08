@@ -1,0 +1,102 @@
+Here is the unit test class for the `MaxMin1` class:
+```
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+import ds.*;
+
+public class MaxMin1Test {
+
+    @Before
+    public void setUp() throws Exception {
+        // No setup needed for this test
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin1_DefaultConstructor() throws Exception {
+        // Test the default constructor
+        MaxMin1 maxMin1 = new MaxMin1();
+        assertNotNull(maxMin1);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin1_EmptyArray() throws Exception {
+        // Test with an empty array
+        int[] v = new int[0];
+        try {
+            MaxMin1.maxMin1(v, 0);
+            fail("Expected ArrayIndexOutOfBoundsException");
+        } catch (ArrayIndexOutOfBoundsException e) {
+            // Expected exception
+        }
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin1_SingleElementArray() throws Exception {
+        // Test with a single element array
+        int[] v = new int[] {1};
+        int[] result = MaxMin1.maxMin1(v, 1);
+        assertEquals(1, result[0]);
+        assertEquals(1, result[1]);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin1_MultipleElementsArray_PositiveNumbers() throws Exception {
+        // Test with multiple elements array with positive numbers
+        int[] v = new int[] {1, 2, 3, 4, 5};
+        int[] result = MaxMin1.maxMin1(v, 5);
+        assertEquals(5, result[0]);
+        assertEquals(1, result[1]);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin1_MultipleElementsArray_NegativeNumbers() throws Exception {
+        // Test with multiple elements array with negative numbers
+        int[] v = new int[] {-1, -2, -3, -4, -5};
+        int[] result = MaxMin1.maxMin1(v, 5);
+        assertEquals(-1, result[0]);
+        assertEquals(-5, result[1]);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin1_MultipleElementsArray_MixedNumbers() throws Exception {
+        // Test with multiple elements array with mixed numbers
+        int[] v = new int[] {-1, 0, 1, 2, -3};
+        int[] result = MaxMin1.maxMin1(v, 5);
+        assertEquals(2, result[0]);
+        assertEquals(-3, result[1]);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin1_BoundaryValue_MaxInt() throws Exception {
+        // Test with boundary value MAX_INT
+        int[] v = new int[] {Integer.MAX_VALUE, 0, 1, 2, 3};
+        int[] result = MaxMin1.maxMin1(v, 5);
+        assertEquals(Integer.MAX_VALUE, result[0]);
+        assertEquals(0, result[1]);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin1_BoundaryValue_MinInt() throws Exception {
+        // Test with boundary value MIN_INT
+        int[] v = new int[] {Integer.MIN_VALUE, 0, 1, 2, 3};
+        int[] result = MaxMin1.maxMin1(v, 5);
+        assertEquals(3, result[0]);
+        assertEquals(Integer.MIN_VALUE, result[1]);
+    }
+}
+```
+Note that I've covered all the scenarios you mentioned:
+
+* Tested the default constructor
+* Tested with an empty array
+* Tested with a single element array
+* Tested with multiple elements array with positive numbers, negative numbers, and mixed numbers
+* Tested with boundary values MAX_INT and MIN_INT
+* Each test method has a timeout of 1000 milliseconds
+* Each test method throws an Exception
+* I've used `@Test(expected=...)` only when the method under testing explicitly throws an exception.
+
+Let me know if you need any further modifications!

@@ -1,0 +1,68 @@
+Here are the unit tests for the `Fibonacci` class:
+
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+import ds.*;
+
+public class FibonacciTest {
+
+    private Fibonacci fibonacci;
+
+    @Before
+    public void setup() {
+        fibonacci = new Fibonacci();
+    }
+
+    @Test(timeout=1000)
+    public void testFibIter_NegativeInput_ThrowsException() throws Exception {
+        try {
+            fibonacci.fibIter(-1);
+            fail("Expected Exception for negative input");
+        } catch (Exception e) {
+            // pass
+        }
+    }
+
+    @Test(timeout=1000)
+    public void testFibIter_ZeroInput_ReturnsZero() throws Exception {
+        assertEquals(0, fibonacci.fibIter(0));
+    }
+
+    @Test(timeout=1000)
+    public void testFibIter_PositiveInput_ReturnsValidResult() throws Exception {
+        assertEquals(1, fibonacci.fibIter(1));
+        assertEquals(1, fibonacci.fibIter(2));
+        assertEquals(2, fibonacci.fibIter(3));
+        assertEquals(3, fibonacci.fibIter(4));
+        assertEquals(5, fibonacci.fibIter(5));
+    }
+
+    @Test(timeout=1000)
+    public void testFibIter_BoundaryValue_ReturnsValidResult() throws Exception {
+        assertEquals(13, fibonacci.fibIter(7));
+        assertEquals(21, fibonacci.fibIter(8));
+        assertEquals(34, fibonacci.fibIter(9));
+        assertEquals(55, fibonacci.fibIter(10));
+    }
+
+    @Test(timeout=1000)
+    public void testDefaultConstructor() throws Exception {
+        Fibonacci fibonacci2 = new Fibonacci();
+        assertNotNull(fibonacci2);
+    }
+}
+```
+
+In this test class, we cover the following scenarios:
+
+* `testFibIter_NegativeInput_ThrowsException`: Test that an exception is thrown when a negative input is provided to the `fibIter` method.
+* `testFibIter_ZeroInput_ReturnsZero`: Test that the `fibIter` method returns 0 when the input is 0.
+* `testFibIter_PositiveInput_ReturnsValidResult`: Test that the `fibIter` method returns the correct Fibonacci number for various positive inputs.
+* `testFibIter_BoundaryValue_ReturnsValidResult`: Test that the `fibIter` method returns the correct Fibonacci number for boundary values (e.g., 7, 8, 9, 10).
+* `testDefaultConstructor`: Test that the default constructor of the `Fibonacci` class creates a valid object.
+
+Note that we use the `@Before` annotation to create a new instance of the `Fibonacci` class before each test method. This ensures that each test method starts with a fresh instance of the class under test.

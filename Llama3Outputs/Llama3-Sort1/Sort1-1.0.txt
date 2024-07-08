@@ -1,0 +1,85 @@
+Here are the unit tests for the `Ordenacao` class:
+```
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+
+public class OrdenacaoTest {
+  
+  private int[] array;
+  
+  @Before
+  public void setup() {
+    array = new int[]{5, 2, 8, 3, 1, 6, 4};
+  }
+  
+  @Test(timeout=1000)
+  public void testOrderna_DefaultConstructor() throws Exception {
+    Ordenacao ordenacao = new Ordenacao();
+    assertNotNull(ordenacao);
+  }
+  
+  @Test(timeout=1000)
+  public void testOrderna_NegativeValue() throws Exception {
+    int[] negativeArray = {-5, -2, -8, -3, -1, -6, -4};
+    int n = negativeArray.length;
+    Ordenacao.ordena(negativeArray, n);
+    for (int i = 0; i < n - 1; i++) {
+      assertTrue(negativeArray[i] <= negativeArray[i + 1]);
+    }
+  }
+  
+  @Test(timeout=1000)
+  public void testOrderna_PositiveValue() throws Exception {
+    int[] positiveArray = {5, 2, 8, 3, 1, 6, 4};
+    int n = positiveArray.length;
+    Ordenacao.ordena(positiveArray, n);
+    for (int i = 0; i < n - 1; i++) {
+      assertTrue(positiveArray[i] <= positiveArray[i + 1]);
+    }
+  }
+  
+  @Test(timeout=1000)
+  public void testOrderna_BoundaryValue_Minimum() throws Exception {
+    int[] boundaryArray = {Integer.MIN_VALUE, 0, 1};
+    int n = boundaryArray.length;
+    Ordenacao.ordena(boundaryArray, n);
+    for (int i = 0; i < n - 1; i++) {
+      assertTrue(boundaryArray[i] <= boundaryArray[i + 1]);
+    }
+  }
+  
+  @Test(timeout=1000)
+  public void testOrderna_BoundaryValue_Maximum() throws Exception {
+    int[] boundaryArray = {Integer.MAX_VALUE, 0, -1};
+    int n = boundaryArray.length;
+    Ordenacao.ordena(boundaryArray, n);
+    for (int i = 0; i < n - 1; i++) {
+      assertTrue(boundaryArray[i] <= boundaryArray[i + 1]);
+    }
+  }
+  
+  @Test(timeout=1000, expected=NullPointerException.class)
+  public void testOrderna_NullArray() throws Exception {
+    Ordenacao.ordena(null, 0);
+  }
+  
+  @Test(timeout=1000, expected=ArrayIndexOutOfBoundsException.class)
+  public void testOrderna_ArrayIndexOutOfBoundsException() throws Exception {
+    int[] emptyArray = {};
+    Ordenacao.ordena(emptyArray, -1);
+  }
+}
+```
+Note that I've added test cases to cover the following scenarios:
+
+* Test the default constructor
+* Test with negative values
+* Test with positive values
+* Test with boundary values (minimum and maximum)
+* Test with null array
+* Test with array index out of bounds exception
+
+Each test method has a timeout of 1000 milliseconds and is expected to run successfully without any exceptions, unless specified otherwise.

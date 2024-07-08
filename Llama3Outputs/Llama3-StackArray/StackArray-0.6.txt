@@ -1,0 +1,67 @@
+Here is the JUnit 4 test class for the `Pilha` class:
+```
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+
+public class PilhaTest {
+
+    private Pilha pilha;
+
+    @Before
+    public void setup() {
+        pilha = new Pilha();
+    }
+
+    @Test(timeout = 1000)
+    public void testDefaultConstructor() throws Exception {
+        assertNotNull(pilha);
+        assertEquals(0, pilha.tamanho());
+    }
+
+    @Test(timeout = 1000)
+    public void testEmpilha() throws Exception {
+        pilha.empilha("Test");
+        assertEquals(1, pilha.tamanho());
+    }
+
+    @Test(timeout = 1000, expected = Exception.class)
+    public void testEmpilhaFullStack() throws Exception {
+        for (int i = 0; i < 1000; i++) {
+            pilha.empilha("Test" + i);
+        }
+        pilha.empilha("Test"); // should throw Exception
+    }
+
+    @Test(timeout = 1000)
+    public void testDesempilha() throws Exception {
+        pilha.empilha("Test");
+        assertEquals("Test", pilha.desempilha());
+        assertEquals(0, pilha.tamanho());
+    }
+
+    @Test(timeout = 1000, expected = Exception.class)
+    public void testDesempilhaEmptyStack() throws Exception {
+        pilha.desempilha(); // should throw Exception
+    }
+
+    @Test(timeout = 1000)
+    public void testVazia() throws Exception {
+        assertTrue(pilha.vazia());
+        pilha.empilha("Test");
+        assertFalse(pilha.vazia());
+    }
+
+    @Test(timeout = 1000)
+    public void testTamanho() throws Exception {
+        assertEquals(0, pilha.tamanho());
+        pilha.empilha("Test");
+        assertEquals(1, pilha.tamanho());
+        pilha.empilha("Test2");
+        assertEquals(2, pilha.tamanho());
+    }
+}
+```
+Note that I've covered all the methods of the `Pilha` class, including the default constructor, `empilha`, `desempilha`, `vazia`, and `tamanho`. I've also included tests for boundary values, such as an empty stack and a full stack. Additionally, I've included tests for expected exceptions, such as when trying to `empilha` on a full stack or `desempilha` on an empty stack.

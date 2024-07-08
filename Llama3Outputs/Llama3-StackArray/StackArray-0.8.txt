@@ -1,0 +1,72 @@
+Here is the unit test class for the Pilha class:
+
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+import ds.Pilha;
+
+public class PilhaTest {
+
+    private Pilha pilha;
+
+    @Before
+    public void setup() throws Exception {
+        pilha = new Pilha();
+    }
+
+    @Test(timeout = 1000)
+    public void testConstructor() throws Exception {
+        assertNotNull(pilha.item);
+        assertEquals(1000, pilha.item.length);
+        assertEquals(0, pilha.topo);
+    }
+
+    @Test(timeout = 1000)
+    public void testEmpilha() throws Exception {
+        pilha.empilha("Item1");
+        assertEquals(1, pilha.topo);
+        assertEquals("Item1", pilha.item[0]);
+    }
+
+    @Test(timeout = 1000, expected = Exception.class)
+    public void testEmpilhaFullStack() throws Exception {
+        for (int i = 0; i < 1000; i++) {
+            pilha.empilha("Item" + i);
+        }
+        pilha.empilha("Item1000"); // This should throw an exception
+    }
+
+    @Test(timeout = 1000)
+    public void testDesempilha() throws Exception {
+        pilha.empilha("Item1");
+        assertEquals("Item1", pilha.desempilha());
+        assertEquals(0, pilha.topo);
+    }
+
+    @Test(timeout = 1000, expected = Exception.class)
+    public void testDesempilhaEmptyStack() throws Exception {
+        pilha.desempilha(); // This should throw an exception
+    }
+
+    @Test(timeout = 1000)
+    public void testVazia() throws Exception {
+        assertTrue(pilha.vazia());
+        pilha.empilha("Item1");
+        assertFalse(pilha.vazia());
+    }
+
+    @Test(timeout = 1000)
+    public void testTamanho() throws Exception {
+        assertEquals(0, pilha.tamanho());
+        pilha.empilha("Item1");
+        assertEquals(1, pilha.tamanho());
+        pilha.empilha("Item2");
+        assertEquals(2, pilha.tamanho());
+    }
+}
+```
+
+This test class covers all the methods of the Pilha class and includes test cases for both true and false values of conditional expressions, boundary values, and exceptions. It also tests the default constructor and each method with valid inputs.

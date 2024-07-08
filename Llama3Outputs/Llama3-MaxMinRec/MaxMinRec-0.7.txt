@@ -1,0 +1,118 @@
+Here is the Java unit test for the `MaxMin4` class:
+```
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+import ds.*;
+
+public class MaxMin4Test {
+
+    @Test(timeout = 1000)
+    public void testDefaultConstructor() throws Exception {
+        MaxMin4 maxMin4 = new MaxMin4();
+        // No assertion needed, just test that the constructor doesn't throw an exception
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4_SimpleCase() throws Exception {
+        int[] v = {1, 2, 3, 4, 5};
+        int[] result = MaxMin4.maxMin4(v, 0, 4);
+        assertEquals(5, result[0]);
+        assertEquals(1, result[1]);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4_BoundaryValues() throws Exception {
+        int[] v = {1};
+        int[] result = MaxMin4.maxMin4(v, 0, 0);
+        assertEquals(1, result[0]);
+        assertEquals(1, result[1]);
+
+        v = new int[]{-1};
+        result = MaxMin4.maxMin4(v, 0, 0);
+        assertEquals(-1, result[0]);
+        assertEquals(-1, result[1]);
+
+        v = new int[]{Integer.MAX_VALUE};
+        result = MaxMin4.maxMin4(v, 0, 0);
+        assertEquals(Integer.MAX_VALUE, result[0]);
+        assertEquals(Integer.MAX_VALUE, result[1]);
+
+        v = new int[]{Integer.MIN_VALUE};
+        result = MaxMin4.maxMin4(v, 0, 0);
+        assertEquals(Integer.MIN_VALUE, result[0]);
+        assertEquals(Integer.MIN_VALUE, result[1]);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4_PositiveValues() throws Exception {
+        int[] v = {10, 20, 30, 40, 50};
+        int[] result = MaxMin4.maxMin4(v, 0, 4);
+        assertEquals(50, result[0]);
+        assertEquals(10, result[1]);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4_NegativeValues() throws Exception {
+        int[] v = {-10, -20, -30, -40, -50};
+        int[] result = MaxMin4.maxMin4(v, 0, 4);
+        assertEquals(-10, result[0]);
+        assertEquals(-50, result[1]);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4_MixedValues() throws Exception {
+        int[] v = {-10, 20, 30, -40, 50};
+        int[] result = MaxMin4.maxMin4(v, 0, 4);
+        assertEquals(50, result[0]);
+        assertEquals(-40, result[1]);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4_EmptyArray() throws Exception {
+        try {
+            MaxMin4.maxMin4(new int[0], 0, 0);
+            fail("Expected ArrayIndexOutOfBoundsException");
+        } catch (ArrayIndexOutOfBoundsException e) {
+            // Expected
+        }
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4_NullArray() throws Exception {
+        try {
+            MaxMin4.maxMin4(null, 0, 0);
+            fail("Expected NullPointerException");
+        } catch (NullPointerException e) {
+            // Expected
+        }
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4_InvalidIndices() throws Exception {
+        try {
+            MaxMin4.maxMin4(new int[]{1, 2, 3}, -1, 2);
+            fail("Expected ArrayIndexOutOfBoundsException");
+        } catch (ArrayIndexOutOfBoundsException e) {
+            // Expected
+        }
+
+        try {
+            MaxMin4.maxMin4(new int[]{1, 2, 3}, 2, 3);
+            fail("Expected ArrayIndexOutOfBoundsException");
+        } catch (ArrayIndexOutOfBoundsException e) {
+            // Expected
+        }
+    }
+}
+```
+Note that I've added test cases to cover all the possible scenarios, including:
+
+* Simple cases with positive and negative values
+* Boundary values (e.g. single element array, max and min values)
+* Edge cases (e.g. empty array, null array, invalid indices)
+* Test for the default constructor
+
+I've also used `timeout = 1000` in all `@Test` annotations as per your requirement.

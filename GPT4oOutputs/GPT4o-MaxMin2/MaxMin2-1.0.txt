@@ -1,0 +1,92 @@
+Sure, following your specifications, here's a set of unit tests for the `MaxMin2` class, covering different decisions and boundary conditions:
+
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+import ds.MaxMin2;
+
+public class MaxMin2Test {
+
+    private MaxMin2 maxMin2Instance;
+
+    @Before
+    public void setUp() throws Exception {
+        // Initialize any resources if needed
+        maxMin2Instance = new MaxMin2();
+    }
+    
+    @Test(timeout=1000)
+    public void testDefaultConstructor() throws Exception {
+        // Since we have created an instance in setUp(), this will cover the default constructor.
+        assertNotNull("Instance creation failed", maxMin2Instance);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin2WithPositive() throws Exception {
+        int[] v = {3, 5, 7, 2, 8};
+        int[] result = maxMin2Instance.maxMin2(v, v.length);
+        assertArrayEquals("MaxMin calculation with positive numbers failed", new int[]{8, 2}, result);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin2WithNegative() throws Exception {
+        int[] v = {-3, -5, -7, -2, -8};
+        int[] result = maxMin2Instance.maxMin2(v, v.length);
+        assertArrayEquals("MaxMin calculation with negative numbers failed", new int[]{-2, -8}, result);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin2WithMixedValues() throws Exception {
+        int[] v = {3, -5, 7, -2, 8};
+        int[] result = maxMin2Instance.maxMin2(v, v.length);
+        assertArrayEquals("MaxMin calculation with mixed values failed", new int[]{8, -5}, result);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin2WithSingleElement() throws Exception {
+        int[] v = {3};
+        int[] result = maxMin2Instance.maxMin2(v, v.length);
+        assertArrayEquals("MaxMin calculation with single element array failed", new int[]{3, 3}, result);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin2WithEmptyArray() throws Exception {
+        // Note: This will throw an exception because we're accessing v[0] in the method
+        try {
+            int[] v = {};
+            maxMin2Instance.maxMin2(v, v.length);
+            fail("Expected exception not thrown for empty array input");
+        } catch (ArrayIndexOutOfBoundsException e) {
+            // Expected behavior
+        }
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin2WithDuplicates() throws Exception {
+        int[] v = {3, 3, 3, 3};
+        int[] result = maxMin2Instance.maxMin2(v, v.length);
+        assertArrayEquals("MaxMin calculation with duplicates failed", new int[]{3, 3}, result);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin2BoundaryValues() throws Exception {
+        int[] v = {Integer.MAX_VALUE, Integer.MIN_VALUE};
+        int[] result = maxMin2Instance.maxMin2(v, v.length);
+        assertArrayEquals("MaxMin calculation with boundary values failed", new int[]{Integer.MAX_VALUE, Integer.MIN_VALUE}, result);
+    }
+}
+```
+
+### Explanation
+- **Setup and Constructor Test**: The `@Before` method `setUp` initializes an instance of `MaxMin2`. The test `testDefaultConstructor` checks that the instance was created successfully.
+- **Positive and Negative Values**: Separate tests (`testMaxMin2WithPositive` and `testMaxMin2WithNegative`) to ensure the method works with all positive and all negative values.
+- **Mixed Values**: In `testMaxMin2WithMixedValues`, it ensures that the method can handle arrays with both positive and negative numbers.
+- **Single Element**: `testMaxMin2WithSingleElement` ensures the method works when the array has only one element.
+- **Empty Array**: `testMaxMin2WithEmptyArray` ensures that the method throws an appropriate exception when given an empty array. Since the method tries to access `v[0]`, it throws `ArrayIndexOutOfBoundsException` which is an expected behavior.
+- **Duplicates**: `testMaxMin2WithDuplicates` checks how the method handles an array where all elements are the same.
+- **Boundary Values**: `testMaxMin2BoundaryValues` tests with the maximum and minimum integer values to ensure the method correctly handles these edge cases.
+
+The provided tests ensure comprehensive coverage on various input scenarios and edge cases.

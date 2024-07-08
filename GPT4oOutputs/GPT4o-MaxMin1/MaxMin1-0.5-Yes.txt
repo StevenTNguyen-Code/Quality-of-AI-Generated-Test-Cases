@@ -1,0 +1,111 @@
+Sure, here are the unit tests for the `MaxMin1` class in JUnit 4 framework format:
+
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+
+public class MaxMin1Test {
+
+    private MaxMin1 maxMin1;
+
+    @Before
+    public void setUp() {
+        maxMin1 = new MaxMin1();
+    }
+
+    @Test(timeout=1000)
+    public void testDefaultConstructor() throws Exception {
+        assertNotNull(new MaxMin1());
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin1_positiveValues() throws Exception {
+        int[] v = {1, 2, 3, 4, 5};
+        int n = v.length;
+        int[] result = MaxMin1.maxMin1(v, n);
+        assertArrayEquals(new int[]{5, 1}, result);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin1_negativeValues() throws Exception {
+        int[] v = {-1, -2, -3, -4, -5};
+        int n = v.length;
+        int[] result = MaxMin1.maxMin1(v, n);
+        assertArrayEquals(new int[]{-1, -5}, result);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin1_mixedValues() throws Exception {
+        int[] v = {-1, 2, -3, 4, -5};
+        int n = v.length;
+        int[] result = MaxMin1.maxMin1(v, n);
+        assertArrayEquals(new int[]{4, -5}, result);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin1_singleElement() throws Exception {
+        int[] v = {42};
+        int n = v.length;
+        int[] result = MaxMin1.maxMin1(v, n);
+        assertArrayEquals(new int[]{42, 42}, result);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin1_twoElements() throws Exception {
+        int[] v = {42, -42};
+        int n = v.length;
+        int[] result = MaxMin1.maxMin1(v, n);
+        assertArrayEquals(new int[]{42, -42}, result);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin1_boundaryValues() throws Exception {
+        int[] v = {Integer.MAX_VALUE, Integer.MIN_VALUE};
+        int n = v.length;
+        int[] result = MaxMin1.maxMin1(v, n);
+        assertArrayEquals(new int[]{Integer.MAX_VALUE, Integer.MIN_VALUE}, result);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin1_allSameValues() throws Exception {
+        int[] v = {1, 1, 1, 1, 1};
+        int n = v.length;
+        int[] result = MaxMin1.maxMin1(v, n);
+        assertArrayEquals(new int[]{1, 1}, result);
+    }
+
+    @Test(timeout=1000, expected=ArrayIndexOutOfBoundsException.class)
+    public void testMaxMin1_emptyArray() throws Exception {
+        int[] v = {};
+        int n = v.length;
+        MaxMin1.maxMin1(v, n);
+    }
+
+    @Test(timeout=1000, expected=NullPointerException.class)
+    public void testMaxMin1_nullArray() throws Exception {
+        int[] v = null;
+        int n = 0;
+        MaxMin1.maxMin1(v, n);
+    }
+}
+```
+
+### Explanation:
+
+1. **Imports and Package**: The necessary imports and package declarations are included at the top.
+2. **Setup Method**: The `setUp` method initializes the `MaxMin1` object before each test.
+3. **Default Constructor Test**: Ensures that the default constructor works properly.
+4. **Positive Values Test**: Tests the method with an array of positive integers.
+5. **Negative Values Test**: Tests the method with an array of negative integers.
+6. **Mixed Values Test**: Tests the method with an array of both positive and negative integers.
+7. **Single Element Test**: Tests the method with an array containing a single element.
+8. **Two Elements Test**: Tests the method with an array containing two elements.
+9. **Boundary Values Test**: Tests the method with the maximum and minimum integer values.
+10. **All Same Values Test**: Tests the method with an array where all elements are the same.
+11. **Empty Array Test**: Tests the method with an empty array. This test expects an `ArrayIndexOutOfBoundsException`.
+12. **Null Array Test**: Tests the method with a null array. This test expects a `NullPointerException`.
+
+All tests have a timeout of 1000 milliseconds to ensure that they do not run indefinitely.

@@ -1,0 +1,77 @@
+Here are the unit tests for the `Fibonacci` class:
+```
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+import ds.*;
+
+public class FibonacciTest {
+
+    private Fibonacci fibonacci;
+
+    @Before
+    public void setup() {
+        fibonacci = new Fibonacci();
+    }
+
+    @Test(timeout=1000)
+    public void testFibIter_DefaultConstructor() {
+        // Test that the default constructor works
+        assertNotNull(fibonacci);
+    }
+
+    @Test(timeout=1000)
+    public void testFibIter_NegativeInput() throws Exception {
+        // Test with a negative input
+        int result = fibonacci.fibIter(-1);
+        assertEquals(0, result);
+    }
+
+    @Test(timeout=1000)
+    public void testFibIter_ZeroInput() throws Exception {
+        // Test with a zero input
+        int result = fibonacci.fibIter(0);
+        assertEquals(0, result);
+    }
+
+    @Test(timeout=1000)
+    public void testFibIter_PositiveInput_Small() throws Exception {
+        // Test with a small positive input
+        int result = fibonacci.fibIter(1);
+        assertEquals(1, result);
+    }
+
+    @Test(timeout=1000)
+    public void testFibIter_PositiveInput_Large() throws Exception {
+        // Test with a large positive input
+        int result = fibonacci.fibIter(10);
+        assertEquals(55, result);
+    }
+
+    @Test(timeout=1000)
+    public void testFibIter_BoundaryValue_MinInt() throws Exception {
+        // Test with the minimum integer value
+        int result = fibonacci.fibIter(Integer.MIN_VALUE);
+        assertEquals(0, result);
+    }
+
+    @Test(timeout=1000)
+    public void testFibIter_BoundaryValue_MaxInt() throws Exception {
+        // Test with the maximum integer value
+        int result = fibonacci.fibIter(Integer.MAX_VALUE);
+        assertEquals(2178309, result); // Note: this value may overflow for large inputs
+    }
+}
+```
+These tests cover the following scenarios:
+
+* Test the default constructor
+* Test with negative input
+* Test with zero input
+* Test with small positive input
+* Test with large positive input
+* Test with boundary values (minimum and maximum integer values)
+
+Note that I've used the `@Before` annotation to create an instance of the `Fibonacci` class before each test, and I've also included the `throws Exception` clause in each test method declaration as per the requirements.

@@ -1,0 +1,94 @@
+Here is the test class for the `MaxMin4` class:
+
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+import ds.*;
+
+public class MaxMin4Test {
+
+    private int[] v;
+
+    @Before
+    public void setUp() {
+        v = new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin4Simple() throws Exception {
+        int[] result = MaxMin4.maxMin4(v, 0, 1);
+        assertEquals(2, result[0]);
+        assertEquals(1, result[1]);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin4Boundary() throws Exception {
+        int[] result = MaxMin4.maxMin4(v, 0, 9);
+        assertEquals(10, result[0]);
+        assertEquals(1, result[1]);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin4NegativeIndex() throws Exception {
+        try {
+            MaxMin4.maxMin4(v, -1, 0);
+            fail("Expected ArrayIndexOutOfBoundsException");
+        } catch (ArrayIndexOutOfBoundsException e) {
+            // Expected
+        }
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin4IndexOutOfRange() throws Exception {
+        try {
+            MaxMin4.maxMin4(v, 10, 11);
+            fail("Expected ArrayIndexOutOfBoundsException");
+        } catch (ArrayIndexOutOfBoundsException e) {
+            // Expected
+        }
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin4EmptyArray() throws Exception {
+        try {
+            MaxMin4.maxMin4(new int[0], 0, 0);
+            fail("Expected ArrayIndexOutOfBoundsException");
+        } catch (ArrayIndexOutOfBoundsException e) {
+            // Expected
+        }
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin4NullArray() throws Exception {
+        try {
+            MaxMin4.maxMin4(null, 0, 1);
+            fail("Expected NullPointerException");
+        } catch (NullPointerException e) {
+            // Expected
+        }
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin4ReverseOrder() throws Exception {
+        int[] reversedV = new int[]{10, 9, 8, 7, 6, 5, 4, 3, 2, 1};
+        int[] result = MaxMin4.maxMin4(reversedV, 0, 9);
+        assertEquals(10, result[0]);
+        assertEquals(1, result[1]);
+    }
+}
+```
+
+This test class covers all possible scenarios for the `maxMin4` method, including:
+
+* Simple test case with a small range
+* Boundary test case with the full range
+* Test case with negative index, which should throw an `ArrayIndexOutOfBoundsException`
+* Test case with index out of range, which should throw an `ArrayIndexOutOfBoundsException`
+* Test case with an empty array, which should throw an `ArrayIndexOutOfBoundsException`
+* Test case with a null array, which should throw a `NullPointerException`
+* Test case with an array in reverse order
+
+Note that each test method is annotated with `@Test(timeout=1000)` to set a timeout of 1 second. Also, the `setUp` method is used to initialize the `v` array, which is used in most test cases.

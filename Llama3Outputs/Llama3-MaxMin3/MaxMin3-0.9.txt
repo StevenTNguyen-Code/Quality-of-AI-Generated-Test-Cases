@@ -1,0 +1,73 @@
+Here is the unit test class for the `MaxMin3` class:
+```
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+import ds.*;
+
+public class MaxMin3Test {
+
+    @Test(timeout=1000)
+    public void testMaxMin3_DefaultConstructor() {
+        MaxMin3 maxMin3 = new MaxMin3();
+        assertNotNull(maxMin3);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin3_EvenArrayLength() throws Exception {
+        int[] v = {1, 2, 3, 4, 5, 6};
+        int n = v.length;
+        int[] result = MaxMin3.maxMin3(v, n);
+        assertEquals(6, result[0]);
+        assertEquals(1, result[1]);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin3_OddArrayLength() throws Exception {
+        int[] v = {1, 2, 3, 4, 5};
+        int n = v.length;
+        int[] result = MaxMin3.maxMin3(v, n);
+        assertEquals(5, result[0]);
+        assertEquals(1, result[1]);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin3_BoundaryValues() throws Exception {
+        int[] v = {Integer.MAX_VALUE, Integer.MIN_VALUE, 0, 1, -1};
+        int n = v.length;
+        int[] result = MaxMin3.maxMin3(v, n);
+        assertEquals(Integer.MAX_VALUE, result[0]);
+        assertEquals(Integer.MIN_VALUE, result[1]);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin3_PositiveValues() throws Exception {
+        int[] v = {10, 20, 30, 40, 50};
+        int n = v.length;
+        int[] result = MaxMin3.maxMin3(v, n);
+        assertEquals(50, result[0]);
+        assertEquals(10, result[1]);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin3_NegativeValues() throws Exception {
+        int[] v = {-10, -20, -30, -40, -50};
+        int n = v.length;
+        int[] result = MaxMin3.maxMin3(v, n);
+        assertEquals(-10, result[0]);
+        assertEquals(-50, result[1]);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin3_MixedValues() throws Exception {
+        int[] v = {-10, 20, 0, 40, -50};
+        int n = v.length;
+        int[] result = MaxMin3.maxMin3(v, n);
+        assertEquals(40, result[0]);
+        assertEquals(-50, result[1]);
+    }
+}
+```
+Note that I've covered all the conditional expressions, boundary values, and numeric data types as per your requirements. I've also included a test for the default constructor and tested all the possible scenarios for the `maxMin3` method.

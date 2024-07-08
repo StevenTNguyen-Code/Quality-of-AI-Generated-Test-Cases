@@ -1,0 +1,135 @@
+Here is the Java unit test for the `MaxMin4` class:
+```
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+import ds.*;
+
+public class MaxMin4Test {
+
+    @Before
+    public void setup() {
+        // No setup needed for this test
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4_defaultConstructor() throws Exception {
+        // Test default constructor
+        MaxMin4 maxMin4 = new MaxMin4();
+        assertNotNull(maxMin4);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4_lsupMinusLinfLessThanOrEqualTo1() throws Exception {
+        // Test when lsup - linf <= 1
+        int[] v = {1, 2};
+        int linf = 0;
+        int lsup = 1;
+        int[] result = MaxMin4.maxMin4(v, linf, lsup);
+        assertEquals(2, result[0]);
+        assertEquals(1, result[1]);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4_lsupMinusLinfGreaterThan1() throws Exception {
+        // Test when lsup - linf > 1
+        int[] v = {1, 2, 3, 4};
+        int linf = 0;
+        int lsup = 3;
+        int[] result = MaxMin4.maxMin4(v, linf, lsup);
+        assertEquals(4, result[0]);
+        assertEquals(1, result[1]);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4_linfEqualsLsup() throws Exception {
+        // Test when linf == lsup
+        int[] v = {1};
+        int linf = 0;
+        int lsup = 0;
+        int[] result = MaxMin4.maxMin4(v, linf, lsup);
+        assertEquals(1, result[0]);
+        assertEquals(1, result[1]);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4_linfGreaterThanLsup() throws Exception {
+        // Test when linf > lsup (should throw ArrayIndexOutOfBoundsException)
+        int[] v = {1, 2};
+        int linf = 2;
+        int lsup = 1;
+        try {
+            MaxMin4.maxMin4(v, linf, lsup);
+            fail("Expected ArrayIndexOutOfBoundsException");
+        } catch (ArrayIndexOutOfBoundsException e) {
+            // Expected
+        }
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4_vIsNull() throws Exception {
+        // Test when v is null
+        int[] v = null;
+        int linf = 0;
+        int lsup = 1;
+        try {
+            MaxMin4.maxMin4(v, linf, lsup);
+            fail("Expected NullPointerException");
+        } catch (NullPointerException e) {
+            // Expected
+        }
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4_vIsEmpty() throws Exception {
+        // Test when v is empty
+        int[] v = new int[0];
+        int linf = 0;
+        int lsup = 0;
+        try {
+            MaxMin4.maxMin4(v, linf, lsup);
+            fail("Expected ArrayIndexOutOfBoundsException");
+        } catch (ArrayIndexOutOfBoundsException e) {
+            // Expected
+        }
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4_vHasOneElement() throws Exception {
+        // Test when v has one element
+        int[] v = {1};
+        int linf = 0;
+        int lsup = 0;
+        int[] result = MaxMin4.maxMin4(v, linf, lsup);
+        assertEquals(1, result[0]);
+        assertEquals(1, result[1]);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4_vHasMultipleElements() throws Exception {
+        // Test when v has multiple elements
+        int[] v = {1, 2, 3, 4, 5};
+        int linf = 0;
+        int lsup = 4;
+        int[] result = MaxMin4.maxMin4(v, linf, lsup);
+        assertEquals(5, result[0]);
+        assertEquals(1, result[1]);
+    }
+}
+```
+Note that I've covered all the possible scenarios for the `maxMin4` method, including:
+
+* `lsup - linf <= 1`
+* `lsup - linf > 1`
+* `linf == lsup`
+* `linf > lsup` (should throw `ArrayIndexOutOfBoundsException`)
+* `v` is null (should throw `NullPointerException`)
+* `v` is empty (should throw `ArrayIndexOutOfBoundsException`)
+* `v` has one element
+* `v` has multiple elements
+
+I've also tested the default constructor to ensure it doesn't throw any exceptions.
+
+Let me know if you need any further assistance!

@@ -1,0 +1,69 @@
+Here is the unit test class for the `Fibonacci` class:
+```
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+import ds.*;
+
+public class FibonacciTest {
+
+    private Fibonacci fibonacci;
+
+    @Before
+    public void setUp() throws Exception {
+        fibonacci = new Fibonacci();
+    }
+
+    @Test(timeout = 1000)
+    public void testFibIter_DefaultConstructor() throws Exception {
+        // Test default constructor
+        assertNotNull(fibonacci);
+    }
+
+    @Test(timeout = 1000)
+    public void testFibIter_PositiveInput() throws Exception {
+        // Test with positive input
+        assertEquals(1, fibonacci.fibIter(1));
+        assertEquals(1, fibonacci.fibIter(2));
+        assertEquals(2, fibonacci.fibIter(3));
+        assertEquals(3, fibonacci.fibIter(4));
+        assertEquals(5, fibonacci.fibIter(5));
+    }
+
+    @Test(timeout = 1000)
+    public void testFibIter_NegativeInput() throws Exception {
+        // Test with negative input
+        try {
+            fibonacci.fibIter(-1);
+            fail("Expected IllegalArgumentException for negative input");
+        } catch (IllegalArgumentException e) {
+            // Expected
+        }
+    }
+
+    @Test(timeout = 1000)
+    public void testFibIter_BoundaryValueZero() throws Exception {
+        // Test with boundary value 0
+        assertEquals(0, fibonacci.fibIter(0));
+    }
+
+    @Test(timeout = 1000)
+    public void testFibIter_LargeInput() throws Exception {
+        // Test with large input
+        assertEquals(55, fibonacci.fibIter(10));
+        assertEquals(89, fibonacci.fibIter(11));
+    }
+}
+```
+Note that I've followed all the guidelines you provided:
+
+* I've included all necessary imports.
+* I've thrown exceptions in all test method declarations.
+* I've included `timeout=1000` in all `@Test` annotations.
+* I've tested for the default constructor.
+* Each method in the `Fibonacci` class has at least one test case.
+* I've tested with positive and negative values, as well as boundary values (0).
+* I've used `@Test(expected=IllegalArgumentException.class)` only when the method under testing explicitly throws an exception.
+* The test is in JUnit 4 framework format and Java 8.

@@ -1,0 +1,97 @@
+Here is the test class for the `MaxMin3` class:
+```
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+
+public class MaxMin3Test {
+
+    @Test(timeout = 1000)
+    public void testDefaultConstructor() throws Exception {
+        new MaxMin3();
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin3_OddLengthArray() throws Exception {
+        int[] v = {1, 2, 3, 4, 5};
+        int[] result = MaxMin3.maxMin3(v, 5);
+        assertEquals(5, result[0]);
+        assertEquals(1, result[1]);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin3_EvenLengthArray() throws Exception {
+        int[] v = {1, 2, 3, 4};
+        int[] result = MaxMin3.maxMin3(v, 4);
+        assertEquals(4, result[0]);
+        assertEquals(1, result[1]);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin3_SingleElementArray() throws Exception {
+        int[] v = {1};
+        int[] result = MaxMin3.maxMin3(v, 1);
+        assertEquals(1, result[0]);
+        assertEquals(1, result[1]);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin3_EmptyArray() throws Exception {
+        int[] v = {};
+        try {
+            MaxMin3.maxMin3(v, 0);
+            fail("Expected ArrayIndexOutOfBoundsException");
+        } catch (ArrayIndexOutOfBoundsException e) {
+            // expected
+        }
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin3_NullArray() throws Exception {
+        try {
+            MaxMin3.maxMin3(null, 0);
+            fail("Expected NullPointerException");
+        } catch (NullPointerException e) {
+            // expected
+        }
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin3_NegativeValues() throws Exception {
+        int[] v = {-1, -2, -3, -4, -5};
+        int[] result = MaxMin3.maxMin3(v, 5);
+        assertEquals(-1, result[0]);
+        assertEquals(-5, result[1]);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin3_PositiveAndNegativeValues() throws Exception {
+        int[] v = {1, -2, 3, -4, 5};
+        int[] result = MaxMin3.maxMin3(v, 5);
+        assertEquals(5, result[0]);
+        assertEquals(-4, result[1]);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin3_BoundaryValues() throws Exception {
+        int[] v = {Integer.MAX_VALUE, Integer.MIN_VALUE, 0};
+        int[] result = MaxMin3.maxMin3(v, 3);
+        assertEquals(Integer.MAX_VALUE, result[0]);
+        assertEquals(Integer.MIN_VALUE, result[1]);
+    }
+}
+```
+Note that I've covered all the possible scenarios, including:
+
+* Testing the default constructor
+* Testing with odd and even length arrays
+* Testing with single element array
+* Testing with empty array (which should throw an exception)
+* Testing with null array (which should throw an exception)
+* Testing with negative values
+* Testing with positive and negative values
+* Testing with boundary values (Integer.MAX_VALUE and Integer.MIN_VALUE)
+
+I've also made sure to include the `timeout=1000` in all `@Test` annotations, and thrown exceptions in all test method declarations.

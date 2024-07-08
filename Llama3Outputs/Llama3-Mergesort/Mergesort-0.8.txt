@@ -1,0 +1,101 @@
+Here is the test class for the given `Ordenacao` class:
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+import ds.*;
+
+public class OrdenacaoTest {
+
+    private int[] array;
+
+    @Before
+    public void setup() {
+        array = new int[] {5, 2, 8, 3, 1, 4, 6};
+    }
+
+    @Test(timeout = 1000)
+    public void testDefaultConstructor() {
+        Ordenacao ordenacao = new Ordenacao();
+        assertNotNull(ordenacao);
+    }
+
+    @Test(timeout = 1000)
+    public void testMerge_withSmallArray() {
+        int[] smallArray = new int[] {3, 1, 2};
+        Ordenacao.merge(smallArray, 0, 1, 2);
+        int[] expected = new int[] {1, 2, 3};
+        assertArrayEquals(expected, smallArray);
+    }
+
+    @Test(timeout = 1000)
+    public void testMerge_withLargeArray() {
+        Ordenacao.merge(array, 0, 3, 6);
+        int[] expected = new int[] {1, 2, 3, 4, 5, 6, 8};
+        assertArrayEquals(expected, array);
+    }
+
+    @Test(timeout = 1000)
+    public void testMerge_withNegativeValues() {
+        int[] negativeArray = new int[] {-5, -2, -8, -3, -1, -4, -6};
+        Ordenacao.merge(negativeArray, 0, 3, 6);
+        int[] expected = new int[] {-8, -6, -5, -4, -3, -2, -1};
+        assertArrayEquals(expected, negativeArray);
+    }
+
+    @Test(timeout = 1000)
+    public void testMerge_withBoundaryValues() {
+        int[] boundaryArray = new int[] {Integer.MIN_VALUE, 0, Integer.MAX_VALUE};
+        Ordenacao.merge(boundaryArray, 0, 1, 2);
+        int[] expected = new int[] {Integer.MIN_VALUE, 0, Integer.MAX_VALUE};
+        assertArrayEquals(expected, boundaryArray);
+    }
+
+    @Test(timeout = 1000)
+    public void testMergeSort_withSmallArray() {
+        int[] smallArray = new int[] {3, 1, 2};
+        Ordenacao.mergeSort(smallArray, 0, 2);
+        int[] expected = new int[] {1, 2, 3};
+        assertArrayEquals(expected, smallArray);
+    }
+
+    @Test(timeout = 1000)
+    public void testMergeSort_withLargeArray() {
+        Ordenacao.mergeSort(array, 0, 6);
+        int[] expected = new int[] {1, 2, 3, 4, 5, 6, 8};
+        assertArrayEquals(expected, array);
+    }
+
+    @Test(timeout = 1000)
+    public void testMergeSort_withNegativeValues() {
+        int[] negativeArray = new int[] {-5, -2, -8, -3, -1, -4, -6};
+        Ordenacao.mergeSort(negativeArray, 0, 6);
+        int[] expected = new int[] {-8, -6, -5, -4, -3, -2, -1};
+        assertArrayEquals(expected, negativeArray);
+    }
+
+    @Test(timeout = 1000)
+    public void testMergeSort_withBoundaryValues() {
+        int[] boundaryArray = new int[] {Integer.MIN_VALUE, 0, Integer.MAX_VALUE};
+        Ordenacao.mergeSort(boundaryArray, 0, 2);
+        int[] expected = new int[] {Integer.MIN_VALUE, 0, Integer.MAX_VALUE};
+        assertArrayEquals(expected, boundaryArray);
+    }
+}
+```
+Note that I've covered all the decisions in the methods of the `Ordenacao` class, including the `merge` and `mergeSort` methods, with various test cases:
+
+* Test cases for `merge` method:
+	+ Small array
+	+ Large array
+	+ Negative values
+	+ Boundary values (Integer.MIN_VALUE, 0, Integer.MAX_VALUE)
+* Test cases for `mergeSort` method:
+	+ Small array
+	+ Large array
+	+ Negative values
+	+ Boundary values (Integer.MIN_VALUE, 0, Integer.MAX_VALUE)
+
+Also, I've included a test case for the default constructor of the `Ordenacao` class.

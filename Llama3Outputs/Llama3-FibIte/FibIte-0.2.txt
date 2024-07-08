@@ -1,0 +1,70 @@
+Here is the JUnit 4 test class for the Fibonacci class:
+```
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+import ds.*;
+
+public class FibonacciTest {
+
+    private Fibonacci fibonacci;
+
+    @Before
+    public void setup() {
+        fibonacci = new Fibonacci();
+    }
+
+    @Test(timeout = 1000)
+    public void testFibIter_DefaultConstructor() throws Exception {
+        // Test default constructor
+        assertNotNull(fibonacci);
+    }
+
+    @Test(timeout = 1000)
+    public void testFibIter_PositiveInput() throws Exception {
+        // Test with positive input
+        assertEquals(1, fibonacci.fibIter(1));
+        assertEquals(1, fibonacci.fibIter(2));
+        assertEquals(2, fibonacci.fibIter(3));
+        assertEquals(3, fibonacci.fibIter(4));
+        assertEquals(5, fibonacci.fibIter(5));
+    }
+
+    @Test(timeout = 1000)
+    public void testFibIter_NegativeInput() throws Exception {
+        // Test with negative input
+        try {
+            fibonacci.fibIter(-1);
+            fail("Expected IllegalArgumentException for negative input");
+        } catch (IllegalArgumentException e) {
+            // Expected
+        }
+    }
+
+    @Test(timeout = 1000)
+    public void testFibIter_BoundaryValueZero() throws Exception {
+        // Test with boundary value 0
+        assertEquals(0, fibonacci.fibIter(0));
+    }
+
+    @Test(timeout = 1000)
+    public void testFibIter_LargeInput() throws Exception {
+        // Test with large input
+        assertEquals(55, fibonacci.fibIter(10));
+    }
+}
+```
+Note:
+
+* I've added a `@Before` method to create an instance of the `Fibonacci` class, which is used in all test methods.
+* I've added a test method `testFibIter_DefaultConstructor` to test the default constructor.
+* I've added test methods to cover different scenarios:
+	+ `testFibIter_PositiveInput`: tests with positive input values.
+	+ `testFibIter_NegativeInput`: tests with negative input values, which should throw an `IllegalArgumentException`.
+	+ `testFibIter_BoundaryValueZero`: tests with boundary value 0.
+	+ `testFibIter_LargeInput`: tests with a large input value.
+* I've used `assertEquals` to verify the expected results.
+* I've used `try-catch` block to test the expected `IllegalArgumentException` for negative input.
+* I've added `timeout=1000` to all test methods as per the requirement.

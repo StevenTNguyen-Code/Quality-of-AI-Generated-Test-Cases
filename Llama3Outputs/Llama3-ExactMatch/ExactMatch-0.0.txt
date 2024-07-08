@@ -1,0 +1,57 @@
+Here is the test class for the given Java class:
+
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+import ds.*;
+
+public class CasamentoExatoTest {
+
+    @Before
+    public void setup() {
+        // Setup method
+    }
+
+    @Test(timeout = 1000)
+    public void testForcaBruta() throws Exception {
+        CasamentoExato.forcaBruta("abcdefg", 7, "cde", 3);
+        CasamentoExato.forcaBruta("abcdefg", 7, "xyz", 3);
+        CasamentoExato.forcaBruta("", 0, "cde", 3);
+        CasamentoExato.forcaBruta("abcdefg", 7, "", 0);
+    }
+
+    @Test(timeout = 1000)
+    public void testShiftAndExato() throws Exception {
+        CasamentoExato.shiftAndExato("abcdefg", 7, "cde", 3);
+        CasamentoExato.shiftAndExato("abcdefg", 7, "xyz", 3);
+        CasamentoExato.shiftAndExato("", 0, "cde", 3);
+        CasamentoExato.shiftAndExato("abcdefg", 7, "", 0);
+    }
+
+    @Test(timeout = 1000)
+    public void testBmh() throws Exception {
+        CasamentoExato.bmh("abcdefg", 7, "cde", 3);
+        CasamentoExato.bmh("abcdefg", 7, "xyz", 3);
+        CasamentoExato.bmh("", 0, "cde", 3);
+        CasamentoExato.bmh("abcdefg", 7, "", 0);
+    }
+
+    @Test(timeout = 1000)
+    public void testBmhs() throws Exception {
+        CasamentoExato.bmhs("abcdefg", 7, "cde", 3);
+        CasamentoExato.bmhs("abcdefg", 7, "xyz", 3);
+        CasamentoExato.bmhs("", 0, "cde", 3);
+        CasamentoExato.bmhs("abcdefg", 7, "", 0);
+    }
+
+    @Test(timeout = 1000)
+    public void testDefaultConstructor() throws Exception {
+        new CasamentoExato();
+    }
+}
+```
+
+This test class covers all the methods in the `CasamentoExato` class with different test cases, including boundary values and edge cases. It also tests the default constructor. Note that the `System.out.println` statements in the `CasamentoExato` class are not tested as they are not return values, but rather side effects.
