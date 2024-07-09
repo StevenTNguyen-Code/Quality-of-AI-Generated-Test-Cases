@@ -1,0 +1,104 @@
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+import ds.*;
+
+public class OrdenacaoTest {
+
+    private Ordenacao ordenacao;
+
+    @Before
+    public void setUp() {
+        ordenacao = new Ordenacao();
+    }
+
+    @Test(timeout=1000)
+    public void testDefaultConstructor() throws Exception {
+        assertNotNull(ordenacao);
+    }
+
+    @Test(timeout=1000)
+    public void testOrdena_withValidInputs() throws Exception {
+        int[] array = {3, 1, 2};
+        Ordenacao.ordena(array, array.length);
+        assertArrayEquals(new int[]{1, 2, 3}, array);
+    }
+
+    @Test(timeout=1000)
+    public void testOrdena_withEmptyArray() throws Exception {
+        int[] array = {};
+        Ordenacao.ordena(array, array.length);
+        assertArrayEquals(new int[]{}, array);
+    }
+
+    @Test(timeout=1000)
+    public void testOrdena_withSingleElement() throws Exception {
+        int[] array = {42};
+        Ordenacao.ordena(array, array.length);
+        assertArrayEquals(new int[]{42}, array);
+    }
+
+    @Test(timeout=1000)
+    public void testOrdena_withAlreadySortedArray() throws Exception {
+        int[] array = {1, 2, 3, 4, 5};
+        Ordenacao.ordena(array, array.length);
+        assertArrayEquals(new int[]{1, 2, 3, 4, 5}, array);
+    }
+
+    @Test(timeout=1000)
+    public void testOrdena_withReverseSortedArray() throws Exception {
+        int[] array = {5, 4, 3, 2, 1};
+        Ordenacao.ordena(array, array.length);
+        assertArrayEquals(new int[]{1, 2, 3, 4, 5}, array);
+    }
+
+    @Test(timeout=1000)
+    public void testOrdena_withNegativeValues() throws Exception {
+        int[] array = {-1, -3, -2, -5, -4};
+        Ordenacao.ordena(array, array.length);
+        assertArrayEquals(new int[]{-5, -4, -3, -2, -1}, array);
+    }
+
+    @Test(timeout=1000)
+    public void testOrdena_withMixedPositiveAndNegativeValues() throws Exception {
+        int[] array = {3, -1, 2, -5, 4};
+        Ordenacao.ordena(array, array.length);
+        assertArrayEquals(new int[]{-5, -1, 2, 3, 4}, array);
+    }
+
+    @Test(timeout=1000)
+    public void testOrdena_withDuplicateValues() throws Exception {
+        int[] array = {2, 3, 2, 1, 3};
+        Ordenacao.ordena(array, array.length);
+        assertArrayEquals(new int[]{1, 2, 2, 3, 3}, array);
+    }
+
+    @Test(timeout=1000)
+    public void testOrdena_withBoundaryValues() throws Exception {
+        int[] array = {Integer.MAX_VALUE, Integer.MIN_VALUE, 0};
+        Ordenacao.ordena(array, array.length);
+        assertArrayEquals(new int[]{Integer.MIN_VALUE, 0, Integer.MAX_VALUE}, array);
+    }
+}
+```
+
+### Explanation:
+
+1. **Imports and Package**: The necessary imports and package declarations are included.
+2. **Setup**: The `@Before` annotated method sets up an instance of the `Ordenacao` class.
+3. **Default Constructor Test**: Verifies that the default constructor initializes the object correctly.
+4. **Functional Tests**: A series of tests verifying the `ordena` method for various scenarios:
+   - With a typical valid input array.
+   - With an empty array.
+   - With a single element.
+   - With an already sorted array.
+   - With a reverse sorted array.
+   - With negative values.
+   - With a mix of positive and negative values.
+   - With duplicate values.
+   - With boundary values (maximum and minimum integers).
+
+Each test method follows the constraints: timeout is set to 1000ms, exceptions are thrown in method declarations, and assertions check the correctness of the sorting algorithm.

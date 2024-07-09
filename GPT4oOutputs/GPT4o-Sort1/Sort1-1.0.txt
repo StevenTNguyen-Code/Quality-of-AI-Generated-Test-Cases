@@ -1,0 +1,87 @@
+Sure, here is the requested JUnit test class for the `Ordenacao` class in Java 8 and using the JUnit 4 framework:
+
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+
+public class OrdenacaoTest {
+
+    private Ordenacao ordenacao;
+
+    @Before
+    public void setUp() {
+        ordenacao = new Ordenacao();
+    }
+
+    @Test(timeout = 1000)
+    public void testDefaultConstructor() throws Exception {
+        assertNotNull("Instance should be created", ordenacao);
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdinaryArray() throws Exception {
+        int[] v = {4, 3, 2, 1};
+        Ordenacao.ordena(v, v.length);
+        assertArrayEquals(new int[] {1, 2, 3, 4}, v);
+    }
+
+    @Test(timeout = 1000)
+    public void testAlreadySortedArray() throws Exception {
+        int[] v = {1, 2, 3, 4};
+        Ordenacao.ordena(v, v.length);
+        assertArrayEquals(new int[] {1, 2, 3, 4}, v);
+    }
+
+    @Test(timeout = 1000)
+    public void testSingleElementArray() throws Exception {
+        int[] v = {1};
+        Ordenacao.ordena(v, v.length);
+        assertArrayEquals(new int[] {1}, v);
+    }
+
+    @Test(timeout = 1000)
+    public void testTwoElementArray() throws Exception {
+        int[] v = {2, 1};
+        Ordenacao.ordena(v, v.length);
+        assertArrayEquals(new int[] {1, 2}, v);
+    }
+
+    @Test(timeout = 1000)
+    public void testNegativeAndPositiveNumbersArray() throws Exception {
+        int[] v = {3, -1, 2, -4};
+        Ordenacao.ordena(v, v.length);
+        assertArrayEquals(new int[] {-4, -1, 2, 3}, v);
+    }
+
+    @Test(timeout = 1000)
+    public void testEmptyArray() throws Exception {
+        int[] v = {};
+        Ordenacao.ordena(v, v.length);
+        assertArrayEquals(new int[] {}, v);
+    }
+
+    @Test(timeout = 1000)
+    public void testArrayWithDuplicates() throws Exception {
+        int[] v = {5, 3, 5, 1, 3};
+        Ordenacao.ordena(v, v.length);
+        assertArrayEquals(new int[] {1, 3, 3, 5, 5}, v);
+    }
+
+    @Test(timeout = 1000, expected = ArrayIndexOutOfBoundsException.class)
+    public void testArrayIndexOutOfBoundsException() throws Exception {
+        int[] v = {1, 2, 3};
+        Ordenacao.ordena(v, 4);  // n is greater than array length
+    }
+}
+```
+
+Key aspects covered in these tests:
+1. **Default Constructor Test**: Ensures the class can be instantiated.
+2. **Normal Cases**: Tests with an ordinary, already sorted, reverse sorted, a single element, two elements, negative and positive numbers, and duplicate elements arrays.
+3. **Boundary Values**: Includes an empty array.
+4. **Exception Case**: Throws an `ArrayIndexOutOfBoundsException` when `n` is greater than the array length, which should be handled by the caller of the method.
+
+This covers the given class thoroughly following your guidelines.

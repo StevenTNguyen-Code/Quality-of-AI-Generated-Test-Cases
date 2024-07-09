@@ -1,0 +1,92 @@
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+
+public class OrdenacaoTest {
+
+    private Ordenacao ordenacao;
+
+    @Before
+    public void setUp() throws Exception {
+        ordenacao = new Ordenacao();
+    }
+
+    // Test for the default constructor
+    @Test(timeout = 1000)
+    public void testDefaultConstructor() throws Exception {
+        new Ordenacao();
+    }
+
+    // Test case to cover the ordena method with various scenarios
+    @Test(timeout = 1000)
+    public void testOrdena() throws Exception {
+        int[] array = {4, 3, 2, 1};
+        Ordenacao.ordena(array, array.length);
+        assertArrayEquals(new int[]{1, 2, 3, 4}, array);
+    }
+
+    // Test with an empty array
+    @Test(timeout = 1000)
+    public void testOrdenaEmptyArray() throws Exception {
+        int[] array = {};
+        Ordenacao.ordena(array, array.length);
+        assertArrayEquals(new int[]{}, array);
+    }
+
+    // Test with an array of one element
+    @Test(timeout = 1000)
+    public void testOrdenaSingleElement() throws Exception {
+        int[] array = {1};
+        Ordenacao.ordena(array, array.length);
+        assertArrayEquals(new int[]{1}, array);
+    }
+
+    // Test with an already sorted array
+    @Test(timeout = 1000)
+    public void testOrdenaSortedArray() throws Exception {
+        int[] array = {1, 2, 3, 4};
+        Ordenacao.ordena(array, array.length);
+        assertArrayEquals(new int[]{1, 2, 3, 4}, array);
+    }
+
+    // Test with an array with negative and positive values
+    @Test(timeout = 1000)
+    public void testOrdenaNegativePositiveValues() throws Exception {
+        int[] array = {-3, 2, -1, 4};
+        Ordenacao.ordena(array, array.length);
+        assertArrayEquals(new int[]{-3, -1, 2, 4}, array);
+    }
+
+    // Test with duplicate values
+    @Test(timeout = 1000)
+    public void testOrdenaDuplicateValues() throws Exception {
+        int[] array = {3, 3, 2, 1};
+        Ordenacao.ordena(array, array.length);
+        assertArrayEquals(new int[]{1, 2, 3, 3}, array);
+    }
+
+    // Test with the largest and smallest integer values
+    @Test(timeout = 1000)
+    public void testOrdenaBoundaryValues() throws Exception {
+        int[] array = {Integer.MAX_VALUE, Integer.MIN_VALUE, 0};
+        Ordenacao.ordena(array, array.length);
+        assertArrayEquals(new int[]{Integer.MIN_VALUE, 0, Integer.MAX_VALUE}, array);
+    }
+}
+```
+
+### Explanation:
+- **Default Constructor Test**: Ensures that an instance of the `Ordenacao` class can be created.
+- **Test Cases for `ordena` Method**:
+  - **Basic Sorting**: Tests a normal case with an unsorted array.
+  - **Empty Array**: Tests the method with an empty array.
+  - **Single Element**: Tests the method with an array containing only one element.
+  - **Already Sorted Array**: Tests the method with an array that is already sorted.
+  - **Negative and Positive Values**: Tests sorting of an array containing both negative and positive values.
+  - **Duplicate Values**: Tests sorting of an array with duplicate values.
+  - **Boundary Values**: Tests sorting with the largest and smallest possible integer values.
+
+Each test case is annotated with `@Test(timeout = 1000)` to ensure it completes within a second, and the test methods throw `Exception` to conform with the provided requirements.

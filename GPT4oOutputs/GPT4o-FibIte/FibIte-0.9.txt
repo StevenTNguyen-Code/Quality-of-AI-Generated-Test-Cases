@@ -1,0 +1,58 @@
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+
+public class FibonacciTest {
+
+    private Fibonacci fibonacci;
+
+    @Before
+    public void setUp() throws Exception {
+        fibonacci = new Fibonacci();
+    }
+
+    @Test(timeout = 1000)
+    public void testDefaultConstructor() throws Exception {
+        assertNotNull("Fibonacci object should not be null", new Fibonacci());
+    }
+
+    @Test(timeout = 1000)
+    public void testFibIterWithBoundaryValues() throws Exception {
+        assertEquals("Boundary value test failed for n=0", 0, Fibonacci.fibIter(0));
+        assertEquals("Boundary value test failed for n=1", 1, Fibonacci.fibIter(1));
+    }
+
+    @Test(timeout = 1000)
+    public void testFibIterWithPositiveValues() throws Exception {
+        assertEquals("Test failed for n=2", 1, Fibonacci.fibIter(2));
+        assertEquals("Test failed for n=3", 2, Fibonacci.fibIter(3));
+        assertEquals("Test failed for n=4", 3, Fibonacci.fibIter(4));
+        assertEquals("Test failed for n=5", 5, Fibonacci.fibIter(5));
+        assertEquals("Test failed for n=10", 55, Fibonacci.fibIter(10));
+    }
+
+    @Test(timeout = 1000)
+    public void testFibIterWithNegativeValues() throws Exception {
+        // Typically, Fibonacci sequence is defined for non-negative integers.
+        // Assuming that the method should handle negative gracefully
+        // As there is no explicit handling of negative values in the `fibIter` method,
+        // we might assume it returns 0 for any negative input.
+        assertEquals("Test failed for n=-1", 0, Fibonacci.fibIter(-1));
+        assertEquals("Test failed for n=-10", 0, Fibonacci.fibIter(-10));
+    }
+}
+```
+
+### Explanation:
+1. **Imports & Package**: The required imports and the package are set at the top.
+2. **Setup Method**: The `setUp` method initializes the `Fibonacci` object before each test.
+3. **Default Constructor Test**: Tests if the default constructor does not return a `null` object.
+4. **Boundary Value Tests**: Checks the boundary values for the Fibonacci sequence, especially focusing on `n=0` and `n=1`.
+5. **Positive Value Tests**: Tests several positive values to ensure the Fibonacci sequence is calculated correctly.
+6. **Negative Value Tests**: As negative Fibonacci numbers are not typically defined, the test assumes that the method should handle negatives gracefully and return 0. If your application intends to handle negative inputs differently, you may need to adopt a different assumption or modify the method accordingly.
+7. **Timeout and Exception Handling**: Each test has a timeout of 1000 milliseconds. Exception handling is accommodated wherever necessary.
+
+These tests should compile and run successfully under JUnit 4 and Java 8 environments.

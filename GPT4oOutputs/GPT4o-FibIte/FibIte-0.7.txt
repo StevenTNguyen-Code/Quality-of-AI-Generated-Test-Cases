@@ -1,0 +1,98 @@
+Sure, I will write the unit tests for the `Fibonacci` class according to the specified requirements.
+
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+
+/**
+ * Test class for Fibonacci.
+ */
+public class FibonacciTest {
+
+    private Fibonacci fibonacci;
+
+    @Before
+    public void setUp() {
+        fibonacci = new Fibonacci();
+    }
+
+    @Test(timeout = 1000)
+    public void testDefaultConstructor() throws Exception {
+        Fibonacci fib = new Fibonacci();
+        assertNotNull(fib);
+    }
+
+    @Test(timeout = 1000)
+    public void testFibIterZero() throws Exception {
+        int result = Fibonacci.fibIter(0);
+        assertEquals(0, result);
+    }
+
+    @Test(timeout = 1000)
+    public void testFibIterOne() throws Exception {
+        int result = Fibonacci.fibIter(1);
+        assertEquals(1, result);
+    }
+
+    @Test(timeout = 1000)
+    public void testFibIterPositiveBoundary() throws Exception {
+        int result = Fibonacci.fibIter(10);
+        assertEquals(55, result);
+    }
+
+    @Test(timeout = 1000)
+    public void testFibIterNegativeBoundary() throws Exception {
+        try {
+            Fibonacci.fibIter(-1);
+            fail("Expected IllegalArgumentException for negative input");
+        } catch (IllegalArgumentException e) {
+            // expected exception
+        }
+    }
+
+    @Test(timeout = 1000)
+    public void testFibIterLargeNumber() throws Exception {
+        int result = Fibonacci.fibIter(30);
+        assertEquals(832040, result);
+    }
+
+    @Test(timeout = 1000)
+    public void testFibIterSmallNumber() throws Exception {
+        int result = Fibonacci.fibIter(2);
+        assertEquals(1, result);
+    }
+}
+```
+
+### Explanation:
+- **Imports**: The required imports are included.
+- **Setup**: The `setUp` method initializes the `Fibonacci` instance.
+- **Default Constructor**: A test case for the default constructor is provided.
+- **Boundary Values**: Tests for boundary values (0, 1, 10, -1, 30, 2) are included.
+- **Exception Handling**: The expected exception for negative numbers is tested.
+
+### Notes:
+- The method `fibIter` does not explicitly throw exceptions in the given code, so the test for negative input is handled manually using a try-catch block.
+- All test methods are annotated with `@Test(timeout = 1000)` to meet the timeout requirement.
+- Each test method declares `throws Exception` as per the requirements.
+
+Make sure to include the necessary logic in the `fibIter` method to throw an `IllegalArgumentException` for negative inputs if this behavior is expected. Here's an example modification:
+
+```java
+public static int fibIter(int n) {
+    if (n < 0) {
+        throw new IllegalArgumentException("Negative input not allowed");
+    }
+    int i = 1, f = 0;
+    for (int k = 1; k <= n; k++) {
+        f = i + f;
+        i = f - i;
+    }
+    return f;
+}
+```
+
+This modification ensures that the `fibIter` method will throw an exception for negative inputs, making the corresponding test case valid.

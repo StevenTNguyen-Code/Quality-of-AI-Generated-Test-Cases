@@ -1,0 +1,96 @@
+Sure, here is a set of unit tests for the `Ordenacao` class using JUnit 4 in Java 8, as per your requirements:
+
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+
+public class OrdenacaoTest {
+
+    private Ordenacao ordenacao;
+
+    @Before
+    public void setUp() throws Exception {
+        ordenacao = new Ordenacao();
+    }
+
+    @Test(timeout = 1000)
+    public void testDefaultConstructor() throws Exception {
+        assertNotNull(new Ordenacao());
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdenaEmptyArray() throws Exception {
+        int[] v = {};
+        Ordenacao.ordena(v, 0);
+        assertArrayEquals(new int[]{}, v);
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdenaSingleElement() throws Exception {
+        int[] v = {1};
+        Ordenacao.ordena(v, 1);
+        assertArrayEquals(new int[]{1}, v);
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdenaAlreadySorted() throws Exception {
+        int[] v = {1, 2, 3, 4, 5};
+        Ordenacao.ordena(v, v.length);
+        assertArrayEquals(new int[]{1, 2, 3, 4, 5}, v);
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdenaReverseSorted() throws Exception {
+        int[] v = {5, 4, 3, 2, 1};
+        Ordenacao.ordena(v, v.length);
+        assertArrayEquals(new int[]{1, 2, 3, 4, 5}, v);
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdenaUnsorted() throws Exception {
+        int[] v = {3, 1, 4, 5, 2};
+        Ordenacao.ordena(v, v.length);
+        assertArrayEquals(new int[]{1, 2, 3, 4, 5}, v);
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdenaNegativeValues() throws Exception {
+        int[] v = {-3, -1, -4, -5, -2};
+        Ordenacao.ordena(v, v.length);
+        assertArrayEquals(new int[]{-5, -4, -3, -2, -1}, v);
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdenaMixedValues() throws Exception {
+        int[] v = {3, -1, 0, -5, 2};
+        Ordenacao.ordena(v, v.length);
+        assertArrayEquals(new int[]{-5, -1, 0, 2, 3}, v);
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdenaBoundaryValues() throws Exception {
+        int[] v = {Integer.MAX_VALUE, Integer.MIN_VALUE, 0};
+        Ordenacao.ordena(v, v.length);
+        assertArrayEquals(new int[]{Integer.MIN_VALUE, 0, Integer.MAX_VALUE}, v);
+    }
+}
+```
+
+### Explanation:
+1. **Imports and Package**: The necessary imports and package declaration are included.
+2. **Setup**: `@Before` method to initialize the `Ordenacao` object.
+3. **Default Constructor Test**: Ensures the default constructor can be called and the object is not null.
+4. **Test Cases**:
+   - **Empty Array**: Tests the method with an empty array.
+   - **Single Element**: Tests the method with a single element array.
+   - **Already Sorted Array**: Tests the method with an already sorted array.
+   - **Reverse Sorted Array**: Tests the method with a reverse sorted array.
+   - **Unsorted Array**: Tests the method with an unsorted array.
+   - **Negative Values**: Tests the method with an array containing negative values.
+   - **Mixed Values**: Tests the method with an array containing both positive and negative values.
+   - **Boundary Values**: Tests the method with boundary values like `Integer.MAX_VALUE` and `Integer.MIN_VALUE`.
+
+Each test case includes the `timeout = 1000` parameter to ensure it completes within the specified time. The `assertArrayEquals` method is used to verify the array content after sorting.

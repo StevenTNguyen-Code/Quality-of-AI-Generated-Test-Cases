@@ -1,0 +1,69 @@
+Sure, here are the unit tests for the `Fibonacci` class using JUnit 4 framework in Java 8:
+
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+
+public class FibonacciTest {
+
+    private Fibonacci fibonacci;
+
+    @Before
+    public void setUp() {
+        fibonacci = new Fibonacci();
+    }
+
+    @Test(timeout=1000)
+    public void testFibIterWithZero() throws Exception {
+        assertEquals(0, Fibonacci.fibIter(0));
+    }
+
+    @Test(timeout=1000)
+    public void testFibIterWithOne() throws Exception {
+        assertEquals(1, Fibonacci.fibIter(1));
+    }
+
+    @Test(timeout=1000)
+    public void testFibIterWithPositiveNumber() throws Exception {
+        assertEquals(5, Fibonacci.fibIter(5));
+    }
+
+    @Test(timeout=1000)
+    public void testFibIterWithBoundaryValue() throws Exception {
+        assertEquals(21, Fibonacci.fibIter(8));
+    }
+
+    @Test(timeout=1000)
+    public void testFibIterWithLargeNumber() throws Exception {
+        assertEquals(55, Fibonacci.fibIter(10));
+    }
+
+    @Test(timeout=1000)
+    public void testFibIterWithNegativeNumber() throws Exception {
+        assertEquals(0, Fibonacci.fibIter(-5));
+    }
+
+    @Test(timeout=1000)
+    public void testDefaultConstructor() throws Exception {
+        Fibonacci fib = new Fibonacci();
+        assertNotNull(fib);
+    }
+}
+```
+
+### Explanation:
+1. **Imports and Package**: The necessary imports and package declaration are included at the top.
+2. **Setup Method**: The `setUp` method initializes the `Fibonacci` object before each test.
+3. **Test Methods**:
+   - `testFibIterWithZero`: Tests the method with `n = 0`.
+   - `testFibIterWithOne`: Tests the method with `n = 1`.
+   - `testFibIterWithPositiveNumber`: Tests the method with a positive number `n = 5`.
+   - `testFibIterWithBoundaryValue`: Tests the method with a boundary value `n = 8`.
+   - `testFibIterWithLargeNumber`: Tests the method with a larger number `n = 10`.
+   - `testFibIterWithNegativeNumber`: Tests the method with a negative number `n = -5`.
+   - `testDefaultConstructor`: Tests the default constructor to ensure it creates an instance of `Fibonacci`.
+
+Each test method includes the `timeout=1000` parameter to ensure the test completes within 1000 milliseconds. The `assertEquals` method is used to check the expected and actual results. The `testDefaultConstructor` method ensures that the default constructor works correctly.

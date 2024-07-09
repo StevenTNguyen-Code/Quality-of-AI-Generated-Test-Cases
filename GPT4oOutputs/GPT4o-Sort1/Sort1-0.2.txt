@@ -1,0 +1,94 @@
+Certainly! Below is a set of unit tests for the `Ordenacao` class using JUnit 4 framework format in Java 8. The tests cover all decisions, boundary values, and include necessary imports and annotations as specified.
+
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+
+public class OrdenacaoTest {
+
+    private Ordenacao ordenacao;
+
+    @Before
+    public void setUp() {
+        ordenacao = new Ordenacao();
+    }
+
+    @Test(timeout = 1000)
+    public void testDefaultConstructor() throws Exception {
+        assertNotNull("Ordenacao instance should be created", ordenacao);
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdenaEmptyArray() throws Exception {
+        int[] v = {};
+        Ordenacao.ordena(v, 0);
+        assertArrayEquals("Empty array should remain empty", new int[]{}, v);
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdenaSingleElementArray() throws Exception {
+        int[] v = {1};
+        Ordenacao.ordena(v, 1);
+        assertArrayEquals("Single element array should remain unchanged", new int[]{1}, v);
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdenaAlreadySortedArray() throws Exception {
+        int[] v = {1, 2, 3, 4, 5};
+        Ordenacao.ordena(v, 5);
+        assertArrayEquals("Already sorted array should remain unchanged", new int[]{1, 2, 3, 4, 5}, v);
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdenaReverseSortedArray() throws Exception {
+        int[] v = {5, 4, 3, 2, 1};
+        Ordenacao.ordena(v, 5);
+        assertArrayEquals("Reverse sorted array should be sorted", new int[]{1, 2, 3, 4, 5}, v);
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdenaUnsortedArray() throws Exception {
+        int[] v = {3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5};
+        Ordenacao.ordena(v, 11);
+        assertArrayEquals("Unsorted array should be sorted", new int[]{1, 1, 2, 3, 3, 4, 5, 5, 5, 6, 9}, v);
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdenaArrayWithNegativeValues() throws Exception {
+        int[] v = {-3, -1, -4, -1, -5, -9, -2, -6, -5, -3, -5};
+        Ordenacao.ordena(v, 11);
+        assertArrayEquals("Array with negative values should be sorted", new int[]{-9, -6, -5, -5, -5, -4, -3, -3, -2, -1, -1}, v);
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdenaMixedValues() throws Exception {
+        int[] v = {3, -1, 4, -1, 5, -9, 2, -6, 5, -3, 5};
+        Ordenacao.ordena(v, 11);
+        assertArrayEquals("Array with mixed values should be sorted", new int[]{-9, -6, -3, -1, -1, 2, 3, 4, 5, 5, 5}, v);
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdenaBoundaryValues() throws Exception {
+        int[] v = {Integer.MAX_VALUE, Integer.MIN_VALUE, 0};
+        Ordenacao.ordena(v, 3);
+        assertArrayEquals("Array with boundary values should be sorted", new int[]{Integer.MIN_VALUE, 0, Integer.MAX_VALUE}, v);
+    }
+}
+```
+
+### Explanation:
+1. **Imports and Setup**: The necessary imports are included, and a `setUp` method initializes the `Ordenacao` instance.
+2. **Default Constructor Test**: Ensures that an instance of `Ordenacao` can be created.
+3. **Empty Array Test**: Verifies that an empty array remains unchanged.
+4. **Single Element Array Test**: Verifies that a single element array remains unchanged.
+5. **Already Sorted Array Test**: Verifies that an already sorted array remains unchanged.
+6. **Reverse Sorted Array Test**: Verifies that a reverse sorted array is correctly sorted.
+7. **Unsorted Array Test**: Verifies that an unsorted array is correctly sorted.
+8. **Array with Negative Values Test**: Verifies that an array with negative values is correctly sorted.
+9. **Mixed Values Test**: Verifies that an array with both positive and negative values is correctly sorted.
+10. **Boundary Values Test**: Verifies that an array with boundary values (Integer.MAX_VALUE and Integer.MIN_VALUE) is correctly sorted.
+
+Each test method includes the `timeout = 1000` annotation to ensure it completes within the specified time. The tests cover all decision points and boundary values as required.

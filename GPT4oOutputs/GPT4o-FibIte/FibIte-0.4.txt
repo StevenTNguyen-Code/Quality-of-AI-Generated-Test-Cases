@@ -1,0 +1,73 @@
+Sure, I will create a set of unit tests for the `Fibonacci` class covering all decisions, boundary values, and including all the required annotations and imports.
+
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+
+public class FibonacciTest {
+
+    private Fibonacci fibonacci;
+
+    @Before
+    public void setUp() {
+        fibonacci = new Fibonacci();
+    }
+
+    // Test for the default constructor
+    @Test(timeout=1000)
+    public void testDefaultConstructor() throws Exception {
+        Fibonacci fibonacci = new Fibonacci();
+        assertNotNull(fibonacci);
+    }
+
+    // Test for fibIter method with a positive value
+    @Test(timeout=1000)
+    public void testFibIterPositive() throws Exception {
+        int result = Fibonacci.fibIter(5);
+        assertEquals(5, result);
+    }
+
+    // Test for fibIter method with zero value (boundary value)
+    @Test(timeout=1000)
+    public void testFibIterZero() throws Exception {
+        int result = Fibonacci.fibIter(0);
+        assertEquals(0, result);
+    }
+
+    // Test for fibIter method with one value (boundary value)
+    @Test(timeout=1000)
+    public void testFibIterOne() throws Exception {
+        int result = Fibonacci.fibIter(1);
+        assertEquals(1, result);
+    }
+
+    // Test for fibIter method with a negative value (boundary value)
+    @Test(timeout=1000)
+    public void testFibIterNegative() throws Exception {
+        int result = Fibonacci.fibIter(-1);
+        assertEquals(0, result); // Assuming the function returns 0 for negative input
+    }
+
+    // Test for fibIter method with a large positive value
+    @Test(timeout=1000)
+    public void testFibIterLargePositive() throws Exception {
+        int result = Fibonacci.fibIter(10);
+        assertEquals(55, result);
+    }
+}
+```
+
+### Explanation:
+1. **Imports and Package**: The necessary imports are included, and the package is set to `ds`.
+2. **Setup Method**: The `@Before` annotated method `setUp()` initializes the `Fibonacci` object before each test.
+3. **Default Constructor Test**: The `testDefaultConstructor` method ensures that the default constructor works and the object is not null.
+4. **Positive Value Test**: The `testFibIterPositive` method tests the `fibIter` method with a typical positive value.
+5. **Zero Value Test**: The `testFibIterZero` method tests the `fibIter` method with zero, which is a boundary value.
+6. **One Value Test**: The `testFibIterOne` method tests the `fibIter` method with one, which is another boundary value.
+7. **Negative Value Test**: The `testFibIterNegative` method tests the `fibIter` method with a negative value. The expected behavior is assumed to return 0.
+8. **Large Positive Value Test**: The `testFibIterLargePositive` method tests the `fibIter` method with a larger positive value to ensure it handles larger inputs correctly.
+
+Each test method includes the `timeout=1000` parameter to ensure the test completes within 1000 milliseconds. The tests should compile and run successfully under the JUnit 4 framework.

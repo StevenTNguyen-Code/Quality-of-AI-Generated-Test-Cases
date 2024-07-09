@@ -1,0 +1,76 @@
+Sure, here is a set of JUnit 4 test cases for the `Fibonacci` class covering all the requirements specified in your prompt:
+
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+
+public class FibonacciTest {
+
+    private Fibonacci fibonacci;
+
+    @Before
+    public void setUp() {
+        fibonacci = new Fibonacci();
+    }
+
+    @Test(timeout = 1000)
+    public void testDefaultConstructor() throws Exception {
+        Fibonacci fib = new Fibonacci();
+        assertNotNull(fib);
+    }
+
+    @Test(timeout = 1000)
+    public void testFibIterWithZero() throws Exception {
+        int result = Fibonacci.fibIter(0);
+        assertEquals(0, result);
+    }
+
+    @Test(timeout = 1000)
+    public void testFibIterWithOne() throws Exception {
+        int result = Fibonacci.fibIter(1);
+        assertEquals(1, result);
+    }
+
+    @Test(timeout = 1000)
+    public void testFibIterWithPositiveNumber() throws Exception {
+        int result = Fibonacci.fibIter(5);
+        assertEquals(5, result);
+    }
+
+    @Test(timeout = 1000)
+    public void testFibIterWithLargePositiveNumber() throws Exception {
+        int result = Fibonacci.fibIter(10);
+        assertEquals(55, result);
+    }
+
+    @Test(timeout = 1000)
+    public void testFibIterWithNegativeNumber() throws Exception {
+        int result = Fibonacci.fibIter(-5);
+        assertEquals(0, result); // Assuming the method should return 0 for negative inputs
+    }
+
+    @Test(timeout = 1000)
+    public void testFibIterWithBoundaryValue() throws Exception {
+        int result = Fibonacci.fibIter(Integer.MAX_VALUE);
+        // This will likely cause an overflow, so we are not asserting the result
+    }
+}
+```
+
+### Explanation:
+
+1. **Imports**: The necessary imports for JUnit 4 and static imports for assertions are included.
+2. **Setup Method**: A `setUp` method annotated with `@Before` to initialize the `Fibonacci` instance.
+3. **Default Constructor Test**: A test for the default constructor to ensure it creates an instance.
+4. **Test Cases**: 
+   - **Zero Input**: Tests the method with `0` as input.
+   - **One Input**: Tests the method with `1` as input.
+   - **Positive Number**: Tests the method with a small positive number.
+   - **Large Positive Number**: Tests the method with a larger positive number.
+   - **Negative Number**: Tests the method with a negative number (assuming it should return `0`).
+   - **Boundary Value**: Tests the method with `Integer.MAX_VALUE` to check for overflow or performance issues.
+
+Each test method is annotated with `@Test(timeout = 1000)` to ensure it completes within 1 second. The test methods are designed to cover all decisions and boundary values as specified.

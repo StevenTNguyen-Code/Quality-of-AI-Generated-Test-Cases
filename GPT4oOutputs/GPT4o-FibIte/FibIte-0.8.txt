@@ -1,0 +1,90 @@
+Certainly! Below are the unit tests in Java 8 using JUnit 4 framework format to cover the `Fibonacci` class's `fibIter` method. The tests include conditional expression evaluations, boundary value analysis, and tests for positive and negative numbers. 
+
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+import ds.Fibonacci;
+
+public class FibonacciTest {
+
+    private Fibonacci fibonacci;
+
+    @Before
+    public void setUp() throws Exception {
+        fibonacci = new Fibonacci();
+    }
+
+    // Testing the default constructor
+    @Test(timeout=1000)
+    public void testFibonacciConstructor() throws Exception {
+        assertNotNull(new Fibonacci());
+    }
+
+    // Test with boundary value: n = 0
+    @Test(timeout=1000)
+    public void testFibIter_Zero() throws Exception {
+        assertEquals(0, Fibonacci.fibIter(0));
+    }
+
+    // Test with boundary value: n = 1
+    @Test(timeout=1000)
+    public void testFibIter_One() throws Exception {
+        assertEquals(1, Fibonacci.fibIter(1));
+    }
+
+    // Test with boundary value: n = 2
+    @Test(timeout=1000)
+    public void testFibIter_Two() throws Exception {
+        assertEquals(1, Fibonacci.fibIter(2));
+    }
+
+    // Test with a small positive number: n = 5
+    @Test(timeout=1000)
+    public void testFibIter_SmallPositive() throws Exception {
+        assertEquals(5, Fibonacci.fibIter(5));
+    }
+
+    // Test with a larger positive number: n = 10
+    @Test(timeout=1000)
+    public void testFibIter_LargePositive() throws Exception {
+        assertEquals(55, Fibonacci.fibIter(10));
+    }
+
+    // Test with a negative number: n = -1 (Assuming Fibonacci method should handle or ignore negative input)
+    @Test(timeout=1000)
+    public void testFibIter_Negative() throws Exception {
+        assertEquals(0, Fibonacci.fibIter(-1));  // Assumption: fibIter returns 0 for negative inputs
+    }
+
+    // Test with a large boundary value
+    @Test(timeout=1000)
+    public void testFibIter_LargeBoundary() throws Exception {
+        assertEquals(233, Fibonacci.fibIter(13));  // Boundary value just to show it works for larger n
+    }
+}
+```
+
+### Explanation:
+
+1. **Constructor Test**:
+   - `testFibonacciConstructor()`: Ensures that the `Fibonacci` class's default constructor can be instantiated.
+
+2. **Boundary Value Tests**:
+   - `testFibIter_Zero()`: Tests the method with `n = 0`.
+   - `testFibIter_One()`: Tests the method with `n = 1`.
+   - `testFibIter_Two()`: Tests the method with `n = 2`.
+
+3. **Positive Tests**:
+   - `testFibIter_SmallPositive()`: Tests the method with a small positive number `n = 5`.
+   - `testFibIter_LargePositive()`: Tests the method with a larger positive number `n = 10`.
+
+4. **Negative Test**:
+   - `testFibIter_Negative()`: Tests the method with a negative number `n = -1`. Assumes that the method returns `0` for any negative input.
+
+5. **Larger Boundary Test**:
+   - `testFibIter_LargeBoundary()`: Tests the method with a larger boundary value just to show that it works for higher `n`.
+
+Each method has a timeout of 1000 milliseconds and all tests throw exceptions as required. The boundary values and both positive and negative inputs are included to cover all decisions in the method.

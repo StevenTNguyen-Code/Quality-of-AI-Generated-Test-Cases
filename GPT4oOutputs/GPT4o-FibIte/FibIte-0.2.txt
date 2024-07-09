@@ -1,0 +1,73 @@
+Sure, here are the Java unit tests for the `Fibonacci` class using JUnit 4 framework:
+
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+
+public class FibonacciTest {
+
+    private Fibonacci fibonacci;
+
+    @Before
+    public void setUp() {
+        fibonacci = new Fibonacci();
+    }
+
+    @Test(timeout = 1000)
+    public void testDefaultConstructor() throws Exception {
+        assertNotNull(new Fibonacci());
+    }
+
+    @Test(timeout = 1000)
+    public void testFibIterWithZero() throws Exception {
+        assertEquals(0, Fibonacci.fibIter(0));
+    }
+
+    @Test(timeout = 1000)
+    public void testFibIterWithOne() throws Exception {
+        assertEquals(1, Fibonacci.fibIter(1));
+    }
+
+    @Test(timeout = 1000)
+    public void testFibIterWithTwo() throws Exception {
+        assertEquals(1, Fibonacci.fibIter(2));
+    }
+
+    @Test(timeout = 1000)
+    public void testFibIterWithThree() throws Exception {
+        assertEquals(2, Fibonacci.fibIter(3));
+    }
+
+    @Test(timeout = 1000)
+    public void testFibIterWithTen() throws Exception {
+        assertEquals(55, Fibonacci.fibIter(10));
+    }
+
+    @Test(timeout = 1000)
+    public void testFibIterWithNegative() throws Exception {
+        assertEquals(0, Fibonacci.fibIter(-1));
+    }
+
+    @Test(timeout = 1000)
+    public void testFibIterWithLargeNumber() throws Exception {
+        assertEquals(1134903170, Fibonacci.fibIter(45));
+    }
+}
+```
+
+### Explanation:
+
+1. **Imports and Package**: The necessary imports and package declaration are included at the top.
+2. **Setup Method**: The `setUp` method initializes the `Fibonacci` object before each test.
+3. **Default Constructor Test**: The `testDefaultConstructor` ensures that the default constructor works and the object is not null.
+4. **Boundary and Functional Tests**: 
+   - Tests for `fibIter` with boundary values like `0`, `1`, and `2`.
+   - Tests for a few more values like `3`, `10`, and a large number `45`.
+   - A test for a negative value to ensure the method handles it gracefully.
+5. **Timeout**: Each test method includes `timeout = 1000` to ensure it completes within 1000 milliseconds.
+6. **Exception Handling**: Each test method declares `throws Exception` as required.
+
+These tests cover the functional and boundary cases for the `fibIter` method in the `Fibonacci` class.
