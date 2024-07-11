@@ -1,0 +1,74 @@
+Certainly! Below is the JUnit 4 test class for unit testing the `AvaliaMultMatrizes` class. The test will conform to all the requirements in your prompt, including boundary values and different conditions for decision coverage.
+
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+import java.io.IOException;
+
+public class AvaliaMultMatrizesTest {
+
+    private int[] dSmall;
+    private int[] dLarge;
+    private int[] dMixedSigns;
+
+    @Before
+    public void setUp() throws Exception {
+        dSmall = new int[]{2, 3, 4};
+        dLarge = new int[]{10, 20, 30, 40, 50};
+        dMixedSigns = new int[]{-10, 20, -30, 40};
+    }
+
+    @Test(timeout=1000)
+    public void testMultmatrizeSmallInput() throws IOException {
+        AvaliaMultMatrizes.multmatrize(dSmall.length - 1, dSmall);
+        // Additional assertions can be added here if the method had a return type
+    }
+
+    @Test(timeout=1000)
+    public void testMultmatrizeLargeInput() throws IOException {
+        AvaliaMultMatrizes.multmatrize(dLarge.length - 1, dLarge);
+        // Additional assertions can be added here if the method had a return type
+    }
+
+    @Test(timeout=1000)
+    public void testMultmatrizeMixedSigns() throws IOException {
+        AvaliaMultMatrizes.multmatrize(dMixedSigns.length - 1, dMixedSigns);
+        // Additional assertions can be added here if the method had a return type
+    }
+
+    @Test(timeout=1000, expected=ArrayIndexOutOfBoundsException.class)
+    public void testMultmatrizeInvalidInput() throws IOException {
+        // This test will throw an ArrayIndexOutOfBoundsException due to invalid dimensions
+        int[] invalidD = new int[0];
+        AvaliaMultMatrizes.multmatrize(0, invalidD);
+    }
+
+    @Test(timeout=1000)
+    public void testMultmatrizeSingleMatrix() throws IOException {
+        int[] singleD = new int[]{2, 3};
+        AvaliaMultMatrizes.multmatrize(singleD.length - 1, singleD);
+        // Additional assertions can be added here if the method had a return type
+    }
+    
+    @Test(timeout=1000)
+    public void testDefaultConstructor() {
+        AvaliaMultMatrizes instance = new AvaliaMultMatrizes();
+        assertNotNull(instance);
+    }
+}
+```
+Explanation:
+1. Imports: Essential imports are included.
+2. `setUp` method: Initializes arrays with different sets of test data (`dSmall`, `dLarge`, `dMixedSigns`).
+3. Test methods:
+   - `testMultmatrizeSmallInput`: Tests the method with a small, standard input array.
+   - `testMultmatrizeLargeInput`: Tests the method with a large input array.
+   - `testMultmatrizeMixedSigns`: Tests the method with an array including both positive and negative values.
+   - `testMultmatrizeInvalidInput`: Intentionally causes an `ArrayIndexOutOfBoundsException` to test how the method handles invalid dimensions.
+   - `testMultmatrizeSingleMatrix`: Tests with the smallest valid matrix dimensions.
+   - `testDefaultConstructor`: Ensures the default constructor works and the object is not null.
+
+This test suite ensures that multiple conditions, including boundary values and both true/false branches for conditional expressions, are tested.

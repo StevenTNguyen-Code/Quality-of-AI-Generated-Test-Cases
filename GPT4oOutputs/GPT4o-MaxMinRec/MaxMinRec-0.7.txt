@@ -1,0 +1,95 @@
+Here's a set of functional test cases for the `MaxMin4` class, following the provided guidelines and requirements:
+
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+
+public class MaxMin4Test {
+
+    private int[] array1;
+    private int[] array2;
+    private int[] array3;
+    private int[] array4;
+
+    @Before
+    public void setUp() throws Exception {
+        // Setting up arrays for testing
+        array1 = new int[] {3, 1, 4, 1, 5}; // Normal case
+        array2 = new int[] {-1, -2, -3, -4}; // All negative values
+        array3 = new int[] {1, 2}; // Boundary condition with minimum size array
+        array4 = new int[] {5}; // Single element array
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin4_NormalCase() throws Exception {
+        int[] result = MaxMin4.maxMin4(array1, 0, array1.length - 1);
+        assertArrayEquals(new int[] {5, 1}, result);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin4_AllNegativeValues() throws Exception {
+        int[] result = MaxMin4.maxMin4(array2, 0, array2.length - 1);
+        assertArrayEquals(new int[] {-1, -4}, result);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin4_MinimumSizeArray() throws Exception {
+        int[] result = MaxMin4.maxMin4(array3, 0, array3.length - 1);
+        assertArrayEquals(new int[] {2, 1}, result);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin4_SingleElementArray() throws Exception {
+        int[] result = MaxMin4.maxMin4(array4, 0, array4.length - 1);
+        assertArrayEquals(new int[] {5, 5}, result);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin4_BoundaryValues() throws Exception {
+        int[] result = MaxMin4.maxMin4(array1, 1, 3);
+        assertArrayEquals(new int[] {4, 1}, result);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin4_PositiveNegativeMix() throws Exception {
+        int[] mixArray = new int[] {-5, 0, 5, 10, -10};
+        int[] result = MaxMin4.maxMin4(mixArray, 0, mixArray.length - 1);
+        assertArrayEquals(new int[] {10, -10}, result);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin4_EmptyArray() throws Exception {
+        try {
+            MaxMin4.maxMin4(new int[0], 0, 0);
+            fail("Expected ArrayIndexOutOfBoundsException");
+        } catch (ArrayIndexOutOfBoundsException e) {
+            // Expected exception
+        }
+    }
+}
+```
+
+### Explanation:
+1. **Imports and Package**:
+   - All necessary imports (`org.junit.Test`, `org.junit.Before`, `static org.junit.Assert.*`) are included.
+   - The package is set to `ds`.
+
+2. **Setup Method** (`setUp`):
+   - Initializes arrays with different conditions to be used in tests.
+
+3. **Test Methods**:
+   - Each test method is annotated with `@Test(timeout=1000)`.
+   - Each method in the `MaxMin4` class has at least one corresponding test case.
+   - The boundary values are tested using a minimum size array and specific ranges within the array.
+   - Both positive and negative values are used for testing.
+
+4. **Exception Handling**:
+   - The test for an empty array checks if the method throws an `ArrayIndexOutOfBoundsException`.
+
+5. **Assertions**:
+   - The `assertArrayEquals` method is used to compare expected and actual results.
+
+This set of unit tests ensures that all decisions and boundary conditions are covered as per the prompt requirements.

@@ -1,0 +1,80 @@
+Sure, here is a complete set of JUnit 4 test cases for the `Ordenacao` class that adhere to your requirements:
+
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+import ds.Ordenacao;
+
+public class OrdenacaoTest {
+
+    private Ordenacao ordenacao;
+
+    @Before
+    public void setUp() {
+        ordenacao = new Ordenacao();
+    }
+
+    @Test(timeout = 1000)
+    public void testMergeSort_EmptyArray() throws Exception {
+        int[] v = {};
+        Ordenacao.mergeSort(v, 0, v.length - 1);
+        assertArrayEquals(new int[]{}, v);
+    }
+    
+    @Test(timeout = 1000)
+    public void testMergeSort_SingleElement() throws Exception {
+        int[] v = {1};
+        Ordenacao.mergeSort(v, 0, v.length - 1);
+        assertArrayEquals(new int[]{1}, v);
+    }
+
+    @Test(timeout = 1000)
+    public void testMergeSort_AlreadySortedArray() throws Exception {
+        int[] v = {1, 2, 3, 4, 5};
+        Ordenacao.mergeSort(v, 0, v.length - 1);
+        assertArrayEquals(new int[]{1, 2, 3, 4, 5}, v);
+    }
+    
+    @Test(timeout = 1000)
+    public void testMergeSort_UnsortedArray() throws Exception {
+        int[] v = {5, 4, 3, 2, 1};
+        Ordenacao.mergeSort(v, 0, v.length - 1);
+        assertArrayEquals(new int[]{1, 2, 3, 4, 5}, v);
+    }
+
+    @Test(timeout = 1000)
+    public void testMergeSort_BoundaryValues() throws Exception {
+        int[] v = {Integer.MAX_VALUE, Integer.MIN_VALUE, 0, -1, 1};
+        Ordenacao.mergeSort(v, 0, v.length - 1);
+        assertArrayEquals(new int[]{Integer.MIN_VALUE, -1, 0, 1, Integer.MAX_VALUE}, v);
+    }
+
+    @Test(timeout = 1000)
+    public void testMergeSort_PositiveNegativeValues() throws Exception {
+        int[] v = {-3, -1, 4, 2, 0};
+        Ordenacao.mergeSort(v, 0, v.length - 1);
+        assertArrayEquals(new int[]{-3, -1, 0, 2, 4}, v);
+    }
+}
+```
+
+### Explanation:
+
+1. **setUp Method**: Initializes the `Ordenacao` instance (though it's not strictly necessary since the methods are static, it's included for structure).
+  
+2. **Test Merge for Empty Array**: Ensures that an empty array remains empty after sorting.
+
+3. **Test Merge for Single Element**: Ensures that a single-element array remains unchanged.
+
+4. **Test Merge for Already Sorted Array**: Ensures that an already sorted array remains unchanged.
+
+5. **Test Merge for Unsorted Array**: Tests a completely unsorted array to ensure it gets properly sorted.
+
+6. **Test Merge with Boundary Values**: Tests sorting an array with extreme boundary values to ensure correctness.
+
+7. **Test Merge with Positive and Negative Values**: Tests sorting an array with both positive and negative integers.
+
+All methods include a timeout of 1000 milliseconds, and exceptions are declared to be thrown. The tests are designed to cover all decisions within the `mergeSort` and `merge` methods and adhere to boundary value testing principles. The `assertArrayEquals` method ensures that the arrays are equal after sorting.

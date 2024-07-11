@@ -1,0 +1,99 @@
+Sure, I'll create a set of JUnit 4 test cases for the `Ordenacao` class, ensuring that all decisions are covered, including boundary values and both true/false conditions for conditional expressions. I'll also include tests for the default constructor and ensure that all methods are tested.
+
+Here's the test class:
+
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+
+public class OrdenacaoTest {
+
+    private Ordenacao ordenacao;
+
+    @Before
+    public void setUp() {
+        ordenacao = new Ordenacao();
+    }
+
+    @Test(timeout = 1000)
+    public void testMergeSortWithPositiveValues() throws Exception {
+        int[] array = {5, 3, 8, 6, 2, 7, 4, 1};
+        int[] expected = {1, 2, 3, 4, 5, 6, 7, 8};
+        Ordenacao.mergeSort(array, 0, array.length - 1);
+        assertArrayEquals(expected, array);
+    }
+
+    @Test(timeout = 1000)
+    public void testMergeSortWithNegativeValues() throws Exception {
+        int[] array = {-5, -3, -8, -6, -2, -7, -4, -1};
+        int[] expected = {-8, -7, -6, -5, -4, -3, -2, -1};
+        Ordenacao.mergeSort(array, 0, array.length - 1);
+        assertArrayEquals(expected, array);
+    }
+
+    @Test(timeout = 1000)
+    public void testMergeSortWithMixedValues() throws Exception {
+        int[] array = {5, -3, 8, -6, 2, -7, 4, -1};
+        int[] expected = {-7, -6, -3, -1, 2, 4, 5, 8};
+        Ordenacao.mergeSort(array, 0, array.length - 1);
+        assertArrayEquals(expected, array);
+    }
+
+    @Test(timeout = 1000)
+    public void testMergeSortWithSingleElement() throws Exception {
+        int[] array = {1};
+        int[] expected = {1};
+        Ordenacao.mergeSort(array, 0, array.length - 1);
+        assertArrayEquals(expected, array);
+    }
+
+    @Test(timeout = 1000)
+    public void testMergeSortWithEmptyArray() throws Exception {
+        int[] array = {};
+        int[] expected = {};
+        Ordenacao.mergeSort(array, 0, array.length - 1);
+        assertArrayEquals(expected, array);
+    }
+
+    @Test(timeout = 1000)
+    public void testMergeSortWithAlreadySortedArray() throws Exception {
+        int[] array = {1, 2, 3, 4, 5, 6, 7, 8};
+        int[] expected = {1, 2, 3, 4, 5, 6, 7, 8};
+        Ordenacao.mergeSort(array, 0, array.length - 1);
+        assertArrayEquals(expected, array);
+    }
+
+    @Test(timeout = 1000)
+    public void testMergeSortWithReverseSortedArray() throws Exception {
+        int[] array = {8, 7, 6, 5, 4, 3, 2, 1};
+        int[] expected = {1, 2, 3, 4, 5, 6, 7, 8};
+        Ordenacao.mergeSort(array, 0, array.length - 1);
+        assertArrayEquals(expected, array);
+    }
+
+    @Test(timeout = 1000)
+    public void testMergeSortWithDuplicates() throws Exception {
+        int[] array = {5, 3, 8, 6, 2, 7, 4, 1, 5, 3, 8, 6, 2, 7, 4, 1};
+        int[] expected = {1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8};
+        Ordenacao.mergeSort(array, 0, array.length - 1);
+        assertArrayEquals(expected, array);
+    }
+}
+```
+
+### Explanation:
+1. **Setup Method**: The `setUp` method initializes an instance of `Ordenacao`. Although `Ordenacao` only contains static methods and doesn't require an instance, this is included to adhere to the prompt's requirement to test the default constructor.
+2. **Test Cases**:
+   - **Positive Values**: Tests sorting an array of positive integers.
+   - **Negative Values**: Tests sorting an array of negative integers.
+   - **Mixed Values**: Tests sorting an array with both positive and negative integers.
+   - **Single Element**: Tests sorting an array with a single element.
+   - **Empty Array**: Tests sorting an empty array.
+   - **Already Sorted Array**: Tests sorting an array that is already sorted.
+   - **Reverse Sorted Array**: Tests sorting an array sorted in reverse order.
+   - **Duplicates**: Tests sorting an array with duplicate values.
+
+Each test case includes the `timeout = 1000` parameter to ensure the test completes within 1 second. The `assertArrayEquals` method is used to verify that the sorted array matches the expected result.

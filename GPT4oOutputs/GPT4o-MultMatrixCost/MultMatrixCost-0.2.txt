@@ -1,0 +1,77 @@
+Sure, here are the unit tests for the `AvaliaMultMatrizes` class using JUnit 4:
+
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+import java.io.IOException;
+
+public class AvaliaMultMatrizesTest {
+
+    private AvaliaMultMatrizes avaliaMultMatrizes;
+
+    @Before
+    public void setUp() {
+        avaliaMultMatrizes = new AvaliaMultMatrizes();
+    }
+
+    @Test(timeout=1000)
+    public void testDefaultConstructor() {
+        assertNotNull(avaliaMultMatrizes);
+    }
+
+    @Test(timeout=1000)
+    public void testMultmatrizeWithValidInput() throws IOException {
+        int n = 3;
+        int[] d = {1, 2, 3, 4};
+        AvaliaMultMatrizes.multmatrize(n, d);
+        // No assertion needed, just checking for exceptions and boundary conditions
+    }
+
+    @Test(timeout=1000)
+    public void testMultmatrizeWithBoundaryValues() throws IOException {
+        int n = 1;
+        int[] d = {1, 2};
+        AvaliaMultMatrizes.multmatrize(n, d);
+        // No assertion needed, just checking for exceptions and boundary conditions
+    }
+
+    @Test(timeout=1000)
+    public void testMultmatrizeWithNegativeValues() throws IOException {
+        int n = 2;
+        int[] d = {-1, -2, -3};
+        AvaliaMultMatrizes.multmatrize(n, d);
+        // No assertion needed, just checking for exceptions and boundary conditions
+    }
+
+    @Test(timeout=1000, expected=IOException.class)
+    public void testMultmatrizeThrowsIOException() throws IOException {
+        int n = 0;
+        int[] d = {};
+        AvaliaMultMatrizes.multmatrize(n, d);
+    }
+
+    @Test(timeout=1000)
+    public void testMultmatrizeWithLargeValues() throws IOException {
+        int n = 4;
+        int[] d = {1000, 2000, 3000, 4000, 5000};
+        AvaliaMultMatrizes.multmatrize(n, d);
+        // No assertion needed, just checking for exceptions and boundary conditions
+    }
+}
+```
+
+### Explanation:
+
+1. **Imports and Package**: The necessary imports and package declaration are included at the top.
+2. **Setup Method**: The `setUp` method initializes an instance of `AvaliaMultMatrizes`.
+3. **Default Constructor Test**: A test to ensure the default constructor works and the object is not null.
+4. **Valid Input Test**: A test with a valid input to ensure the method runs without exceptions.
+5. **Boundary Values Test**: A test with boundary values to ensure the method handles edge cases.
+6. **Negative Values Test**: A test with negative values to ensure the method handles negative inputs.
+7. **IOException Test**: A test to ensure the method throws an `IOException` when expected.
+8. **Large Values Test**: A test with large values to ensure the method handles large inputs.
+
+Each test method includes the `timeout=1000` parameter to ensure the test completes within 1000 milliseconds. The `expected=IOException.class` is used only in the test where an exception is explicitly expected.

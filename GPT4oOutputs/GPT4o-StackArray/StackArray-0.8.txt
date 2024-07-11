@@ -1,0 +1,101 @@
+Here's a comprehensive set of functional test cases in JUnit 4 for the provided `Pilha` class. These tests cover all methods, decisions, boundary values, and exception scenarios as required.
+
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+
+public class PilhaTest {
+    private Pilha pilha;
+
+    @Before
+    public void setUp() throws Exception {
+        pilha = new Pilha();
+    }
+
+    @Test(timeout = 1000)
+    public void testPilhaConstructor() throws Exception {
+        assertNotNull("Pilha instance should be created", pilha);
+        assertEquals("Initial top should be 0", 0, pilha.topo);
+        assertNotNull("Item array should be initialized", pilha.item);
+        assertEquals("Item array length should be 1000", 1000, pilha.item.length);
+    }
+
+    @Test(timeout = 1000, expected = Exception.class)
+    public void testEmpilhaThrowsExceptionWhenFull() throws Exception {
+        for (int i = 0; i < 1000; i++) {
+            pilha.empilha(new Object());
+        }
+        // This should throw an exception
+        pilha.empilha(new Object());
+    }
+
+    @Test(timeout = 1000)
+    public void testEmpilhaWorksCorrectly() throws Exception {
+        Object obj1 = new Object();
+        Object obj2 = new Object();
+        pilha.empilha(obj1);
+        assertEquals("Top should be 1 after one empilha", 1, pilha.topo);
+        pilha.empilha(obj2);
+        assertEquals("Top should be 2 after two empilhas", 2, pilha.topo);
+    }
+
+    @Test(timeout = 1000, expected = Exception.class)
+    public void testDesempilhaThrowsExceptionWhenEmpty() throws Exception {
+        // This should throw an exception
+        pilha.desempilha();
+    }
+
+    @Test(timeout = 1000)
+    public void testDesempilhaWorksCorrectly() throws Exception {
+        Object obj1 = new Object();
+        Object obj2 = new Object();
+        pilha.empilha(obj1);
+        pilha.empilha(obj2);
+        assertEquals("Should return the last pushed object", obj2, pilha.desempilha());
+        assertEquals("Top should be 1 after one desempilha", 1, pilha.topo);
+        assertEquals("Should return the first pushed object", obj1, pilha.desempilha());
+        assertEquals("Top should be 0 after two desempilhas", 0, pilha.topo);
+    }
+
+    @Test(timeout = 1000)
+    public void testVaziaOnEmptyPilha() throws Exception {
+        assertTrue("Newly created pilha should be empty", pilha.vazia());
+    }
+
+    @Test(timeout = 1000)
+    public void testVaziaOnNonEmptyPilha() throws Exception {
+        pilha.empilha(new Object());
+        assertFalse("Pilha with one item should not be empty", pilha.vazia());
+    }
+
+    @Test(timeout = 1000)
+    public void testTamanhoOnEmptyPilha() throws Exception {
+        assertEquals("Newly created pilha should have size 0", 0, pilha.tamanho());
+    }
+
+    @Test(timeout = 1000)
+    public void testTamanhoOnNonEmptyPilha() throws Exception {
+        pilha.empilha(new Object());
+        assertEquals("Pilha with one item should have size 1", 1, pilha.tamanho());
+        pilha.empilha(new Object());
+        assertEquals("Pilha with two items should have size 2", 2, pilha.tamanho());
+    }
+}
+```
+
+### Explanation:
+1. **Setup Method**: `setUp()` initializes a new `Pilha` instance before each test.
+2. **Constructor Test**: Ensures the constructor initializes the pilha correctly.
+3. **Empilha Tests**:
+   - **Boundary Test**: Attempts to push 1001 items to throw an exception.
+   - **Functional Test**: Checks if pushing items increments the `topo` correctly.
+4. **Desempilha Tests**:
+   - **Boundary Test**: Attempts to pop from an empty pilha to throw an exception.
+   - **Functional Test**: Checks if popping items reduces the `topo` and returns the correct items.
+5. **Vazia Tests**: Verifies `vazia()` on an empty and a non-empty pilha.
+6. **Tamanho Tests**: Checks the size of the pilha when empty and after pushing items.
+
+All tests are annotated with `@Test(timeout = 1000)`, and exceptions are specified for tests expected to throw them. This ensures compliance with the given requirements.

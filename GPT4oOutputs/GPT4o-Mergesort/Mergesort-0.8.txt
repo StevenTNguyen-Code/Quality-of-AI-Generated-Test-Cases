@@ -1,0 +1,91 @@
+Here are the unit tests for the `Ordenacao` class using Java 8 and JUnit 4:
+
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+
+public class OrdenacaoTest {
+    
+    private int[] array;
+    private int[] sortedArray;
+
+    @Before
+    public void setUp() {
+        array = new int[]{3, 1, -1, 7, 5, -3, 8};
+        sortedArray = new int[]{-3, -1, 1, 3, 5, 7, 8};
+    }
+
+    @Test(timeout = 1000)
+    public void testMergeSort() throws Exception {
+        int[] input = {3, 1, -1, 7, 5, -3, 8};
+        int[] expected = {-3, -1, 1, 3, 5, 7, 8};
+        
+        Ordenacao.mergeSort(input, 0, input.length - 1);
+        assertArrayEquals(expected, input);
+    }
+
+    @Test(timeout = 1000)
+    public void testMergeSortEmptyArray() throws Exception {
+        int[] emptyArray = {};
+        int[] expected = {};
+        
+        Ordenacao.mergeSort(emptyArray, 0, emptyArray.length - 1);
+        assertArrayEquals(expected, emptyArray);
+    }
+
+    @Test(timeout = 1000)
+    public void testMergeSortSingleElement() throws Exception {
+        int[] singleElementArray = {42};
+        int[] expected = {42};
+        
+        Ordenacao.mergeSort(singleElementArray, 0, singleElementArray.length - 1);
+        assertArrayEquals(expected, singleElementArray);
+    }
+
+    @Test(timeout = 1000)
+    public void testMergeSortNegativeValues() throws Exception {
+        int[] input = {-3, -1, -5, -7, -4};
+        int[] expected = {-7, -5, -4, -3, -1};
+        
+        Ordenacao.mergeSort(input, 0, input.length - 1);
+        assertArrayEquals(expected, input);
+    }
+
+    @Test(timeout = 1000)
+    public void testMergeSortPositiveValues() throws Exception {
+        int[] input = {5, 3, 8, 6, 2};
+        int[] expected = {2, 3, 5, 6, 8};
+        
+        Ordenacao.mergeSort(input, 0, input.length - 1);
+        assertArrayEquals(expected, input);
+    }
+
+    @Test(timeout = 1000)
+    public void testDefaultConstructor() throws Exception {
+        Ordenacao ordenacao = new Ordenacao(); // This will test the default constructor.
+        assertNotNull(ordenacao);
+    }
+}
+```
+
+### Explanation
+1. **Test Setup**: 
+   - `@Before` method sets up default and sorted arrays for use in the test cases.
+2. **Test Cases**:
+   - **`testMergeSort`**: Tests the `mergeSort` method on a normal array with both positive and negative values.
+   - **`testMergeSortEmptyArray`**: Tests sorting an empty array.
+   - **`testMergeSortSingleElement`**: Tests sorting an array with a single element.
+   - **`testMergeSortNegativeValues`**: Tests sorting an array with all negative values.
+   - **`testMergeSortPositiveValues`**: Tests sorting an array with all positive values.
+3. **Default Constructor**:
+   - **`testDefaultConstructor`**: Ensures that the class can be instantiated without any issues.
+
+### Key Points
+- Each test method has a `timeout = 1000` to ensure it does not run indefinitely.
+- Test cases cover normal, boundary, and edge conditions, ensuring all decision paths are tested.
+- The `assertArrayEquals` method is used to verify that arrays are correctly sorted.
+
+This setup should compile and run successfully in a JUnit 4 framework with Java 8.

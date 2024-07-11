@@ -1,0 +1,97 @@
+Certainly! Below is the Java unit test code for the `Pilha` class using JUnit 4 framework with all the requirements mentioned:
+
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+
+public class PilhaTest {
+
+    private Pilha pilha;
+
+    @Before
+    public void setUp() throws Exception {
+        pilha = new Pilha();
+    }
+
+    // Test default constructor
+    @Test(timeout=1000)
+    public void testPilhaConstructor() throws Exception {
+        assertNotNull(pilha);
+        assertEquals(0, pilha.tamanho());
+        assertTrue(pilha.vazia());
+    }
+
+    // Test empilha() with valid input
+    @Test(timeout=1000)
+    public void testEmpilhaValid() throws Exception {
+        Object item = new Object();
+        pilha.empilha(item);
+        assertEquals(1, pilha.tamanho());
+        assertFalse(pilha.vazia());
+    }
+
+    // Test empilha() when the stack is full
+    @Test(timeout=1000, expected=Exception.class)
+    public void testEmpilhaFull() throws Exception {
+        for (int i = 0; i < 1000; i++) {
+            pilha.empilha(new Object());
+        }
+        // This will throw an exception
+        pilha.empilha(new Object());
+    }
+
+    // Test desempilha() with valid input
+    @Test(timeout=1000)
+    public void testDesempilhaValid() throws Exception {
+        Object item = new Object();
+        pilha.empilha(item);
+        Object result = pilha.desempilha();
+        assertEquals(item, result);
+        assertTrue(pilha.vazia());
+    }
+
+    // Test desempilha() when the stack is empty
+    @Test(timeout=1000, expected=Exception.class)
+    public void testDesempilhaEmpty() throws Exception {
+        pilha.desempilha();
+    }
+
+    // Test vazia() when the stack is empty
+    @Test(timeout=1000)
+    public void testVaziaWhenEmpty() throws Exception {
+        assertTrue(pilha.vazia());
+    }
+
+    // Test vazia() when the stack is not empty
+    @Test(timeout=1000)
+    public void testVaziaWhenNotEmpty() throws Exception {
+        pilha.empilha(new Object());
+        assertFalse(pilha.vazia());
+    }
+
+    // Test tamanho() method
+    @Test(timeout=1000)
+    public void testTamanho() throws Exception {
+        assertEquals(0, pilha.tamanho());
+        Object item = new Object();
+        pilha.empilha(item);
+        assertEquals(1, pilha.tamanho());
+        pilha.desempilha();
+        assertEquals(0, pilha.tamanho());
+    }
+}
+```
+
+In this test suite:
+- The `setUp()` method initializes the `Pilha` object before each test.
+- Each method of the `Pilha` class is tested:
+  - The default constructor is verified.
+  - The `empilha` method is tested with both valid input and when the stack is full.
+  - The `desempilha` method is tested with valid input and when the stack is empty.
+  - The `vazia` method is tested when the stack is both empty and not empty.
+  - The `tamanho` method is tested to ensure it correctly reports the size of the stack.
+
+Each test method includes `timeout=1000` to ensure the test completes within the specified time. If an exception is expected, it's annotated with `expected=Exception.class`.

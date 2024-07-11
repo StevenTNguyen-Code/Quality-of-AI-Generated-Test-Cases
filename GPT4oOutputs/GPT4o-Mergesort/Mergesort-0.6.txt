@@ -1,0 +1,116 @@
+To create comprehensive unit tests for the `Ordenacao` class in Java using JUnit 4, we need to follow the guidelines you provided. The tests will cover all decisions, assume true and false values for conditional expressions, and include boundary values. Each method will have at least one test case, and we will ensure the tests compile and run successfully.
+
+Here's the test class:
+
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+
+public class OrdenacaoTest {
+
+    private Ordenacao ordenacao;
+
+    @Before
+    public void setUp() throws Exception {
+        ordenacao = new Ordenacao();
+    }
+
+    @Test(timeout = 1000)
+    public void testMergeSort() throws Exception {
+        int[] array = {5, 3, 8, 4, 2};
+        int[] expected = {2, 3, 4, 5, 8};
+        Ordenacao.mergeSort(array, 0, array.length - 1);
+        assertArrayEquals(expected, array);
+    }
+
+    @Test(timeout = 1000)
+    public void testMergeSortEmptyArray() throws Exception {
+        int[] array = {};
+        int[] expected = {};
+        Ordenacao.mergeSort(array, 0, array.length - 1);
+        assertArrayEquals(expected, array);
+    }
+
+    @Test(timeout = 1000)
+    public void testMergeSortSingleElement() throws Exception {
+        int[] array = {1};
+        int[] expected = {1};
+        Ordenacao.mergeSort(array, 0, array.length - 1);
+        assertArrayEquals(expected, array);
+    }
+
+    @Test(timeout = 1000)
+    public void testMergeSortNegativeNumbers() throws Exception {
+        int[] array = {-3, -1, -2};
+        int[] expected = {-3, -2, -1};
+        Ordenacao.mergeSort(array, 0, array.length - 1);
+        assertArrayEquals(expected, array);
+    }
+
+    @Test(timeout = 1000, expected = ArrayIndexOutOfBoundsException.class)
+    public void testMergeSortInvalidBounds() throws Exception {
+        int[] array = {1, 2, 3};
+        Ordenacao.mergeSort(array, -1, array.length + 1);
+    }
+
+    @Test(timeout = 1000)
+    public void testMergeSortAlreadySorted() throws Exception {
+        int[] array = {1, 2, 3, 4, 5};
+        int[] expected = {1, 2, 3, 4, 5};
+        Ordenacao.mergeSort(array, 0, array.length - 1);
+        assertArrayEquals(expected, array);
+    }
+
+    @Test(timeout = 1000)
+    public void testMergeSortReversed() throws Exception {
+        int[] array = {5, 4, 3, 2, 1};
+        int[] expected = {1, 2, 3, 4, 5};
+        Ordenacao.mergeSort(array, 0, array.length - 1);
+        assertArrayEquals(expected, array);
+    }
+
+    @Test(timeout = 1000)
+    public void testMergeSortWithDuplicates() throws Exception {
+        int[] array = {3, 1, 2, 3, 1};
+        int[] expected = {1, 1, 2, 3, 3};
+        Ordenacao.mergeSort(array, 0, array.length - 1);
+        assertArrayEquals(expected, array);
+    }
+
+    @Test(timeout = 1000)
+    public void testMergeSortLargeNumbers() throws Exception {
+        int[] array = {1000000, 999999, 1000001};
+        int[] expected = {999999, 1000000, 1000001};
+        Ordenacao.mergeSort(array, 0, array.length - 1);
+        assertArrayEquals(expected, array);
+    }
+}
+```
+
+### Explanation:
+1. **Setup Method:**
+   - `@Before` is used to initialize any setup required before running each test.
+
+2. **Test Methods:**
+   - Each test method uses the `@Test(timeout = 1000)` annotation.
+   - The tests cover various scenarios including:
+     - A general case with unsorted numbers.
+     - An empty array.
+     - A single-element array.
+     - Arrays with negative numbers.
+     - Arrays with invalid bounds.
+     - Already sorted arrays.
+     - Reversed arrays.
+     - Arrays with duplicate values.
+     - Arrays with large numbers.
+
+3. **Assertions:**
+   - `assertArrayEquals` is used to verify that the sorted array matches the expected result.
+
+4. **Exception Handling:**
+   - The `testMergeSortInvalidBounds` method uses `@Test(expected = ArrayIndexOutOfBoundsException.class)` to handle invalid bounds explicitly.
+
+This test class ensures thorough coverage of the `Ordenacao` class methods and adheres to the guidelines provided.

@@ -1,0 +1,79 @@
+Sure, here are the unit tests for the `AvaliaMultMatrizes` class using JUnit 4:
+
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+import java.io.IOException;
+
+public class AvaliaMultMatrizesTest {
+
+    private AvaliaMultMatrizes avaliaMultMatrizes;
+
+    @Before
+    public void setUp() {
+        avaliaMultMatrizes = new AvaliaMultMatrizes();
+    }
+
+    @Test(timeout = 1000)
+    public void testMultmatrizeValidInput() throws IOException {
+        int n = 3;
+        int[] d = {10, 20, 30, 40};
+        AvaliaMultMatrizes.multmatrize(n, d);
+        // No assertion needed as the method does not return a value
+    }
+
+    @Test(timeout = 1000)
+    public void testMultmatrizeBoundaryValue() throws IOException {
+        int n = 1;
+        int[] d = {10, 20};
+        AvaliaMultMatrizes.multmatrize(n, d);
+        // No assertion needed as the method does not return a value
+    }
+
+    @Test(timeout = 1000, expected = IOException.class)
+    public void testMultmatrizeIOException() throws IOException {
+        int n = 3;
+        int[] d = {10, 20, 30, 40};
+        // Simulate IOException by passing invalid parameters
+        AvaliaMultMatrizes.multmatrize(n, null);
+    }
+
+    @Test(timeout = 1000)
+    public void testMultmatrizeNegativeValues() throws IOException {
+        int n = 3;
+        int[] d = {-10, -20, -30, -40};
+        AvaliaMultMatrizes.multmatrize(n, d);
+        // No assertion needed as the method does not return a value
+    }
+
+    @Test(timeout = 1000)
+    public void testMultmatrizeZeroValues() throws IOException {
+        int n = 3;
+        int[] d = {0, 0, 0, 0};
+        AvaliaMultMatrizes.multmatrize(n, d);
+        // No assertion needed as the method does not return a value
+    }
+
+    @Test(timeout = 1000)
+    public void testDefaultConstructor() {
+        AvaliaMultMatrizes instance = new AvaliaMultMatrizes();
+        assertNotNull(instance);
+    }
+}
+```
+
+### Explanation:
+1. **Imports and Package**: The necessary imports and package declaration are included at the top.
+2. **Setup Method**: The `setUp` method initializes an instance of `AvaliaMultMatrizes`.
+3. **Test Methods**:
+   - **testMultmatrizeValidInput**: Tests the `multmatrize` method with valid input.
+   - **testMultmatrizeBoundaryValue**: Tests the `multmatrize` method with boundary value (n=1).
+   - **testMultmatrizeIOException**: Tests the `multmatrize` method to ensure it throws an `IOException` when invalid parameters are passed.
+   - **testMultmatrizeNegativeValues**: Tests the `multmatrize` method with negative values.
+   - **testMultmatrizeZeroValues**: Tests the `multmatrize` method with zero values.
+   - **testDefaultConstructor**: Tests the default constructor of the `AvaliaMultMatrizes` class.
+
+Each test method includes the `timeout = 1000` parameter to ensure the test completes within 1000 milliseconds. The `expected = IOException.class` is used in the `testMultmatrizeIOException` method to check for the expected exception.

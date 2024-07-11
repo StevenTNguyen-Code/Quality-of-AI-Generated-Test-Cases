@@ -1,0 +1,82 @@
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+import java.io.*;
+
+public class AvaliaMultMatrizesTest {
+
+    private AvaliaMultMatrizes avaliaMultMatrizes;
+
+    @Before
+    public void setUp() {
+        avaliaMultMatrizes = new AvaliaMultMatrizes();
+    }
+
+    @Test(timeout = 1000)
+    public void testMultmatrizeValidInput() throws IOException {
+        int n = 3;
+        int[] d = {10, 20, 30, 40};
+        AvaliaMultMatrizes.multmatrize(n, d);
+        // No exception means the test passed for valid input
+    }
+
+    @Test(timeout = 1000)
+    public void testMultmatrizeBoundaryValues() throws IOException {
+        int n = 1;
+        int[] d = {10, 20};
+        AvaliaMultMatrizes.multmatrize(n, d);
+        // No exception means the test passed for boundary values
+    }
+
+    @Test(timeout = 1000)
+    public void testMultmatrizeNegativeValues() throws IOException {
+        int n = 2;
+        int[] d = {-10, -20, -30};
+        AvaliaMultMatrizes.multmatrize(n, d);
+        // No exception means the test passed for negative values
+    }
+
+    @Test(timeout = 1000, expected = ArrayIndexOutOfBoundsException.class)
+    public void testMultmatrizeInvalidInput() throws IOException {
+        int n = 3;
+        int[] d = {10, 20}; // Invalid input, d array length is less than n+1
+        AvaliaMultMatrizes.multmatrize(n, d);
+    }
+
+    @Test(timeout = 1000)
+    public void testMultmatrizeZeroMatrices() throws IOException {
+        int n = 0;
+        int[] d = {10}; // Only one dimension, no matrices to multiply
+        AvaliaMultMatrizes.multmatrize(n, d);
+        // No exception means the test passed for zero matrices
+    }
+
+    @Test(timeout = 1000)
+    public void testMultmatrizeLargeInput() throws IOException {
+        int n = 4;
+        int[] d = {10, 20, 30, 40, 50};
+        AvaliaMultMatrizes.multmatrize(n, d);
+        // No exception means the test passed for large input
+    }
+}
+```
+
+### Explanation:
+1. **Setup Method**: `setUp` method initializes the `AvaliaMultMatrizes` object before each test.
+2. **Test Cases**:
+   - **testMultmatrizeValidInput**: Tests the method with valid input.
+   - **testMultmatrizeBoundaryValues**: Tests the method with boundary values (n=1).
+   - **testMultmatrizeNegativeValues**: Tests the method with negative values in the array.
+   - **testMultmatrizeInvalidInput**: Tests the method with invalid input where the array length is less than `n+1`, expecting an `ArrayIndexOutOfBoundsException`.
+   - **testMultmatrizeZeroMatrices**: Tests the method with zero matrices (n=0).
+   - **testMultmatrizeLargeInput**: Tests the method with a larger input size.
+
+### Notes:
+- **Timeout**: Each test has a timeout of 1000 milliseconds.
+- **Exception Handling**: The `testMultmatrizeInvalidInput` test case expects an `ArrayIndexOutOfBoundsException`.
+- **Boundary Values**: Tests include boundary values, such as `n=1` and `n=0`.
+- **Positive and Negative Values**: Tests include both positive and negative values for the array `d`.
+- **Default Constructor**: Since the class does not explicitly define a constructor, the default constructor is implicitly tested by creating an instance in the `setUp` method.

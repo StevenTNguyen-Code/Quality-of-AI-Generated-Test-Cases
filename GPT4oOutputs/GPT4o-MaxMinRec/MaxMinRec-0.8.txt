@@ -1,0 +1,96 @@
+Here are the Java Unit Tests for the `MaxMin4` class using JUnit 4 framework:
+
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+
+public class MaxMin4Test {
+
+    private MaxMin4 maxMin4;
+
+    @Before
+    public void setUp() {
+        maxMin4 = new MaxMin4();
+    }
+
+    // Test for default constructor
+    @Test(timeout=1000)
+    public void testDefaultConstructor() throws Exception {
+        assertNotNull(new MaxMin4());
+    }
+
+    // Test case when the array has only two elements and linf < lsup
+    @Test(timeout=1000)
+    public void testMaxMin4_TwoElements_linfLessThanLsup() throws Exception {
+        int[] v = {1, 2};
+        int[] result = MaxMin4.maxMin4(v, 0, 1);
+        assertArrayEquals(new int[]{2, 1}, result);
+    }
+
+    // Test case when the array has only two elements and linf > lsup
+    @Test(timeout=1000)
+    public void testMaxMin4_TwoElements_linfGreaterThanLsup() throws Exception {
+        int[] v = {2, 1};
+        int[] result = MaxMin4.maxMin4(v, 0, 1);
+        assertArrayEquals(new int[]{2, 1}, result);
+    }
+
+    // Test case when the array has multiple elements
+    @Test(timeout=1000)
+    public void testMaxMin4_MultipleElements() throws Exception {
+        int[] v = {1, 3, 5, 7, 9, 2, 8, 4, 6};
+        int[] result = MaxMin4.maxMin4(v, 0, v.length - 1);
+        assertArrayEquals(new int[]{9, 1}, result);
+    }
+
+    // Test case with negative values
+    @Test(timeout=1000)
+    public void testMaxMin4_NegativeValues() throws Exception {
+        int[] v = {-3, -1, -7, -5};
+        int[] result = MaxMin4.maxMin4(v, 0, v.length - 1);
+        assertArrayEquals(new int[]{-1, -7}, result);
+    }
+
+    // Test case with mixed positive and negative values
+    @Test(timeout=1000)
+    public void testMaxMin4_MixedValues() throws Exception {
+        int[] v = {-3, 4, 1, -7, 5, -2};
+        int[] result = MaxMin4.maxMin4(v, 0, v.length - 1);
+        assertArrayEquals(new int[]{5, -7}, result);
+    }
+
+    // Test case with boundary values
+    @Test(timeout=1000)
+    public void testMaxMin4_BoundaryValues() throws Exception {
+        int[] v = {Integer.MIN_VALUE, Integer.MAX_VALUE};
+        int[] result = MaxMin4.maxMin4(v, 0, 1);
+        assertArrayEquals(new int[]{Integer.MAX_VALUE, Integer.MIN_VALUE}, result);
+    }
+
+    // Test case for single element array
+    @Test(timeout=1000)
+    public void testMaxMin4_SingleElement() throws Exception {
+        int[] v = {42};
+        int[] result = MaxMin4.maxMin4(v, 0, 0);
+        assertArrayEquals(new int[]{42, 42}, result);
+    }
+
+    // Test case for empty array (boundary case)
+    @Test(timeout=1000, expected=ArrayIndexOutOfBoundsException.class)
+    public void testMaxMin4_EmptyArray() throws Exception {
+        int[] v = {};
+        MaxMin4.maxMin4(v, 0, 0);
+    }
+}
+```
+
+Key points:
+- Each method in the `MaxMin4` class has a corresponding test case.
+- Boundary values, positive and negative values are included.
+- Timeout of 1000ms is set for all test methods.
+- Default constructor is tested.
+- Exception is tested with empty array.
+- All necessary imports are included.

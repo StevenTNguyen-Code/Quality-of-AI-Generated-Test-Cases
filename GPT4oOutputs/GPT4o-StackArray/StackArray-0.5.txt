@@ -1,0 +1,97 @@
+Certainly! Below is a comprehensive set of JUnit 4 test cases for the `Pilha` class. These tests cover all decision points, boundary values, and include necessary imports and annotations.
+
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+
+public class PilhaTest {
+
+    private Pilha pilha;
+
+    @Before
+    public void setUp() {
+        pilha = new Pilha();
+    }
+
+    @Test(timeout = 1000)
+    public void testDefaultConstructor() throws Exception {
+        assertNotNull(pilha);
+        assertTrue(pilha.vazia());
+        assertEquals(0, pilha.tamanho());
+    }
+
+    @Test(timeout = 1000)
+    public void testEmpilha() throws Exception {
+        Object item = new Object();
+        pilha.empilha(item);
+        assertFalse(pilha.vazia());
+        assertEquals(1, pilha.tamanho());
+        assertSame(item, pilha.desempilha());
+    }
+
+    @Test(timeout = 1000, expected = Exception.class)
+    public void testEmpilhaFull() throws Exception {
+        for (int i = 0; i < 1000; i++) {
+            pilha.empilha(new Object());
+        }
+        // This should throw an exception since the stack is full
+        pilha.empilha(new Object());
+    }
+
+    @Test(timeout = 1000)
+    public void testDesempilha() throws Exception {
+        Object item = new Object();
+        pilha.empilha(item);
+        assertSame(item, pilha.desempilha());
+        assertTrue(pilha.vazia());
+    }
+
+    @Test(timeout = 1000, expected = Exception.class)
+    public void testDesempilhaEmpty() throws Exception {
+        // This should throw an exception since the stack is empty
+        pilha.desempilha();
+    }
+
+    @Test(timeout = 1000)
+    public void testVaziaTrue() throws Exception {
+        assertTrue(pilha.vazia());
+    }
+
+    @Test(timeout = 1000)
+    public void testVaziaFalse() throws Exception {
+        pilha.empilha(new Object());
+        assertFalse(pilha.vazia());
+    }
+
+    @Test(timeout = 1000)
+    public void testTamanhoEmpty() throws Exception {
+        assertEquals(0, pilha.tamanho());
+    }
+
+    @Test(timeout = 1000)
+    public void testTamanhoNonEmpty() throws Exception {
+        pilha.empilha(new Object());
+        assertEquals(1, pilha.tamanho());
+    }
+}
+```
+
+### Explanation:
+1. **Default Constructor Test**: Verifies the stack is properly initialized.
+2. **Empilha Tests**: 
+   - Normal case: Adds an item and checks the stack's state.
+   - Boundary case: Fills the stack to its limit and attempts to add one more item, expecting an exception.
+3. **Desempilha Tests**:
+   - Normal case: Adds and removes an item, checking the stack's state.
+   - Boundary case: Attempts to remove an item from an empty stack, expecting an exception.
+4. **Vazia Tests**: 
+   - Verifies the stack is empty initially.
+   - Verifies the stack is not empty after adding an item.
+5. **Tamanho Tests**: 
+   - Verifies the size of an empty stack.
+   - Verifies the size after adding an item.
+
+These tests ensure that all conditional branches and boundary values are tested, and they adhere to the requirements specified.

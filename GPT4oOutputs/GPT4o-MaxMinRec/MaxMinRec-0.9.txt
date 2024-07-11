@@ -1,0 +1,86 @@
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+import ds.*;
+
+public class MaxMin4Test {
+
+    private MaxMin4 maxMin4Instance;
+
+    @Before
+    public void setUp() {
+        maxMin4Instance = new MaxMin4();
+    }
+
+    @Test(timeout = 1000)
+    public void testDefaultConstructor() {
+        assertNotNull("Default constructor does not create an instance", maxMin4Instance);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4WithEmptyArray() throws Exception {
+        int[] v = {};
+        int[] result = MaxMin4.maxMin4(v, 0, 0);
+        assertArrayEquals(new int[]{0, 0}, result);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4SingleElement() throws Exception {
+        int[] v = {42};
+        int[] result = MaxMin4.maxMin4(v, 0, 0);
+        assertArrayEquals(new int[]{42, 42}, result);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4TwoElements() throws Exception {
+        int[] v = {1, 2};
+        int[] result = MaxMin4.maxMin4(v, 0, 1);
+        assertArrayEquals(new int[]{2, 1}, result);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4TwoElementsReversed() throws Exception {
+        int[] v = {2, 1};
+        int[] result = MaxMin4.maxMin4(v, 0, 1);
+        assertArrayEquals(new int[]{2, 1}, result);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4MultipleElements() throws Exception {
+        int[] v = {3, 5, 2, 7, 9, -1, 4, 6};
+        int[] result = MaxMin4.maxMin4(v, 0, v.length - 1);
+        assertArrayEquals(new int[]{9, -1}, result);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4NegativeElements() throws Exception {
+        int[] v = {-3, -5, -2, -7, -9, -1, -4, -6};
+        int[] result = MaxMin4.maxMin4(v, 0, v.length - 1);
+        assertArrayEquals(new int[]{-1, -9}, result);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4MixedElements() throws Exception {
+        int[] v = {-3, 5, -2, 7, -9, 1, -4, 6};
+        int[] result = MaxMin4.maxMin4(v, 0, v.length - 1);
+        assertArrayEquals(new int[]{7, -9}, result);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4BoundaryValues() throws Exception {
+        int[] v = {Integer.MAX_VALUE, Integer.MIN_VALUE};
+        int[] result = MaxMin4.maxMin4(v, 0, 1);
+        assertArrayEquals(new int[]{Integer.MAX_VALUE, Integer.MIN_VALUE}, result);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4AllSameValues() throws Exception {
+        int[] v = {42, 42, 42, 42};
+        int[] result = MaxMin4.maxMin4(v, 0, v.length - 1);
+        assertArrayEquals(new int[]{42, 42}, result);
+    }
+}
+```

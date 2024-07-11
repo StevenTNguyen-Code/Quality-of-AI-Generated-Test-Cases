@@ -1,0 +1,122 @@
+Certainly! Below is a comprehensive set of unit tests for the `MaxMin4` class using JUnit 4. These tests cover all decisions, include boundary values, and ensure that all methods are tested. 
+
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+
+public class MaxMin4Test {
+
+    private MaxMin4 maxMin4;
+
+    @Before
+    public void setUp() {
+        maxMin4 = new MaxMin4();
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin4_singleElement() throws Exception {
+        int[] v = {5};
+        int[] result = MaxMin4.maxMin4(v, 0, 0);
+        assertArrayEquals(new int[]{5, 5}, result);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin4_twoElementsAscending() throws Exception {
+        int[] v = {1, 2};
+        int[] result = MaxMin4.maxMin4(v, 0, 1);
+        assertArrayEquals(new int[]{2, 1}, result);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin4_twoElementsDescending() throws Exception {
+        int[] v = {2, 1};
+        int[] result = MaxMin4.maxMin4(v, 0, 1);
+        assertArrayEquals(new int[]{2, 1}, result);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin4_multipleElements() throws Exception {
+        int[] v = {3, 1, 4, 1, 5, 9, 2, 6, 5};
+        int[] result = MaxMin4.maxMin4(v, 0, v.length - 1);
+        assertArrayEquals(new int[]{9, 1}, result);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin4_negativeValues() throws Exception {
+        int[] v = {-3, -1, -4, -1, -5, -9, -2, -6, -5};
+        int[] result = MaxMin4.maxMin4(v, 0, v.length - 1);
+        assertArrayEquals(new int[]{-1, -9}, result);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin4_mixedValues() throws Exception {
+        int[] v = {-3, 1, -4, 1, 5, -9, 2, -6, 5};
+        int[] result = MaxMin4.maxMin4(v, 0, v.length - 1);
+        assertArrayEquals(new int[]{5, -9}, result);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin4_boundaryValues() throws Exception {
+        int[] v = {Integer.MIN_VALUE, Integer.MAX_VALUE};
+        int[] result = MaxMin4.maxMin4(v, 0, 1);
+        assertArrayEquals(new int[]{Integer.MAX_VALUE, Integer.MIN_VALUE}, result);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin4_sameValues() throws Exception {
+        int[] v = {7, 7, 7, 7};
+        int[] result = MaxMin4.maxMin4(v, 0, v.length - 1);
+        assertArrayEquals(new int[]{7, 7}, result);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin4_largeArray() throws Exception {
+        int[] v = new int[1000];
+        for (int i = 0; i < v.length; i++) {
+            v[i] = i - 500;
+        }
+        int[] result = MaxMin4.maxMin4(v, 0, v.length - 1);
+        assertArrayEquals(new int[]{499, -500}, result);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin4_singleRange() throws Exception {
+        int[] v = {10, 20, 30, 40, 50};
+        int[] result = MaxMin4.maxMin4(v, 2, 2);
+        assertArrayEquals(new int[]{30, 30}, result);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin4_subArray() throws Exception {
+        int[] v = {10, 20, 30, 40, 50};
+        int[] result = MaxMin4.maxMin4(v, 1, 3);
+        assertArrayEquals(new int[]{40, 20}, result);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin4_entireArray() throws Exception {
+        int[] v = {10, 20, 30, 40, 50};
+        int[] result = MaxMin4.maxMin4(v, 0, 4);
+        assertArrayEquals(new int[]{50, 10}, result);
+    }
+}
+```
+
+### Explanation:
+1. **Setup Method**: `setUp()` initializes the `MaxMin4` object before each test.
+2. **Single Element**: Tests the method with a single element array.
+3. **Two Elements Ascending/Descending**: Tests the method with two elements in both ascending and descending order.
+4. **Multiple Elements**: Tests the method with a more complex array.
+5. **Negative Values**: Tests the method with an array of negative values.
+6. **Mixed Values**: Tests the method with both positive and negative values.
+7. **Boundary Values**: Tests the method with the minimum and maximum integer values.
+8. **Same Values**: Tests the method with an array where all elements are the same.
+9. **Large Array**: Tests the method with a large array to ensure performance.
+10. **Single Range**: Tests the method with a subarray of a single element.
+11. **Sub Array**: Tests the method with a subarray.
+12. **Entire Array**: Tests the method with the entire array.
+
+All tests include `timeout=1000` to ensure they complete within 1 second. The tests are designed to cover all conditional branches and boundary values as specified.

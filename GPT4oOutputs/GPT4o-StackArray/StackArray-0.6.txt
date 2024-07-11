@@ -1,0 +1,87 @@
+Here's the set of JUnit 4 test cases for the `Pilha` class, covering all the requirements specified:
+
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+
+public class PilhaTest {
+
+    private Pilha pilha;
+
+    @Before
+    public void setUp() throws Exception {
+        pilha = new Pilha();
+    }
+
+    @Test(timeout = 1000)
+    public void testDefaultConstructor() throws Exception {
+        Pilha p = new Pilha();
+        assertNotNull(p);
+        assertEquals(0, p.tamanho());
+        assertTrue(p.vazia());
+    }
+
+    @Test(timeout = 1000)
+    public void testEmpilha() throws Exception {
+        pilha.empilha("item1");
+        assertEquals(1, pilha.tamanho());
+        assertFalse(pilha.vazia());
+    }
+
+    @Test(timeout = 1000, expected = Exception.class)
+    public void testEmpilhaException() throws Exception {
+        // Fill the stack to its capacity
+        for (int i = 0; i < 1000; i++) {
+            pilha.empilha("item" + i);
+        }
+        // This next push should throw an exception
+        pilha.empilha("overflow");
+    }
+
+    @Test(timeout = 1000)
+    public void testDesempilha() throws Exception {
+        pilha.empilha("item1");
+        Object item = pilha.desempilha();
+        assertEquals("item1", item);
+        assertTrue(pilha.vazia());
+    }
+
+    @Test(timeout = 1000, expected = Exception.class)
+    public void testDesempilhaException() throws Exception {
+        pilha.desempilha(); // Should throw an exception because the stack is empty
+    }
+
+    @Test(timeout = 1000)
+    public void testVazia() throws Exception {
+        assertTrue(pilha.vazia());
+        pilha.empilha("item1");
+        assertFalse(pilha.vazia());
+        pilha.desempilha();
+        assertTrue(pilha.vazia());
+    }
+
+    @Test(timeout = 1000)
+    public void testTamanho() throws Exception {
+        assertEquals(0, pilha.tamanho());
+        pilha.empilha("item1");
+        assertEquals(1, pilha.tamanho());
+        pilha.desempilha();
+        assertEquals(0, pilha.tamanho());
+    }
+}
+```
+
+### Explanation:
+
+1. **Default Constructor Test**: Ensures that the default constructor initializes the stack correctly.
+2. **Empilha Test**: Tests the `empilha` method by pushing an item onto the stack and checking the size and emptiness.
+3. **Empilha Exception Test**: Fills the stack to its capacity and tests that pushing another item throws the expected exception.
+4. **Desempilha Test**: Tests the `desempilha` method by pushing and then popping an item, ensuring the stack behaves correctly.
+5. **Desempilha Exception Test**: Tests that popping from an empty stack throws the expected exception.
+6. **Vazia Test**: Tests the `vazia` method by checking the stack's emptiness before and after pushing/popping an item.
+7. **Tamanho Test**: Tests the `tamanho` method by checking the size of the stack before and after pushing/popping an item.
+
+Each test method includes `timeout = 1000` and throws `Exception` as required. The tests cover all decisions and boundary values, ensuring comprehensive coverage of the `Pilha` class.

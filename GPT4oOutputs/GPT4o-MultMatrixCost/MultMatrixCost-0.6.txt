@@ -1,0 +1,78 @@
+Sure, I'll create the unit tests for the provided Java class according to the specifications.
+
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+import java.io.IOException;
+
+public class AvaliaMultMatrizesTest {
+    
+    private AvaliaMultMatrizes avaliaMultMatrizes;
+
+    @Before
+    public void setUp() {
+        avaliaMultMatrizes = new AvaliaMultMatrizes();
+    }
+
+    @Test(timeout = 1000)
+    public void testMultmatrizeNormalCase() throws IOException {
+        int n = 3;
+        int[] d = {10, 20, 30, 40};
+        AvaliaMultMatrizes.multmatrize(n, d);
+        // Assuming the method prints the output, we do not have a return value to assert.
+    }
+
+    @Test(timeout = 1000)
+    public void testMultmatrizeBoundaryCase() throws IOException {
+        int n = 1;
+        int[] d = {10, 20};
+        AvaliaMultMatrizes.multmatrize(n, d);
+        // Single matrix multiplication, no actual multiplication required, should handle gracefully.
+    }
+
+    @Test(timeout = 1000)
+    public void testMultmatrizeNegativeCase() throws IOException {
+        int n = 2;
+        int[] d = {-10, -20, -30};
+        AvaliaMultMatrizes.multmatrize(n, d);
+        // Negative dimensions case, should handle gracefully.
+    }
+
+    @Test(timeout = 1000, expected = IOException.class)
+    public void testMultmatrizeIOException() throws IOException {
+        int n = 4;
+        int[] d = {10, 20, 30, 40, 50};
+        // Simulating a scenario that might throw IOException
+        AvaliaMultMatrizes.multmatrize(n, d);
+    }
+
+    @Test(timeout = 1000)
+    public void testMultmatrizeEdgeCase() throws IOException {
+        int n = 0;
+        int[] d = {};
+        AvaliaMultMatrizes.multmatrize(n, d);
+        // Edge case with zero matrices, should handle gracefully.
+    }
+}
+```
+
+### Explanation:
+1. **Test Setup**:
+   - The `AvaliaMultMatrizesTest` class is set up with the necessary imports and package declarations.
+   - A `setUp` method annotated with `@Before` initializes an instance of `AvaliaMultMatrizes` before each test case.
+
+2. **Test Cases**:
+   - **testMultmatrizeNormalCase**: Tests a normal scenario with a typical array of dimensions.
+   - **testMultmatrizeBoundaryCase**: Tests the boundary case where `n` is 1, meaning only a single matrix.
+   - **testMultmatrizeNegativeCase**: Tests negative values in the dimensions array.
+   - **testMultmatrizeIOException**: Simulates a scenario that might throw an `IOException`.
+   - **testMultmatrizeEdgeCase**: Tests the edge case where `n` is 0, meaning no matrices.
+
+3. **Timeout**: Each test case has a timeout of 1000 milliseconds as specified.
+
+4. **Exception Handling**: The `testMultmatrizeIOException` test case is designed to expect an `IOException`.
+
+Note that the actual implementation of `multmatrize` does not inherently throw an `IOException` under the provided context, but to adhere strictly to the requirement, the test case is included. If `multmatrize` were to be modified to throw an `IOException` under certain conditions, this test would then be relevant.

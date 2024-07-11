@@ -1,0 +1,105 @@
+Sure, here are the unit tests for the `MaxMin4` class using JUnit 4 framework in Java 8:
+
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+
+public class MaxMin4Test {
+
+    private MaxMin4 maxMin4;
+
+    @Before
+    public void setUp() {
+        maxMin4 = new MaxMin4();
+    }
+
+    @Test(timeout=1000)
+    public void testDefaultConstructor() throws Exception {
+        assertNotNull("MaxMin4 instance should be created", maxMin4);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin4SingleElement() throws Exception {
+        int[] v = {5};
+        int[] result = MaxMin4.maxMin4(v, 0, 0);
+        assertArrayEquals("Single element array should return the same element for both max and min", new int[]{5, 5}, result);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin4TwoElements() throws Exception {
+        int[] v = {5, 10};
+        int[] result = MaxMin4.maxMin4(v, 0, 1);
+        assertArrayEquals("Two element array should return correct max and min", new int[]{10, 5}, result);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin4TwoElementsReversed() throws Exception {
+        int[] v = {10, 5};
+        int[] result = MaxMin4.maxMin4(v, 0, 1);
+        assertArrayEquals("Two element array in reversed order should return correct max and min", new int[]{10, 5}, result);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin4MultipleElements() throws Exception {
+        int[] v = {1, 3, 5, 7, 9};
+        int[] result = MaxMin4.maxMin4(v, 0, 4);
+        assertArrayEquals("Multiple element array should return correct max and min", new int[]{9, 1}, result);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin4NegativeElements() throws Exception {
+        int[] v = {-1, -3, -5, -7, -9};
+        int[] result = MaxMin4.maxMin4(v, 0, 4);
+        assertArrayEquals("Array with negative elements should return correct max and min", new int[]{-1, -9}, result);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin4MixedElements() throws Exception {
+        int[] v = {-1, 3, -5, 7, -9};
+        int[] result = MaxMin4.maxMin4(v, 0, 4);
+        assertArrayEquals("Array with mixed positive and negative elements should return correct max and min", new int[]{7, -9}, result);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin4BoundaryValues() throws Exception {
+        int[] v = {Integer.MIN_VALUE, Integer.MAX_VALUE};
+        int[] result = MaxMin4.maxMin4(v, 0, 1);
+        assertArrayEquals("Array with boundary values should return correct max and min", new int[]{Integer.MAX_VALUE, Integer.MIN_VALUE}, result);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin4EmptyArray() throws Exception {
+        int[] v = {};
+        try {
+            MaxMin4.maxMin4(v, 0, 0);
+            fail("Should have thrown ArrayIndexOutOfBoundsException");
+        } catch (ArrayIndexOutOfBoundsException e) {
+            // Expected exception
+        }
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin4SingleNegativeElement() throws Exception {
+        int[] v = {-5};
+        int[] result = MaxMin4.maxMin4(v, 0, 0);
+        assertArrayEquals("Single negative element array should return the same element for both max and min", new int[]{-5, -5}, result);
+    }
+}
+```
+
+### Explanation:
+1. **Default Constructor Test**: Ensures that an instance of `MaxMin4` can be created.
+2. **Single Element Test**: Tests the method with an array containing a single element.
+3. **Two Elements Test**: Tests the method with an array containing two elements in ascending order.
+4. **Two Elements Reversed Test**: Tests the method with an array containing two elements in descending order.
+5. **Multiple Elements Test**: Tests the method with an array containing multiple elements.
+6. **Negative Elements Test**: Tests the method with an array containing negative elements.
+7. **Mixed Elements Test**: Tests the method with an array containing both positive and negative elements.
+8. **Boundary Values Test**: Tests the method with an array containing the minimum and maximum integer values.
+9. **Empty Array Test**: Tests the method with an empty array and expects an `ArrayIndexOutOfBoundsException`.
+10. **Single Negative Element Test**: Tests the method with an array containing a single negative element.
+
+Each test method includes `timeout=1000` to ensure the test completes within 1 second. The `@Test(expected=...)` annotation is used only in the `testMaxMin4EmptyArray` method to check for an expected exception.

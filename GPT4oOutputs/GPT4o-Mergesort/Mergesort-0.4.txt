@@ -1,0 +1,93 @@
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+import ds.*;
+
+public class OrdenacaoTest {
+
+    private Ordenacao ordenacao;
+
+    @Before
+    public void setUp() {
+        ordenacao = new Ordenacao();
+    }
+
+    @Test(timeout=1000)
+    public void testDefaultConstructor() throws Exception {
+        assertNotNull("Ordenacao instance should be created", ordenacao);
+    }
+
+    @Test(timeout=1000)
+    public void testMergeSortWithEmptyArray() throws Exception {
+        int[] array = {};
+        Ordenacao.mergeSort(array, 0, array.length - 1);
+        assertArrayEquals("Empty array should remain unchanged", new int[]{}, array);
+    }
+
+    @Test(timeout=1000)
+    public void testMergeSortWithSingleElement() throws Exception {
+        int[] array = {1};
+        Ordenacao.mergeSort(array, 0, array.length - 1);
+        assertArrayEquals("Single element array should remain unchanged", new int[]{1}, array);
+    }
+
+    @Test(timeout=1000)
+    public void testMergeSortWithTwoElements() throws Exception {
+        int[] array = {2, 1};
+        Ordenacao.mergeSort(array, 0, array.length - 1);
+        assertArrayEquals("Array should be sorted", new int[]{1, 2}, array);
+    }
+
+    @Test(timeout=1000)
+    public void testMergeSortWithMultipleElements() throws Exception {
+        int[] array = {5, 3, 8, 6, 2, 7, 4, 1};
+        Ordenacao.mergeSort(array, 0, array.length - 1);
+        assertArrayEquals("Array should be sorted", new int[]{1, 2, 3, 4, 5, 6, 7, 8}, array);
+    }
+
+    @Test(timeout=1000)
+    public void testMergeSortWithNegativeAndPositiveNumbers() throws Exception {
+        int[] array = {-3, -1, 4, 1, 5, -9, 2, 6};
+        Ordenacao.mergeSort(array, 0, array.length - 1);
+        assertArrayEquals("Array should be sorted", new int[]{-9, -3, -1, 1, 2, 4, 5, 6}, array);
+    }
+
+    @Test(timeout=1000)
+    public void testMergeSortWithAllNegativeNumbers() throws Exception {
+        int[] array = {-3, -1, -4, -1, -5, -9, -2, -6};
+        Ordenacao.mergeSort(array, 0, array.length - 1);
+        assertArrayEquals("Array should be sorted", new int[]{-9, -6, -5, -4, -3, -2, -1, -1}, array);
+    }
+
+    @Test(timeout=1000)
+    public void testMergeSortWithAllPositiveNumbers() throws Exception {
+        int[] array = {3, 1, 4, 1, 5, 9, 2, 6};
+        Ordenacao.mergeSort(array, 0, array.length - 1);
+        assertArrayEquals("Array should be sorted", new int[]{1, 1, 2, 3, 4, 5, 6, 9}, array);
+    }
+
+    @Test(timeout=1000)
+    public void testMergeSortWithAlreadySortedArray() throws Exception {
+        int[] array = {1, 2, 3, 4, 5, 6, 7, 8};
+        Ordenacao.mergeSort(array, 0, array.length - 1);
+        assertArrayEquals("Already sorted array should remain unchanged", new int[]{1, 2, 3, 4, 5, 6, 7, 8}, array);
+    }
+
+    @Test(timeout=1000)
+    public void testMergeSortWithReverseSortedArray() throws Exception {
+        int[] array = {8, 7, 6, 5, 4, 3, 2, 1};
+        Ordenacao.mergeSort(array, 0, array.length - 1);
+        assertArrayEquals("Reverse sorted array should be sorted", new int[]{1, 2, 3, 4, 5, 6, 7, 8}, array);
+    }
+}
+```
+
+### Explanation:
+1. **Imports and Setup**: The necessary imports are included, and a `setUp` method initializes the `Ordenacao` instance.
+2. **Default Constructor Test**: Ensures the `Ordenacao` instance can be created.
+3. **Boundary Tests**: Tests for an empty array and a single-element array.
+4. **Functional Tests**: Tests for arrays with two elements, multiple elements, negative and positive numbers, all negative numbers, all positive numbers, already sorted arrays, and reverse sorted arrays.
+5. **Timeouts and Exceptions**: All tests include `timeout=1000` as required, and exceptions are declared in the method signatures.

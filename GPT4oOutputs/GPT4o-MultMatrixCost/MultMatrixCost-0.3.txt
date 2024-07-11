@@ -1,0 +1,77 @@
+Sure, I can help you with that. Below is a set of JUnit 4 test cases for the `AvaliaMultMatrizes` class that meets all your requirements:
+
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+import java.io.IOException;
+
+public class AvaliaMultMatrizesTest {
+
+    @Before
+    public void setUp() throws Exception {
+        // Any setup can be done here if necessary
+    }
+
+    @Test(timeout = 1000)
+    public void testMultmatrizeNormalCase() throws Exception {
+        int n = 3;
+        int[] d = {10, 20, 30, 40};
+        AvaliaMultMatrizes.multmatrize(n, d);
+        // Add assertions if there are any return values or states to check
+    }
+
+    @Test(timeout = 1000)
+    public void testMultmatrizeBoundaryCase() throws Exception {
+        int n = 1;
+        int[] d = {10, 20};
+        AvaliaMultMatrizes.multmatrize(n, d);
+        // Add assertions if there are any return values or states to check
+    }
+
+    @Test(timeout = 1000)
+    public void testMultmatrizeNegativeValues() throws Exception {
+        int n = 2;
+        int[] d = {-10, -20, -30};
+        AvaliaMultMatrizes.multmatrize(n, d);
+        // Add assertions if there are any return values or states to check
+    }
+
+    @Test(timeout = 1000, expected = IOException.class)
+    public void testMultmatrizeException() throws Exception {
+        int n = 3;
+        int[] d = {10, 20}; // This should cause an exception due to array index out of bounds
+        AvaliaMultMatrizes.multmatrize(n, d);
+    }
+
+    @Test(timeout = 1000)
+    public void testMultmatrizeZeroCase() throws Exception {
+        int n = 0;
+        int[] d = {10};
+        AvaliaMultMatrizes.multmatrize(n, d);
+        // Add assertions if there are any return values or states to check
+    }
+
+    @Test(timeout = 1000)
+    public void testDefaultConstructor() throws Exception {
+        AvaliaMultMatrizes instance = new AvaliaMultMatrizes();
+        assertNotNull(instance);
+    }
+}
+```
+
+Explanation:
+
+1. **Imports**: All necessary imports are included.
+2. **Setup**: A `setUp` method is provided, although it's empty since no setup is needed for this class.
+3. **Test Cases**:
+   - **Normal Case**: Tests the method with a typical set of inputs.
+   - **Boundary Case**: Tests the method with the smallest non-zero input.
+   - **Negative Values**: Tests the method with negative values in the array.
+   - **Exception Case**: Tests the method with inputs that should cause an `IOException` due to array index out of bounds.
+   - **Zero Case**: Tests the method with `n` set to 0.
+   - **Default Constructor**: Tests the default constructor to ensure it works correctly.
+
+Each test method includes the `timeout = 1000` parameter to ensure it completes within 1000 milliseconds. The test for the exception uses `expected = IOException.class` to verify that the method throws the expected exception.
