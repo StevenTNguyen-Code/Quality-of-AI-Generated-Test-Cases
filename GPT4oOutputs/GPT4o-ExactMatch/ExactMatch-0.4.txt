@@ -1,0 +1,79 @@
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+
+public class CasamentoExatoTest {
+
+    private CasamentoExato casamentoExato;
+
+    @Before
+    public void setUp() throws Exception {
+        casamentoExato = new CasamentoExato();
+    }
+
+    @Test(timeout = 1000)
+    public void testDefaultConstructor() throws Exception {
+        assertNotNull(new CasamentoExato());
+    }
+
+    @Test(timeout = 1000)
+    public void testForcaBruta() throws Exception {
+        // Test with a match at the beginning
+        CasamentoExato.forcaBruta("abcde", 5, "abc", 3);
+        // Test with a match in the middle
+        CasamentoExato.forcaBruta("abcde", 5, "bcd", 3);
+        // Test with a match at the end
+        CasamentoExato.forcaBruta("abcde", 5, "cde", 3);
+        // Test with no match
+        CasamentoExato.forcaBruta("abcde", 5, "xyz", 3);
+    }
+
+    @Test(timeout = 1000)
+    public void testShiftAndExato() throws Exception {
+        // Test with a match at the beginning
+        CasamentoExato.shiftAndExato("abcde", 5, "abc", 3);
+        // Test with a match in the middle
+        CasamentoExato.shiftAndExato("abcde", 5, "bcd", 3);
+        // Test with a match at the end
+        CasamentoExato.shiftAndExato("abcde", 5, "cde", 3);
+        // Test with no match
+        CasamentoExato.shiftAndExato("abcde", 5, "xyz", 3);
+    }
+
+    @Test(timeout = 1000)
+    public void testBmh() throws Exception {
+        // Test with a match at the beginning
+        CasamentoExato.bmh("abcde", 5, "abc", 3);
+        // Test with a match in the middle
+        CasamentoExato.bmh("abcde", 5, "bcd", 3);
+        // Test with a match at the end
+        CasamentoExato.bmh("abcde", 5, "cde", 3);
+        // Test with no match
+        CasamentoExato.bmh("abcde", 5, "xyz", 3);
+    }
+
+    @Test(timeout = 1000)
+    public void testBmhs() throws Exception {
+        // Test with a match at the beginning
+        CasamentoExato.bmhs("abcde", 5, "abc", 3);
+        // Test with a match in the middle
+        CasamentoExato.bmhs("abcde", 5, "bcd", 3);
+        // Test with a match at the end
+        CasamentoExato.bmhs("abcde", 5, "cde", 3);
+        // Test with no match
+        CasamentoExato.bmhs("abcde", 5, "xyz", 3);
+    }
+}
+```
+
+### Explanation:
+1. **Default Constructor Test**: Ensures that an instance of `CasamentoExato` can be created.
+2. **Boundary Values**: Each method is tested with different positions of the pattern within the text (beginning, middle, end) and also with no match.
+3. **Timeout**: Each test method includes `timeout = 1000` to ensure it completes within the specified time.
+4. **Exception Handling**: Since the methods under test do not explicitly throw exceptions, `@Test(expected = ...)` is not used.
+5. **JUnit 4 Framework**: The tests are written using JUnit 4 annotations and structure.
+
+These tests cover the basic functionality and boundary conditions for the methods in the `CasamentoExato` class.

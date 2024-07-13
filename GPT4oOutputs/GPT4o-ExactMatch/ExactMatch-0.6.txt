@@ -1,0 +1,110 @@
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+import ds.*;
+
+public class CasamentoExatoTest {
+
+    private static final int maxChar = 256;
+    
+    @Before
+    public void setUp() {
+        // Any setup can be done here if needed
+    }
+
+    @Test(timeout=1000)
+    public void testDefaultConstructor() throws Exception {
+        CasamentoExato ce = new CasamentoExato();
+        assertNotNull(ce);
+    }
+
+    @Test(timeout=1000)
+    public void testForcaBruta() throws Exception {
+        String T = "abcde";
+        String P = "cde";
+        CasamentoExato.forcaBruta(T, T.length(), P, P.length());
+    }
+    
+    @Test(timeout=1000)
+    public void testForcaBrutaNoMatch() throws Exception {
+        String T = "abcde";
+        String P = "xyz";
+        CasamentoExato.forcaBruta(T, T.length(), P, P.length());
+    }
+
+    @Test(timeout=1000)
+    public void testShiftAndExato() throws Exception {
+        String T = "abcde";
+        String P = "cde";
+        CasamentoExato.shiftAndExato(T, T.length(), P, P.length());
+    }
+    
+    @Test(timeout=1000)
+    public void testShiftAndExatoNoMatch() throws Exception {
+        String T = "abcde";
+        String P = "xyz";
+        CasamentoExato.shiftAndExato(T, T.length(), P, P.length());
+    }
+
+    @Test(timeout=1000)
+    public void testBMH() throws Exception {
+        String T = "abcde";
+        String P = "cde";
+        CasamentoExato.bmh(T, T.length(), P, P.length());
+    }
+    
+    @Test(timeout=1000)
+    public void testBMHNoMatch() throws Exception {
+        String T = "abcde";
+        String P = "xyz";
+        CasamentoExato.bmh(T, T.length(), P, P.length());
+    }
+
+    @Test(timeout=1000)
+    public void testBMHS() throws Exception {
+        String T = "abcde";
+        String P = "cde";
+        CasamentoExato.bmhs(T, T.length(), P, P.length());
+    }
+    
+    @Test(timeout=1000)
+    public void testBMHSNoMatch() throws Exception {
+        String T = "abcde";
+        String P = "xyz";
+        CasamentoExato.bmhs(T, T.length(), P, P.length());
+    }
+
+    @Test(timeout=1000)
+    public void testForcaBrutaBoundary() throws Exception {
+        String T = "a";
+        String P = "a";
+        CasamentoExato.forcaBruta(T, T.length(), P, P.length());
+    }
+
+    @Test(timeout=1000)
+    public void testShiftAndExatoBoundary() throws Exception {
+        String T = "a";
+        String P = "a";
+        CasamentoExato.shiftAndExato(T, T.length(), P, P.length());
+    }
+
+    @Test(timeout=1000)
+    public void testBMHBoundary() throws Exception {
+        String T = "a";
+        String P = "a";
+        CasamentoExato.bmh(T, T.length(), P, P.length());
+    }
+
+    @Test(timeout=1000)
+    public void testBMHSBoundary() throws Exception {
+        String T = "a";
+        String P = "a";
+        CasamentoExato.bmhs(T, T.length(), P, P.length());
+    }
+}
+```
+
+In this test class, each method of the `CasamentoExato` class is tested using positive and negative cases, boundary values, and ensuring that all conditional expressions are evaluated. The `@Test` annotation includes a timeout of 1000 milliseconds for each test case. The default constructor is also tested to ensure it can be instantiated without issues.

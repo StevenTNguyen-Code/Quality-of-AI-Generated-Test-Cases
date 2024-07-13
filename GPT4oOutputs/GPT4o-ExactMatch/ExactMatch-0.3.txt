@@ -1,0 +1,105 @@
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+
+public class CasamentoExatoTest {
+
+    private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+    private final PrintStream originalOut = System.out;
+
+    @Before
+    public void setUp() {
+        System.setOut(new PrintStream(outContent));
+    }
+
+    @Before
+    public void tearDown() {
+        System.setOut(originalOut);
+    }
+
+    @Test(timeout = 1000)
+    public void testDefaultConstructor() throws Exception {
+        CasamentoExato ce = new CasamentoExato();
+        assertNotNull(ce);
+    }
+
+    @Test(timeout = 1000)
+    public void testForcaBruta() throws Exception {
+        CasamentoExato.forcaBruta("abcabcabc", 9, "abc", 3);
+        assertEquals("Casamento na posicao: 0\nCasamento na posicao: 3\nCasamento na posicao: 6\n", outContent.toString());
+    }
+
+    @Test(timeout = 1000)
+    public void testForcaBrutaNoMatch() throws Exception {
+        CasamentoExato.forcaBruta("abcabcabc", 9, "def", 3);
+        assertEquals("", outContent.toString());
+    }
+
+    @Test(timeout = 1000)
+    public void testForcaBrutaBoundary() throws Exception {
+        CasamentoExato.forcaBruta("a", 1, "a", 1);
+        assertEquals("Casamento na posicao: 0\n", outContent.toString());
+    }
+
+    @Test(timeout = 1000)
+    public void testShiftAndExato() throws Exception {
+        CasamentoExato.shiftAndExato("abcabcabc", 9, "abc", 3);
+        assertEquals("Casamento na posicao: 0\nCasamento na posicao: 3\nCasamento na posicao: 6\n", outContent.toString());
+    }
+
+    @Test(timeout = 1000)
+    public void testShiftAndExatoNoMatch() throws Exception {
+        CasamentoExato.shiftAndExato("abcabcabc", 9, "def", 3);
+        assertEquals("", outContent.toString());
+    }
+
+    @Test(timeout = 1000)
+    public void testShiftAndExatoBoundary() throws Exception {
+        CasamentoExato.shiftAndExato("a", 1, "a", 1);
+        assertEquals("Casamento na posicao: 0\n", outContent.toString());
+    }
+
+    @Test(timeout = 1000)
+    public void testBmh() throws Exception {
+        CasamentoExato.bmh("abcabcabc", 9, "abc", 3);
+        assertEquals("Casamento na posicao: 0\nCasamento na posicao: 3\nCasamento na posicao: 6\n", outContent.toString());
+    }
+
+    @Test(timeout = 1000)
+    public void testBmhNoMatch() throws Exception {
+        CasamentoExato.bmh("abcabcabc", 9, "def", 3);
+        assertEquals("", outContent.toString());
+    }
+
+    @Test(timeout = 1000)
+    public void testBmhBoundary() throws Exception {
+        CasamentoExato.bmh("a", 1, "a", 1);
+        assertEquals("Casamento na posicao: 0\n", outContent.toString());
+    }
+
+    @Test(timeout = 1000)
+    public void testBmhs() throws Exception {
+        CasamentoExato.bmhs("abcabcabc", 9, "abc", 3);
+        assertEquals("Casamento na posicao: 0\nCasamento na posicao: 3\nCasamento na posicao: 6\n", outContent.toString());
+    }
+
+    @Test(timeout = 1000)
+    public void testBmhsNoMatch() throws Exception {
+        CasamentoExato.bmhs("abcabcabc", 9, "def", 3);
+        assertEquals("", outContent.toString());
+    }
+
+    @Test(timeout = 1000)
+    public void testBmhsBoundary() throws Exception {
+        CasamentoExato.bmhs("a", 1, "a", 1);
+        assertEquals("Casamento na posicao: 0\n", outContent.toString());
+    }
+}
+```
+
+This set of unit tests covers all methods in the `CasamentoExato` class, including boundary values and both true/false conditions for the conditional expressions. Each test method includes the `timeout=1000` parameter and throws exceptions as required. The tests also capture the output printed to the console to verify the correct behavior of the methods.

@@ -1,0 +1,135 @@
+Here is the test class for the provided `CasamentoExato` class based on your requirements:
+
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+
+public class CasamentoExatoTest {
+    
+    private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+    private final PrintStream originalOut = System.out;
+
+    @Before
+    public void setUp() {
+        System.setOut(new PrintStream(outContent));
+    }
+
+    @Before
+    public void tearDown() {
+        System.setOut(originalOut);
+    }
+
+    @Test(timeout=1000)
+    public void testDefaultConstructor() throws Exception {
+        // Testing default constructor
+        CasamentoExato instance = new CasamentoExato();
+        assertNotNull(instance);
+    }
+
+    @Test(timeout=1000)
+    public void testForcaBruta() throws Exception {
+        // Test with matching pattern
+        CasamentoExato.forcaBruta("abcdef", 6, "cd", 2);
+        assertTrue(outContent.toString().contains("Casamento na posicao: 2"));
+        
+        // Test with non-matching pattern
+        outContent.reset();
+        CasamentoExato.forcaBruta("abcdef", 6, "gh", 2);
+        assertFalse(outContent.toString().contains("Casamento na posicao: "));
+        
+        // Boundary value test: empty text
+        outContent.reset();
+        CasamentoExato.forcaBruta("", 0, "a", 1);
+        assertFalse(outContent.toString().contains("Casamento na posicao: "));
+        
+        // Boundary value test: empty pattern
+        outContent.reset();
+        CasamentoExato.forcaBruta("abcdef", 6, "", 0);
+        assertFalse(outContent.toString().contains("Casamento na posicao: "));
+    }
+
+    @Test(timeout=1000)
+    public void testShiftAndExato() throws Exception {
+        // Test with matching pattern
+        CasamentoExato.shiftAndExato("abcdef", 6, "cd", 2);
+        assertTrue(outContent.toString().contains("Casamento na posicao: 2"));
+        
+        // Test with non-matching pattern
+        outContent.reset();
+        CasamentoExato.shiftAndExato("abcdef", 6, "gh", 2);
+        assertFalse(outContent.toString().contains("Casamento na posicao: "));
+        
+        // Boundary value test: empty text
+        outContent.reset();
+        CasamentoExato.shiftAndExato("", 0, "a", 1);
+        assertFalse(outContent.toString().contains("Casamento na posicao: "));
+        
+        // Boundary value test: empty pattern
+        outContent.reset();
+        CasamentoExato.shiftAndExato("abcdef", 6, "", 0);
+        assertFalse(outContent.toString().contains("Casamento na posicao: "));
+    }
+
+    @Test(timeout=1000)
+    public void testBmh() throws Exception {
+        // Test with matching pattern
+        CasamentoExato.bmh("abcdef", 6, "cd", 2);
+        assertTrue(outContent.toString().contains("Casamento na posicao: 2"));
+        
+        // Test with non-matching pattern
+        outContent.reset();
+        CasamentoExato.bmh("abcdef", 6, "gh", 2);
+        assertFalse(outContent.toString().contains("Casamento na posicao: "));
+        
+        // Boundary value test: empty text
+        outContent.reset();
+        CasamentoExato.bmh("", 0, "a", 1);
+        assertFalse(outContent.toString().contains("Casamento na posicao: "));
+        
+        // Boundary value test: empty pattern
+        outContent.reset();
+        CasamentoExato.bmh("abcdef", 6, "", 0);
+        assertFalse(outContent.toString().contains("Casamento na posicao: "));
+    }
+
+    @Test(timeout=1000)
+    public void testBmhs() throws Exception {
+        // Test with matching pattern
+        CasamentoExato.bmhs("abcdef", 6, "cd", 2);
+        assertTrue(outContent.toString().contains("Casamento na posicao: 2"));
+        
+        // Test with non-matching pattern
+        outContent.reset();
+        CasamentoExato.bmhs("abcdef", 6, "gh", 2);
+        assertFalse(outContent.toString().contains("Casamento na posicao: "));
+        
+        // Boundary value test: empty text
+        outContent.reset();
+        CasamentoExato.bmhs("", 0, "a", 1);
+        assertFalse(outContent.toString().contains("Casamento na posicao: "));
+        
+        // Boundary value test: empty pattern
+        outContent.reset();
+        CasamentoExato.bmhs("abcdef", 6, "", 0);
+        assertFalse(outContent.toString().contains("Casamento na posicao: "));
+    }
+}
+```
+
+### Explanation:
+1. **Setup and Teardown**: Capture `System.out` output to test if the matching positions are printed.
+2. **Default Constructor**: Test the instantiation of the `CasamentoExato` class.
+3. **forcaBruta Method**: Test cases to cover matching, non-matching, and boundary conditions.
+4. **shiftAndExato Method**: Same structure as the `forcaBruta` method.
+5. **bmh Method**: Same structure as the `forcaBruta` method.
+6. **bmhs Method**: Same structure as the `forcaBruta` method.
+
+### Notes:
+- The `@Test(timeout=1000)` annotation ensures that each test completes within 1000 milliseconds.
+- Boundary value tests are included, such as empty text and pattern.
+- The assertions check the output content to confirm the methods' behavior.
