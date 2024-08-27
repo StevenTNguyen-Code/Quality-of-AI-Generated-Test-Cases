@@ -1,0 +1,111 @@
+Here is the test class with the required test cases:
+```
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+
+public class OrdenacaoTest {
+
+    private int[] array;
+
+    @Before
+    public void setUp() {
+        array = new int[] {5, 2, 8, 3, 1, 4};
+    }
+
+    @Test(timeout = 1000)
+    public void testMergeSort() throws Exception {
+        Ordenacao.mergeSort(array, 0, array.length - 1);
+        int[] expected = new int[] {1, 2, 3, 4, 5, 8};
+        assertArrayEquals(expected, array);
+    }
+
+    @Test(timeout = 1000)
+    public void testMergeSortEmptyArray() throws Exception {
+        array = new int[] {};
+        Ordenacao.mergeSort(array, 0, array.length - 1);
+        int[] expected = new int[] {};
+        assertArrayEquals(expected, array);
+    }
+
+    @Test(timeout = 1000)
+    public void testMergeSortSingleElementArray() throws Exception {
+        array = new int[] {5};
+        Ordenacao.mergeSort(array, 0, array.length - 1);
+        int[] expected = new int[] {5};
+        assertArrayEquals(expected, array);
+    }
+
+    @Test(timeout = 1000)
+    public void testMergeSortAlreadySortedArray() throws Exception {
+        array = new int[] {1, 2, 3, 4, 5, 6};
+        Ordenacao.mergeSort(array, 0, array.length - 1);
+        int[] expected = new int[] {1, 2, 3, 4, 5, 6};
+        assertArrayEquals(expected, array);
+    }
+
+    @Test(timeout = 1000)
+    public void testMergeSortReverseSortedArray() throws Exception {
+        array = new int[] {6, 5, 4, 3, 2, 1};
+        Ordenacao.mergeSort(array, 0, array.length - 1);
+        int[] expected = new int[] {1, 2, 3, 4, 5, 6};
+        assertArrayEquals(expected, array);
+    }
+
+    @Test(timeout = 1000)
+    public void testMerge() throws Exception {
+        int[] temp = new int[] {3, 1, 2};
+        Ordenacao.merge(temp, 0, 1, 2);
+        int[] expected = new int[] {1, 2, 3};
+        assertArrayEquals(expected, temp);
+    }
+
+    @Test(timeout = 1000)
+    public void testMergeEmptyArray() throws Exception {
+        int[] temp = new int[] {};
+        Ordenacao.merge(temp, 0, 0, 0);
+        int[] expected = new int[] {};
+        assertArrayEquals(expected, temp);
+    }
+
+    @Test(timeout = 1000)
+    public void testMergeSingleElementArray() throws Exception {
+        int[] temp = new int[] {5};
+        Ordenacao.merge(temp, 0, 0, 0);
+        int[] expected = new int[] {5};
+        assertArrayEquals(expected, temp);
+    }
+
+    @Test(timeout = 1000)
+    public void testMergeAlreadySortedArray() throws Exception {
+        int[] temp = new int[] {1, 2, 3};
+        Ordenacao.merge(temp, 0, 1, 2);
+        int[] expected = new int[] {1, 2, 3};
+        assertArrayEquals(expected, temp);
+    }
+
+    @Test(timeout = 1000)
+    public void testMergeReverseSortedArray() throws Exception {
+        int[] temp = new int[] {3, 2, 1};
+        Ordenacao.merge(temp, 0, 1, 2);
+        int[] expected = new int[] {1, 2, 3};
+        assertArrayEquals(expected, temp);
+    }
+
+    @Test(timeout = 1000)
+    public void testDefaultConstructor() throws Exception {
+        new Ordenacao();
+    }
+}
+```
+Note:
+
+* I've added a `setUp` method to initialize an array that will be used in most of the test cases.
+* I've added tests for `mergeSort` with different scenarios: empty array, single element array, already sorted array, and reverse sorted array.
+* I've added tests for `merge` with different scenarios: empty array, single element array, already sorted array, and reverse sorted array.
+* I've added a test for the default constructor.
+* I've used `assertArrayEquals` to compare the expected and actual arrays.
+* I've used `throws Exception` in each test method declaration to comply with the requirement.
+* I've used `timeout = 1000` in each `@Test` annotation to comply with the requirement.

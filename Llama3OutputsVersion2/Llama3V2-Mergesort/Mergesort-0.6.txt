@@ -1,0 +1,83 @@
+Here is the unit test class for the `Ordenacao` class:
+```
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+
+public class OrdenacaoTest {
+
+    private int[] array;
+
+    @Before
+    public void setup() {
+        array = new int[] { 5, 2, 8, 3, 1, 4, 6 };
+    }
+
+    @Test(timeout = 1000)
+    public void testMergeSort_withValidInput() throws Exception {
+        Ordenacao.mergeSort(array, 0, array.length - 1);
+        int[] expected = new int[] { 1, 2, 3, 4, 5, 6, 8 };
+        assertArrayEquals(expected, array);
+    }
+
+    @Test(timeout = 1000)
+    public void testMergeSort_withEmptyArray() throws Exception {
+        int[] emptyArray = new int[] {};
+        Ordenacao.mergeSort(emptyArray, 0, emptyArray.length - 1);
+        assertArrayEquals(emptyArray, new int[] {});
+    }
+
+    @Test(timeout = 1000)
+    public void testMergeSort_withSingleElementArray() throws Exception {
+        int[] singleElementArray = new int[] { 5 };
+        Ordenacao.mergeSort(singleElementArray, 0, singleElementArray.length - 1);
+        assertArrayEquals(singleElementArray, new int[] { 5 });
+    }
+
+    @Test(timeout = 1000)
+    public void testMergeSort_withNegativeNumbers() throws Exception {
+        int[] arrayWithNegativeNumbers = new int[] { -5, 2, -8, 3, -1, 4, -6 };
+        Ordenacao.mergeSort(arrayWithNegativeNumbers, 0, arrayWithNegativeNumbers.length - 1);
+        int[] expected = new int[] { -8, -6, -5, -1, 2, 3, 4 };
+        assertArrayEquals(expected, arrayWithNegativeNumbers);
+    }
+
+    @Test(timeout = 1000)
+    public void testMerge_withValidInput() throws Exception {
+        int[] array = new int[] { 5, 2, 8, 3, 1, 4, 6 };
+        Ordenacao.merge(array, 0, 3, 6);
+        int[] expected = new int[] { 1, 2, 3, 4, 5, 6, 8 };
+        assertArrayEquals(expected, array);
+    }
+
+    @Test(timeout = 1000)
+    public void testMerge_withEmptyArray() throws Exception {
+        int[] emptyArray = new int[] {};
+        Ordenacao.merge(emptyArray, 0, 0, 0);
+        assertArrayEquals(emptyArray, new int[] {});
+    }
+
+    @Test(timeout = 1000)
+    public void testMerge_withSingleElementArray() throws Exception {
+        int[] singleElementArray = new int[] { 5 };
+        Ordenacao.merge(singleElementArray, 0, 0, 0);
+        assertArrayEquals(singleElementArray, new int[] { 5 });
+    }
+
+    @Test(timeout = 1000)
+    public void testMerge_withNegativeNumbers() throws Exception {
+        int[] arrayWithNegativeNumbers = new int[] { -5, 2, -8, 3, -1, 4, -6 };
+        Ordenacao.merge(arrayWithNegativeNumbers, 0, 3, 6);
+        int[] expected = new int[] { -8, -6, -5, -1, 2, 3, 4 };
+        assertArrayEquals(expected, arrayWithNegativeNumbers);
+    }
+
+    @Test(timeout = 1000)
+    public void testDefaultConstructor() throws Exception {
+        new Ordenacao();
+    }
+}
+```
+Note that I've covered all the methods in the `Ordenacao` class, including the `merge` method, and tested them with various input scenarios, including valid inputs, empty arrays, single-element arrays, and arrays with negative numbers. I've also tested the default constructor.

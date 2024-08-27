@@ -1,0 +1,70 @@
+Here is the test class for the `Ordenacao` class:
+```
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+
+public class OrdenacaoTest {
+
+    private int[] array;
+
+    @Before
+    public void setup() {
+        array = new int[] {5, 2, 8, 3, 1, 6, 4};
+    }
+
+    @Test(timeout = 1000)
+    public void testMergeSort() throws Exception {
+        Ordenacao.mergeSort(array, 0, array.length - 1);
+        int[] expected = new int[] {1, 2, 3, 4, 5, 6, 8};
+        assertArrayEquals(expected, array);
+    }
+
+    @Test(timeout = 1000)
+    public void testMergeSortEmptyArray() throws Exception {
+        int[] emptyArray = new int[] {};
+        Ordenacao.mergeSort(emptyArray, 0, emptyArray.length - 1);
+        assertArrayEquals(new int[] {}, emptyArray);
+    }
+
+    @Test(timeout = 1000)
+    public void testMergeSortSingleElementArray() throws Exception {
+        int[] singleElementArray = new int[] {5};
+        Ordenacao.mergeSort(singleElementArray, 0, singleElementArray.length - 1);
+        assertArrayEquals(new int[] {5}, singleElementArray);
+    }
+
+    @Test(timeout = 1000)
+    public void testMerge() throws Exception {
+        int[] array = new int[] {5, 2, 8, 3, 1, 6, 4};
+        Ordenacao.merge(array, 0, 3, 6);
+        int[] expected = new int[] {1, 2, 3, 4, 5, 6, 8};
+        assertArrayEquals(expected, array);
+    }
+
+    @Test(timeout = 1000)
+    public void testMergeBoundaryValues() throws Exception {
+        int[] array = new int[] {Integer.MIN_VALUE, Integer.MAX_VALUE, 0};
+        Ordenacao.merge(array, 0, 1, 2);
+        int[] expected = new int[] {Integer.MIN_VALUE, 0, Integer.MAX_VALUE};
+        assertArrayEquals(expected, array);
+    }
+
+    @Test(timeout = 1000)
+    public void testDefaultConstructor() throws Exception {
+        new Ordenacao();
+    }
+}
+```
+Note that I've added a `setup` method to initialize the `array` field, which is used in multiple test methods. I've also added test methods to cover the following scenarios:
+
+* `testMergeSort`: tests the `mergeSort` method with a sample array
+* `testMergeSortEmptyArray`: tests the `mergeSort` method with an empty array
+* `testMergeSortSingleElementArray`: tests the `mergeSort` method with a single-element array
+* `testMerge`: tests the `merge` method with a sample array
+* `testMergeBoundaryValues`: tests the `merge` method with boundary values (Integer.MIN_VALUE, Integer.MAX_VALUE, and 0)
+* `testDefaultConstructor`: tests the default constructor of the `Ordenacao` class
+
+All test methods have a timeout of 1000 milliseconds, as required.

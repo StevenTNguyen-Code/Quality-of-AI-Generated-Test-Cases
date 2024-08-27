@@ -1,0 +1,77 @@
+Here is the test class for the `Ordenacao` class:
+```
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+
+public class OrdenacaoTest {
+
+    private int[] array;
+
+    @Before
+    public void setup() {
+        array = new int[] {5, 2, 8, 3, 1, 6, 4};
+    }
+
+    @Test(timeout = 1000)
+    public void testMergeSort_SimpleArray() throws Exception {
+        Ordenacao.mergeSort(array, 0, array.length - 1);
+        int[] expected = new int[] {1, 2, 3, 4, 5, 6, 8};
+        assertArrayEquals(expected, array);
+    }
+
+    @Test(timeout = 1000)
+    public void testMergeSort_EmptyArray() throws Exception {
+        int[] emptyArray = new int[] {};
+        Ordenacao.mergeSort(emptyArray, 0, emptyArray.length - 1);
+        assertArrayEquals(new int[] {}, emptyArray);
+    }
+
+    @Test(timeout = 1000)
+    public void testMergeSort_SingleElementArray() throws Exception {
+        int[] singleElementArray = new int[] {5};
+        Ordenacao.mergeSort(singleElementArray, 0, singleElementArray.length - 1);
+        assertArrayEquals(new int[] {5}, singleElementArray);
+    }
+
+    @Test(timeout = 1000)
+    public void testMergeSort_AlreadySortedArray() throws Exception {
+        int[] alreadySortedArray = new int[] {1, 2, 3, 4, 5, 6, 8};
+        Ordenacao.mergeSort(alreadySortedArray, 0, alreadySortedArray.length - 1);
+        assertArrayEquals(new int[] {1, 2, 3, 4, 5, 6, 8}, alreadySortedArray);
+    }
+
+    @Test(timeout = 1000)
+    public void testMergeSort_ReversedArray() throws Exception {
+        int[] reversedArray = new int[] {8, 6, 5, 4, 3, 2, 1};
+        Ordenacao.mergeSort(reversedArray, 0, reversedArray.length - 1);
+        assertArrayEquals(new int[] {1, 2, 3, 4, 5, 6, 8}, reversedArray);
+    }
+
+    @Test(timeout = 1000)
+    public void testMerge_BoundaryValues() throws Exception {
+        int[] array = new int[] {Integer.MIN_VALUE, Integer.MAX_VALUE};
+        Ordenacao.merge(array, 0, 0, 1);
+        assertArrayEquals(new int[] {Integer.MIN_VALUE, Integer.MAX_VALUE}, array);
+    }
+
+    @Test(timeout = 1000)
+    public void testMergeSort_DefaultConstructor() throws Exception {
+        Ordenacao ordenacao = new Ordenacao();
+        assertNotNull(ordenacao);
+    }
+}
+```
+Note that I've covered the following test cases:
+
+* Simple array
+* Empty array
+* Single element array
+* Already sorted array
+* Reversed array
+* Boundary values (Integer.MIN_VALUE and Integer.MAX_VALUE)
+* Default constructor
+
+I've also made sure to include the `@Before` method to setup the test data, and the `@Test` annotations with the `timeout=1000` parameter.

@@ -1,0 +1,81 @@
+Here is the test class for the `Ordenacao` class:
+```
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+
+public class OrdenacaoTest {
+
+    private int[] array;
+
+    @Before
+    public void setup() {
+        array = new int[]{5, 2, 8, 3, 1, 6, 4};
+    }
+
+    @Test(timeout = 1000)
+    public void testMergeSort() throws Exception {
+        Ordenacao.mergeSort(array, 0, array.length - 1);
+        int[] expected = new int[]{1, 2, 3, 4, 5, 6, 8};
+        assertArrayEquals(expected, array);
+    }
+
+    @Test(timeout = 1000)
+    public void testMergeSort_EmptyArray() throws Exception {
+        int[] emptyArray = new int[0];
+        Ordenacao.mergeSort(emptyArray, 0, emptyArray.length - 1);
+        assertArrayEquals(new int[0], emptyArray);
+    }
+
+    @Test(timeout = 1000)
+    public void testMergeSort_SingleElementArray() throws Exception {
+        int[] singleElementArray = new int[]{5};
+        Ordenacao.mergeSort(singleElementArray, 0, singleElementArray.length - 1);
+        assertArrayEquals(new int[]{5}, singleElementArray);
+    }
+
+    @Test(timeout = 1000)
+    public void testMerge() throws Exception {
+        int[] array = new int[]{5, 2, 8, 3, 1, 6, 4};
+        Ordenacao.merge(array, 0, 3, array.length - 1);
+        int[] expected = new int[]{1, 2, 3, 4, 5, 6, 8};
+        assertArrayEquals(expected, array);
+    }
+
+    @Test(timeout = 1000)
+    public void testMerge_LeftBoundary() throws Exception {
+        int[] array = new int[]{5, 2, 8, 3, 1, 6, 4};
+        Ordenacao.merge(array, 0, 0, array.length - 1);
+        int[] expected = new int[]{1, 2, 3, 4, 5, 6, 8};
+        assertArrayEquals(expected, array);
+    }
+
+    @Test(timeout = 1000)
+    public void testMerge_RightBoundary() throws Exception {
+        int[] array = new int[]{5, 2, 8, 3, 1, 6, 4};
+        Ordenacao.merge(array, array.length - 1, array.length - 1, array.length - 1);
+        int[] expected = new int[]{1, 2, 3, 4, 5, 6, 8};
+        assertArrayEquals(expected, array);
+    }
+
+    @Test(timeout = 1000)
+    public void testDefaultConstructor() throws Exception {
+        Ordenacao ordenacao = new Ordenacao();
+        assertNotNull(ordenacao);
+    }
+
+    @Test(timeout = 1000, expected = ArrayIndexOutOfBoundsException.class)
+    public void testMerge_InvalidIndices() throws Exception {
+        int[] array = new int[5];
+        Ordenacao.merge(array, -1, 3, array.length - 1);
+    }
+
+    @Test(timeout = 1000, expected = NullPointerException.class)
+    public void testMerge_NullArray() throws Exception {
+        Ordenacao.merge(null, 0, 3, 5);
+    }
+}
+```
+Note that I've tested the `merge` method with different scenarios, including left and right boundary cases. I've also tested the `mergeSort` method with different input arrays, including an empty array and a single-element array. Additionally, I've tested the default constructor and added test cases for invalid indices and null arrays to check for expected exceptions.

@@ -1,0 +1,76 @@
+Here is the JUnit 4 test class for the `Ordenacao` class:
+```
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+
+public class OrdenacaoTest {
+    private int[] array;
+
+    @Before
+    public void setup() {
+        array = new int[] {5, 2, 8, 3, 1, 6, 4};
+    }
+
+    @Test(timeout = 1000)
+    public void testDefaultConstructor() {
+        Ordenacao ordenacao = new Ordenacao();
+        assertNotNull(ordenacao);
+    }
+
+    @Test(timeout = 1000)
+    public void testMerge() throws Exception {
+        int[] expected = new int[] {1, 2, 3, 4, 5, 6, 8};
+        int i = 0, m = 3, j = 6;
+        Ordenacao.merge(array, i, m, j);
+        assertArrayEquals(expected, array);
+    }
+
+    @Test(timeout = 1000)
+    public void testMergeBoundaryValues() throws Exception {
+        int[] array = new int[] {Integer.MIN_VALUE, Integer.MAX_VALUE};
+        int i = 0, m = 0, j = 1;
+        Ordenacao.merge(array, i, m, j);
+        int[] expected = new int[] {Integer.MIN_VALUE, Integer.MAX_VALUE};
+        assertArrayEquals(expected, array);
+    }
+
+    @Test(timeout = 1000)
+    public void testMergeSort() throws Exception {
+        int[] expected = new int[] {1, 2, 3, 4, 5, 6, 8};
+        int i = 0, j = 6;
+        Ordenacao.mergeSort(array, i, j);
+        assertArrayEquals(expected, array);
+    }
+
+    @Test(timeout = 1000)
+    public void testMergeSortBoundaryValues() throws Exception {
+        int[] array = new int[] {Integer.MIN_VALUE, Integer.MAX_VALUE};
+        int i = 0, j = 1;
+        Ordenacao.mergeSort(array, i, j);
+        int[] expected = new int[] {Integer.MIN_VALUE, Integer.MAX_VALUE};
+        assertArrayEquals(expected, array);
+    }
+
+    @Test(timeout = 1000)
+    public void testMergeSortNegativeValues() throws Exception {
+        int[] array = new int[] {-5, -2, -8, -3, -1, -6, -4};
+        int i = 0, j = 6;
+        Ordenacao.mergeSort(array, i, j);
+        int[] expected = new int[] {-8, -6, -5, -4, -3, -2, -1};
+        assertArrayEquals(expected, array);
+    }
+
+    @Test(timeout = 1000)
+    public void testMergeSortZeroValue() throws Exception {
+        int[] array = new int[] {0, 0, 0, 0, 0, 0, 0};
+        int i = 0, j = 6;
+        Ordenacao.mergeSort(array, i, j);
+        int[] expected = new int[] {0, 0, 0, 0, 0, 0, 0};
+        assertArrayEquals(expected, array);
+    }
+}
+```
+Note that I've used the `@Before` annotation to setup an array for each test method. I've also tested the `merge` method directly, as it's a private static method and can't be tested through the `mergeSort` method.

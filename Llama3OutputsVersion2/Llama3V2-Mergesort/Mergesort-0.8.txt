@@ -1,0 +1,85 @@
+Here is the unit test for the `Ordenacao` class:
+```
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+
+public class OrdenacaoTest {
+    
+    private int[] array;
+    
+    @Before
+    public void setUp() {
+        array = new int[]{5, 2, 8, 3, 1, 4};
+    }
+    
+    @Test(timeout=1000)
+    public void testMergeSort_DefaultConstructor() {
+        // Test default constructor
+        Ordenacao ordenacao = new Ordenacao();
+        assertNotNull(ordenacao);
+    }
+    
+    @Test(timeout=1000)
+    public void testMergeSort_SortedArray() {
+        // Test merge sort with a sorted array
+        int[] sortedArray = new int[]{1, 2, 3, 4, 5, 8};
+        Ordenacao.mergeSort(sortedArray, 0, sortedArray.length - 1);
+        assertArrayEquals(sortedArray, array);
+    }
+    
+    @Test(timeout=1000)
+    public void testMergeSort_ReversedArray() {
+        // Test merge sort with a reversed array
+        int[] reversedArray = new int[]{8, 5, 4, 3, 2, 1};
+        Ordenacao.mergeSort(reversedArray, 0, reversedArray.length - 1);
+        assertArrayEquals(reversedArray, array);
+    }
+    
+    @Test(timeout=1000)
+    public void testMergeSort_MiddleElement() {
+        // Test merge sort with an array with a middle element
+        int[] middleElementArray = new int[]{1, 2, 3, 4, 5, 6};
+        Ordenacao.mergeSort(middleElementArray, 0, middleElementArray.length - 1);
+        assertArrayEquals(middleElementArray, array);
+    }
+    
+    @Test(timeout=1000)
+    public void testMergeSort_EmptyArray() {
+        // Test merge sort with an empty array
+        int[] emptyArray = new int[0];
+        Ordenacao.mergeSort(emptyArray, 0, emptyArray.length - 1);
+        assertArrayEquals(emptyArray, new int[0]);
+    }
+    
+    @Test(timeout=1000)
+    public void testMergeSort_NullArray() {
+        // Test merge sort with a null array
+        try {
+            Ordenacao.mergeSort(null, 0, 0);
+            fail("Expected NullPointerException");
+        } catch (NullPointerException e) {
+            // Expected
+        }
+    }
+    
+    @Test(timeout=1000)
+    public void testMerge() {
+        // Test merge method
+        int[] temp = new int[]{2, 3, 4};
+        Ordenacao.merge(temp, 0, 2, 4);
+        assertArrayEquals(temp, new int[]{2, 3, 4});
+    }
+    
+    @Test(timeout=1000)
+    public void testMerge_BoundaryValues() {
+        // Test merge method with boundary values
+        int[] temp = new int[]{Integer.MAX_VALUE, Integer.MIN_VALUE};
+        Ordenacao.merge(temp, 0, 1, 1);
+        assertArrayEquals(temp, new int[]{Integer.MIN_VALUE, Integer.MAX_VALUE});
+    }
+}
+```
+Note that I've covered all the decisions in the methods, including the `merge` method. I've also tested with boundary values, positive and negative values, and edge cases like empty and null arrays.
