@@ -1,0 +1,74 @@
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+import ds.Ordenacao;
+
+public class OrdenacaoTest {
+
+    private int[] array;
+    private int[] sortedArray;
+    private int[] reversedArray;
+    private int[] emptyArray;
+    private int[] singleElementArray;
+    private int[] mixedArray;
+
+    @Before
+    public void setUp() {
+        array = new int[]{3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5};
+        sortedArray = new int[]{1, 1, 2, 3, 3, 4, 5, 5, 5, 6, 9};
+        reversedArray = new int[]{9, 8, 7, 6, 5, 4, 3, 2, 1};
+        emptyArray = new int[]{};
+        singleElementArray = new int[]{42};
+        mixedArray = new int[]{Integer.MAX_VALUE, Integer.MIN_VALUE, 0, -1, 1};
+    }
+
+    @Test(timeout=1000)
+    public void testMergeSortWithUnsortedArray() throws Exception {
+        Ordenacao.mergeSort(array, 0, array.length - 1);
+        assertArrayEquals(sortedArray, array);
+    }
+
+    @Test(timeout=1000)
+    public void testMergeSortWithSortedArray() throws Exception {
+        Ordenacao.mergeSort(sortedArray, 0, sortedArray.length - 1);
+        assertArrayEquals(sortedArray, sortedArray);
+    }
+
+    @Test(timeout=1000)
+    public void testMergeSortWithReversedArray() throws Exception {
+        int[] expected = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+        Ordenacao.mergeSort(reversedArray, 0, reversedArray.length - 1);
+        assertArrayEquals(expected, reversedArray);
+    }
+
+    @Test(timeout=1000)
+    public void testMergeSortWithEmptyArray() throws Exception {
+        Ordenacao.mergeSort(emptyArray, 0, emptyArray.length - 1);
+        assertArrayEquals(new int[]{}, emptyArray);
+    }
+
+    @Test(timeout=1000)
+    public void testMergeSortWithSingleElementArray() throws Exception {
+        Ordenacao.mergeSort(singleElementArray, 0, singleElementArray.length - 1);
+        assertArrayEquals(new int[]{42}, singleElementArray);
+    }
+
+    @Test(timeout=1000)
+    public void testMergeSortWithMixedArray() throws Exception {
+        int[] expected = {Integer.MIN_VALUE, -1, 0, 1, Integer.MAX_VALUE};
+        Ordenacao.mergeSort(mixedArray, 0, mixedArray.length - 1);
+        assertArrayEquals(expected, mixedArray);
+    }
+
+    @Test(timeout=1000)
+    public void testMergeSortWithBoundaryValues() throws Exception {
+        int[] boundaryArray = {Integer.MAX_VALUE, Integer.MIN_VALUE, 0};
+        int[] expected = {Integer.MIN_VALUE, 0, Integer.MAX_VALUE};
+        Ordenacao.mergeSort(boundaryArray, 0, boundaryArray.length - 1);
+        assertArrayEquals(expected, boundaryArray);
+    }
+}
+```

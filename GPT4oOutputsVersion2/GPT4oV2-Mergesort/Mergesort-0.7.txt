@@ -1,0 +1,107 @@
+Certainly! Below is a comprehensive set of unit tests for the given `Ordenacao` class. These tests cover all decisions, boundary values, and include positive and negative values where relevant.
+
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+import ds.Ordenacao;
+
+public class OrdenacaoTest {
+
+    private int[] array;
+
+    @Before
+    public void setUp() {
+        array = new int[]{3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5};
+    }
+
+    @Test(timeout=1000)
+    public void testMergeSort_EmptyArray() throws Exception {
+        int[] emptyArray = new int[0];
+        Ordenacao.mergeSort(emptyArray, 0, emptyArray.length - 1);
+        assertArrayEquals(new int[0], emptyArray);
+    }
+
+    @Test(timeout=1000)
+    public void testMergeSort_SingleElement() throws Exception {
+        int[] singleElementArray = new int[]{42};
+        Ordenacao.mergeSort(singleElementArray, 0, singleElementArray.length - 1);
+        assertArrayEquals(new int[]{42}, singleElementArray);
+    }
+
+    @Test(timeout=1000)
+    public void testMergeSort_SortedArray() throws Exception {
+        int[] sortedArray = new int[]{1, 2, 3, 4, 5};
+        Ordenacao.mergeSort(sortedArray, 0, sortedArray.length - 1);
+        assertArrayEquals(new int[]{1, 2, 3, 4, 5}, sortedArray);
+    }
+
+    @Test(timeout=1000)
+    public void testMergeSort_UnsortedArray() throws Exception {
+        int[] unsortedArray = new int[]{5, 3, 4, 1, 2};
+        Ordenacao.mergeSort(unsortedArray, 0, unsortedArray.length - 1);
+        assertArrayEquals(new int[]{1, 2, 3, 4, 5}, unsortedArray);
+    }
+
+    @Test(timeout=1000)
+    public void testMergeSort_NegativeValues() throws Exception {
+        int[] arrayWithNegatives = new int[]{-3, -1, -4, -1, -5, -9, -2, -6, -5, -3, -5};
+        Ordenacao.mergeSort(arrayWithNegatives, 0, arrayWithNegatives.length - 1);
+        assertArrayEquals(new int[]{-9, -6, -5, -5, -5, -4, -3, -3, -2, -1, -1}, arrayWithNegatives);
+    }
+
+    @Test(timeout=1000)
+    public void testMergeSort_PositiveAndNegativeValues() throws Exception {
+        int[] mixedArray = new int[]{3, -1, 4, -1, 5, -9, 2, 6, -5, 3, -5};
+        Ordenacao.mergeSort(mixedArray, 0, mixedArray.length - 1);
+        assertArrayEquals(new int[]{-9, -5, -5, -1, -1, 2, 3, 3, 4, 5, 6}, mixedArray);
+    }
+
+    @Test(timeout=1000)
+    public void testMergeSort_BoundaryValues() throws Exception {
+        int[] boundaryArray = new int[]{Integer.MIN_VALUE, 0, Integer.MAX_VALUE};
+        Ordenacao.mergeSort(boundaryArray, 0, boundaryArray.length - 1);
+        assertArrayEquals(new int[]{Integer.MIN_VALUE, 0, Integer.MAX_VALUE}, boundaryArray);
+    }
+
+    @Test(timeout=1000)
+    public void testMergeSort_DuplicateValues() throws Exception {
+        int[] duplicateArray = new int[]{5, 3, 3, 1, 1};
+        Ordenacao.mergeSort(duplicateArray, 0, duplicateArray.length - 1);
+        assertArrayEquals(new int[]{1, 1, 3, 3, 5}, duplicateArray);
+    }
+
+    @Test(timeout=1000)
+    public void testMergeSort_LargeArray() throws Exception {
+        int[] largeArray = new int[1000];
+        for (int i = 0; i < largeArray.length; i++) {
+            largeArray[i] = largeArray.length - i;
+        }
+        Ordenacao.mergeSort(largeArray, 0, largeArray.length - 1);
+        for (int i = 0; i < largeArray.length; i++) {
+            assertEquals(i + 1, largeArray[i]);
+        }
+    }
+}
+```
+
+### Explanation:
+
+1. **Imports and Setup:**
+   - Importing necessary classes and annotations.
+   - `@Before` method to set up common test data.
+
+2. **Test Cases:**
+   - **Empty Array:** Tests sorting on an empty array.
+   - **Single Element:** Tests sorting on an array with a single element.
+   - **Sorted Array:** Tests sorting on an already sorted array.
+   - **Unsorted Array:** Tests sorting on a typical unsorted array.
+   - **Negative Values:** Tests sorting on an array with negative values.
+   - **Mixed Positive and Negative Values:** Tests sorting on an array with both positive and negative values.
+   - **Boundary Values:** Tests sorting on an array containing boundary values (`Integer.MIN_VALUE` and `Integer.MAX_VALUE`).
+   - **Duplicate Values:** Tests sorting on an array with duplicate values.
+   - **Large Array:** Tests sorting on a large array to check performance within the timeout.
+
+Each test method is annotated with `@Test(timeout=1000)` ensuring they meet the specified time constraint and all necessary conditions for the unit tests are followed.

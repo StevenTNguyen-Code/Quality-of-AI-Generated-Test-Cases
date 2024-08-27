@@ -1,0 +1,90 @@
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+import ds.*;
+
+public class OrdenacaoTest {
+
+    private Ordenacao ordenacao;
+
+    @Before
+    public void setUp() {
+        ordenacao = new Ordenacao();
+    }
+
+    @Test(timeout = 1000)
+    public void testMergeSortWithPositiveValues() throws Exception {
+        int[] array = {5, 3, 8, 6, 2, 7, 4, 1};
+        Ordenacao.mergeSort(array, 0, array.length - 1);
+        int[] expected = {1, 2, 3, 4, 5, 6, 7, 8};
+        assertArrayEquals(expected, array);
+    }
+
+    @Test(timeout = 1000)
+    public void testMergeSortWithNegativeValues() throws Exception {
+        int[] array = {-5, -3, -8, -6, -2, -7, -4, -1};
+        Ordenacao.mergeSort(array, 0, array.length - 1);
+        int[] expected = {-8, -7, -6, -5, -4, -3, -2, -1};
+        assertArrayEquals(expected, array);
+    }
+
+    @Test(timeout = 1000)
+    public void testMergeSortWithMixedValues() throws Exception {
+        int[] array = {5, -3, 8, -6, 2, -7, 4, -1};
+        Ordenacao.mergeSort(array, 0, array.length - 1);
+        int[] expected = {-7, -6, -3, -1, 2, 4, 5, 8};
+        assertArrayEquals(expected, array);
+    }
+
+    @Test(timeout = 1000)
+    public void testMergeSortWithSingleElement() throws Exception {
+        int[] array = {1};
+        Ordenacao.mergeSort(array, 0, array.length - 1);
+        int[] expected = {1};
+        assertArrayEquals(expected, array);
+    }
+
+    @Test(timeout = 1000)
+    public void testMergeSortWithEmptyArray() throws Exception {
+        int[] array = {};
+        Ordenacao.mergeSort(array, 0, array.length - 1);
+        int[] expected = {};
+        assertArrayEquals(expected, array);
+    }
+
+    @Test(timeout = 1000)
+    public void testMergeSortWithBoundaryValues() throws Exception {
+        int[] array = {Integer.MAX_VALUE, Integer.MIN_VALUE, 0};
+        Ordenacao.mergeSort(array, 0, array.length - 1);
+        int[] expected = {Integer.MIN_VALUE, 0, Integer.MAX_VALUE};
+        assertArrayEquals(expected, array);
+    }
+
+    @Test(timeout = 1000)
+    public void testMergeSortWithDuplicates() throws Exception {
+        int[] array = {5, 3, 8, 3, 2, 7, 4, 1};
+        Ordenacao.mergeSort(array, 0, array.length - 1);
+        int[] expected = {1, 2, 3, 3, 4, 5, 7, 8};
+        assertArrayEquals(expected, array);
+    }
+}
+```
+
+### Explanation:
+1. **Imports and Package**: The necessary imports and package declaration are included at the top.
+2. **Setup Method**: A `setUp` method annotated with `@Before` is used to initialize the `Ordenacao` object before each test.
+3. **Test Cases**:
+   - **Positive Values**: Tests sorting an array of positive integers.
+   - **Negative Values**: Tests sorting an array of negative integers.
+   - **Mixed Values**: Tests sorting an array containing both positive and negative integers.
+   - **Single Element**: Tests sorting an array with a single element.
+   - **Empty Array**: Tests sorting an empty array.
+   - **Boundary Values**: Tests sorting an array with boundary values (`Integer.MAX_VALUE` and `Integer.MIN_VALUE`).
+   - **Duplicates**: Tests sorting an array with duplicate values.
+4. **Annotations**: Each test method is annotated with `@Test(timeout = 1000)` to ensure the test completes within the specified time.
+5. **Assertions**: `assertArrayEquals` is used to verify that the sorted array matches the expected result.
+
+This set of tests ensures that all decisions in the `mergeSort` method are covered, including boundary values and different types of input arrays.

@@ -1,0 +1,101 @@
+Certainly! Below are the JUnit 4 framework test cases for the `Ordenacao` class. These tests cover all decisions, including boundary values and both positive and negative scenarios. 
+
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+
+public class OrdenacaoTest {
+
+    private int[] array;
+
+    @Before
+    public void setUp() {
+        array = new int[]{};
+    }
+
+    /** 
+     * Test for default constructor 
+     */
+    @Test(timeout = 1000)
+    public void testDefaultConstructor() throws Exception {
+        Ordenacao ordenacao = new Ordenacao();
+        assertNotNull(ordenacao);
+    }
+
+    /**
+     * Test for mergeSort method with diverse inputs
+     */
+    @Test(timeout = 1000)
+    public void testMergeSortPositiveValues() throws Exception {
+        array = new int[]{3, 1, 4, 2, 5};
+        Ordenacao.mergeSort(array, 0, array.length - 1);
+        assertArrayEquals(new int[]{1, 2, 3, 4, 5}, array);
+    }
+
+    @Test(timeout = 1000)
+    public void testMergeSortNegativeValues() throws Exception {
+        array = new int[]{-3, -1, -4, -2, -5};
+        Ordenacao.mergeSort(array, 0, array.length - 1);
+        assertArrayEquals(new int[]{-5, -4, -3, -2, -1}, array);
+    }
+
+    @Test(timeout = 1000)
+    public void testMergeSortMixedValues() throws Exception {
+        array = new int[]{3, -1, 4, -2, 5};
+        Ordenacao.mergeSort(array, 0, array.length - 1);
+        assertArrayEquals(new int[]{-2, -1, 3, 4, 5}, array);
+    }
+
+    @Test(timeout = 1000)
+    public void testMergeSortSingleElement() throws Exception {
+        array = new int[]{1};
+        Ordenacao.mergeSort(array, 0, 0);
+        assertArrayEquals(new int[]{1}, array);
+    }
+
+    @Test(timeout = 1000)
+    public void testMergeSortEmptyArray() throws Exception {
+        int[] emptyArray = {};
+        Ordenacao.mergeSort(emptyArray, 0, 0);
+        assertArrayEquals(new int[]{}, emptyArray);
+    }
+
+    @Test(timeout = 1000)
+    public void testMergeSortAlreadySorted() throws Exception {
+        array = new int[]{1, 2, 3, 4, 5};
+        Ordenacao.mergeSort(array, 0, array.length - 1);
+        assertArrayEquals(new int[]{1, 2, 3, 4, 5}, array);
+    }
+
+    @Test(timeout = 1000)
+    public void testMergeSortReversedArray() throws Exception {
+        array = new int[]{5, 4, 3, 2, 1};
+        Ordenacao.mergeSort(array, 0, array.length - 1);
+        assertArrayEquals(new int[]{1, 2, 3, 4, 5}, array);
+    }
+
+    @Test(timeout = 1000)
+    public void testMergeSortDuplicateValues() throws Exception {
+        array = new int[]{5, 3, 4, 3, 2, 1, 1};
+        Ordenacao.mergeSort(array, 0, array.length - 1);
+        assertArrayEquals(new int[]{1, 1, 2, 3, 3, 4, 5}, array);
+    }
+}
+```
+
+### Explanation:
+1. **Test Default Constructor**: Ensures that the default constructor can be called and does not result in null.
+2. **Test for `mergeSort`**:
+   - Positive values
+   - Negative values
+   - Mixed positive and negative values
+   - Single element (Boundary case)
+   - Empty array (Boundary case)
+   - Already sorted array
+   - Reversed array
+   - Duplicate values
+
+Each of these tests ensures that all possible scenarios and boundary conditions are covered, and different combinations of inputs are tested to ensure the robustness and correctness of the `mergeSort` method.

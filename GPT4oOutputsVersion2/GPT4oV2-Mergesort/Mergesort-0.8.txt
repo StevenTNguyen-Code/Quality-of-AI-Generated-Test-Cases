@@ -1,0 +1,82 @@
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+import ds.*;
+
+public class OrdenacaoTest {
+
+    private Ordenacao ordenacao;
+    private int[] arr;
+
+    @Before
+    public void setUp() {
+        ordenacao = new Ordenacao();
+        arr = new int[]{};
+    }
+
+    @Test(timeout = 1000)
+    public void testMergeSortWithEmptyArray() throws Exception {
+        ordenacao.mergeSort(arr, 0, 0);
+        assertArrayEquals(new int[]{}, arr);
+    }
+
+    @Test(timeout = 1000)
+    public void testMergeSortWithSingleElement() throws Exception {
+        arr = new int[]{1};
+        ordenacao.mergeSort(arr, 0, 0);
+        assertArrayEquals(new int[]{1}, arr);
+    }
+
+    @Test(timeout = 1000)
+    public void testMergeSortWithTwoElementsSorted() throws Exception {
+        arr = new int[]{1, 2};
+        ordenacao.mergeSort(arr, 0, 1);
+        assertArrayEquals(new int[]{1, 2}, arr);
+    }
+
+    @Test(timeout = 1000)
+    public void testMergeSortWithTwoElementsUnsorted() throws Exception {
+        arr = new int[]{2, 1};
+        ordenacao.mergeSort(arr, 0, 1);
+        assertArrayEquals(new int[]{1, 2}, arr);
+    }
+
+    @Test(timeout = 1000)
+    public void testMergeSortWithMultipleElements() throws Exception {
+        arr = new int[]{4, 1, 3, 2};
+        ordenacao.mergeSort(arr, 0, 3);
+        assertArrayEquals(new int[]{1, 2, 3, 4}, arr);
+    }
+
+    @Test(timeout = 1000)
+    public void testMergeSortWithNegativeElements() throws Exception {
+        arr = new int[]{4, -1, 3, -2};
+        ordenacao.mergeSort(arr, 0, 3);
+        assertArrayEquals(new int[]{-2, -1, 3, 4}, arr);
+    }
+
+    @Test(timeout = 1000)
+    public void testMergeSortWithPositiveAndNegativeElements() throws Exception {
+        arr = new int[]{-5, 3, -1, 2};
+        ordenacao.mergeSort(arr, 0, 3);
+        assertArrayEquals(new int[]{-5, -1, 2, 3}, arr);
+    }
+
+    @Test(timeout = 1000)
+    public void testMergeSortWithDuplicates() throws Exception {
+        arr = new int[]{3, 1, 2, 1, 3, 2};
+        ordenacao.mergeSort(arr, 0, 5);
+        assertArrayEquals(new int[]{1, 1, 2, 2, 3, 3}, arr);
+    }
+
+    @Test(timeout = 1000)
+    public void testMergeSortWithBoundaryValues() throws Exception {
+        arr = new int[]{Integer.MIN_VALUE, Integer.MAX_VALUE};
+        ordenacao.mergeSort(arr, 0, 1);
+        assertArrayEquals(new int[]{Integer.MIN_VALUE, Integer.MAX_VALUE}, arr);
+    }
+}
+```

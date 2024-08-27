@@ -1,0 +1,99 @@
+Certainly! Below is the Java unit test code for the provided `Ordenacao` class. The tests are written in JUnit 4 and cover all the specified requirements.
+
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+
+public class OrdenacaoTest {
+
+    private Ordenacao ordenacao;
+
+    @Before
+    public void setUp() {
+        ordenacao = new Ordenacao(); // Testing the default constructor
+    }
+
+    @Test(timeout=1000)
+    public void testMergeSortWithPositiveValues() throws Exception {
+        int[] array = {5, 3, 8, 4, 2};
+        int[] expected = {2, 3, 4, 5, 8};
+        Ordenacao.mergeSort(array, 0, array.length - 1);
+        assertArrayEquals(expected, array);
+    }
+
+    @Test(timeout=1000)
+    public void testMergeSortWithNegativeValues() throws Exception {
+        int[] array = {-5, -3, -8, -4, -2};
+        int[] expected = {-8, -5, -4, -3, -2};
+        Ordenacao.mergeSort(array, 0, array.length - 1);
+        assertArrayEquals(expected, array);
+    }
+
+    @Test(timeout=1000)
+    public void testMergeSortWithMixedValues() throws Exception {
+        int[] array = {5, -3, 8, -4, 2};
+        int[] expected = {-4, -3, 2, 5, 8};
+        Ordenacao.mergeSort(array, 0, array.length - 1);
+        assertArrayEquals(expected, array);
+    }
+
+    @Test(timeout=1000)
+    public void testMergeSortWithSingleElement() throws Exception {
+        int[] array = {5};
+        int[] expected = {5};
+        Ordenacao.mergeSort(array, 0, array.length - 1);
+        assertArrayEquals(expected, array);
+    }
+
+    @Test(timeout=1000)
+    public void testMergeSortWithEmptyArray() throws Exception {
+        int[] array = {};
+        int[] expected = {};
+        Ordenacao.mergeSort(array, 0, array.length - 1);
+        assertArrayEquals(expected, array);
+    }
+
+    @Test(timeout=1000)
+    public void testMergeSortWithAlreadySortedArray() throws Exception {
+        int[] array = {1, 2, 3, 4, 5};
+        int[] expected = {1, 2, 3, 4, 5};
+        Ordenacao.mergeSort(array, 0, array.length - 1);
+        assertArrayEquals(expected, array);
+    }
+
+    @Test(timeout=1000)
+    public void testMergeSortWithReverseSortedArray() throws Exception {
+        int[] array = {5, 4, 3, 2, 1};
+        int[] expected = {1, 2, 3, 4, 5};
+        Ordenacao.mergeSort(array, 0, array.length - 1);
+        assertArrayEquals(expected, array);
+    }
+
+    @Test(timeout=1000)
+    public void testMergeSortWithDuplicateValues() throws Exception {
+        int[] array = {5, 3, 8, 3, 2};
+        int[] expected = {2, 3, 3, 5, 8};
+        Ordenacao.mergeSort(array, 0, array.length - 1);
+        assertArrayEquals(expected, array);
+    }
+
+    @Test(timeout=1000)
+    public void testMergeSortWithBoundaryValues() throws Exception {
+        int[] array = {Integer.MIN_VALUE, 0, Integer.MAX_VALUE};
+        int[] expected = {Integer.MIN_VALUE, 0, Integer.MAX_VALUE};
+        Ordenacao.mergeSort(array, 0, array.length - 1);
+        assertArrayEquals(expected, array);
+    }
+}
+```
+
+### Explanation:
+- **Imports and Package**: The necessary imports and package declaration are included as specified.
+- **Default Constructor**: The `setUp` method initializes the `Ordenacao` object to test the default constructor.
+- **Test Methods**: Each test method is annotated with `@Test(timeout=1000)` to ensure it completes within the specified time. Each method tests a different scenario, including positive values, negative values, mixed values, single element, empty array, already sorted array, reverse sorted array, duplicate values, and boundary values.
+- **Assertions**: The `assertArrayEquals` method is used to check if the sorted array matches the expected output.
+
+This test suite should cover all the decisions and boundary cases for the `mergeSort` method in the `Ordenacao` class.
