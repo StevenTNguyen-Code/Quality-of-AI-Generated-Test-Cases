@@ -1,0 +1,88 @@
+Here is an example implementation of JUnit 4 test cases for the `MaxMin1` class according to the given prompt:
+
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+
+import static org.junit.Assert.*;
+
+public class MaxMin1Test {
+
+    private MaxMin1 maxMin1;
+
+    @Before
+    public void setUp() throws Exception {
+        maxMin1 = new MaxMin1();
+    }
+
+    @Test(timeout=1000)
+    public void testDefaultConstructor() throws Exception {
+        assertNotNull(maxMin1);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin1SingleElementArray() throws Exception {
+        int[] input = {10};
+        int[] expected = {10, 10};
+        int[] result = MaxMin1.maxMin1(input, 1);
+        assertArrayEquals(expected, result);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin1PositiveValues() throws Exception {
+        int[] input = {1, 2, 3, 4, 5};
+        int[] expected = {5, 1};
+        int[] result = MaxMin1.maxMin1(input, 5);
+        assertArrayEquals(expected, result);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin1NegativeValues() throws Exception {
+        int[] input = {-1, -2, -3, -4, -5};
+        int[] expected = {-1, -5};
+        int[] result = MaxMin1.maxMin1(input, 5);
+        assertArrayEquals(expected, result);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin1MixedValues() throws Exception {
+        int[] input = {-1, 2, -3, 4, 0};
+        int[] expected = {4, -3};
+        int[] result = MaxMin1.maxMin1(input, 5);
+        assertArrayEquals(expected, result);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin1AllZeroValues() throws Exception {
+        int[] input = {0, 0, 0, 0, 0};
+        int[] expected = {0, 0};
+        int[] result = MaxMin1.maxMin1(input, 5);
+        assertArrayEquals(expected, result);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin1BoundaryValues() throws Exception {
+        int[] input = {Integer.MAX_VALUE, Integer.MIN_VALUE};
+        int[] expected = {Integer.MAX_VALUE, Integer.MIN_VALUE};
+        int[] result = MaxMin1.maxMin1(input, 2);
+        assertArrayEquals(expected, result);
+    }
+
+    @Test(timeout=1000, expected=ArrayIndexOutOfBoundsException.class)
+    public void testMaxMin1EmptyArray() throws Exception {
+        int[] input = {};
+        MaxMin1.maxMin1(input, 0);
+    }
+}
+```
+
+Explanation:
+1. **Imports**: The required imports for JUnit 4 are included.
+2. **Setup Method**: The `setUp` annotated with `@Before` initializes the instance of `MaxMin1`.
+3. **Default Constructor Test**: Ensures that an instance of `MaxMin1` can be created.
+4. **Method Tests**: Tests various scenarios including positive values, negative values, mixed values, all zeros, and boundary values, ensuring conditional expressions are both true and false.
+5. **Empty Array Test**: Tests if an `ArrayIndexOutOfBoundsException` is thrown for an empty array, as per the requirements. 
+
+Each test method includes `timeout=1000` to ensure the methods execute within the specified time, ensuring compliance with the requirements.

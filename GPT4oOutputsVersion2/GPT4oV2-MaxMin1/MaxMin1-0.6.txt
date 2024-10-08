@@ -1,0 +1,89 @@
+Sure, I can help you with that. Below is the JUnit 4 test class for the `MaxMin1` class. 
+
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+import ds.*;
+
+public class MaxMin1Test {
+
+    private MaxMin1 maxMin1;
+
+    @Before
+    public void setUp() {
+        maxMin1 = new MaxMin1();
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin1WithPositiveNumbers() throws Exception {
+        int[] input = {1, 2, 3, 4, 5};
+        int[] expected = {5, 1};
+        int[] result = MaxMin1.maxMin1(input, input.length);
+        assertArrayEquals(expected, result);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin1WithNegativeNumbers() throws Exception {
+        int[] input = {-1, -2, -3, -4, -5};
+        int[] expected = {-1, -5};
+        int[] result = MaxMin1.maxMin1(input, input.length);
+        assertArrayEquals(expected, result);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin1WithMixedNumbers() throws Exception {
+        int[] input = {-1, 2, -3, 4, 0};
+        int[] expected = {4, -3};
+        int[] result = MaxMin1.maxMin1(input, input.length);
+        assertArrayEquals(expected, result);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin1WithSingleElement() throws Exception {
+        int[] input = {42};
+        int[] expected = {42, 42};
+        int[] result = MaxMin1.maxMin1(input, input.length);
+        assertArrayEquals(expected, result);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin1WithTwoElements() throws Exception {
+        int[] input = {1, -1};
+        int[] expected = {1, -1};
+        int[] result = MaxMin1.maxMin1(input, input.length);
+        assertArrayEquals(expected, result);
+    }
+
+    @Test(timeout=1000, expected=ArrayIndexOutOfBoundsException.class)
+    public void testMaxMin1WithEmptyArray() throws Exception {
+        int[] input = {};
+        MaxMin1.maxMin1(input, input.length);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin1WithDuplicates() throws Exception {
+        int[] input = {2, 2, 2, 2, 2};
+        int[] expected = {2, 2};
+        int[] result = MaxMin1.maxMin1(input, input.length);
+        assertArrayEquals(expected, result);
+    }
+}
+```
+
+### Explanation:
+
+1. **Imports:** All necessary imports are included.
+2. **Setup:** A `setUp` method annotated with `@Before` initializes an instance of `MaxMin1`.
+3. **Test cases:**
+   - **Positive Numbers:** Tests the method with an array of positive numbers.
+   - **Negative Numbers:** Tests the method with an array of negative numbers.
+   - **Mixed Numbers:** Tests the method with an array containing both positive and negative numbers.
+   - **Single Element:** Tests the method with an array containing a single element.
+   - **Two Elements:** Tests the method with an array containing two elements.
+   - **Empty Array:** Tests the method with an empty array, expecting an `ArrayIndexOutOfBoundsException`.
+   - **Duplicates:** Tests the method with an array where all elements are the same.
+
+Each test method is annotated with `@Test(timeout=1000)` and throws an `Exception` as requested. The test class should compile and run successfully with the JUnit 4 framework.

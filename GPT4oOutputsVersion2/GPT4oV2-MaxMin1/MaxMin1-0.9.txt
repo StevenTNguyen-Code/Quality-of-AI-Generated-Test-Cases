@@ -1,0 +1,63 @@
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+import ds.*;
+
+public class MaxMin1Test {
+  
+    private MaxMin1 maxMin;
+
+    @Before
+    public void setUp() throws Exception {
+        maxMin = new MaxMin1();
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin1_AllPositive() throws Exception {
+        int[] inputArray = {1, 3, 5, 7, 9};
+        int[] result = MaxMin1.maxMin1(inputArray, inputArray.length);
+        assertArrayEquals(new int[]{9, 1}, result);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin1_AllNegative() throws Exception {
+        int[] inputArray = {-1, -3, -5, -7, -9};
+        int[] result = MaxMin1.maxMin1(inputArray, inputArray.length);
+        assertArrayEquals(new int[]{-1, -9}, result);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin1_PositiveAndNegative() throws Exception {
+        int[] inputArray = {-1, 3, -5, 7, -9};
+        int[] result = MaxMin1.maxMin1(inputArray, inputArray.length);
+        assertArrayEquals(new int[]{7, -9}, result);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin1_SingleElement() throws Exception {
+        int[] inputArray = {42};
+        int[] result = MaxMin1.maxMin1(inputArray, inputArray.length);
+        assertArrayEquals(new int[]{42, 42}, result);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin1_BoundaryValues() throws Exception {
+        int[] inputArray = {Integer.MIN_VALUE, Integer.MAX_VALUE};
+        int[] result = MaxMin1.maxMin1(inputArray, inputArray.length);
+        assertArrayEquals(new int[]{Integer.MAX_VALUE, Integer.MIN_VALUE}, result);
+    }
+}
+```
+
+### Explanation of Test Cases:
+
+1. **testMaxMin1_AllPositive**: Tests the scenario where all elements in the array are positive.
+2. **testMaxMin1_AllNegative**: Tests the scenario where all elements in the array are negative.
+3. **testMaxMin1_PositiveAndNegative**: Tests a mix of positive and negative numbers.
+4. **testMaxMin1_SingleElement**: Tests the scenario where the array contains only one element.
+5. **testMaxMin1_BoundaryValues**: Tests the array with boundary values, the minimum and maximum integers.
+
+These tests cover the various possible conditions, including boundary values, ensuring that your `maxMin1` method is thoroughly tested. Each test case declares `throws Exception` and includes the `timeout=1000` attribute for the `@Test` annotation, complying with the constraints provided.

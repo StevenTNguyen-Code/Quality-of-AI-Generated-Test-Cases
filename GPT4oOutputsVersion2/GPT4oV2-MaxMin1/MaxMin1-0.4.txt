@@ -1,0 +1,75 @@
+Certainly! Below is the Java unit test code for the `MaxMin1` class using JUnit 4 framework format:
+
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+import ds.MaxMin1;
+
+public class MaxMin1Test {
+
+    private int[] positiveArray;
+    private int[] negativeArray;
+    private int[] mixedArray;
+    private int[] singleElementArray;
+
+    @Before
+    public void setUp() {
+        positiveArray = new int[]{1, 2, 3, 4, 5};
+        negativeArray = new int[]{-1, -2, -3, -4, -5};
+        mixedArray = new int[]{-1, 0, 1, 2, -2};
+        singleElementArray = new int[]{42};
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin1PositiveValues() throws Exception {
+        int[] result = MaxMin1.maxMin1(positiveArray, positiveArray.length);
+        assertArrayEquals(new int[]{5, 1}, result);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin1NegativeValues() throws Exception {
+        int[] result = MaxMin1.maxMin1(negativeArray, negativeArray.length);
+        assertArrayEquals(new int[]{-1, -5}, result);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin1MixedValues() throws Exception {
+        int[] result = MaxMin1.maxMin1(mixedArray, mixedArray.length);
+        assertArrayEquals(new int[]{2, -2}, result);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin1SingleElement() throws Exception {
+        int[] result = MaxMin1.maxMin1(singleElementArray, singleElementArray.length);
+        assertArrayEquals(new int[]{42, 42}, result);
+    }
+
+    @Test(timeout=1000, expected=ArrayIndexOutOfBoundsException.class)
+    public void testMaxMin1EmptyArray() throws Exception {
+        int[] emptyArray = new int[]{};
+        MaxMin1.maxMin1(emptyArray, emptyArray.length);
+    }
+
+    @Test(timeout=1000, expected=NullPointerException.class)
+    public void testMaxMin1NullArray() throws Exception {
+        int[] nullArray = null;
+        MaxMin1.maxMin1(nullArray, 0);
+    }
+}
+```
+
+### Explanation:
+1. **Imports**: The necessary imports for JUnit 4 and the class under test are included.
+2. **Setup**: The `@Before` annotated `setUp` method initializes arrays with different test cases.
+3. **Test Cases**:
+   - `testMaxMin1PositiveValues`: Tests the method with an array of positive values.
+   - `testMaxMin1NegativeValues`: Tests the method with an array of negative values.
+   - `testMaxMin1MixedValues`: Tests the method with an array containing both positive and negative values.
+   - `testMaxMin1SingleElement`: Tests the method with an array containing a single element.
+   - `testMaxMin1EmptyArray`: Tests the method with an empty array, expecting an `ArrayIndexOutOfBoundsException`.
+   - `testMaxMin1NullArray`: Tests the method with a null array, expecting a `NullPointerException`.
+
+Each test method includes the `timeout=1000` parameter to ensure it completes within 1000 milliseconds. The expected exceptions are specified for the relevant test cases.
