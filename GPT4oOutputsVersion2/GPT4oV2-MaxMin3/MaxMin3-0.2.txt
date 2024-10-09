@@ -1,0 +1,96 @@
+Certainly! Below is the Java unit test code for the `MaxMin3` class using JUnit 4 framework. This test suite covers all decisions, boundary values, and includes tests for both positive and negative values.
+
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+
+public class MaxMin3Test {
+
+    private MaxMin3 maxMin3;
+
+    @Before
+    public void setUp() throws Exception {
+        maxMin3 = new MaxMin3();
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin3EvenLength() throws Exception {
+        int[] input = {1, 2, 3, 4};
+        int[] expected = {4, 1};
+        assertArrayEquals(expected, MaxMin3.maxMin3(input, input.length));
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin3OddLength() throws Exception {
+        int[] input = {1, 2, 3};
+        int[] expected = {3, 1};
+        assertArrayEquals(expected, MaxMin3.maxMin3(input, input.length));
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin3SingleElement() throws Exception {
+        int[] input = {1};
+        int[] expected = {1, 1};
+        assertArrayEquals(expected, MaxMin3.maxMin3(input, input.length));
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin3TwoElements() throws Exception {
+        int[] input = {1, 2};
+        int[] expected = {2, 1};
+        assertArrayEquals(expected, MaxMin3.maxMin3(input, input.length));
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin3NegativeValues() throws Exception {
+        int[] input = {-1, -2, -3, -4};
+        int[] expected = {-1, -4};
+        assertArrayEquals(expected, MaxMin3.maxMin3(input, input.length));
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin3MixedValues() throws Exception {
+        int[] input = {-1, 2, -3, 4};
+        int[] expected = {4, -3};
+        assertArrayEquals(expected, MaxMin3.maxMin3(input, input.length));
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin3BoundaryValues() throws Exception {
+        int[] input = {Integer.MAX_VALUE, Integer.MIN_VALUE, 0, -1};
+        int[] expected = {Integer.MAX_VALUE, Integer.MIN_VALUE};
+        assertArrayEquals(expected, MaxMin3.maxMin3(input, input.length));
+    }
+
+    @Test(timeout=1000, expected=ArrayIndexOutOfBoundsException.class)
+    public void testMaxMin3EmptyArray() throws Exception {
+        int[] input = {};
+        MaxMin3.maxMin3(input, input.length);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin3AllSameValues() throws Exception {
+        int[] input = {1, 1, 1, 1};
+        int[] expected = {1, 1};
+        assertArrayEquals(expected, MaxMin3.maxMin3(input, input.length));
+    }
+}
+```
+
+### Explanation:
+1. **Setup Method**: The `setUp` method initializes the `MaxMin3` object before each test.
+2. **Test Cases**:
+   - **testMaxMin3EvenLength**: Tests an array with an even number of elements.
+   - **testMaxMin3OddLength**: Tests an array with an odd number of elements.
+   - **testMaxMin3SingleElement**: Tests an array with a single element.
+   - **testMaxMin3TwoElements**: Tests an array with two elements.
+   - **testMaxMin3NegativeValues**: Tests an array with negative values.
+   - **testMaxMin3MixedValues**: Tests an array with mixed positive and negative values.
+   - **testMaxMin3BoundaryValues**: Tests an array with boundary values (Integer.MAX_VALUE and Integer.MIN_VALUE).
+   - **testMaxMin3EmptyArray**: Tests an empty array and expects an `ArrayIndexOutOfBoundsException`.
+   - **testMaxMin3AllSameValues**: Tests an array where all elements are the same.
+
+Each test method is annotated with `@Test(timeout=1000)` to ensure it completes within 1000 milliseconds. The `expected` attribute is used in `testMaxMin3EmptyArray` to handle the exception scenario.

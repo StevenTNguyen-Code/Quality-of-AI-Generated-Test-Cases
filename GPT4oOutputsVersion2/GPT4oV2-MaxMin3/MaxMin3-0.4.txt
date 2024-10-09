@@ -1,0 +1,77 @@
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+
+public class MaxMin3Test {
+
+    private MaxMin3 maxMin3;
+
+    @Before
+    public void setUp() {
+        maxMin3 = new MaxMin3();
+    }
+
+    @Test(timeout=1000)
+    public void testDefaultConstructor() throws Exception {
+        assertNotNull(new MaxMin3());
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin3WithOddLengthArray() throws Exception {
+        int[] input = {3, 1, 4, 1, 5};
+        int[] expected = {5, 1};
+        assertArrayEquals(expected, MaxMin3.maxMin3(input, 5));
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin3WithEvenLengthArray() throws Exception {
+        int[] input = {3, 1, 4, 1};
+        int[] expected = {4, 1};
+        assertArrayEquals(expected, MaxMin3.maxMin3(input, 4));
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin3WithNegativeValues() throws Exception {
+        int[] input = {-3, -1, -4, -1};
+        int[] expected = {-1, -4};
+        assertArrayEquals(expected, MaxMin3.maxMin3(input, 4));
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin3WithMixedValues() throws Exception {
+        int[] input = {3, -1, 4, -1, 5};
+        int[] expected = {5, -1};
+        assertArrayEquals(expected, MaxMin3.maxMin3(input, 5));
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin3WithSingleElement() throws Exception {
+        int[] input = {3};
+        int[] expected = {3, 3};
+        assertArrayEquals(expected, MaxMin3.maxMin3(input, 1));
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin3WithTwoElements() throws Exception {
+        int[] input = {3, 1};
+        int[] expected = {3, 1};
+        assertArrayEquals(expected, MaxMin3.maxMin3(input, 2));
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin3WithBoundaryValues() throws Exception {
+        int[] input = {Integer.MAX_VALUE, Integer.MIN_VALUE};
+        int[] expected = {Integer.MAX_VALUE, Integer.MIN_VALUE};
+        assertArrayEquals(expected, MaxMin3.maxMin3(input, 2));
+    }
+
+    @Test(timeout=1000, expected=ArrayIndexOutOfBoundsException.class)
+    public void testMaxMin3WithEmptyArray() throws Exception {
+        int[] input = {};
+        MaxMin3.maxMin3(input, 0);
+    }
+}
+```

@@ -1,0 +1,104 @@
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+import ds.*;
+
+public class MaxMin3Test {
+
+    private MaxMin3 maxMin3;
+
+    @Before
+    public void setUp() {
+        maxMin3 = new MaxMin3();
+    }
+
+    @Test(timeout=1000)
+    public void testDefaultConstructor() throws Exception {
+        assertNotNull(new MaxMin3());
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin3WithEvenCount() throws Exception {
+        int[] v = {1, 2, 3, 4, 5, 6};
+        int n = 6;
+        int[] result = MaxMin3.maxMin3(v, n);
+        assertEquals("Max should be 6", 6, result[0]);
+        assertEquals("Min should be 1", 1, result[1]);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin3WithOddCount() throws Exception {
+        int[] v = {2, 4, 1, 5, 3};
+        int n = 5;
+        int[] result = MaxMin3.maxMin3(v, n);
+        assertEquals("Max should be 5", 5, result[0]);
+        assertEquals("Min should be 1", 1, result[1]);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin3WithNegativeValues() throws Exception {
+        int[] v = {-3, -1, -2, -4, -5};
+        int n = 5;
+        int[] result = MaxMin3.maxMin3(v, n);
+        assertEquals("Max should be -1", -1, result[0]);
+        assertEquals("Min should be -5", -5, result[1]);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin3WithSingleElement() throws Exception {
+        int[] v = {42};
+        int n = 1;
+        int[] result = MaxMin3.maxMin3(v, n);
+        assertEquals("Max should be 42", 42, result[0]);
+        assertEquals("Min should be 42", 42, result[1]);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin3WithTwoElements() throws Exception {
+        int[] v = {10, -10};
+        int n = 2;
+        int[] result = MaxMin3.maxMin3(v, n);
+        assertEquals("Max should be 10", 10, result[0]);
+        assertEquals("Min should be -10", -10, result[1]);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin3WithDuplicateElements() throws Exception {
+        int[] v = {3, 3, 3, 3};
+        int n = 4;
+        int[] result = MaxMin3.maxMin3(v, n);
+        assertEquals("Max should be 3", 3, result[0]);
+        assertEquals("Min should be 3", 3, result[1]);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin3WithZeroAndPositive() throws Exception {
+        int[] v = {0, 1, 2, 3};
+        int n = 4;
+        int[] result = MaxMin3.maxMin3(v, n);
+        assertEquals("Max should be 3", 3, result[0]);
+        assertEquals("Min should be 0", 0, result[1]);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin3WithZeroAndNegative() throws Exception {
+        int[] v = {0, -1, -2, -3};
+        int n = 4;
+        int[] result = MaxMin3.maxMin3(v, n);
+        assertEquals("Max should be 0", 0, result[0]);
+        assertEquals("Min should be -3", -3, result[1]);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin3WithBoundaryValues() throws Exception {
+        int[] v = {Integer.MAX_VALUE, Integer.MIN_VALUE};
+        int n = 2;
+        int[] result = MaxMin3.maxMin3(v, n);
+        assertEquals("Max should be Integer.MAX_VALUE", Integer.MAX_VALUE, result[0]);
+        assertEquals("Min should be Integer.MIN_VALUE", Integer.MIN_VALUE, result[1]);
+    }
+}
+```

@@ -1,0 +1,118 @@
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+
+public class MaxMin3Test {
+
+    private MaxMin3 maxMin3;
+
+    @Before
+    public void setUp() {
+        maxMin3 = new MaxMin3();
+    }
+
+    @Test(timeout = 1000)
+    public void testDefaultConstructor() {
+        assertNotNull(maxMin3);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin3_PositiveNumbers() throws Exception {
+        int[] v = {1, 2, 3, 4, 5};
+        int n = 5;
+        int[] result = MaxMin3.maxMin3(v, n);
+        assertEquals(5, result[0]);
+        assertEquals(1, result[1]);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin3_NegativeNumbers() throws Exception {
+        int[] v = {-1, -2, -3, -4, -5};
+        int n = 5;
+        int[] result = MaxMin3.maxMin3(v, n);
+        assertEquals(-1, result[0]);
+        assertEquals(-5, result[1]);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin3_MixedNumbers() throws Exception {
+        int[] v = {1, -2, 3, -4, 5};
+        int n = 5;
+        int[] result = MaxMin3.maxMin3(v, n);
+        assertEquals(5, result[0]);
+        assertEquals(-4, result[1]);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin3_SingleElement() throws Exception {
+        int[] v = {42};
+        int n = 1;
+        int[] result = MaxMin3.maxMin3(v, n);
+        assertEquals(42, result[0]);
+        assertEquals(42, result[1]);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin3_TwoElements() throws Exception {
+        int[] v = {3, 1};
+        int n = 2;
+        int[] result = MaxMin3.maxMin3(v, n);
+        assertEquals(3, result[0]);
+        assertEquals(1, result[1]);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin3_BoundaryValues() throws Exception {
+        int[] v = {Integer.MAX_VALUE, Integer.MIN_VALUE};
+        int n = 2;
+        int[] result = MaxMin3.maxMin3(v, n);
+        assertEquals(Integer.MAX_VALUE, result[0]);
+        assertEquals(Integer.MIN_VALUE, result[1]);
+    }
+
+    @Test(timeout = 1000, expected = NullPointerException.class)
+    public void testMaxMin3_NullArray() throws Exception {
+        int[] v = null;
+        int n = 0;
+        MaxMin3.maxMin3(v, n);
+    }
+
+    @Test(timeout = 1000, expected = ArrayIndexOutOfBoundsException.class)
+    public void testMaxMin3_EmptyArray() throws Exception {
+        int[] v = {};
+        int n = 0;
+        MaxMin3.maxMin3(v, n);
+    }
+
+    @Test(timeout = 1000, expected = ArrayIndexOutOfBoundsException.class)
+    public void testMaxMin3_InvalidN() throws Exception {
+        int[] v = {1, 2, 3};
+        int n = 5;
+        MaxMin3.maxMin3(v, n);
+    }
+}
+```
+
+**Explanation:**
+
+1. **Imports and Package:** The necessary imports and package declaration are included at the top.
+2. **Setup Method:** A setup method `setUp()` is created to initialize the `MaxMin3` object. This is run before each test.
+3. **Default Constructor Test:** A test case `testDefaultConstructor` ensures that the default constructor works correctly.
+4. **Functional Tests:** Various test cases cover different scenarios:
+   - `testMaxMin3_PositiveNumbers`: Tests with positive numbers.
+   - `testMaxMin3_NegativeNumbers`: Tests with negative numbers.
+   - `testMaxMin3_MixedNumbers`: Tests with both positive and negative numbers.
+   - `testMaxMin3_SingleElement`: Tests with a single element.
+   - `testMaxMin3_TwoElements`: Tests with two elements to check boundary conditions.
+   - `testMaxMin3_BoundaryValues`: Tests with the boundary values of integers.
+5. **Exception Tests:** Tests to check if the appropriate exceptions are thrown:
+   - `testMaxMin3_NullArray`: Tests a null array input.
+   - `testMaxMin3_EmptyArray`: Tests an empty array input.
+   - `testMaxMin3_InvalidN`: Tests when `n` is greater than the length of the array.
+
+6. **Timeout and Exception Handling:** All test methods have `timeout=1000` to ensure they complete within a specified time. The `expected` attribute is used in tests where an exception is explicitly checked.
+
+These tests comprehensively cover the class `MaxMin3` and ensure all conditional expressions are tested for true and false values, including boundary conditions.
