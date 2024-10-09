@@ -1,0 +1,85 @@
+Certainly! Below are the Java unit tests for the `MaxMin2` class using JUnit 4 framework format, as per your requirements:
+
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+
+public class MaxMin2Test {
+    
+    private MaxMin2 maxMin2;
+    
+    @Before
+    public void setUp() throws Exception {
+        maxMin2 = new MaxMin2();
+    }
+    
+    @Test(timeout = 1000)
+    public void testDefaultConstructor() throws Exception {
+        new MaxMin2();
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin2WithPositiveValues() throws Exception {
+        int[] input = {1, 2, 3, 4, 5};
+        int n = input.length;
+        int[] result = MaxMin2.maxMin2(input, n);
+        assertArrayEquals(new int[]{5, 1}, result);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin2WithNegativeValues() throws Exception {
+        int[] input = {-1, -2, -3, -4, -5};
+        int n = input.length;
+        int[] result = MaxMin2.maxMin2(input, n);
+        assertArrayEquals(new int[]{-1, -5}, result);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin2WithMixedValues() throws Exception {
+        int[] input = {-1, 0, 1, -2, 2};
+        int n = input.length;
+        int[] result = MaxMin2.maxMin2(input, n);
+        assertArrayEquals(new int[]{2, -2}, result);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin2WithSingleValue() throws Exception {
+        int[] input = {5};
+        int n = input.length;
+        int[] result = MaxMin2.maxMin2(input, n);
+        assertArrayEquals(new int[]{5, 5}, result);
+    }
+    
+    @Test(timeout = 1000)
+    public void testMaxMin2WithTwoValues() throws Exception {
+        int[] input = {3, 7};
+        int n = input.length;
+        int[] result = MaxMin2.maxMin2(input, n);
+        assertArrayEquals(new int[]{7, 3}, result);
+    }
+    
+    @Test(timeout = 1000, expected = ArrayIndexOutOfBoundsException.class)
+    public void testMaxMin2WithEmptyArray() throws Exception {
+        int[] input = {};
+        int n = input.length;
+        MaxMin2.maxMin2(input, n); // Should throw ArrayIndexOutOfBoundsException
+    }
+
+}
+```
+
+### Explanation:
+1. **Imports**: All necessary imports are included.
+2. **Setup Method**: The `setUp` method initializes a `MaxMin2` instance before each test runs.
+3. **Default Constructor Test**: Tests the default constructor.
+4. **Testing Positive Values**: Tests with an array of positive integers.
+5. **Testing Negative Values**: Tests with an array of negative integers.
+6. **Testing Mixed Values**: Tests with an array containing both positive and negative integers.
+7. **Testing Single Value**: Tests with a single integer in the array.
+8. **Testing Two Values**: Tests with an array containing two integers.
+9. **Testing Empty Array**: Tests with an empty array to check if an exception is thrown as expected.
+
+This setup ensures that all the requirements stated in the prompt are met, including boundary values, true/false conditional tests, and exception scenarios.
