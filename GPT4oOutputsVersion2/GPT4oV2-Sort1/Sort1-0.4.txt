@@ -1,0 +1,79 @@
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+import ds.Ordenacao;
+
+public class OrdenacaoTest {
+
+    private Ordenacao ordenacao;
+
+    @Before
+    public void setUp() {
+        ordenacao = new Ordenacao();
+    }
+
+    @Test(timeout=1000)
+    public void testDefaultConstructor() throws Exception {
+        assertNotNull("Ordenacao instance should be created", ordenacao);
+    }
+
+    @Test(timeout=1000)
+    public void testOrdenaWithSortedArray() throws Exception {
+        int[] array = {1, 2, 3, 4, 5};
+        Ordenacao.ordena(array, array.length);
+        assertArrayEquals(new int[]{1, 2, 3, 4, 5}, array);
+    }
+
+    @Test(timeout=1000)
+    public void testOrdenaWithUnsortedArray() throws Exception {
+        int[] array = {5, 4, 3, 2, 1};
+        Ordenacao.ordena(array, array.length);
+        assertArrayEquals(new int[]{1, 2, 3, 4, 5}, array);
+    }
+
+    @Test(timeout=1000)
+    public void testOrdenaWithNegativeNumbers() throws Exception {
+        int[] array = {-1, -3, -2, -5, -4};
+        Ordenacao.ordena(array, array.length);
+        assertArrayEquals(new int[]{-5, -4, -3, -2, -1}, array);
+    }
+
+    @Test(timeout=1000)
+    public void testOrdenaWithMixedNumbers() throws Exception {
+        int[] array = {3, -1, 2, -5, 4};
+        Ordenacao.ordena(array, array.length);
+        assertArrayEquals(new int[]{-5, -1, 2, 3, 4}, array);
+    }
+
+    @Test(timeout=1000)
+    public void testOrdenaWithSingleElement() throws Exception {
+        int[] array = {1};
+        Ordenacao.ordena(array, array.length);
+        assertArrayEquals(new int[]{1}, array);
+    }
+
+    @Test(timeout=1000)
+    public void testOrdenaWithEmptyArray() throws Exception {
+        int[] array = {};
+        Ordenacao.ordena(array, array.length);
+        assertArrayEquals(new int[]{}, array);
+    }
+
+    @Test(timeout=1000)
+    public void testOrdenaWithBoundaryValues() throws Exception {
+        int[] array = {Integer.MAX_VALUE, Integer.MIN_VALUE, 0};
+        Ordenacao.ordena(array, array.length);
+        assertArrayEquals(new int[]{Integer.MIN_VALUE, 0, Integer.MAX_VALUE}, array);
+    }
+
+    @Test(timeout=1000)
+    public void testOrdenaWithDuplicateValues() throws Exception {
+        int[] array = {3, 1, 2, 2, 1};
+        Ordenacao.ordena(array, array.length);
+        assertArrayEquals(new int[]{1, 1, 2, 2, 3}, array);
+    }
+}
+```

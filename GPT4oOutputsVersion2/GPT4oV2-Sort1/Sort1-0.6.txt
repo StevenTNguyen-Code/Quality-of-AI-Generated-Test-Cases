@@ -1,0 +1,95 @@
+Sure, I will provide you with a set of JUnit 4 tests to cover the `Ordenacao` class as per your requirements. Here is the test class:
+
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+
+public class OrdenacaoTest {
+    
+    private Ordenacao ordenacao;
+
+    @Before
+    public void setUp() throws Exception {
+        ordenacao = new Ordenacao();
+    }
+
+    @Test(timeout=1000)
+    public void testDefaultConstructor() throws Exception {
+        assertNotNull(new Ordenacao());
+    }
+
+    @Test(timeout=1000)
+    public void testOrdenaEmptyArray() throws Exception {
+        int[] array = {};
+        Ordenacao.ordena(array, 0);
+        assertArrayEquals(new int[]{}, array);
+    }
+
+    @Test(timeout=1000)
+    public void testOrdenaSingleElementArray() throws Exception {
+        int[] array = {1};
+        Ordenacao.ordena(array, 1);
+        assertArrayEquals(new int[]{1}, array);
+    }
+
+    @Test(timeout=1000)
+    public void testOrdenaSortedArray() throws Exception {
+        int[] array = {1, 2, 3, 4, 5};
+        Ordenacao.ordena(array, 5);
+        assertArrayEquals(new int[]{1, 2, 3, 4, 5}, array);
+    }
+
+    @Test(timeout=1000)
+    public void testOrdenaUnsortedArray() throws Exception {
+        int[] array = {5, 3, 4, 1, 2};
+        Ordenacao.ordena(array, 5);
+        assertArrayEquals(new int[]{1, 2, 3, 4, 5}, array);
+    }
+
+    @Test(timeout=1000)
+    public void testOrdenaNegativeValues() throws Exception {
+        int[] array = {-3, -1, -2, -5, -4};
+        Ordenacao.ordena(array, 5);
+        assertArrayEquals(new int[]{-5, -4, -3, -2, -1}, array);
+    }
+
+    @Test(timeout=1000)
+    public void testOrdenaMixedValues() throws Exception {
+        int[] array = {3, -1, 2, -5, 4};
+        Ordenacao.ordena(array, 5);
+        assertArrayEquals(new int[]{-5, -1, 2, 3, 4}, array);
+    }
+
+    @Test(timeout=1000)
+    public void testOrdenaDuplicates() throws Exception {
+        int[] array = {2, 3, 1, 2, 3, 1};
+        Ordenacao.ordena(array, 6);
+        assertArrayEquals(new int[]{1, 1, 2, 2, 3, 3}, array);
+    }
+
+    @Test(timeout=1000)
+    public void testOrdenaBoundaryValues() throws Exception {
+        int[] array = {Integer.MAX_VALUE, Integer.MIN_VALUE, 0, -1, 1};
+        Ordenacao.ordena(array, 5);
+        assertArrayEquals(new int[]{Integer.MIN_VALUE, -1, 0, 1, Integer.MAX_VALUE}, array);
+    }
+}
+```
+
+### Explanation:
+1. **Default Constructor Test**: Ensures that the default constructor of the `Ordenacao` class can be instantiated.
+2. **Empty Array Test**: Tests the method with an empty array.
+3. **Single Element Array Test**: Tests the method with an array containing a single element.
+4. **Sorted Array Test**: Tests the method with an already sorted array.
+5. **Unsorted Array Test**: Tests the method with an unsorted array.
+6. **Negative Values Test**: Tests the method with an array containing negative values.
+7. **Mixed Values Test**: Tests the method with an array containing both positive and negative values.
+8. **Duplicates Test**: Tests the method with an array containing duplicate values.
+9. **Boundary Values Test**: Tests the method with boundary values like `Integer.MAX_VALUE` and `Integer.MIN_VALUE`.
+
+Each test includes the `timeout=1000` annotation to ensure that the test completes within 1000 milliseconds. 
+
+Feel free to add more tests if necessary, but these should cover the main cases as per your requirements.

@@ -1,0 +1,109 @@
+Certainly! Below is a set of JUnit 4 test cases for the `Ordenacao` class, covering all decisions, boundary values, and including necessary annotations and imports.
+
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+
+public class OrdenacaoTest {
+
+    private Ordenacao ordenacao;
+
+    @Before
+    public void setUp() {
+        ordenacao = new Ordenacao();
+    }
+
+    @Test(timeout = 1000)
+    public void testDefaultConstructor() throws Exception {
+        assertNotNull("Ordenacao instance should be created", ordenacao);
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdenaWithEmptyArray() throws Exception {
+        int[] v = {};
+        Ordenacao.ordena(v, 0);
+        assertArrayEquals("Empty array should remain unchanged", new int[]{}, v);
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdenaWithSingleElementArray() throws Exception {
+        int[] v = {1};
+        Ordenacao.ordena(v, 1);
+        assertArrayEquals("Single element array should remain unchanged", new int[]{1}, v);
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdenaWithTwoElementsArray() throws Exception {
+        int[] v = {2, 1};
+        Ordenacao.ordena(v, 2);
+        assertArrayEquals("Array should be sorted", new int[]{1, 2}, v);
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdenaWithSortedArray() throws Exception {
+        int[] v = {1, 2, 3, 4, 5};
+        Ordenacao.ordena(v, 5);
+        assertArrayEquals("Sorted array should remain unchanged", new int[]{1, 2, 3, 4, 5}, v);
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdenaWithUnsortedArray() throws Exception {
+        int[] v = {5, 4, 3, 2, 1};
+        Ordenacao.ordena(v, 5);
+        assertArrayEquals("Array should be sorted", new int[]{1, 2, 3, 4, 5}, v);
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdenaWithNegativeValues() throws Exception {
+        int[] v = {-1, -3, -2, -5, -4};
+        Ordenacao.ordena(v, 5);
+        assertArrayEquals("Array should be sorted", new int[]{-5, -4, -3, -2, -1}, v);
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdenaWithMixedValues() throws Exception {
+        int[] v = {3, -1, 2, -3, 1};
+        Ordenacao.ordena(v, 5);
+        assertArrayEquals("Array should be sorted", new int[]{-3, -1, 1, 2, 3}, v);
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdenaWithDuplicateValues() throws Exception {
+        int[] v = {2, 3, 2, 1, 1};
+        Ordenacao.ordena(v, 5);
+        assertArrayEquals("Array should be sorted", new int[]{1, 1, 2, 2, 3}, v);
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdenaWithLargeArray() throws Exception {
+        int[] v = new int[1000];
+        for (int i = 0; i < 1000; i++) {
+            v[i] = 1000 - i;
+        }
+        Ordenacao.ordena(v, 1000);
+        for (int i = 0; i < 1000; i++) {
+            assertEquals("Array should be sorted", i + 1, v[i]);
+        }
+    }
+}
+```
+
+### Explanation:
+1. **Imports**: The necessary imports for JUnit 4 and the class under test are included.
+2. **Setup Method**: The `setUp` method initializes the `Ordenacao` instance.
+3. **Default Constructor Test**: Ensures the default constructor works.
+4. **Test Cases**: Each test case is annotated with `@Test(timeout = 1000)` and covers various scenarios:
+   - Empty array
+   - Single element array
+   - Two elements array
+   - Already sorted array
+   - Unsorted array
+   - Array with negative values
+   - Array with mixed positive and negative values
+   - Array with duplicate values
+   - Large array to test performance and correctness
+
+These tests ensure that all decisions and boundary values are covered, and the tests are designed to compile and run successfully in a JUnit 4 environment.

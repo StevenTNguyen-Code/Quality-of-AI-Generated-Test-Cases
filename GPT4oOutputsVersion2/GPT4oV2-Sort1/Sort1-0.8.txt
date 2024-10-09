@@ -1,0 +1,111 @@
+Certainly! Below is a set of JUnit 4 test cases for the `Ordenacao` class, adhering to your specifications:
+
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+import ds.Ordenacao;
+
+public class OrdenacaoTest {
+
+    private Ordenacao ordenacao;
+
+    @Before
+    public void setUp() {
+        ordenacao = new Ordenacao();
+    }
+
+    @Test(timeout = 1000)
+    public void testDefaultConstructor() throws Exception {
+        assertNotNull("Ordenacao instance should be created successfully", new Ordenacao());
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdenaWithPositiveNumbers() throws Exception {
+        int[] arr = {5, 3, 8, 1, 2};
+        int[] expected = {1, 2, 3, 5, 8};
+        Ordenacao.ordena(arr, arr.length);
+        assertArrayEquals("The array should be sorted in ascending order", expected, arr);
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdenaWithNegativeNumbers() throws Exception {
+        // Test with negative numbers
+        int[] arr = {-5, -3, -8, -1, -2};
+        int[] expected = {-8, -5, -3, -2, -1};
+        Ordenacao.ordena(arr, arr.length);
+        assertArrayEquals("The array should be sorted in ascending order", expected, arr);
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdenaWithMixedNumbers() throws Exception {
+        // Test with mixed positive and negative numbers
+        int[] arr = {3, -2, -1, 5, 0};
+        int[] expected = {-2, -1, 0, 3, 5};
+        Ordenacao.ordena(arr, arr.length);
+        assertArrayEquals("The array should be sorted in ascending order", expected, arr);
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdenaWithSingleElement() throws Exception {
+        // Test boundary case with a single element
+        int[] arr = {1};
+        int[] expected = {1};
+        Ordenacao.ordena(arr, arr.length);
+        assertArrayEquals("The array with a single element should remain unchanged", expected, arr);
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdenaWithEmptyArray() throws Exception {
+        // Test boundary case with an empty array
+        int[] arr = {};
+        int[] expected = {};
+        Ordenacao.ordena(arr, arr.length);
+        assertArrayEquals("An empty array should remain unchanged", expected, arr);
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdenaWithAlreadySortedArray() throws Exception {
+        // Test with an already sorted array
+        int[] arr = {1, 2, 3, 4, 5};
+        int[] expected = {1, 2, 3, 4, 5};
+        Ordenacao.ordena(arr, arr.length);
+        assertArrayEquals("The already sorted array should remain unchanged", expected, arr);
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdenaWithReverseSortedArray() throws Exception {
+        // Test with a reverse sorted array
+        int[] arr = {5, 4, 3, 2, 1};
+        int[] expected = {1, 2, 3, 4, 5};
+        Ordenacao.ordena(arr, arr.length);
+        assertArrayEquals("The reverse sorted array should be sorted in ascending order", expected, arr);
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdenaWithDuplicateValues() throws Exception {
+        // Test with duplicate values in the array
+        int[] arr = {3, 1, 2, 3, 1};
+        int[] expected = {1, 1, 2, 3, 3};
+        Ordenacao.ordena(arr, arr.length);
+        assertArrayEquals("The array with duplicate values should be sorted in ascending order", expected, arr);
+    }
+}
+```
+
+### Explanation:
+1. **Setup Method**: The `@Before` method sets up an instance of `Ordenacao`.
+2. **Default Constructor Test**: Checks if an instance of `Ordenacao` can be created.
+3. **Test Cases**: Each test case uses different sets of arrays to cover all decisions and boundary values:
+   - Positive numbers
+   - Negative numbers
+   - Mixed positive and negative numbers
+   - Single element array (boundary case)
+   - Empty array (boundary case)
+   - Already sorted array
+   - Reverse sorted array
+   - Array with duplicate values
+
+All tests include `timeout = 1000` in the `@Test` annotation to enforce the timeout requirement. The tests ensure that the `ordena` method behaves as expected in various scenarios.

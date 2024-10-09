@@ -1,0 +1,86 @@
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+import ds.*;
+
+public class OrdenacaoTest {
+
+    private Ordenacao ordenacao;
+
+    @Before
+    public void setUp() {
+        ordenacao = new Ordenacao();
+    }
+
+    @Test(timeout = 1000)
+    public void testDefaultConstructor() throws Exception {
+        assertNotNull("Ordenacao instance should be created", ordenacao);
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdenaEmptyArray() throws Exception {
+        int[] v = {};
+        Ordenacao.ordena(v, 0);
+        assertArrayEquals("Empty array should remain empty", new int[]{}, v);
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdenaSingleElementArray() throws Exception {
+        int[] v = {5};
+        Ordenacao.ordena(v, 1);
+        assertArrayEquals("Single element array should remain unchanged", new int[]{5}, v);
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdenaAlreadySortedArray() throws Exception {
+        int[] v = {1, 2, 3, 4, 5};
+        Ordenacao.ordena(v, 5);
+        assertArrayEquals("Already sorted array should remain unchanged", new int[]{1, 2, 3, 4, 5}, v);
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdenaReverseSortedArray() throws Exception {
+        int[] v = {5, 4, 3, 2, 1};
+        Ordenacao.ordena(v, 5);
+        assertArrayEquals("Reverse sorted array should be sorted", new int[]{1, 2, 3, 4, 5}, v);
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdenaUnsortedArray() throws Exception {
+        int[] v = {3, 1, 4, 5, 2};
+        Ordenacao.ordena(v, 5);
+        assertArrayEquals("Unsorted array should be sorted", new int[]{1, 2, 3, 4, 5}, v);
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdenaArrayWithDuplicates() throws Exception {
+        int[] v = {3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5};
+        Ordenacao.ordena(v, 11);
+        assertArrayEquals("Array with duplicates should be sorted", new int[]{1, 1, 2, 3, 3, 4, 5, 5, 5, 6, 9}, v);
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdenaNegativeValues() throws Exception {
+        int[] v = {-3, -1, -4, -5, -2};
+        Ordenacao.ordena(v, 5);
+        assertArrayEquals("Array with negative values should be sorted", new int[]{-5, -4, -3, -2, -1}, v);
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdenaMixedValues() throws Exception {
+        int[] v = {3, -1, 4, -5, 2};
+        Ordenacao.ordena(v, 5);
+        assertArrayEquals("Array with mixed values should be sorted", new int[]{-5, -1, 2, 3, 4}, v);
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdenaBoundaryValues() throws Exception {
+        int[] v = {Integer.MAX_VALUE, Integer.MIN_VALUE, 0};
+        Ordenacao.ordena(v, 3);
+        assertArrayEquals("Array with boundary values should be sorted", new int[]{Integer.MIN_VALUE, 0, Integer.MAX_VALUE}, v);
+    }
+}
+```

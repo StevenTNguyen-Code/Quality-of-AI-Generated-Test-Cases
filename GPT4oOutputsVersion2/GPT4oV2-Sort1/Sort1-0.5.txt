@@ -1,0 +1,116 @@
+Certainly! Below is a set of JUnit 4 test cases for the `Ordenacao` class, covering all decisions, boundary values, and including necessary annotations and imports.
+
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+import ds.*;
+
+public class OrdenacaoTest {
+
+    private Ordenacao ordenacao;
+
+    @Before
+    public void setUp() {
+        ordenacao = new Ordenacao();
+    }
+
+    // Test for the default constructor
+    @Test(timeout = 1000)
+    public void testDefaultConstructor() throws Exception {
+        assertNotNull("Ordenacao instance should be created", new Ordenacao());
+    }
+
+    // Test method with a typical case
+    @Test(timeout = 1000)
+    public void testOrdenaTypicalCase() throws Exception {
+        int[] array = {5, 3, 8, 4, 2};
+        int n = array.length;
+        Ordenacao.ordena(array, n);
+        int[] expected = {2, 3, 4, 5, 8};
+        assertArrayEquals("Array should be sorted", expected, array);
+    }
+
+    // Test method with an already sorted array
+    @Test(timeout = 1000)
+    public void testOrdenaAlreadySorted() throws Exception {
+        int[] array = {1, 2, 3, 4, 5};
+        int n = array.length;
+        Ordenacao.ordena(array, n);
+        int[] expected = {1, 2, 3, 4, 5};
+        assertArrayEquals("Array should remain sorted", expected, array);
+    }
+
+    // Test method with a reverse sorted array
+    @Test(timeout = 1000)
+    public void testOrdenaReverseSorted() throws Exception {
+        int[] array = {5, 4, 3, 2, 1};
+        int n = array.length;
+        Ordenacao.ordena(array, n);
+        int[] expected = {1, 2, 3, 4, 5};
+        assertArrayEquals("Array should be sorted", expected, array);
+    }
+
+    // Test method with all elements being the same
+    @Test(timeout = 1000)
+    public void testOrdenaAllSame() throws Exception {
+        int[] array = {2, 2, 2, 2, 2};
+        int n = array.length;
+        Ordenacao.ordena(array, n);
+        int[] expected = {2, 2, 2, 2, 2};
+        assertArrayEquals("Array should remain the same", expected, array);
+    }
+
+    // Test method with an empty array
+    @Test(timeout = 1000)
+    public void testOrdenaEmptyArray() throws Exception {
+        int[] array = {};
+        int n = array.length;
+        Ordenacao.ordena(array, n);
+        int[] expected = {};
+        assertArrayEquals("Empty array should remain empty", expected, array);
+    }
+
+    // Test method with a single element
+    @Test(timeout = 1000)
+    public void testOrdenaSingleElement() throws Exception {
+        int[] array = {1};
+        int n = array.length;
+        Ordenacao.ordena(array, n);
+        int[] expected = {1};
+        assertArrayEquals("Single element array should remain the same", expected, array);
+    }
+
+    // Test method with negative values
+    @Test(timeout = 1000)
+    public void testOrdenaWithNegativeValues() throws Exception {
+        int[] array = {3, -1, 2, -5, 4};
+        int n = array.length;
+        Ordenacao.ordena(array, n);
+        int[] expected = {-5, -1, 2, 3, 4};
+        assertArrayEquals("Array should be sorted including negative values", expected, array);
+    }
+
+    // Test method with mixed positive and negative values
+    @Test(timeout = 1000)
+    public void testOrdenaMixedValues() throws Exception {
+        int[] array = {0, -3, 5, -1, 3};
+        int n = array.length;
+        Ordenacao.ordena(array, n);
+        int[] expected = {-3, -1, 0, 3, 5};
+        assertArrayEquals("Array should be sorted including mixed values", expected, array);
+    }
+}
+```
+
+This set of tests covers:
+
+- Typical cases.
+- Boundary values (empty array, single element).
+- Different array configurations (already sorted, reverse sorted, all same elements).
+- Arrays with negative and mixed values.
+- Default constructor.
+
+Each test includes the `timeout = 1000` annotation to ensure the test completes within 1 second. The tests are designed to run and compile successfully in a Java 8 environment using the JUnit 4 framework.

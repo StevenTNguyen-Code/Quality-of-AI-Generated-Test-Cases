@@ -1,0 +1,90 @@
+Sure! Below is the Java Unit Test code for the `Ordenacao` class using JUnit 4 framework format:
+
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+import ds.*;
+
+public class OrdenacaoTest {
+
+    private Ordenacao ordenacao;
+
+    @Before
+    public void setUp() {
+        ordenacao = new Ordenacao();
+    }
+
+    @Test(timeout=1000)
+    public void testDefaultConstructor() throws Exception {
+        assertNotNull(ordenacao);
+    }
+
+    @Test(timeout=1000)
+    public void testOrdenaWithPositiveValues() throws Exception {
+        int[] arr = {3, 1, 2};
+        int n = arr.length;
+        Ordenacao.ordena(arr, n);
+        int[] expected = {1, 2, 3};
+        assertArrayEquals(expected, arr);
+    }
+
+    @Test(timeout=1000)
+    public void testOrdenaWithNegativeValues() throws Exception {
+        int[] arr = {-3, -1, -2};
+        int n = arr.length;
+        Ordenacao.ordena(arr, n);
+        int[] expected = {-3, -2, -1};
+        assertArrayEquals(expected, arr);
+    }
+
+    @Test(timeout=1000)
+    public void testOrdenaWithMixedValues() throws Exception {
+        int[] arr = {3, -1, 2, -3, 1};
+        int n = arr.length;
+        Ordenacao.ordena(arr, n);
+        int[] expected = {-3, -1, 1, 2, 3};
+        assertArrayEquals(expected, arr);
+    }
+
+    @Test(timeout=1000)
+    public void testOrdenaWithSingleElement() throws Exception {
+        int[] arr = {1};
+        int n = arr.length;
+        Ordenacao.ordena(arr, n);
+        int[] expected = {1};
+        assertArrayEquals(expected, arr);
+    }
+
+    @Test(timeout=1000)
+    public void testOrdenaWithEmptyArray() throws Exception {
+        int[] arr = {};
+        int n = arr.length;
+        Ordenacao.ordena(arr, n);
+        int[] expected = {};
+        assertArrayEquals(expected, arr);
+    }
+
+    @Test(timeout=1000)
+    public void testOrdenaWithBoundaryValues() throws Exception {
+        int[] arr = {Integer.MIN_VALUE, Integer.MAX_VALUE, 0};
+        int n = arr.length;
+        Ordenacao.ordena(arr, n);
+        int[] expected = {Integer.MIN_VALUE, 0, Integer.MAX_VALUE};
+        assertArrayEquals(expected, arr);
+    }
+
+    @Test(timeout=1000)
+    public void testOrdenaWithDuplicateValues() throws Exception {
+        int[] arr = {3, 1, 2, 1, 3};
+        int n = arr.length;
+        Ordenacao.ordena(arr, n);
+        int[] expected = {1, 1, 2, 3, 3};
+        assertArrayEquals(expected, arr);
+    }
+}
+```
+
+Each test method includes `timeout=1000` and throws `Exception`. The tests cover various scenarios, including positive values, negative values, mixed values, single element arrays, empty arrays, boundary values, and duplicate values. The `testDefaultConstructor` verifies the default constructor of the `Ordenacao` class.
