@@ -1,0 +1,63 @@
+Certainly! Below is a set of JUnit 4 test cases for the `Fibonacci` class, covering all the requirements specified:
+
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+import ds.Fibonacci;
+
+public class FibonacciTest {
+
+    private Fibonacci fibonacci;
+
+    @Before
+    public void setUp() {
+        fibonacci = new Fibonacci();
+    }
+
+    @Test(timeout=1000)
+    public void testDefaultConstructor() throws Exception {
+        assertNotNull("Fibonacci instance should be created", fibonacci);
+    }
+
+    @Test(timeout=1000)
+    public void testFibIterWithZero() throws Exception {
+        assertEquals("Fibonacci of 0 should be 0", 0, Fibonacci.fibIter(0));
+    }
+
+    @Test(timeout=1000)
+    public void testFibIterWithOne() throws Exception {
+        assertEquals("Fibonacci of 1 should be 1", 1, Fibonacci.fibIter(1));
+    }
+
+    @Test(timeout=1000)
+    public void testFibIterWithPositiveNumber() throws Exception {
+        assertEquals("Fibonacci of 5 should be 5", 5, Fibonacci.fibIter(5));
+    }
+
+    @Test(timeout=1000)
+    public void testFibIterWithNegativeNumber() throws Exception {
+        assertEquals("Fibonacci of -5 should be 0", 0, Fibonacci.fibIter(-5));
+    }
+
+    @Test(timeout=1000)
+    public void testFibIterWithBoundaryValue() throws Exception {
+        assertEquals("Fibonacci of Integer.MAX_VALUE should be 0 due to overflow", 0, Fibonacci.fibIter(Integer.MAX_VALUE));
+    }
+}
+```
+
+### Explanation:
+1. **Imports and Package**: The necessary imports and package declaration are included.
+2. **Setup Method**: The `setUp` method initializes the `Fibonacci` instance.
+3. **Default Constructor Test**: Ensures that the default constructor creates an instance of `Fibonacci`.
+4. **Test Cases**:
+   - **Zero**: Tests the Fibonacci of 0.
+   - **One**: Tests the Fibonacci of 1.
+   - **Positive Number**: Tests the Fibonacci of a positive number (5 in this case).
+   - **Negative Number**: Tests the Fibonacci of a negative number (-5 in this case).
+   - **Boundary Value**: Tests the Fibonacci of `Integer.MAX_VALUE` to check for overflow handling.
+
+Each test method includes the `timeout=1000` parameter to ensure it completes within 1 second. The test for negative numbers and boundary values ensures that the method handles edge cases appropriately.

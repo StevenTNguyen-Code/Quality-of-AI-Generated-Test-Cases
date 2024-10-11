@@ -1,0 +1,74 @@
+Sure, here are the unit tests for the `Fibonacci` class using JUnit 4:
+
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+
+public class FibonacciTest {
+
+    private Fibonacci fibonacci;
+
+    @Before
+    public void setUp() {
+        fibonacci = new Fibonacci();
+    }
+
+    @Test(timeout=1000)
+    public void testDefaultConstructor() throws Exception {
+        assertNotNull(new Fibonacci());
+    }
+
+    @Test(timeout=1000)
+    public void testFibIterZero() throws Exception {
+        assertEquals(0, Fibonacci.fibIter(0));
+    }
+
+    @Test(timeout=1000)
+    public void testFibIterOne() throws Exception {
+        assertEquals(1, Fibonacci.fibIter(1));
+    }
+
+    @Test(timeout=1000)
+    public void testFibIterTwo() throws Exception {
+        assertEquals(1, Fibonacci.fibIter(2));
+    }
+
+    @Test(timeout=1000)
+    public void testFibIterThree() throws Exception {
+        assertEquals(2, Fibonacci.fibIter(3));
+    }
+
+    @Test(timeout=1000)
+    public void testFibIterFive() throws Exception {
+        assertEquals(5, Fibonacci.fibIter(5));
+    }
+
+    @Test(timeout=1000)
+    public void testFibIterTen() throws Exception {
+        assertEquals(55, Fibonacci.fibIter(10));
+    }
+
+    @Test(timeout=1000)
+    public void testFibIterNegative() throws Exception {
+        assertEquals(0, Fibonacci.fibIter(-1));
+    }
+
+    @Test(timeout=1000)
+    public void testFibIterLargeValue() throws Exception {
+        assertEquals(832040, Fibonacci.fibIter(30));
+    }
+}
+```
+
+### Explanation:
+1. **Imports**: The necessary imports for JUnit 4 are included.
+2. **Setup Method**: The `setUp` method initializes the `Fibonacci` instance.
+3. **Default Constructor Test**: Ensures that the default constructor works and creates an instance.
+4. **Boundary and Decision Tests**: Tests for various values of `n` including boundary values like `0`, `1`, and `2`, as well as larger values and a negative value.
+5. **Timeout**: Each test method includes `timeout=1000` to ensure it completes within 1 second.
+6. **Assertions**: Uses `assertEquals` to verify the expected output of the `fibIter` method.
+
+These tests cover the functional requirements and boundary conditions for the `fibIter` method.

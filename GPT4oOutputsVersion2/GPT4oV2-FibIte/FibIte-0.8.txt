@@ -1,0 +1,74 @@
+Certainly! Below is a Java Unit Test class for your Fibonacci class, adhering to the requirements you stated.
+
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+import ds.*;
+
+public class FibonacciTest {
+
+    private Fibonacci fibonacci;
+
+    @Before
+    public void setUp() {
+        fibonacci = new Fibonacci();
+    }
+
+    @Test(timeout=1000)
+    public void testDefaultConstructor() throws Exception {
+        assertNotNull("Fibonacci instance should be created", fibonacci);
+    }
+
+    @Test(timeout=1000)
+    public void testFibIterWithZero() throws Exception {
+        assertEquals("Fibonacci of 0 should be 0", 0, Fibonacci.fibIter(0));
+    }
+
+    @Test(timeout=1000)
+    public void testFibIterWithOne() throws Exception {
+        assertEquals("Fibonacci of 1 should be 1", 1, Fibonacci.fibIter(1));
+    }
+
+    @Test(timeout=1000)
+    public void testFibIterWithPositive() throws Exception {
+        assertEquals("Fibonacci of 5 should be 5", 5, Fibonacci.fibIter(5));
+    }
+
+    @Test(timeout=1000)
+    public void testFibIterWithNegative() throws Exception {
+        try {
+            Fibonacci.fibIter(-1);
+            fail("Exception should be thrown for negative input");
+        } catch (IllegalArgumentException e) {
+            // Expected exception
+        }
+    }
+
+    @Test(timeout=1000)
+    public void testFibIterBoundary() throws Exception {
+        // Testing boundary values
+        assertEquals("Fibonacci of Integer.MAX_VALUE should work", 0, Fibonacci.fibIter(Integer.MAX_VALUE));
+    }
+}
+```
+
+### Explanation:
+1. **Setup Method**: The `setUp` method initializes an instance of the `Fibonacci` class. This method is marked with `@Before`, which means it will run before each test.
+
+2. **Default Constructor Test**: This test case ensures that an instance of `Fibonacci` can be created successfully.
+
+3. **Test Cases for `fibIter` Method**:
+    - **Zero**: Tests the Fibonacci of `0`.
+    - **One**: Tests the Fibonacci of `1`.
+    - **Positive Value**: Tests the Fibonacci of a positive value (`5`).
+    - **Negative Value**: Tests that the method throws an `IllegalArgumentException` for negative input.
+    - **Boundary Value**: Tests the method with the boundary value of `Integer.MAX_VALUE`.
+
+### Notes:
+- The `fibIter` method should ideally handle negative inputs by throwing an `IllegalArgumentException`. If this is not implemented in your original code, you should add this functionality to make the tests pass.
+- For boundary value testing, a value like `Integer.MAX_VALUE` may not be practical due to computing constraints, but it’s included here to follow the prompt strictly. You might need to adjust based on practical limits.
+- Each test case uses the `timeout=1000` parameter to ensure that no test runs longer than 1 second.
+- The test case for negative values assumes that the method will throw an `IllegalArgumentException`. You might need to adjust the exception type based on your actual implementation.

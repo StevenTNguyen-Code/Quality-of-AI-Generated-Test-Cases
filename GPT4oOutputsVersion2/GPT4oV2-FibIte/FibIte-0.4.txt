@@ -1,0 +1,64 @@
+Sure, here are the unit tests for the `Fibonacci` class according to your specifications:
+
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+import ds.*;
+
+public class FibonacciTest {
+
+    private Fibonacci fibonacci;
+
+    @Before
+    public void setUp() throws Exception {
+        fibonacci = new Fibonacci();
+    }
+
+    @Test(timeout=1000)
+    public void testFibIterWithZero() throws Exception {
+        assertEquals(0, Fibonacci.fibIter(0));
+    }
+
+    @Test(timeout=1000)
+    public void testFibIterWithOne() throws Exception {
+        assertEquals(1, Fibonacci.fibIter(1));
+    }
+
+    @Test(timeout=1000)
+    public void testFibIterWithPositiveValue() throws Exception {
+        assertEquals(21, Fibonacci.fibIter(8));
+    }
+
+    @Test(timeout=1000)
+    public void testFibIterWithNegativeValue() throws Exception {
+        assertEquals(0, Fibonacci.fibIter(-5)); // Assuming the function returns 0 for negative values
+    }
+
+    @Test(timeout=1000)
+    public void testFibIterWithBoundaryValue() throws Exception {
+        assertEquals(1, Fibonacci.fibIter(2));
+    }
+
+    @Test(timeout=1000)
+    public void testDefaultConstructor() throws Exception {
+        Fibonacci fib = new Fibonacci();
+        assertNotNull(fib);
+    }
+}
+```
+
+### Explanation:
+1. **Imports and Package**: The necessary imports and package declaration are included.
+2. **Setup Method**: The `setUp` method initializes the `Fibonacci` object before each test.
+3. **Tests for `fibIter` Method**:
+    - **Zero Input**: Tests the method with `0` as input.
+    - **One Input**: Tests the method with `1` as input.
+    - **Positive Value**: Tests the method with a positive value `8`.
+    - **Negative Value**: Tests the method with a negative value `-5`. Assumes the function returns `0` for negative values.
+    - **Boundary Value**: Tests the method with a boundary value `2`.
+4. **Default Constructor**: Tests the default constructor to ensure it initializes the object correctly.
+
+Each test method includes the `timeout=1000` annotation to ensure it completes within 1000 milliseconds. The tests are designed to cover various decision points and boundary values as specified.

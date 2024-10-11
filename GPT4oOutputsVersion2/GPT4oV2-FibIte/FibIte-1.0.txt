@@ -1,0 +1,78 @@
+Got it. Below is a set of unit tests written for the `Fibonacci` class in JUnit 4 format, covering all decisions, boundary values, and using the mandatory requirements you've provided.
+
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+import ds.*;
+
+public class FibonacciTest {
+
+    private Fibonacci fibonacci;
+
+    @Before
+    public void setUp() {
+        fibonacci = new Fibonacci();
+    }
+
+    @Test(timeout=1000)
+    public void testDefaultConstructor() throws Exception {
+        Fibonacci instance = new Fibonacci();
+        assertNotNull(instance);
+    }
+
+    @Test(timeout=1000)
+    public void testFibIterZero() throws Exception {
+        int result = Fibonacci.fibIter(0);
+        assertEquals(0, result);
+    }
+
+    @Test(timeout=1000)
+    public void testFibIterOne() throws Exception {
+        int result = Fibonacci.fibIter(1);
+        assertEquals(1, result);
+    }
+
+    @Test(timeout=1000)
+    public void testFibIterTwo() throws Exception {
+        int result = Fibonacci.fibIter(2);
+        assertEquals(1, result);
+    }
+
+    @Test(timeout=1000)
+    public void testFibIterPositive() throws Exception {
+        int result = Fibonacci.fibIter(10);
+        assertEquals(55, result);
+    }
+
+    @Test(timeout=1000)
+    public void testFibIterBoundary() throws Exception {
+        int result = Fibonacci.fibIter(46);  // Maximum value for `n` to avoid overflow in int
+        assertEquals(1836311903, result);
+    }
+
+    @Test(timeout=1000)
+    public void testFibIterNegative() throws Exception {
+        try {
+            Fibonacci.fibIter(-1);
+            fail("Expected IllegalArgumentException for negative input");
+        } catch (IllegalArgumentException e) {
+            // Expected exception
+        }
+    }
+}
+```
+
+### Explanation:
+1. **Default Constructor Test**: Ensures the default constructor works and object can be instantiated.
+2. **Boundary and Edge Cases**:
+   - `testFibIterZero()`: Tests `fibIter` with `n = 0`, expecting `0`.
+   - `testFibIterOne()`: Tests `fibIter` with `n = 1`, expecting `1`.
+   - `testFibIterTwo()`: Tests `fibIter` with `n = 2`, expecting `1`.
+   - `testFibIterPositive()`: General positive case.
+   - `testFibIterBoundary()`: Tests the Fibonacci number at a boundary value for `int`.
+   - `testFibIterNegative()`: Ensures the function throws an `IllegalArgumentException` for negative values (assuming you intended the method to throw this, even though it's not shown in the provided code; this might need to be added in the actual method implementation).
+
+These tests comprehensively cover functional correctness, boundary conditions, and decision points for the `fibIter` method.

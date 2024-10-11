@@ -1,0 +1,102 @@
+Sure, I'll write a set of JUnit 4 tests for the `Fibonacci` class considering all the requirements mentioned:
+
+- Functional test cases to cover all decisions.
+- All conditional expressions must assume true and false values.
+- Tests with Boundary Values.
+- Use positive and negative values for numeric data.
+- Include all necessary imports.
+- Throw Exceptions in all test method declarations.
+- Include `timeout=1000` in all `@Test` annotations.
+- Test for the default constructor.
+- Each method must have at least one test case.
+- Use `@Test(expected=...)` only if the method under testing explicitly throws an exception.
+- The test must compile and run successfully.
+
+Here's the JUnit 4 test class for the `Fibonacci` class:
+
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+
+public class FibonacciTest {
+
+    private Fibonacci fibonacci;
+
+    @Before
+    public void setUp() throws Exception {
+        fibonacci = new Fibonacci();
+    }
+
+    @Test(timeout = 1000)
+    public void testDefaultConstructor() throws Exception {
+        Fibonacci fib = new Fibonacci();
+        assertNotNull(fib);
+    }
+
+    @Test(timeout = 1000)
+    public void testFibIterZero() throws Exception {
+        assertEquals(0, Fibonacci.fibIter(0));
+    }
+
+    @Test(timeout = 1000)
+    public void testFibIterOne() throws Exception {
+        assertEquals(1, Fibonacci.fibIter(1));
+    }
+
+    @Test(timeout = 1000)
+    public void testFibIterTwo() throws Exception {
+        assertEquals(1, Fibonacci.fibIter(2));
+    }
+
+    @Test(timeout = 1000)
+    public void testFibIterThree() throws Exception {
+        assertEquals(2, Fibonacci.fibIter(3));
+    }
+
+    @Test(timeout = 1000)
+    public void testFibIterTen() throws Exception {
+        assertEquals(55, Fibonacci.fibIter(10));
+    }
+
+    @Test(timeout = 1000)
+    public void testFibIterNegative() throws Exception {
+        assertEquals(0, Fibonacci.fibIter(-1));
+    }
+
+    @Test(timeout = 1000)
+    public void testFibIterBoundaryPositive() throws Exception {
+        assertEquals(1134903170, Fibonacci.fibIter(45));
+    }
+
+    @Test(timeout = 1000)
+    public void testFibIterBoundaryNegative() throws Exception {
+        assertEquals(0, Fibonacci.fibIter(-45));
+    }
+}
+```
+
+### Explanation:
+
+1. **Default Constructor Test**:
+    - A test to ensure the default constructor of the `Fibonacci` class works correctly.
+
+2. **Functional Tests**:
+    - Tests for the `fibIter` method with various inputs (0, 1, 2, 3, 10, -1, 45, -45).
+    - Covering basic cases, boundary cases, and negative values.
+
+3. **Boundary Values**:
+    - Included tests for boundary values such as `fibIter(45)` which is a large positive number and `fibIter(-45)` which is a large negative number.
+
+4. **Negative Values**:
+    - A test with a negative input `fibIter(-1)` to ensure the method handles negative values correctly.
+
+5. **Timeouts**:
+    - Each test method includes `timeout = 1000` to ensure they complete within a reasonable time.
+
+6. **Exception Handling**:
+    - `@Test(expected=...)` is not used because the `fibIter` method does not explicitly throw exceptions.
+
+These tests should cover the functionality of the `Fibonacci` class as per the requirements.

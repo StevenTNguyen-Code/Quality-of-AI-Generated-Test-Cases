@@ -1,0 +1,82 @@
+Sure! Below is the Java unit test code following your prompt for the given `Fibonacci` class:
+
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+import ds.Fibonacci;
+
+public class FibonacciTest {
+
+    private Fibonacci fibonacci;
+
+    @Before
+    public void setUp() throws Exception {
+        fibonacci = new Fibonacci();
+    }
+
+    // Testing the default constructor
+    @Test(timeout = 1000)
+    public void testDefaultConstructor() throws Exception {
+        Fibonacci fibonacci = new Fibonacci();
+        assertNotNull(fibonacci);
+    }
+
+    // Testing fibIter() for boundary and edge cases
+    @Test(timeout = 1000)
+    public void testFibIterZero() throws Exception {
+        assertEquals(0, Fibonacci.fibIter(0));
+    }
+
+    @Test(timeout = 1000)
+    public void testFibIterOne() throws Exception {
+        assertEquals(1, Fibonacci.fibIter(1));
+    }
+
+    @Test(timeout = 1000)
+    public void testFibIterTwo() throws Exception {
+        assertEquals(1, Fibonacci.fibIter(2));
+    }
+
+    @Test(timeout = 1000)
+    public void testFibIterThree() throws Exception {
+        assertEquals(2, Fibonacci.fibIter(3));
+    }
+
+    @Test(timeout = 1000)
+    public void testFibIterTen() throws Exception {
+        assertEquals(55, Fibonacci.fibIter(10));
+    }
+
+    // Testing fibIter() with negative value
+    @Test(timeout = 1000, expected = IllegalArgumentException.class)
+    public void testFibIterNegative() throws Exception {
+        Fibonacci.fibIter(-1);
+    }
+
+    // Testing fibIter() with large value (upper boundary check)
+    @Test(timeout = 1000)
+    public void testFibIterLarge() throws Exception {
+        int n = 46; 
+        assertEquals(1836311903, Fibonacci.fibIter(n));
+    }
+
+}
+```
+
+### Points to Note:
+1. **Default Constructor Test**: A test case for the default constructor to ensure it initializes objects correctly.
+2. **Boundary and Edge Cases**: 
+    - Zero `n = 0`
+    - Small positive values `n = 1, 2, 3`
+    - Larger positive value `n = 10`
+3. **Negative Value Test**: Tests an exception for negative input.
+4. **Upper Boundary Test**: Tests for a large value to ensure it handles large Fibonacci numbers correctly (choosing `n = 46` which is a sizable Fibonacci number without causing performance or overflow issues).
+
+### Additional Changes:
+- Assuming that the method will throw an `IllegalArgumentException` for negative inputs. You should include this behavior in your actual method implementation if it doesn't already.
+- Java does not handle large Fibonacci numbers very well without optimizations like memoization, so the test with large `n` must be chosen with caution to avoid integer overflow.
+
+Feel free to modify the test with more specific requirements or different edge cases as needed.
