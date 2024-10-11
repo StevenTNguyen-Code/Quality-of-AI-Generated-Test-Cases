@@ -1,0 +1,111 @@
+Sure, here are the unit tests for the given `MaxMin4` class using Java 8 and JUnit 4:
+
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+
+public class MaxMin4Test {
+
+    private MaxMin4 maxMin4;
+
+    @Before
+    public void setUp() {
+        maxMin4 = new MaxMin4();
+    }
+
+    @Test(timeout=1000)
+    public void testDefaultConstructor() throws Exception {
+        assertNotNull(new MaxMin4());
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin4SingleElement() throws Exception {
+        int[] v = {5};
+        int linf = 0;
+        int lsup = 0;
+        int[] result = MaxMin4.maxMin4(v, linf, lsup);
+        assertArrayEquals(new int[]{5, 5}, result);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin4TwoElementsAscending() throws Exception {
+        int[] v = {1, 2};
+        int linf = 0;
+        int lsup = 1;
+        int[] result = MaxMin4.maxMin4(v, linf, lsup);
+        assertArrayEquals(new int[]{2, 1}, result);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin4TwoElementsDescending() throws Exception {
+        int[] v = {2, 1};
+        int linf = 0;
+        int lsup = 1;
+        int[] result = MaxMin4.maxMin4(v, linf, lsup);
+        assertArrayEquals(new int[]{2, 1}, result);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin4MultipleElements() throws Exception {
+        int[] v = {3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5};
+        int linf = 0;
+        int lsup = v.length - 1;
+        int[] result = MaxMin4.maxMin4(v, linf, lsup);
+        assertArrayEquals(new int[]{9, 1}, result);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin4BoundaryValues() throws Exception {
+        int[] v = {Integer.MIN_VALUE, Integer.MAX_VALUE};
+        int linf = 0;
+        int lsup = 1;
+        int[] result = MaxMin4.maxMin4(v, linf, lsup);
+        assertArrayEquals(new int[]{Integer.MAX_VALUE, Integer.MIN_VALUE}, result);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin4NegativeValues() throws Exception {
+        int[] v = {-1, -2, -3, -4, -5};
+        int linf = 0;
+        int lsup = v.length - 1;
+        int[] result = MaxMin4.maxMin4(v, linf, lsup);
+        assertArrayEquals(new int[]{-1, -5}, result);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin4MixedValues() throws Exception {
+        int[] v = {-10, 0, 10};
+        int linf = 0;
+        int lsup = v.length - 1;
+        int[] result = MaxMin4.maxMin4(v, linf, lsup);
+        assertArrayEquals(new int[]{10, -10}, result);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin4EmptyArray() throws Exception {
+        int[] v = {};
+        int linf = 0;
+        int lsup = 0;
+        try {
+            MaxMin4.maxMin4(v, linf, lsup);
+            fail("Expected an ArrayIndexOutOfBoundsException to be thrown");
+        } catch (ArrayIndexOutOfBoundsException e) {
+            // Expected exception
+        }
+    }
+}
+```
+
+This set of unit tests covers various scenarios, including:
+- A single element array.
+- Two elements in ascending and descending order.
+- Multiple elements.
+- Boundary values with `Integer.MIN_VALUE` and `Integer.MAX_VALUE`.
+- Negative values.
+- Mixed positive and negative values.
+- An empty array to check for exception handling.
+
+Each test method includes the `timeout=1000` attribute in the `@Test` annotation, and all methods throw `Exception` as required. The default constructor is also tested to ensure it initializes correctly.

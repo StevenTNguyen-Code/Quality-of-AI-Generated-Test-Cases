@@ -1,0 +1,127 @@
+Sure, I'll create a set of unit tests for the given `MaxMin4` class using JUnit 4.
+
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+
+public class MaxMin4Test {
+
+    private int[] array;
+
+    @Before
+    public void setUp() {
+        array = new int[]{1, 3, 5, 7, 9, -11, 13, -15, 17, 19};
+    }
+
+    // Test default constructor
+    @Test(timeout = 1000)
+    public void testDefaultConstructor() throws Exception {
+        MaxMin4 instance = new MaxMin4();
+        assertNotNull(instance);
+    }
+
+    // Test when lsup - linf <= 1 and v[linf] < v[lsup]
+    @Test(timeout = 1000)
+    public void testMaxMin4BoundaryValues1() throws Exception {
+        int[] result = MaxMin4.maxMin4(array, 0, 1);
+        assertArrayEquals(new int[]{3, 1}, result);
+    }
+
+    // Test when lsup - linf <= 1 and v[linf] >= v[lsup]
+    @Test(timeout = 1000)
+    public void testMaxMin4BoundaryValues2() throws Exception {
+        int[] result = MaxMin4.maxMin4(array, 1, 0);
+        assertArrayEquals(new int[]{3, 1}, result);
+    }
+
+    // Test when lsup - linf > 1 and both halves of the array are processed
+    @Test(timeout = 1000)
+    public void testMaxMin4GeneralCase() throws Exception {
+        int[] result = MaxMin4.maxMin4(array, 0, 9);
+        assertArrayEquals(new int[]{19, -15}, result);
+    }
+
+    // Test with a positive and negative number
+    @Test(timeout = 1000)
+    public void testMaxMin4PositiveNegative() throws Exception {
+        int[] testArray = new int[]{10, -10};
+        int[] result = MaxMin4.maxMin4(testArray, 0, 1);
+        assertArrayEquals(new int[]{10, -10}, result);
+    }
+
+    // Test with all positive numbers
+    @Test(timeout = 1000)
+    public void testMaxMin4AllPositive() throws Exception {
+        int[] testArray = new int[]{1, 2, 3, 4, 5};
+        int[] result = MaxMin4.maxMin4(testArray, 0, 4);
+        assertArrayEquals(new int[]{5, 1}, result);
+    }
+
+    // Test with all negative numbers
+    @Test(timeout = 1000)
+    public void testMaxMin4AllNegative() throws Exception {
+        int[] testArray = new int[]{-1, -2, -3, -4, -5};
+        int[] result = MaxMin4.maxMin4(testArray, 0, 4);
+        assertArrayEquals(new int[]{-1, -5}, result);
+    }
+
+    // Test with boundary values where linf and lsup are the same
+    @Test(timeout = 1000)
+    public void testMaxMin4SameIndices() throws Exception {
+        int[] result = MaxMin4.maxMin4(array, 5, 5);
+        assertArrayEquals(new int[]{-11, -11}, result);
+    }
+
+    // Test with a single element array
+    @Test(timeout = 1000)
+    public void testMaxMin4SingleElement() throws Exception {
+        int[] testArray = new int[]{7};
+        int[] result = MaxMin4.maxMin4(testArray, 0, 0);
+        assertArrayEquals(new int[]{7, 7}, result);
+    }
+
+    // Test with an empty array (should handle gracefully)
+    @Test(timeout = 1000)
+    public void testMaxMin4EmptyArray() throws Exception {
+        int[] testArray = new int[]{};
+        try {
+            MaxMin4.maxMin4(testArray, 0, 0);
+            fail("Expected ArrayIndexOutOfBoundsException");
+        } catch (ArrayIndexOutOfBoundsException e) {
+            // Expected exception
+        }
+    }
+
+    // Test when lsup < linf (should handle gracefully)
+    @Test(timeout = 1000)
+    public void testMaxMin4InvalidIndices() throws Exception {
+        int[] testArray = new int[]{1, 2, 3};
+        try {
+            MaxMin4.maxMin4(testArray, 2, 1);
+            fail("Expected IllegalArgumentException");
+        } catch (ArrayIndexOutOfBoundsException e) {
+            // Expected exception
+        }
+    }
+}
+```
+
+### Explanation:
+1. **Setup Method**: The `@Before` annotated method `setUp` initializes an array to be used in multiple test cases.
+2. **Default Constructor Test**: Ensures the default constructor of the `MaxMin4` class works.
+3. **Boundary and Decision Tests**: Tests for different conditions:
+    - When `lsup - linf <= 1` and `v[linf] < v[lsup]`.
+    - When `lsup - linf <= 1` and `v[linf] >= v[lsup]`.
+    - General case with the entire array.
+    - Array with positive and negative numbers.
+    - Array with all positive numbers.
+    - Array with all negative numbers.
+    - Boundary values where `linf` and `lsup` are the same.
+    - Single element array.
+    - Empty array.
+    - Invalid index values.
+
+Each test follows the specified constraints and checks the method's behavior under different scenarios, including edge cases and boundary values. The tests ensure that the code handles exceptions and provides correct results for valid inputs.

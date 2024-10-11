@@ -1,0 +1,90 @@
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+import ds.*;
+
+public class MaxMin4Test {
+
+    private MaxMin4 maxMin4;
+
+    @Before
+    public void setUp() {
+        maxMin4 = new MaxMin4();
+    }
+
+    @Test(timeout=1000)
+    public void testDefaultConstructor() throws Exception {
+        assertNotNull("Default constructor should create an object", new MaxMin4());
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin4SingleElement() throws Exception {
+        int[] v = {5};
+        int[] result = MaxMin4.maxMin4(v, 0, 0);
+        assertArrayEquals("Single element array should return the same element as both max and min", new int[]{5, 5}, result);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin4TwoElementsAscending() throws Exception {
+        int[] v = {1, 2};
+        int[] result = MaxMin4.maxMin4(v, 0, 1);
+        assertArrayEquals("Two elements in ascending order", new int[]{2, 1}, result);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin4TwoElementsDescending() throws Exception {
+        int[] v = {2, 1};
+        int[] result = MaxMin4.maxMin4(v, 0, 1);
+        assertArrayEquals("Two elements in descending order", new int[]{2, 1}, result);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin4MultipleElements() throws Exception {
+        int[] v = {3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5};
+        int[] result = MaxMin4.maxMin4(v, 0, v.length - 1);
+        assertArrayEquals("Multiple elements array", new int[]{9, 1}, result);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin4NegativeValues() throws Exception {
+        int[] v = {-3, -1, -4, -1, -5, -9, -2, -6, -5, -3, -5};
+        int[] result = MaxMin4.maxMin4(v, 0, v.length - 1);
+        assertArrayEquals("Array with negative values", new int[]{-1, -9}, result);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin4MixedValues() throws Exception {
+        int[] v = {-3, 1, -4, 1, -5, 9, -2, 6, -5, 3, -5};
+        int[] result = MaxMin4.maxMin4(v, 0, v.length - 1);
+        assertArrayEquals("Array with mixed positive and negative values", new int[]{9, -5}, result);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin4BoundaryValues() throws Exception {
+        int[] v = {Integer.MIN_VALUE, Integer.MAX_VALUE};
+        int[] result = MaxMin4.maxMin4(v, 0, 1);
+        assertArrayEquals("Array with boundary values", new int[]{Integer.MAX_VALUE, Integer.MIN_VALUE}, result);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin4EmptyArray() throws Exception {
+        int[] v = {};
+        try {
+            MaxMin4.maxMin4(v, 0, 0);
+            fail("Should have thrown ArrayIndexOutOfBoundsException");
+        } catch (ArrayIndexOutOfBoundsException e) {
+            // Expected exception
+        }
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin4SingleNegativeElement() throws Exception {
+        int[] v = {-5};
+        int[] result = MaxMin4.maxMin4(v, 0, 0);
+        assertArrayEquals("Single negative element array should return the same element as both max and min", new int[]{-5, -5}, result);
+    }
+}
+```

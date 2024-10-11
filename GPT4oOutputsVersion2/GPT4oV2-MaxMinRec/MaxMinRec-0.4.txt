@@ -1,0 +1,117 @@
+Sure, here are the unit tests for the `MaxMin4` class using JUnit 4:
+
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+
+public class MaxMin4Test {
+
+    private MaxMin4 maxMin4;
+
+    @Before
+    public void setUp() {
+        maxMin4 = new MaxMin4();
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin4_SingleElement() throws Exception {
+        int[] v = {5};
+        int[] result = MaxMin4.maxMin4(v, 0, 0);
+        assertArrayEquals(new int[]{5, 5}, result);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin4_TwoElements() throws Exception {
+        int[] v = {5, 10};
+        int[] result = MaxMin4.maxMin4(v, 0, 1);
+        assertArrayEquals(new int[]{10, 5}, result);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin4_TwoElementsReversed() throws Exception {
+        int[] v = {10, 5};
+        int[] result = MaxMin4.maxMin4(v, 0, 1);
+        assertArrayEquals(new int[]{10, 5}, result);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin4_MultipleElements() throws Exception {
+        int[] v = {1, -1, 3, 4, 0, -2, 2};
+        int[] result = MaxMin4.maxMin4(v, 0, 6);
+        assertArrayEquals(new int[]{4, -2}, result);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin4_MultipleElementsWithNegative() throws Exception {
+        int[] v = {-10, -20, -30, -40};
+        int[] result = MaxMin4.maxMin4(v, 0, 3);
+        assertArrayEquals(new int[]{-10, -40}, result);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin4_MultipleElementsWithPositive() throws Exception {
+        int[] v = {10, 20, 30, 40};
+        int[] result = MaxMin4.maxMin4(v, 0, 3);
+        assertArrayEquals(new int[]{40, 10}, result);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin4_BoundaryValues() throws Exception {
+        int[] v = {Integer.MIN_VALUE, Integer.MAX_VALUE};
+        int[] result = MaxMin4.maxMin4(v, 0, 1);
+        assertArrayEquals(new int[]{Integer.MAX_VALUE, Integer.MIN_VALUE}, result);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin4_BoundaryValuesReversed() throws Exception {
+        int[] v = {Integer.MAX_VALUE, Integer.MIN_VALUE};
+        int[] result = MaxMin4.maxMin4(v, 0, 1);
+        assertArrayEquals(new int[]{Integer.MAX_VALUE, Integer.MIN_VALUE}, result);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin4_AllEqualElements() throws Exception {
+        int[] v = {5, 5, 5, 5};
+        int[] result = MaxMin4.maxMin4(v, 0, 3);
+        assertArrayEquals(new int[]{5, 5}, result);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin4_EmptyArray() throws Exception {
+        int[] v = {};
+        try {
+            MaxMin4.maxMin4(v, 0, 0);
+            fail("Expected an ArrayIndexOutOfBoundsException to be thrown");
+        } catch (ArrayIndexOutOfBoundsException e) {
+            // Test passes
+        }
+    }
+}
+```
+
+### Explanation:
+
+1. **Imports and Setup**:
+   - Imported necessary JUnit classes and static methods.
+   - Created a `MaxMin4Test` class.
+   - Initialized the `MaxMin4` instance in the `setUp` method annotated with `@Before`.
+
+2. **Test Cases**:
+   - **Single Element**: Tests with an array containing a single element.
+   - **Two Elements**: Tests with arrays containing two elements in ascending and descending order.
+   - **Multiple Elements**: Tests with arrays containing multiple elements, including positive, negative, and mixed values.
+   - **Boundary Values**: Tests with arrays containing boundary values like `Integer.MIN_VALUE` and `Integer.MAX_VALUE`.
+   - **All Equal Elements**: Tests with arrays where all elements are the same.
+   - **Empty Array**: Tests with an empty array to check for exception handling.
+
+3. **Annotations**:
+   - Each test method is annotated with `@Test(timeout=1000)`.
+   - Exception handling is included where necessary.
+
+4. **Assertions**:
+   - Used `assertArrayEquals` to compare the expected and actual results.
+
+Each method in the `MaxMin4` class is covered by at least one test case, ensuring comprehensive testing as per the requirements.

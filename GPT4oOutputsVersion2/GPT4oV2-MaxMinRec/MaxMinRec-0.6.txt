@@ -1,0 +1,84 @@
+Certainly! Below is the Java code for unit tests that cover all decisions in the `MaxMin4` class methods, including boundary values and both positive and negative numeric values. The tests are written using JUnit 4 framework format and Java 8.
+
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+import ds.MaxMin4;
+
+public class MaxMin4Test {
+
+    private int[] arr;
+
+    @Before
+    public void setUp() throws Exception {
+        arr = new int[]{3, 1, 4, 1, 5, 9, -2, 6, 5, 3, 5};
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4WithPositiveValues() throws Exception {
+        int[] result = MaxMin4.maxMin4(arr, 0, arr.length - 1);
+        assertArrayEquals(new int[]{9, -2}, result);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4WithNegativeValues() throws Exception {
+        int[] negativeArr = new int[]{-3, -1, -4, -1, -5, -9, -2, -6, -5, -3, -5};
+        int[] result = MaxMin4.maxMin4(negativeArr, 0, negativeArr.length - 1);
+        assertArrayEquals(new int[]{-1, -9}, result);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4WithSingleElement() throws Exception {
+        int[] singleElementArr = new int[]{42};
+        int[] result = MaxMin4.maxMin4(singleElementArr, 0, singleElementArr.length - 1);
+        assertArrayEquals(new int[]{42, 42}, result);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4WithTwoElements() throws Exception {
+        int[] twoElementArr = new int[]{42, 24};
+        int[] result = MaxMin4.maxMin4(twoElementArr, 0, twoElementArr.length - 1);
+        assertArrayEquals(new int[]{42, 24}, result);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4WithEqualElements() throws Exception {
+        int[] equalElementsArr = new int[]{7, 7, 7, 7, 7};
+        int[] result = MaxMin4.maxMin4(equalElementsArr, 0, equalElementsArr.length - 1);
+        assertArrayEquals(new int[]{7, 7}, result);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4WithBoundaryValues() throws Exception {
+        int[] boundaryArr = new int[]{Integer.MIN_VALUE, Integer.MAX_VALUE};
+        int[] result = MaxMin4.maxMin4(boundaryArr, 0, boundaryArr.length - 1);
+        assertArrayEquals(new int[]{Integer.MAX_VALUE, Integer.MIN_VALUE}, result);
+    }
+
+    @Test(timeout = 1000, expected = ArrayIndexOutOfBoundsException.class)
+    public void testMaxMin4WithInvalidIndices() throws Exception {
+        MaxMin4.maxMin4(arr, 0, arr.length);  // lsup out of bounds
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4WithZeroLengthArray() throws Exception {
+        int[] emptyArr = new int[]{};
+        int[] result = MaxMin4.maxMin4(emptyArr, 0, 0);
+        assertArrayEquals(new int[]{0, 0}, result); // Assuming the default behavior for empty array
+    }
+}
+```
+
+### Explanation:
+1. **Imports and Setup**: The necessary imports are included, and the `@Before` method sets up a sample array to be used in multiple tests.
+2. **Positive and Negative Values**: Tests cover arrays with positive and negative values, ensuring boundary values are tested.
+3. **Single and Two Elements**: Tests for arrays with a single element and exactly two elements.
+4. **Equal Elements**: Tests an array where all elements are the same.
+5. **Boundary Values**: Tests arrays with `Integer.MIN_VALUE` and `Integer.MAX_VALUE`.
+6. **Invalid Indices**: Tests an invalid array index to ensure `ArrayIndexOutOfBoundsException` is thrown.
+7. **Zero Length Array**: Tests behavior with an empty array.
+
+Each test method includes a `timeout = 1000` and throws `Exception`, adhering to the requirements.

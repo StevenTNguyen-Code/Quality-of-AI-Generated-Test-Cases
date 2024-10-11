@@ -1,0 +1,94 @@
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+
+public class MaxMin4Test {
+
+    private MaxMin4 maxMin4;
+
+    @Before
+    public void setUp() {
+        maxMin4 = new MaxMin4();
+    }
+
+    @Test(timeout = 1000)
+    public void testDefaultConstructor() {
+        assertNotNull("Default constructor test", new MaxMin4());
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4_SimpleCase() throws Exception {
+        int[] v = {1, 2};
+        int linf = 0;
+        int lsup = 1;
+        int[] result = MaxMin4.maxMin4(v, linf, lsup);
+        assertArrayEquals(new int[]{2, 1}, result);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4_NegativeNumbers() throws Exception {
+        int[] v = {-3, -1, -2};
+        int linf = 0;
+        int lsup = 2;
+        int[] result = MaxMin4.maxMin4(v, linf, lsup);
+        assertArrayEquals(new int[]{-1, -3}, result);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4_PositiveAndNegativeNumbers() throws Exception {
+        int[] v = {-1, 3, 2, -5};
+        int linf = 0;
+        int lsup = 3;
+        int[] result = MaxMin4.maxMin4(v, linf, lsup);
+        assertArrayEquals(new int[]{3, -5}, result);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4_SingleElement() throws Exception {
+        int[] v = {4};
+        int linf = 0;
+        int lsup = 0;
+        int[] result = MaxMin4.maxMin4(v, linf, lsup);
+        assertArrayEquals(new int[]{4, 4}, result);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4_EqualElements() throws Exception {
+        int[] v = {5, 5, 5, 5};
+        int linf = 0;
+        int lsup = 3;
+        int[] result = MaxMin4.maxMin4(v, linf, lsup);
+        assertArrayEquals(new int[]{5, 5}, result);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4_BoundaryValues() throws Exception {
+        int[] v = {Integer.MIN_VALUE, Integer.MAX_VALUE};
+        int linf = 0;
+        int lsup = 1;
+        int[] result = MaxMin4.maxMin4(v, linf, lsup);
+        assertArrayEquals(new int[]{Integer.MAX_VALUE, Integer.MIN_VALUE}, result);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4_DescendingOrder() throws Exception {
+        int[] v = {10, 9, 8, 7};
+        int linf = 0;
+        int lsup = 3;
+        int[] result = MaxMin4.maxMin4(v, linf, lsup);
+        assertArrayEquals(new int[]{10, 7}, result);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4_AscendingOrder() throws Exception {
+        int[] v = {1, 2, 3, 4, 5};
+        int linf = 0;
+        int lsup = 4;
+        int[] result = MaxMin4.maxMin4(v, linf, lsup);
+        assertArrayEquals(new int[]{5, 1}, result);
+    }
+}
+```

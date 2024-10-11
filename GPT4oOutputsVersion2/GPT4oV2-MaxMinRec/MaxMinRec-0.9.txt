@@ -1,0 +1,87 @@
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+import ds.MaxMin4;
+
+public class MaxMin4Test {
+
+    private MaxMin4 maxMin4Instance;
+
+    @Before
+    public void setUp() {
+        maxMin4Instance = new MaxMin4();
+    }
+
+    @Test(timeout = 1000)
+    public void testDefaultConstructor() throws Exception {
+        new MaxMin4(); // Simply testing the default constructor
+    }
+
+    @Test(timeout = 1000)
+    public void testSingleElementArray() throws Exception {
+        int[] v = {10};
+        int[] result = maxMin4Instance.maxMin4(v, 0, 0);
+        assertArrayEquals(new int[]{10, 10}, result);
+    }
+
+    @Test(timeout = 1000)
+    public void testTwoElementsArray() throws Exception {
+        int[] v = {10, 20};
+        int[] result = maxMin4Instance.maxMin4(v, 0, 1);
+        assertArrayEquals(new int[]{20, 10}, result);
+    }
+
+    @Test(timeout = 1000)
+    public void testTwoElementsArrayReversed() throws Exception {
+        int[] v = {20, 10};
+        int[] result = maxMin4Instance.maxMin4(v, 0, 1);
+        assertArrayEquals(new int[]{20, 10}, result);
+    }
+
+    @Test(timeout = 1000)
+    public void testMultipleElementsArray() throws Exception {
+        int[] v = {10, 20, 5, 30, 15};
+        int[] result = maxMin4Instance.maxMin4(v, 0, 4);
+        assertArrayEquals(new int[]{30, 5}, result);
+    }
+
+    @Test(timeout = 1000)
+    public void testNegativeAndPositiveValues() throws Exception {
+        int[] v = {-10, -20, 5, 30, -15};
+        int[] result = maxMin4Instance.maxMin4(v, 0, 4);
+        assertArrayEquals(new int[]{30, -20}, result);
+    }
+
+    @Test(timeout = 1000)
+    public void testAllNegativeValues() throws Exception {
+        int[] v = {-10, -20, -5, -30, -15};
+        int[] result = maxMin4Instance.maxMin4(v, 0, 4);
+        assertArrayEquals(new int[]{-5, -30}, result);
+    }
+
+    @Test(timeout = 1000)
+    public void testBoundaryValues() throws Exception {
+        int[] v = {Integer.MAX_VALUE, Integer.MIN_VALUE, 0, -1, 1};
+        int[] result = maxMin4Instance.maxMin4(v, 0, 4);
+        assertArrayEquals(new int[]{Integer.MAX_VALUE, Integer.MIN_VALUE}, result);
+    }
+}
+```
+
+Explanation:
+
+1. **Imports and Package**: The necessary packages and imports are included as per the requirements.
+2. **Setup Method**: `@Before` annotation is used to ensure the test environment is properly set up.
+3. **Default Constructor Test**: Ensures the class can be instantiated without any issues.
+4. **Test Cases**:
+   - **Single Element Array**: Tests the method with an array containing one element.
+   - **Two Elements Array**: Tests arrays with two elements in different orders.
+   - **Multiple Elements Array**: Covers a typical usage scenario with more elements.
+   - **Negative and Positive Values**: Ensures the method works with a mix of negative and positive values.
+   - **All Negative Values**: Tests an array with all negative numbers.
+   - **Boundary Values**: Tests with boundary values like `Integer.MAX_VALUE` and `Integer.MIN_VALUE`.
+
+Each test method uses `@Test(timeout = 1000)` to enforce the timeout constraint. The `assertArrayEquals` assertion is used to verify that the expected and actual results match. The tests are designed to cover all decision points and possible conditional branches in the method under test.

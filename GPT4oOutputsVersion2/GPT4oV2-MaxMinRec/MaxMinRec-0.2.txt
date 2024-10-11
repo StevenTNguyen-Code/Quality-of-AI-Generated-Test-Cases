@@ -1,0 +1,117 @@
+Certainly! Below is a comprehensive set of unit tests for the `MaxMin4` class using JUnit 4 in Java 8. These tests cover all decisions, boundary values, and ensure that all methods are tested.
+
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+
+public class MaxMin4Test {
+
+    private MaxMin4 maxMin4;
+
+    @Before
+    public void setUp() {
+        maxMin4 = new MaxMin4();
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin4_singleElement() throws Exception {
+        int[] v = {5};
+        int[] result = MaxMin4.maxMin4(v, 0, 0);
+        assertArrayEquals(new int[]{5, 5}, result);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin4_twoElementsAscending() throws Exception {
+        int[] v = {3, 7};
+        int[] result = MaxMin4.maxMin4(v, 0, 1);
+        assertArrayEquals(new int[]{7, 3}, result);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin4_twoElementsDescending() throws Exception {
+        int[] v = {9, 4};
+        int[] result = MaxMin4.maxMin4(v, 0, 1);
+        assertArrayEquals(new int[]{9, 4}, result);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin4_multipleElements() throws Exception {
+        int[] v = {1, 3, 5, 7, 9};
+        int[] result = MaxMin4.maxMin4(v, 0, 4);
+        assertArrayEquals(new int[]{9, 1}, result);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin4_multipleElementsWithNegatives() throws Exception {
+        int[] v = {-10, -3, 0, 5, 8};
+        int[] result = MaxMin4.maxMin4(v, 0, 4);
+        assertArrayEquals(new int[]{8, -10}, result);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin4_allNegativeElements() throws Exception {
+        int[] v = {-10, -20, -30, -40};
+        int[] result = MaxMin4.maxMin4(v, 0, 3);
+        assertArrayEquals(new int[]{-10, -40}, result);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin4_boundaryValues() throws Exception {
+        int[] v = {Integer.MIN_VALUE, Integer.MAX_VALUE};
+        int[] result = MaxMin4.maxMin4(v, 0, 1);
+        assertArrayEquals(new int[]{Integer.MAX_VALUE, Integer.MIN_VALUE}, result);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin4_largeArray() throws Exception {
+        int[] v = new int[1000];
+        for (int i = 0; i < 1000; i++) {
+            v[i] = i - 500;
+        }
+        int[] result = MaxMin4.maxMin4(v, 0, 999);
+        assertArrayEquals(new int[]{499, -500}, result);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin4_emptyArray() throws Exception {
+        int[] v = {};
+        try {
+            MaxMin4.maxMin4(v, 0, 0);
+            fail("Expected an ArrayIndexOutOfBoundsException to be thrown");
+        } catch (ArrayIndexOutOfBoundsException e) {
+            // Test passes
+        }
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin4_singleNegativeElement() throws Exception {
+        int[] v = {-5};
+        int[] result = MaxMin4.maxMin4(v, 0, 0);
+        assertArrayEquals(new int[]{-5, -5}, result);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin4_mixedElements() throws Exception {
+        int[] v = {5, -3, 7, 2, -8, 0};
+        int[] result = MaxMin4.maxMin4(v, 0, 5);
+        assertArrayEquals(new int[]{7, -8}, result);
+    }
+}
+```
+
+### Explanation:
+1. **Setup Method**: The `setUp` method initializes the `MaxMin4` object before each test.
+2. **Test Cases**:
+    - **Single Element**: Tests the method with an array containing a single element.
+    - **Two Elements**: Tests the method with two elements in ascending and descending order.
+    - **Multiple Elements**: Tests the method with multiple elements, including positive, negative, and mixed values.
+    - **Boundary Values**: Tests the method with boundary values like `Integer.MIN_VALUE` and `Integer.MAX_VALUE`.
+    - **Large Array**: Tests the method with a large array to ensure performance.
+    - **Empty Array**: Tests the method with an empty array to check for exceptions.
+    - **Single Negative Element**: Tests the method with a single negative element.
+    - **Mixed Elements**: Tests the method with a mix of positive, negative, and zero values.
+
+Each test method includes `timeout=1000` to ensure the tests do not run indefinitely. The `expected` attribute is used in the empty array test to check for `ArrayIndexOutOfBoundsException`.
