@@ -1,0 +1,62 @@
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+import ds.*;
+
+public class CasamentoExatoTest {
+
+    private CasamentoExato casamentoExato;
+
+    @Before
+    public void setUp() {
+        casamentoExato = new CasamentoExato();
+    }
+
+    @Test(timeout = 1000)
+    public void testForcaBruta() throws Exception {
+        // Boundary and decision coverage
+        casamentoExato.forcaBruta("test", 4, "test", 4);
+        casamentoExato.forcaBruta("test", 4, "es", 2);
+        casamentoExato.forcaBruta("test", 4, "not", 3);
+        casamentoExato.forcaBruta("", 0, "", 0);
+        casamentoExato.forcaBruta("a", 1, "a", 1);
+        casamentoExato.forcaBruta("test", 4, "t", 1);
+    }
+
+    @Test(timeout = 1000)
+    public void testShiftAndExato() throws Exception {
+        // Boundary and decision coverage
+        casamentoExato.shiftAndExato("test", 4, "test", 4);
+        casamentoExato.shiftAndExato("test", 4, "es", 2);
+        casamentoExato.shiftAndExato("test", 4, "not", 3);
+        casamentoExato.shiftAndExato("", 0, "", 0);
+        casamentoExato.shiftAndExato("a", 1, "a", 1);
+        casamentoExato.shiftAndExato("test", 4, "t", 1);
+    }
+
+    @Test(timeout = 1000)
+    public void testBmh() throws Exception {
+        // Boundary and decision coverage
+        casamentoExato.bmh("test", 4, "test", 4);
+        casamentoExato.bmh("test", 4, "es", 2);
+        casamentoExato.bmh("test", 4, "not", 3);
+        casamentoExato.bmh("", 0, "", 0);
+        casamentoExato.bmh("a", 1, "a", 1);
+        casamentoExato.bmh("test", 4, "t", 1);
+    }
+
+    @Test(timeout = 1000)
+    public void testBmhs() throws Exception {
+        // Boundary and decision coverage
+        casamentoExato.bmhs("test", 4, "test", 4);
+        casamentoExato.bmhs("test", 4, "es", 2);
+        casamentoExato.bmhs("test", 4, "not", 3);
+        casamentoExato.bmhs("", 0, "", 0);
+        casamentoExato.bmhs("a", 1, "a", 1);
+        casamentoExato.bmhs("test", 4, "t", 1);
+    }
+}
+```

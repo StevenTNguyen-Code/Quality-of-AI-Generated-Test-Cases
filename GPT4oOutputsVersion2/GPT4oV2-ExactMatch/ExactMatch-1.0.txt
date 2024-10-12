@@ -1,0 +1,106 @@
+Given the provided `CasamentoExato` class, here's a suite of unit tests that adhere to the specified requirements:
+
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+import ds.*;
+
+public class CasamentoExatoTest {
+
+    private String text;
+    private String pattern;
+
+    @Before
+    public void setUp() throws Exception {
+        // Initial setup before each test
+        text = "testcasamentotext";
+        pattern = "casamento";
+    }
+
+    @Test(timeout = 1000)
+    public void testForcaBrutaStandard() throws Exception {
+        CasamentoExato.forcaBruta(text, text.length(), pattern, pattern.length());
+    }
+
+    @Test(timeout = 1000)
+    public void testForcaBrutaBoundaryValues() throws Exception {
+        // Test with empty string
+        CasamentoExato.forcaBruta("", 0, pattern, pattern.length());
+        CasamentoExato.forcaBruta(text, text.length(), "", 0);
+
+        // Test with single characters
+        CasamentoExato.forcaBruta("a", 1, "a", 1);
+        CasamentoExato.forcaBruta("a", 1, "b", 1);
+    }
+
+    @Test(timeout = 1000)
+    public void testShiftAndExatoStandard() throws Exception {
+        CasamentoExato.shiftAndExato(text, text.length(), pattern, pattern.length());
+    }
+
+    @Test(timeout = 1000)
+    public void testShiftAndExatoBoundaryValues() throws Exception {
+        // Test with empty string
+        CasamentoExato.shiftAndExato("", 0, pattern, pattern.length());
+        CasamentoExato.shiftAndExato(text, text.length(), "", 0);
+
+        // Test with single characters
+        CasamentoExato.shiftAndExato("a", 1, "a", 1);
+        CasamentoExato.shiftAndExato("a", 1, "b", 1);
+    }
+
+    @Test(timeout = 1000)
+    public void testBmhStandard() throws Exception {
+        CasamentoExato.bmh(text, text.length(), pattern, pattern.length());
+    }
+
+    @Test(timeout = 1000)
+    public void testBmhBoundaryValues() throws Exception {
+        // Test with empty string
+        CasamentoExato.bmh("", 0, pattern, pattern.length());
+        CasamentoExato.bmh(text, text.length(), "", 0);
+
+        // Test with single characters
+        CasamentoExato.bmh("a", 1, "a", 1);
+        CasamentoExato.bmh("a", 1, "b", 1);
+    }
+
+    @Test(timeout = 1000)
+    public void testBmhsStandard() throws Exception {
+        CasamentoExato.bmhs(text, text.length(), pattern, pattern.length());
+    }
+
+    @Test(timeout = 1000)
+    public void testBmhsBoundaryValues() throws Exception {
+        // Test with empty string
+        CasamentoExato.bmhs("", 0, pattern, pattern.length());
+        CasamentoExato.bmhs(text, text.length(), "", 0);
+
+        // Test with single characters
+        CasamentoExato.bmhs("a", 1, "a", 1);
+        CasamentoExato.bmhs("a", 1, "b", 1);
+    }
+}
+```
+
+### Key Points in the Tests:
+1. **Setup Method (`@Before`)**:
+    - Sets up common variables `text` and `pattern` for reuse during tests.
+   
+2. **Test Cases for Each Method**:
+    - Standard cases for typical usage of the methods.
+    - Boundary cases, including empty strings and single character strings, to ensure the methods handle edge cases appropriately.
+
+3. **Timeout Setting**:
+    - `timeout = 1000` is specified for each test case to ensure they won't hang indefinitely.
+
+4. **Handling Void Methods**:
+    - While methods like `forcaBruta`, `shiftAndExato`, `bmh` and `bmhs` do not return values and instead print output, the tests ensure that these methods can be invoked using the provided inputs.
+
+5. **Validation**:
+    - Since the methods print outputs rather than returning values, manual verification might be needed to check console outputs during test runs. If desired, the code can be modified to capture printed output using streams, but that is beyond the initial requirement.
+
+These tests use JUnit 4 conventions and should compile and run successfully with JUnit 4 setup.

@@ -1,0 +1,121 @@
+Sure, I can help you generate unit tests for the provided `CasamentoExato` class. Below is the Java code for the unit tests using JUnit 4 framework:
+
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+
+public class CasamentoExatoTest {
+
+    private CasamentoExato casamentoExato;
+
+    @Before
+    public void setUp() {
+        casamentoExato = new CasamentoExato();
+    }
+
+    @Test(timeout = 1000)
+    public void testDefaultConstructor() throws Exception {
+        assertNotNull(new CasamentoExato());
+    }
+
+    @Test(timeout = 1000)
+    public void testForcaBruta() throws Exception {
+        String T = "abcde";
+        String P = "bcd";
+        CasamentoExato.forcaBruta(T, T.length(), P, P.length());
+
+        T = "abcde";
+        P = "xyz";
+        CasamentoExato.forcaBruta(T, T.length(), P, P.length());
+
+        T = "abcde";
+        P = "";
+        CasamentoExato.forcaBruta(T, T.length(), P, P.length());
+
+        T = "";
+        P = "abc";
+        CasamentoExato.forcaBruta(T, T.length(), P, P.length());
+    }
+
+    @Test(timeout = 1000)
+    public void testShiftAndExato() throws Exception {
+        String T = "abcde";
+        String P = "bcd";
+        CasamentoExato.shiftAndExato(T, T.length(), P, P.length());
+
+        T = "abcde";
+        P = "xyz";
+        CasamentoExato.shiftAndExato(T, T.length(), P, P.length());
+
+        T = "abcde";
+        P = "";
+        CasamentoExato.shiftAndExato(T, T.length(), P, P.length());
+
+        T = "";
+        P = "abc";
+        CasamentoExato.shiftAndExato(T, T.length(), P, P.length());
+    }
+
+    @Test(timeout = 1000)
+    public void testBmh() throws Exception {
+        String T = "abcde";
+        String P = "bcd";
+        CasamentoExato.bmh(T, T.length(), P, P.length());
+
+        T = "abcde";
+        P = "xyz";
+        CasamentoExato.bmh(T, T.length(), P, P.length());
+
+        T = "abcde";
+        P = "";
+        CasamentoExato.bmh(T, T.length(), P, P.length());
+
+        T = "";
+        P = "abc";
+        CasamentoExato.bmh(T, T.length(), P, P.length());
+    }
+
+    @Test(timeout = 1000)
+    public void testBmhs() throws Exception {
+        String T = "abcde";
+        String P = "bcd";
+        CasamentoExato.bmhs(T, T.length(), P, P.length());
+
+        T = "abcde";
+        P = "xyz";
+        CasamentoExato.bmhs(T, T.length(), P, P.length());
+
+        T = "abcde";
+        P = "";
+        CasamentoExato.bmhs(T, T.length(), P, P.length());
+
+        T = "";
+        P = "abc";
+        CasamentoExato.bmhs(T, T.length(), P, P.length());
+    }
+}
+```
+
+### Explanation:
+1. **Imports and Setup**: The necessary imports and the `setUp` method to initialize the `CasamentoExato` object.
+2. **Default Constructor Test**: A test to ensure that the default constructor works correctly.
+3. **Test Cases for Each Method**: 
+   - `testForcaBruta`
+   - `testShiftAndExato`
+   - `testBmh`
+   - `testBmhs`
+   
+   Each test case covers different scenarios:
+   - Matching pattern in the text.
+   - Non-matching pattern in the text.
+   - Empty pattern.
+   - Empty text.
+
+### Boundary Values and Decisions:
+- The tests include boundary values such as empty strings for both text and pattern.
+- They cover decisions where the pattern is found and not found in the text.
+
+These tests should compile and run successfully with JUnit 4 in a Java 8 environment.

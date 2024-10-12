@@ -1,0 +1,78 @@
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+import ds.*;
+
+public class CasamentoExatoTest {
+
+    private CasamentoExato casamentoExato;
+
+    @Before
+    public void setUp() {
+        casamentoExato = new CasamentoExato();
+    }
+
+    @Test(timeout=1000)
+    public void testForcaBruta() throws Exception {
+        // Test with exact match
+        CasamentoExato.forcaBruta("abcdef", 6, "abc", 3);
+        
+        // Test with no match
+        CasamentoExato.forcaBruta("abcdef", 6, "xyz", 3);
+        
+        // Test with boundary values
+        CasamentoExato.forcaBruta("a", 1, "a", 1);
+        CasamentoExato.forcaBruta("a", 1, "b", 1);
+    }
+
+    @Test(timeout=1000)
+    public void testShiftAndExato() throws Exception {
+        // Test with exact match
+        CasamentoExato.shiftAndExato("abcdef", 6, "abc", 3);
+        
+        // Test with no match
+        CasamentoExato.shiftAndExato("abcdef", 6, "xyz", 3);
+        
+        // Test with boundary values
+        CasamentoExato.shiftAndExato("a", 1, "a", 1);
+        CasamentoExato.shiftAndExato("a", 1, "b", 1);
+    }
+
+    @Test(timeout=1000)
+    public void testBmh() throws Exception {
+        // Test with exact match
+        CasamentoExato.bmh("abcdef", 6, "abc", 3);
+        
+        // Test with no match
+        CasamentoExato.bmh("abcdef", 6, "xyz", 3);
+        
+        // Test with boundary values
+        CasamentoExato.bmh("a", 1, "a", 1);
+        CasamentoExato.bmh("a", 1, "b", 1);
+    }
+
+    @Test(timeout=1000)
+    public void testBmhs() throws Exception {
+        // Test with exact match
+        CasamentoExato.bmhs("abcdef", 6, "abc", 3);
+        
+        // Test with no match
+        CasamentoExato.bmhs("abcdef", 6, "xyz", 3);
+        
+        // Test with boundary values
+        CasamentoExato.bmhs("a", 1, "a", 1);
+        CasamentoExato.bmhs("a", 1, "b", 1);
+    }
+}
+```
+
+#### Explanation:
+1. **Setup Method**: The `@Before` annotated `setUp` method instantiates the `CasamentoExato` class.
+2. **Test Methods**: Each method in the `CasamentoExato` class has a corresponding test method.
+3. **Boundary Values**: Tests include boundary values, such as single-character strings.
+4. **Decision Coverage**: Each conditional expression in the methods is tested with both true and false values.
+5. **Timeout**: All test methods have a `timeout=1000` specified in the `@Test` annotation.
+6. **Default Constructor**: The test indirectly verifies the default constructor by instantiating the `CasamentoExato` class in the `setUp` method.

@@ -1,0 +1,66 @@
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+import ds.*;
+
+public class CasamentoExatoTest {
+
+    private CasamentoExato casamentoExato;
+
+    @Before
+    public void setUp() {
+        casamentoExato = new CasamentoExato();
+    }
+
+    @Test(timeout=1000)
+    public void testForcaBruta() throws Exception {
+        // Test case with exact match
+        CasamentoExato.forcaBruta("abcde", 5, "bcd", 3);
+        // Test case with no match
+        CasamentoExato.forcaBruta("abcde", 5, "xyz", 3);
+        // Boundary value test case (empty string)
+        CasamentoExato.forcaBruta("", 0, "a", 1);
+        // Boundary value test case (pattern larger than text)
+        CasamentoExato.forcaBruta("a", 1, "abc", 3);
+    }
+
+    @Test(timeout=1000)
+    public void testShiftAndExato() throws Exception {
+        // Test case with exact match
+        CasamentoExato.shiftAndExato("abcde", 5, "bcd", 3);
+        // Test case with no match
+        CasamentoExato.shiftAndExato("abcde", 5, "xyz", 3);
+        // Boundary value test case (empty string)
+        CasamentoExato.shiftAndExato("", 0, "a", 1);
+        // Boundary value test case (pattern larger than text)
+        CasamentoExato.shiftAndExato("a", 1, "abc", 3);
+    }
+
+    @Test(timeout=1000)
+    public void testBmh() throws Exception {
+        // Test case with exact match
+        CasamentoExato.bmh("abcde", 5, "bcd", 3);
+        // Test case with no match
+        CasamentoExato.bmh("abcde", 5, "xyz", 3);
+        // Boundary value test case (empty string)
+        CasamentoExato.bmh("", 0, "a", 1);
+        // Boundary value test case (pattern larger than text)
+        CasamentoExato.bmh("a", 1, "abc", 3);
+    }
+
+    @Test(timeout=1000)
+    public void testBmhs() throws Exception {
+        // Test case with exact match
+        CasamentoExato.bmhs("abcde", 5, "bcd", 3);
+        // Test case with no match
+        CasamentoExato.bmhs("abcde", 5, "xyz", 3);
+        // Boundary value test case (empty string)
+        CasamentoExato.bmhs("", 0, "a", 1);
+        // Boundary value test case (pattern larger than text)
+        CasamentoExato.bmhs("a", 1, "abc", 3);
+    }
+}
+```

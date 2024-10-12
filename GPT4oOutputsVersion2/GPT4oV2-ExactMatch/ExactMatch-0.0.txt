@@ -1,0 +1,81 @@
+Sure, here are the unit tests for the `CasamentoExato` class using JUnit 4:
+
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+import ds.*;
+
+public class CasamentoExatoTest {
+
+    private CasamentoExato casamentoExato;
+
+    @Before
+    public void setUp() {
+        casamentoExato = new CasamentoExato();
+    }
+
+    @Test(timeout=1000)
+    public void testDefaultConstructor() throws Exception {
+        assertNotNull(new CasamentoExato());
+    }
+
+    @Test(timeout=1000)
+    public void testForcaBruta() throws Exception {
+        // Test with matching pattern
+        CasamentoExato.forcaBruta("abcde", 5, "bcd", 3);
+        // Test with non-matching pattern
+        CasamentoExato.forcaBruta("abcde", 5, "xyz", 3);
+        // Test with boundary values
+        CasamentoExato.forcaBruta("a", 1, "a", 1);
+        CasamentoExato.forcaBruta("a", 1, "b", 1);
+    }
+
+    @Test(timeout=1000)
+    public void testShiftAndExato() throws Exception {
+        // Test with matching pattern
+        CasamentoExato.shiftAndExato("abcde", 5, "bcd", 3);
+        // Test with non-matching pattern
+        CasamentoExato.shiftAndExato("abcde", 5, "xyz", 3);
+        // Test with boundary values
+        CasamentoExato.shiftAndExato("a", 1, "a", 1);
+        CasamentoExato.shiftAndExato("a", 1, "b", 1);
+    }
+
+    @Test(timeout=1000)
+    public void testBmh() throws Exception {
+        // Test with matching pattern
+        CasamentoExato.bmh("abcde", 5, "bcd", 3);
+        // Test with non-matching pattern
+        CasamentoExato.bmh("abcde", 5, "xyz", 3);
+        // Test with boundary values
+        CasamentoExato.bmh("a", 1, "a", 1);
+        CasamentoExato.bmh("a", 1, "b", 1);
+    }
+
+    @Test(timeout=1000)
+    public void testBmhs() throws Exception {
+        // Test with matching pattern
+        CasamentoExato.bmhs("abcde", 5, "bcd", 3);
+        // Test with non-matching pattern
+        CasamentoExato.bmhs("abcde", 5, "xyz", 3);
+        // Test with boundary values
+        CasamentoExato.bmhs("a", 1, "a", 1);
+        CasamentoExato.bmhs("a", 1, "b", 1);
+    }
+}
+```
+
+### Explanation:
+1. **Default Constructor Test**: Ensures that the default constructor can be called and the object is not null.
+2. **Test Methods**: Each method (`forcaBruta`, `shiftAndExato`, `bmh`, `bmhs`) is tested with:
+   - A matching pattern.
+   - A non-matching pattern.
+   - Boundary values (single character strings).
+
+### Notes:
+- The `System.out.println` statements in the methods will print to the console during the tests. If you want to capture these outputs for assertions, you would need to redirect the standard output stream.
+- The tests are designed to ensure that all conditional branches are covered, including boundary values.
+- The `timeout=1000` ensures that each test will fail if it takes longer than 1000 milliseconds to execute.
