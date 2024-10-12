@@ -1,0 +1,85 @@
+Sure, here are the unit tests for the `AvaliaMultMatrizes` class using JUnit 4:
+
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+import java.io.IOException;
+
+public class AvaliaMultMatrizesTest {
+
+    private AvaliaMultMatrizes avaliaMultMatrizes;
+
+    @Before
+    public void setUp() {
+        avaliaMultMatrizes = new AvaliaMultMatrizes();
+    }
+
+    @Test(timeout=1000)
+    public void testMultmatrizeValidInput() throws IOException {
+        int n = 3;
+        int[] d = {10, 20, 30, 40};
+        AvaliaMultMatrizes.multmatrize(n, d);
+        // No assertion needed as we are testing for no exceptions and valid execution
+    }
+
+    @Test(timeout=1000)
+    public void testMultmatrizeBoundaryValue() throws IOException {
+        int n = 1;
+        int[] d = {10, 20};
+        AvaliaMultMatrizes.multmatrize(n, d);
+        // No assertion needed as we are testing for no exceptions and valid execution
+    }
+
+    @Test(timeout=1000, expected=IOException.class)
+    public void testMultmatrizeIOException() throws IOException {
+        int n = -1;
+        int[] d = {10, 20, 30, 40};
+        AvaliaMultMatrizes.multmatrize(n, d);
+    }
+
+    @Test(timeout=1000)
+    public void testMultmatrizeNegativeValues() throws IOException {
+        int n = 3;
+        int[] d = {-10, -20, -30, -40};
+        AvaliaMultMatrizes.multmatrize(n, d);
+        // No assertion needed as we are testing for no exceptions and valid execution
+    }
+
+    @Test(timeout=1000)
+    public void testMultmatrizeZeroValues() throws IOException {
+        int n = 3;
+        int[] d = {0, 0, 0, 0};
+        AvaliaMultMatrizes.multmatrize(n, d);
+        // No assertion needed as we are testing for no exceptions and valid execution
+    }
+
+    @Test(timeout=1000)
+    public void testMultmatrizeLargeValues() throws IOException {
+        int n = 3;
+        int[] d = {1000, 2000, 3000, 4000};
+        AvaliaMultMatrizes.multmatrize(n, d);
+        // No assertion needed as we are testing for no exceptions and valid execution
+    }
+}
+```
+
+### Explanation:
+
+1. **Imports and Setup**: The necessary imports are included, and a `setUp` method is used to initialize the `AvaliaMultMatrizes` instance.
+
+2. **Test Cases**:
+   - **testMultmatrizeValidInput**: Tests the method with a valid input.
+   - **testMultmatrizeBoundaryValue**: Tests the method with boundary values.
+   - **testMultmatrizeIOException**: Tests the method with an invalid input that should throw an `IOException`.
+   - **testMultmatrizeNegativeValues**: Tests the method with negative values.
+   - **testMultmatrizeZeroValues**: Tests the method with zero values.
+   - **testMultmatrizeLargeValues**: Tests the method with large values.
+
+3. **Timeout**: Each test method includes `timeout=1000` to ensure the test completes within 1000 milliseconds.
+
+4. **Exception Handling**: The `testMultmatrizeIOException` method uses `expected=IOException.class` to test for the expected exception.
+
+5. **Assertions**: No assertions are needed as the primary goal is to ensure the method executes without throwing unexpected exceptions.

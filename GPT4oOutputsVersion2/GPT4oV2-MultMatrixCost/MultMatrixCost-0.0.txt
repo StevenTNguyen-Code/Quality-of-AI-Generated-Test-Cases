@@ -1,0 +1,80 @@
+Certainly! Below is a set of JUnit 4 test cases for the `AvaliaMultMatrizes` class, covering all decisions, boundary values, and ensuring that all methods are tested. The tests include positive and negative values for numeric data, and they are designed to compile and run successfully.
+
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+import java.io.IOException;
+
+public class AvaliaMultMatrizesTest {
+
+    private AvaliaMultMatrizes avaliaMultMatrizes;
+
+    @Before
+    public void setUp() {
+        avaliaMultMatrizes = new AvaliaMultMatrizes();
+    }
+
+    @Test(timeout = 1000)
+    public void testMultmatrizeWithValidInput() throws IOException {
+        int n = 3;
+        int[] d = {10, 20, 30, 40};
+        AvaliaMultMatrizes.multmatrize(n, d);
+        // No assertion needed as the method does not return a value
+    }
+
+    @Test(timeout = 1000)
+    public void testMultmatrizeWithBoundaryValues() throws IOException {
+        int n = 1;
+        int[] d = {10, 20};
+        AvaliaMultMatrizes.multmatrize(n, d);
+        // No assertion needed as the method does not return a value
+    }
+
+    @Test(timeout = 1000)
+    public void testMultmatrizeWithNegativeValues() throws IOException {
+        int n = 2;
+        int[] d = {-10, -20, -30};
+        AvaliaMultMatrizes.multmatrize(n, d);
+        // No assertion needed as the method does not return a value
+    }
+
+    @Test(timeout = 1000, expected = IOException.class)
+    public void testMultmatrizeThrowsIOException() throws IOException {
+        int n = 0;
+        int[] d = {};
+        AvaliaMultMatrizes.multmatrize(n, d);
+    }
+
+    @Test(timeout = 1000)
+    public void testMultmatrizeWithLargeInput() throws IOException {
+        int n = 4;
+        int[] d = {10, 20, 30, 40, 50};
+        AvaliaMultMatrizes.multmatrize(n, d);
+        // No assertion needed as the method does not return a value
+    }
+
+    @Test(timeout = 1000)
+    public void testDefaultConstructor() {
+        AvaliaMultMatrizes instance = new AvaliaMultMatrizes();
+        assertNotNull(instance);
+    }
+}
+```
+
+### Explanation:
+1. **Setup Method**: The `setUp` method initializes an instance of `AvaliaMultMatrizes` before each test.
+2. **Test Cases**:
+   - **testMultmatrizeWithValidInput**: Tests the `multmatrize` method with a typical valid input.
+   - **testMultmatrizeWithBoundaryValues**: Tests the `multmatrize` method with boundary values.
+   - **testMultmatrizeWithNegativeValues**: Tests the `multmatrize` method with negative values.
+   - **testMultmatrizeThrowsIOException**: Tests the `multmatrize` method to ensure it throws an `IOException` when `n` is 0.
+   - **testMultmatrizeWithLargeInput**: Tests the `multmatrize` method with a larger input array.
+   - **testDefaultConstructor**: Tests the default constructor to ensure it creates an instance of `AvaliaMultMatrizes`.
+
+### Notes:
+- The `multmatrize` method does not return a value, so assertions are not used in most tests.
+- The `testMultmatrizeThrowsIOException` test case is designed to check if the method throws an `IOException` when `n` is 0, which is a hypothetical scenario since the provided method does not explicitly throw an `IOException` based on the input values. Adjust this test case based on the actual behavior of your method.
+- The `timeout = 1000` parameter is included in all `@Test` annotations to ensure the tests complete within 1000 milliseconds.

@@ -1,0 +1,99 @@
+Sure, here is the Java Unit Test code for the given Java class `AvaliaMultMatrizes` using JUnit 4 framework and Java 8:
+
+```java
+// Set the package and import dependencies
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+import java.io.IOException;
+
+public class AvaliaMultMatrizesTest {
+
+    private AvaliaMultMatrizes avaliaMultMatrizes;
+
+    @Before
+    public void setUp() {
+        avaliaMultMatrizes = new AvaliaMultMatrizes();
+    }
+
+    @Test(timeout=1000)
+    public void testMultmatrizeValidInput() throws IOException {
+        int n = 3;
+        int[] d = {10, 20, 30, 40};
+        AvaliaMultMatrizes.multmatrize(n, d);
+        // No assertion needed since the method doesn't return a value, 
+        // but we need to ensure no exceptions are thrown and method completes in a reasonable time.
+    }
+
+    @Test(timeout=1000)
+    public void testMultmatrizeWithMinimumInput() throws IOException {
+        int n = 1;
+        int[] d = {10, 20};
+        AvaliaMultMatrizes.multmatrize(n, d);
+        // No assertion needed since the method doesn't return a value,
+        // but we need to ensure no exceptions are thrown and method completes in a reasonable time.
+    }
+
+    @Test(timeout=1000)
+    public void testMultmatrizeWithNegativeInput() throws IOException {
+        int n = 2;
+        int[] d = {-10, 20, -30};
+        AvaliaMultMatrizes.multmatrize(n, d);
+        // No assertion needed since the method doesn't return a value,
+        // but we need to ensure no exceptions are thrown and method completes in a reasonable time.
+    }
+
+    @Test(timeout=1000, expected=ArrayIndexOutOfBoundsException.class)
+    public void testMultmatrizeWithInvalidInput() throws IOException {
+        int n = 3;
+        int[] d = {10, 20}; // Invalid d array length
+        AvaliaMultMatrizes.multmatrize(n, d);
+        // Expecting ArrayIndexOutOfBoundsException due to invalid array length
+    }
+
+    @Test(timeout=1000)
+    public void testMultmatrizeWithBoundaryValues() throws IOException {
+        int n = 2;
+        int[] d = {Integer.MAX_VALUE, 20, Integer.MIN_VALUE};
+        AvaliaMultMatrizes.multmatrize(n, d);
+        // No assertion needed since the method doesn't return a value,
+        // but we need to ensure no exceptions are thrown and method completes in a reasonable time.
+    }
+
+    @Test(timeout=1000)
+    public void testMultmatrizeWithZeroValue() throws IOException {
+        int n = 2;
+        int[] d = {0, 20, 30};
+        AvaliaMultMatrizes.multmatrize(n, d);
+        // No assertion needed since the method doesn't return a value,
+        // but we need to ensure no exceptions are thrown and method completes in a reasonable time.
+    }
+
+    // Testing the default constructor explicitly
+    @Test(timeout=1000)
+    public void testDefaultConstructor() {
+        AvaliaMultMatrizes avaliaMultMatrizes = new AvaliaMultMatrizes();
+        assertNotNull(avaliaMultMatrizes);
+    }
+}
+```
+
+### Explanation:
+
+1. **Imports and Class Setup**: Necessary imports are included, and the test class `AvaliaMultMatrizesTest` is created.
+
+2. **Setup Method**: The `setUp` method is annotated with `@Before` to initialize the class under test before each test.
+
+3. **Test Methods**:
+   - Each test method is annotated with `@Test` with a `timeout` of 1000 milliseconds.
+   - The `testMultmatrizeValidInput` method tests a typical valid input scenario.
+   - The `testMultmatrizeWithMinimumInput` method tests the minimum valid input.
+   - The `testMultmatrizeWithNegativeInput` method tests with negative values in the input array.
+   - The `testMultmatrizeWithInvalidInput` method expects an `ArrayIndexOutOfBoundsException` due to an invalid array length.
+   - The `testMultmatrizeWithBoundaryValues` method tests with boundary values (using `Integer.MAX_VALUE` and `Integer.MIN_VALUE`).
+   - The `testMultmatrizeWithZeroValue` method tests with zero values in the input array.
+   - The `testDefaultConstructor` method ensures that the default constructor works and the object is initialized properly.
+
+4. **Assertions**: Since the method `multmatrize` doesn't return a value, the tests primarily ensure that no exceptions are thrown and the method completes within the specified timeout. The `testDefaultConstructor` includes an assertion to check that the object is not null.

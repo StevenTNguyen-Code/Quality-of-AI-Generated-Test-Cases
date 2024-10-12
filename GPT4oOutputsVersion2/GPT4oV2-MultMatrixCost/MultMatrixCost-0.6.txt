@@ -1,0 +1,106 @@
+Here's the JUnit 4 test class for the provided `AvaliaMultMatrizes` class. The test cases cover all decisions, conditional expressions, and boundary values. The test methods are annotated with the required timeout and exception handling as specified.
+
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+import ds.*;
+import java.io.*;
+
+public class AvaliaMultMatrizesTest {
+
+    private AvaliaMultMatrizes avaliaMultMatrizes;
+
+    @Before
+    public void setUp() {
+        avaliaMultMatrizes = new AvaliaMultMatrizes();
+    }
+
+    @Test(timeout = 1000)
+    public void testDefaultConstructor() {
+        // Test default constructor
+        assertNotNull("Default constructor test failed", new AvaliaMultMatrizes());
+    }
+
+    @Test(timeout = 1000)
+    public void testMultmatrizeValidInput() throws IOException {
+        int n = 3;
+        int[] d = {1, 2, 3, 4};
+
+        try {
+            AvaliaMultMatrizes.multmatrize(n, d);
+        } catch (IOException e) {
+            fail("IOException should not have been thrown");
+        }
+    }
+
+    @Test(timeout = 1000)
+    public void testMultmatrizeBoundaryValues() throws IOException {
+        int n = 1;
+        int[] d = {1, 2};
+
+        try {
+            AvaliaMultMatrizes.multmatrize(n, d);
+        } catch (IOException e) {
+            fail("IOException should not have been thrown");
+        }
+    }
+
+    @Test(timeout = 1000, expected = IOException.class)
+    public void testMultmatrizeIOException() throws IOException {
+        int n = -1;
+        int[] d = {1, 2, 3};
+
+        AvaliaMultMatrizes.multmatrize(n, d);
+    }
+
+    @Test(timeout = 1000)
+    public void testMultmatrizeNegativeValues() throws IOException {
+        int n = 3;
+        int[] d = {-1, -2, -3, -4};
+
+        try {
+            AvaliaMultMatrizes.multmatrize(n, d);
+        } catch (IOException e) {
+            fail("IOException should not have been thrown");
+        }
+    }
+
+    @Test(timeout = 1000)
+    public void testMultmatrizeZeroValues() throws IOException {
+        int n = 3;
+        int[] d = {0, 0, 0, 0};
+
+        try {
+            AvaliaMultMatrizes.multmatrize(n, d);
+        } catch (IOException e) {
+            fail("IOException should not have been thrown");
+        }
+    }
+
+    @Test(timeout = 1000)
+    public void testMultmatrizeLargeValues() throws IOException {
+        int n = 3;
+        int[] d = {1000, 2000, 3000, 4000};
+
+        try {
+            AvaliaMultMatrizes.multmatrize(n, d);
+        } catch (IOException e) {
+            fail("IOException should not have been thrown");
+        }
+    }
+}
+```
+
+Explanation of the test cases:
+1. **testDefaultConstructor**: Tests the default constructor of the `AvaliaMultMatrizes` class.
+2. **testMultmatrizeValidInput**: Tests the `multmatrize` method with valid input values.
+3. **testMultmatrizeBoundaryValues**: Tests the `multmatrize` method with boundary values.
+4. **testMultmatrizeIOException**: Tests the `multmatrize` method with invalid input that should throw an `IOException`.
+5. **testMultmatrizeNegativeValues**: Tests the `multmatrize` method with negative values.
+6. **testMultmatrizeZeroValues**: Tests the `multmatrize` method with zero values.
+7. **testMultmatrizeLargeValues**: Tests the `multmatrize` method with large values.
+
+Each test method is annotated with `@Test(timeout = 1000)` to ensure it completes within the specified time. The `expected` attribute is used to check for expected exceptions only when the method under test explicitly throws an exception.

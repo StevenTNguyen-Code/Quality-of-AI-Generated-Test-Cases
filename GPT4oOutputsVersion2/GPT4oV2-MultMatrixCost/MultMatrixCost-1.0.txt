@@ -1,0 +1,78 @@
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+import java.io.IOException;
+
+public class AvaliaMultMatrizesTest {
+
+    private AvaliaMultMatrizes instance;
+
+    @Before
+    public void setUp() {
+        instance = new AvaliaMultMatrizes();
+    }
+
+    @Test(timeout = 1000)
+    public void testDefaultConstructor() {
+        new AvaliaMultMatrizes();
+    }
+
+    @Test(timeout = 1000, expected = IOException.class)
+    public void testMultMatrizeIOException() throws IOException {
+        int[] d = {1, 1, 1};
+        instance.multmatrize(1, d);
+    }
+
+    @Test(timeout = 1000)
+    public void testMultMatrizePositive() throws IOException {
+        int d[] = {10, 20, 30, 40};
+        instance.multmatrize(3, d);
+    }
+
+    @Test(timeout = 1000)
+    public void testMultMatrizeNegative() throws IOException {
+        int d[] = {-10, -20, -30, -40};
+        instance.multmatrize(3, d);
+    }
+
+    @Test(timeout = 1000)
+    public void testMultMatrizeZero() throws IOException {
+        int d[] = {0, 0, 0, 0};
+        instance.multmatrize(3, d);
+    }
+
+    @Test(timeout = 1000)
+    public void testMultMatrizeBoundaryValues() throws IOException {
+        int d[] = {1, Integer.MAX_VALUE, Integer.MAX_VALUE, 1};
+        instance.multmatrize(3, d);
+    }
+}
+```
+
+### Explanation:
+1. **Imports and Setup**:
+    - The required imports and package declaration are included at the top.
+    - The `setUp()` method initializes the instance of `AvaliaMultMatrizes`.
+
+2. **Default Constructor**:
+    - Default constructor is tested by creating a new instance of the class.
+
+3. **Test Cases**:
+    - The method `multmatrize` is being tested with various inputs.
+    - **IOException Handling**:
+      - Since `multmatrize` can throw an `IOException`, one test case (`testMultMatrizeIOException`) is set up to confirm this.
+    - **Positive Values**:
+      - Tests `testMultMatrizePositive` uses a positive array of integers.
+    - **Negative Values**:
+      - Tests `testMultMatrizeNegative` uses a negative array of integers.
+    - **Zero Values**:
+      - Tests `testMultMatrizeZero` uses an array of zeros.
+    - **Boundary Values**:
+      - Tests `testMultMatrizeBoundaryValues` uses an array including `Integer.MAX_VALUE`.
+
+All test methods have a `timeout` value of `1000` milliseconds to ensure the tests do not run indefinitely. The `expected = IOException.class` is used only for the test case where an `IOException` is explicitly expected. 
+
+The above test class should cover various conditions and edge cases and compile successfully in a Java 8 environment with JUnit 4.

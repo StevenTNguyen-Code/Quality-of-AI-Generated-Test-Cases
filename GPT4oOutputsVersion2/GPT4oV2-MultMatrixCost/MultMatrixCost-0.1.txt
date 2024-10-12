@@ -1,0 +1,83 @@
+Certainly! Below is a set of JUnit 4 test cases for the `AvaliaMultMatrizes` class, covering all decisions, boundary values, and ensuring that all methods are tested. 
+
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+import java.io.IOException;
+
+public class AvaliaMultMatrizesTest {
+
+    private AvaliaMultMatrizes avaliaMultMatrizes;
+
+    @Before
+    public void setUp() {
+        avaliaMultMatrizes = new AvaliaMultMatrizes();
+    }
+
+    @Test(timeout=1000)
+    public void testDefaultConstructor() {
+        assertNotNull(avaliaMultMatrizes);
+    }
+
+    @Test(timeout=1000)
+    public void testMultmatrizeSmallMatrix() throws IOException {
+        int n = 2;
+        int[] d = {10, 20, 30};
+        AvaliaMultMatrizes.multmatrize(n, d);
+        // No assertion needed as we are testing for execution without exceptions
+    }
+
+    @Test(timeout=1000)
+    public void testMultmatrizeLargerMatrix() throws IOException {
+        int n = 3;
+        int[] d = {10, 20, 30, 40};
+        AvaliaMultMatrizes.multmatrize(n, d);
+        // No assertion needed as we are testing for execution without exceptions
+    }
+
+    @Test(timeout=1000)
+    public void testMultmatrizeBoundaryValues() throws IOException {
+        int n = 1;
+        int[] d = {10, 20};
+        AvaliaMultMatrizes.multmatrize(n, d);
+        // No assertion needed as we are testing for execution without exceptions
+    }
+
+    @Test(timeout=1000, expected=IOException.class)
+    public void testMultmatrizeException() throws IOException {
+        int n = 2;
+        int[] d = {10, 20}; // This should cause an exception due to array index out of bounds
+        AvaliaMultMatrizes.multmatrize(n, d);
+    }
+
+    @Test(timeout=1000)
+    public void testMultmatrizeNegativeValues() throws IOException {
+        int n = 2;
+        int[] d = {-10, -20, -30};
+        AvaliaMultMatrizes.multmatrize(n, d);
+        // No assertion needed as we are testing for execution without exceptions
+    }
+
+    @Test(timeout=1000)
+    public void testMultmatrizeMixedValues() throws IOException {
+        int n = 2;
+        int[] d = {10, -20, 30};
+        AvaliaMultMatrizes.multmatrize(n, d);
+        // No assertion needed as we are testing for execution without exceptions
+    }
+}
+```
+
+### Explanation:
+1. **Default Constructor Test**: Ensures that the default constructor of `AvaliaMultMatrizes` can be called and the object is not null.
+2. **Small Matrix Test**: Tests the `multmatrize` method with a small matrix.
+3. **Larger Matrix Test**: Tests the `multmatrize` method with a larger matrix.
+4. **Boundary Values Test**: Tests the `multmatrize` method with the smallest possible matrix.
+5. **Exception Test**: Tests the `multmatrize` method with an input that should cause an `IOException` due to array index out of bounds.
+6. **Negative Values Test**: Tests the `multmatrize` method with negative values in the array.
+7. **Mixed Values Test**: Tests the `multmatrize` method with a mix of positive and negative values.
+
+These tests cover various scenarios including boundary values, positive and negative values, and exception handling. Each test method includes the `timeout=1000` parameter to ensure that the test completes within 1000 milliseconds.

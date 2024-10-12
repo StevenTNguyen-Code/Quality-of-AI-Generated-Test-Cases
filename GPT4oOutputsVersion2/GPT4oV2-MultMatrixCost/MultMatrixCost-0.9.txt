@@ -1,0 +1,91 @@
+Certainly! Below is a set of unit tests for the `AvaliaMultMatrizes` class using JUnit 4. These tests ensure that all decisions in the `multmatrize` method are covered, including positive and negative values, boundary values, and valid inputs.
+
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+import java.io.IOException;
+
+public class AvaliaMultMatrizesTest {
+
+    private AvaliaMultMatrizes instance;
+
+    @Before
+    public void setUp() {
+        instance = new AvaliaMultMatrizes();
+    }
+
+    @Test(timeout = 1000)
+    public void testDefaultConstructor() throws IOException {
+        assertNotNull("Instance creation failed", instance);
+    }
+
+    @Test(timeout = 1000)
+    public void testMultmatrizeWithSmallPositiveN() throws IOException {
+        int n = 2;
+        int[] d = {1, 2, 3};
+        instance.multmatrize(n, d);
+    }
+
+    @Test(timeout = 1000)
+    public void testMultmatrizeWithBoundaryValues() throws IOException {
+        int n = 1;  // Boundary value
+        int[] d = {1, 1};
+        instance.multmatrize(n, d);
+    }
+
+    @Test(timeout = 1000)
+    public void testMultmatrizeWithLargeN() throws IOException {
+        int n = 4;
+        int[] d = {10, 20, 30, 40, 50};
+        instance.multmatrize(n, d);
+    }
+
+    @Test(timeout = 1000, expected = IOException.class)
+    public void testMultmatrizeWithIOException() throws IOException {
+        int n = 2;
+        int[] d = {1, 2};  // Insufficient elements in array to avoid logical errors
+        instance.multmatrize(n, d);
+    }
+
+    @Test(timeout = 1000)
+    public void testMultmatrizeWithNegativeValues() throws IOException {
+        int n = 3;
+        int[] d = {-1, -2, -3, -4};  // Negative values
+        instance.multmatrize(n, d);
+    }
+
+    @Test(timeout = 1000)
+    public void testMultmatrizeWithMixedValues() throws IOException {
+        int n = 3;
+        int[] d = {1, -2, 3, -4};  // Mix of positive and negative values
+        instance.multmatrize(n, d);
+    }
+
+    @Test(timeout = 1000)
+    public void testMultmatrizeWithZero() throws IOException {
+        int n = 2;
+        int[] d = {0, 0, 0};
+        instance.multmatrize(n, d);
+    }
+}
+```
+
+### Explanation:
+
+1. Each test case includes the `@Test(timeout = 1000)` annotation to enforce a 1-second timeout.
+2. A setup method annotated with `@Before` is used to initialize the `AvaliaMultMatrizes` instance.
+3. A test for the default constructor is included to ensure the class can be instantiated.
+4. Various test cases cover different values for `n` and the array `d`:
+   - Small positive value
+   - Boundary values
+   - Large values
+   - Negative values
+   - Mixed values
+   - Zero values
+5. A test for exceptional scenarios with `@Test(expected = IOException.class)` is included to ensure that logical errors due to insufficient array sizes can be caught.
+6. Ensure all the imports required for JUnit 4 are included at the top of the test file.
+
+These comprehensive tests ensure that each decision path in the `multmatrize` method is executed, and different types of input values are considered.
