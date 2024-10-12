@@ -1,0 +1,100 @@
+Certainly! Below is the Java Unit Test class for the `Pilha` class using Java 8 and the JUnit 4 framework. This will cover all decisions in the methods, including boundary and functional tests.
+
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+import ds.Pilha;
+
+public class PilhaTest {
+
+    private Pilha pilha;
+
+    @Before
+    public void setUp() throws Exception {
+        pilha = new Pilha(); // testing default constructor
+    }
+
+    @Test(timeout = 1000)
+    public void testEmpilha() throws Exception {
+        // Test empilha with a normal object
+        pilha.empilha("Test");
+        assertEquals(1, pilha.tamanho());
+
+        // Test empilha till the boundary (1000 elements)
+        for (int i = 1; i < 1000; i++) {
+            pilha.empilha(i);
+        }
+        assertEquals(1000, pilha.tamanho());
+
+        // Test empilha on a full stack
+        try {
+            pilha.empilha("Overflow");
+            fail("Expected Exception for full stack not thrown");
+        } catch (Exception e) {
+            assertEquals("Erro: A pilha esta cheia", e.getMessage());
+        }
+    }
+
+    @Test(timeout = 1000)
+    public void testDesempilha() throws Exception {
+        // Test desempilha on an empty stack
+        try {
+            pilha.desempilha();
+            fail("Expected Exception for empty stack not thrown");
+        } catch (Exception e) {
+            assertEquals("Erro: A pilha esta vazia", e.getMessage());
+        }
+
+        // Test desempilha with normal operations
+        pilha.empilha("Test1");
+        pilha.empilha("Test2");
+        assertEquals("Test2", pilha.desempilha());
+        assertEquals("Test1", pilha.desempilha());
+        assertTrue(pilha.vazia());
+    }
+
+    @Test(timeout = 1000)
+    public void testVazia() throws Exception {
+        // Test vazia on an empty stack
+        assertTrue(pilha.vazia());
+
+        // Test vazia on a non-empty stack
+        pilha.empilha("Test");
+        assertFalse(pilha.vazia());
+    }
+
+    @Test(timeout = 1000)
+    public void testTamanho() throws Exception {
+        // Test tamanho on an empty stack
+        assertEquals(0, pilha.tamanho());
+
+        // Test tamanho on a non-empty stack
+        pilha.empilha("Test1");
+        pilha.empilha("Test2");
+        assertEquals(2, pilha.tamanho());
+
+        // Test tamanho after desempilha
+        pilha.desempilha();
+        assertEquals(1, pilha.tamanho());
+        pilha.desempilha();
+        assertEquals(0, pilha.tamanho());
+    }
+}
+```
+
+This test class covers:
+
+1. **Default Constructor**: Ensures the `Pilha` object is instantiated correctly.
+2. **`empilha` Method**: 
+   - Normal operation with a valid object.
+   - Boundary condition by filling the stack to its maximum capacity and trying to exceed it.
+3. **`desempilha` Method**:
+   - Empty stack exception.
+   - Normal operation by pushing and then popping values.
+4. **`vazia` Method**: Both scenarios (empty and non-empty).
+5. **`tamanho` Method**: Both scenarios (empty, adding elements, removing elements).
+
+All methods throw an exception on failure, and boundary conditions are tested as specified.

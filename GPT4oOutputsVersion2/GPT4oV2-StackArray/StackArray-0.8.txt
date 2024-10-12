@@ -1,0 +1,98 @@
+Sure, here is a set of JUnit 4 test cases that follow the described requirements for the given `Pilha` class:
+
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+
+public class PilhaTest {
+
+    private Pilha pilha;
+
+    @Before
+    public void setUp() {
+        pilha = new Pilha();
+    }
+
+    @Test(timeout=1000)
+    public void testDefaultConstructor() {
+        assertNotNull(pilha);
+        assertNotNull(pilha.item);
+        assertEquals(0, pilha.topo);
+    }
+
+    @Test(timeout=1000)
+    public void testEmpilha() throws Exception {
+        pilha.empilha("Item1");
+        assertEquals(1, pilha.topo);
+        assertEquals("Item1", pilha.item[0]);
+    }
+
+    @Test(timeout=1000, expected=Exception.class)
+    public void testEmpilhaException() throws Exception {
+        for (int i = 0; i < 1000; i++) {
+            pilha.empilha("Item" + i);
+        }
+        pilha.empilha("Item1000"); // should throw exception
+    }
+
+    @Test(timeout=1000)
+    public void testDesempilha() throws Exception {
+        pilha.empilha("Item1");
+        Object item = pilha.desempilha();
+        assertEquals("Item1", item);
+        assertEquals(0, pilha.topo);
+    }
+
+    @Test(timeout=1000, expected=Exception.class)
+    public void testDesempilhaException() throws Exception {
+        pilha.desempilha(); // should throw exception since stack is empty
+    }
+
+    @Test(timeout=1000)
+    public void testVaziaTrue() {
+        assertTrue(pilha.vazia());
+    }
+
+    @Test(timeout=1000)
+    public void testVaziaFalse() throws Exception {
+        pilha.empilha("Item1");
+        assertFalse(pilha.vazia());
+    }
+
+    @Test(timeout=1000)
+    public void testTamanho() throws Exception {
+        assertEquals(0, pilha.tamanho());
+        pilha.empilha("Item1");
+        assertEquals(1, pilha.tamanho());
+        pilha.desempilha();
+        assertEquals(0, pilha.tamanho());
+    }
+}
+```
+
+### Explanation:
+
+1. **Default Constructor Test:**
+   - Ensure the `Pilha` object and its `item` array are initialized.
+   - Check that `topo` is set to 0.
+
+2. **Empilha Method Tests:**
+   - Add an item and verify that `topo` is incremented and the item is added.
+   - Attempt to add more than 1000 items to trigger an exception.
+
+3. **Desempilha Method Tests:**
+   - Add an item, remove it and check the value and `topo`.
+   - Attempt to remove an item from an empty stack to trigger an exception.
+
+4. **Vazia Method Tests:**
+   - Check that a new stack is empty.
+   - Add an item and check that the stack is no longer empty.
+
+5. **Tamanho Method Tests:**
+   - Verify the size of an empty stack.
+   - Add and remove an item, checking the size before and after.
+
+These tests cover the functional requirements, boundary values, and ensure all decision paths are tested.

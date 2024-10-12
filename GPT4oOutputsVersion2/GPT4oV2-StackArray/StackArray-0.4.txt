@@ -1,0 +1,99 @@
+Sure, here are the unit tests for the `Pilha` class using JUnit 4 framework in Java 8:
+
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+
+public class PilhaTest {
+
+    private Pilha pilha;
+
+    @Before
+    public void setUp() {
+        pilha = new Pilha();
+    }
+
+    @Test(timeout=1000)
+    public void testDefaultConstructor() {
+        assertNotNull(pilha);
+        assertEquals(0, pilha.tamanho());
+        assertTrue(pilha.vazia());
+    }
+
+    @Test(timeout=1000)
+    public void testEmpilha() throws Exception {
+        pilha.empilha("item1");
+        assertEquals(1, pilha.tamanho());
+        assertFalse(pilha.vazia());
+    }
+
+    @Test(timeout=1000, expected=Exception.class)
+    public void testEmpilhaException() throws Exception {
+        Pilha smallPilha = new Pilha() {
+            { item = new Object[1]; topo = 1; }
+        };
+        smallPilha.empilha("item2");
+    }
+
+    @Test(timeout=1000)
+    public void testDesempilha() throws Exception {
+        pilha.empilha("item1");
+        Object item = pilha.desempilha();
+        assertEquals("item1", item);
+        assertTrue(pilha.vazia());
+    }
+
+    @Test(timeout=1000, expected=Exception.class)
+    public void testDesempilhaException() throws Exception {
+        pilha.desempilha();
+    }
+
+    @Test(timeout=1000)
+    public void testVazia() {
+        assertTrue(pilha.vazia());
+        try {
+            pilha.empilha("item1");
+        } catch (Exception e) {
+            fail("Exception should not be thrown");
+        }
+        assertFalse(pilha.vazia());
+    }
+
+    @Test(timeout=1000)
+    public void testTamanho() {
+        assertEquals(0, pilha.tamanho());
+        try {
+            pilha.empilha("item1");
+            pilha.empilha("item2");
+        } catch (Exception e) {
+            fail("Exception should not be thrown");
+        }
+        assertEquals(2, pilha.tamanho());
+    }
+}
+```
+
+### Explanation:
+
+1. **Default Constructor Test**:
+   - Ensures the `Pilha` object is instantiated correctly.
+   - Checks the initial size and if it is empty.
+
+2. **Empilha Method Tests**:
+   - Tests normal operation by adding an item and checking the size and if it's no longer empty.
+   - Tests the exception when trying to add an item to a full stack.
+
+3. **Desempilha Method Tests**:
+   - Tests normal operation by adding and then removing an item, checking if the stack is empty afterward.
+   - Tests the exception when trying to remove an item from an empty stack.
+
+4. **Vazia Method Test**:
+   - Checks the `vazia` method before and after adding an item.
+
+5. **Tamanho Method Test**:
+   - Checks the size of the stack after adding items.
+
+All tests include the `timeout=1000` parameter and handle exceptions as required. The tests cover all the methods in the `Pilha` class and ensure they function correctly under various conditions.

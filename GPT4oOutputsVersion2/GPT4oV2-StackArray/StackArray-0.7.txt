@@ -1,0 +1,111 @@
+Certainly! Below is the Java Unit Test code for the `Pilha` class following the given requirements.
+
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+
+public class PilhaTest {
+
+    private Pilha pilha;
+
+    @Before
+    public void setUp() throws Exception {
+        pilha = new Pilha();
+    }
+
+    @Test(timeout = 1000)
+    public void testDefaultConstructor() throws Exception {
+        assertNotNull(pilha);
+        assertEquals(0, pilha.tamanho());
+    }
+
+    @Test(timeout = 1000)
+    public void testEmpilha() throws Exception {
+        pilha.empilha("Test");
+        assertEquals(1, pilha.tamanho());
+    }
+
+    @Test(timeout = 1000, expected = Exception.class)
+    public void testEmpilhaThrowsExceptionWhenFull() throws Exception {
+        for (int i = 0; i < 1000; i++) {
+            pilha.empilha(i);
+        }
+        pilha.empilha("Overflow"); // This should throw an exception
+    }
+
+    @Test(timeout = 1000)
+    public void testDesempilha() throws Exception {
+        pilha.empilha("Test");
+        Object item = pilha.desempilha();
+        assertEquals("Test", item);
+        assertEquals(0, pilha.tamanho());
+    }
+
+    @Test(timeout = 1000, expected = Exception.class)
+    public void testDesempilhaThrowsExceptionWhenEmpty() throws Exception {
+        pilha.desempilha(); // This should throw an exception
+    }
+
+    @Test(timeout = 1000)
+    public void testVaziaTrue() throws Exception {
+        assertTrue(pilha.vazia());
+    }
+
+    @Test(timeout = 1000)
+    public void testVaziaFalse() throws Exception {
+        pilha.empilha("Test");
+        assertFalse(pilha.vazia());
+    }
+
+    @Test(timeout = 1000)
+    public void testTamanho() throws Exception {
+        assertEquals(0, pilha.tamanho());
+        pilha.empilha("Test");
+        assertEquals(1, pilha.tamanho());
+        pilha.desempilha();
+        assertEquals(0, pilha.tamanho());
+    }
+
+    @Test(timeout = 1000)
+    public void testBoundaryValues() throws Exception {
+        pilha.empilha(1);
+        pilha.empilha(-1);
+        assertEquals(2, pilha.tamanho());
+        assertEquals(-1, pilha.desempilha());
+        assertEquals(1, pilha.desempilha());
+    }
+}
+```
+
+### Explanation:
+1. **Default Constructor Test**:
+   - Ensures the `Pilha` object is created and initialized correctly.
+   
+2. **Empilha Test**:
+   - Tests the `empilha` method with a simple valid input.
+   
+3. **Empilha Throws Exception When Full**:
+   - Tests if the `empilha` method throws an `Exception` when the stack is full.
+   
+4. **Desempilha Test**:
+   - Tests the `desempilha` method to ensure it removes and returns the correct item.
+   
+5. **Desempilha Throws Exception When Empty**:
+   - Tests if the `desempilha` method throws an `Exception` when the stack is empty.
+   
+6. **Vazia True**:
+   - Tests the `vazia` method to ensure it returns `true` when the stack is empty.
+   
+7. **Vazia False**:
+   - Tests the `vazia` method to ensure it returns `false` when the stack is not empty.
+   
+8. **Tamanho Test**:
+   - Tests the `tamanho` method to ensure it returns the correct size of the stack.
+   
+9. **Boundary Values Test**:
+   - Tests the `empilha` and `desempilha` methods with boundary values (positive and negative numbers).
+
+Each test method includes `timeout = 1000` to ensure they complete within 1 second. The `expected = Exception.class` is used only when the method under test explicitly throws an exception. These tests should cover all decisions and include boundary values as required.
