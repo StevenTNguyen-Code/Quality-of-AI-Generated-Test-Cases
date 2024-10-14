@@ -1,0 +1,90 @@
+Here is the Java unit test for the `MaxMin2` class:
+```
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+
+public class MaxMin2Test {
+
+    @Test(timeout = 1000)
+    public void testMaxMin2DefaultConstructor() throws Exception {
+        MaxMin2 maxMin2 = new MaxMin2();
+        assertNotNull(maxMin2);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin2PositiveValues() throws Exception {
+        int[] v = {1, 2, 3, 4, 5};
+        int[] result = MaxMin2.maxMin2(v, v.length);
+        assertEquals(5, result[0]);
+        assertEquals(1, result[1]);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin2NegativeValues() throws Exception {
+        int[] v = {-1, -2, -3, -4, -5};
+        int[] result = MaxMin2.maxMin2(v, v.length);
+        assertEquals(-1, result[0]);
+        assertEquals(-5, result[1]);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin2MixedValues() throws Exception {
+        int[] v = {-1, 0, 1, 2, 3};
+        int[] result = MaxMin2.maxMin2(v, v.length);
+        assertEquals(3, result[0]);
+        assertEquals(-1, result[1]);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin2SingleValue() throws Exception {
+        int[] v = {1};
+        int[] result = MaxMin2.maxMin2(v, v.length);
+        assertEquals(1, result[0]);
+        assertEquals(1, result[1]);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin2EmptyArray() throws Exception {
+        int[] v = {};
+        try {
+            MaxMin2.maxMin2(v, v.length);
+            fail("Expected ArrayIndexOutOfBoundsException");
+        } catch (ArrayIndexOutOfBoundsException e) {
+            // expected
+        }
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin2NullArray() throws Exception {
+        int[] v = null;
+        try {
+            MaxMin2.maxMin2(v, 0);
+            fail("Expected NullPointerException");
+        } catch (NullPointerException e) {
+            // expected
+        }
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin2NegativeN() throws Exception {
+        int[] v = {1, 2, 3};
+        try {
+            MaxMin2.maxMin2(v, -1);
+            fail("Expected ArrayIndexOutOfBoundsException");
+        } catch (ArrayIndexOutOfBoundsException e) {
+            // expected
+        }
+    }
+}
+```
+Note that I've covered all the possible scenarios, including:
+
+* Testing the default constructor
+* Testing with positive, negative, and mixed values
+* Testing with single value, empty array, and null array
+* Testing with negative `n` value
+
+I've also used the `@Test(timeout = 1000)` annotation to set a timeout of 1 second for each test method, as per your requirements.

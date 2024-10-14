@@ -1,0 +1,96 @@
+Here is the JUnit 4 test class for the `MaxMin2` class:
+```
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+
+public class MaxMin2Test {
+  
+  @Test(timeout=1000)
+  public void testDefaultConstructor() throws Exception {
+    new MaxMin2(); // test default constructor
+  }
+  
+  @Test(timeout=1000)
+  public void testMaxMin2_SimpleCase() throws Exception {
+    int v[] = {1, 2, 3, 4, 5};
+    int n = 5;
+    int[] result = MaxMin2.maxMin2(v, n);
+    assertEquals(5, result[0]); // max
+    assertEquals(1, result[1]); // min
+  }
+  
+  @Test(timeout=1000)
+  public void testMaxMin2_SingleElementArray() throws Exception {
+    int v[] = {5};
+    int n = 1;
+    int[] result = MaxMin2.maxMin2(v, n);
+    assertEquals(5, result[0]); // max
+    assertEquals(5, result[1]); // min
+  }
+  
+  @Test(timeout=1000)
+  public void testMaxMin2_EmptyArray() throws Exception {
+    int v[] = {};
+    int n = 0;
+    try {
+      MaxMin2.maxMin2(v, n);
+      fail("Expected ArrayIndexOutOfBoundsException");
+    } catch (ArrayIndexOutOfBoundsException e) {
+      // expected
+    }
+  }
+  
+  @Test(timeout=1000)
+  public void testMaxMin2_NullArray() throws Exception {
+    int v[] = null;
+    int n = 5;
+    try {
+      MaxMin2.maxMin2(v, n);
+      fail("Expected NullPointerException");
+    } catch (NullPointerException e) {
+      // expected
+    }
+  }
+  
+  @Test(timeout=1000)
+  public void testMaxMin2_NegativeValues() throws Exception {
+    int v[] = {-1, -2, -3, -4, -5};
+    int n = 5;
+    int[] result = MaxMin2.maxMin2(v, n);
+    assertEquals(-1, result[0]); // max
+    assertEquals(-5, result[1]); // min
+  }
+  
+  @Test(timeout=1000)
+  public void testMaxMin2_PositiveAndNegativeValues() throws Exception {
+    int v[] = {-1, 2, -3, 4, -5};
+    int n = 5;
+    int[] result = MaxMin2.maxMin2(v, n);
+    assertEquals(4, result[0]); // max
+    assertEquals(-5, result[1]); // min
+  }
+  
+  @Test(timeout=1000)
+  public void testMaxMin2_BoundaryValues() throws Exception {
+    int v[] = {Integer.MAX_VALUE, Integer.MIN_VALUE};
+    int n = 2;
+    int[] result = MaxMin2.maxMin2(v, n);
+    assertEquals(Integer.MAX_VALUE, result[0]); // max
+    assertEquals(Integer.MIN_VALUE, result[1]); // min
+  }
+}
+```
+Note that I've covered all the decisions in the `maxMin2` method, including:
+
+* Simple case with multiple elements
+* Single element array
+* Empty array
+* Null array
+* Negative values
+* Positive and negative values
+* Boundary values (max and min integers)
+
+I've also included a test for the default constructor, as required. Let me know if you have any questions or need further assistance!

@@ -1,0 +1,89 @@
+Here is the unit test class for the `MaxMin2` class:
+```
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+
+public class MaxMin2Test {
+
+    @Before
+    public void setUp() {
+        // No setup needed for this test
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin2_defaultConstructor() throws Exception {
+        // Test that the default constructor works
+        MaxMin2 maxMin2 = new MaxMin2();
+        assertNotNull(maxMin2);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin2_positiveValues() throws Exception {
+        int[] v = {1, 2, 3, 4, 5};
+        int[] result = MaxMin2.maxMin2(v, v.length);
+        assertEquals(5, result[0]);
+        assertEquals(1, result[1]);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin2_negativeValues() throws Exception {
+        int[] v = {-1, -2, -3, -4, -5};
+        int[] result = MaxMin2.maxMin2(v, v.length);
+        assertEquals(-1, result[0]);
+        assertEquals(-5, result[1]);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin2_mixedValues() throws Exception {
+        int[] v = {-1, 0, 1, 2, 3};
+        int[] result = MaxMin2.maxMin2(v, v.length);
+        assertEquals(3, result[0]);
+        assertEquals(-1, result[1]);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin2_singleElementArray() throws Exception {
+        int[] v = {5};
+        int[] result = MaxMin2.maxMin2(v, v.length);
+        assertEquals(5, result[0]);
+        assertEquals(5, result[1]);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin2_emptyArray() throws Exception {
+        int[] v = {};
+        try {
+            MaxMin2.maxMin2(v, v.length);
+            fail("Expected ArrayIndexOutOfBoundsException");
+        } catch (ArrayIndexOutOfBoundsException e) {
+            // Expected exception
+        }
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin2_nullArray() throws Exception {
+        int[] v = null;
+        try {
+            MaxMin2.maxMin2(v, 0);
+            fail("Expected NullPointerException");
+        } catch (NullPointerException e) {
+            // Expected exception
+        }
+    }
+}
+```
+Note that I've added tests for various scenarios, including:
+
+* Positive values
+* Negative values
+* Mixed values
+* Single-element array
+* Empty array
+* Null array
+
+I've also added a test for the default constructor, as per your requirements.
+
+Please let me know if this meets your requirements!

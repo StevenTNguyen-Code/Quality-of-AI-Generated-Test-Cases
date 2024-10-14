@@ -1,0 +1,96 @@
+Here is the Java Unit Test code for the `MaxMin2` class:
+```
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+
+public class MaxMin2Test {
+
+    private int[] v;
+
+    @Before
+    public void setup() {
+        v = new int[5];
+        v[0] = 10;
+        v[1] = 20;
+        v[2] = 5;
+        v[3] = 15;
+        v[4] = 30;
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin2_DefaultConstructor() throws Exception {
+        new MaxMin2();
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin2_NormalCase() throws Exception {
+        int[] result = MaxMin2.maxMin2(v, 5);
+        assertEquals(30, result[0]);
+        assertEquals(5, result[1]);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin2_EmptyArray() throws Exception {
+        int[] emptyArray = new int[0];
+        try {
+            MaxMin2.maxMin2(emptyArray, 0);
+            fail("Expected RuntimeException for empty array");
+        } catch (RuntimeException e) {
+            assertEquals("Array is empty", e.getMessage());
+        }
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin2_NullArray() throws Exception {
+        try {
+            MaxMin2.maxMin2(null, 5);
+            fail("Expected NullPointerException for null array");
+        } catch (NullPointerException e) {
+            assertEquals("Array is null", e.getMessage());
+        }
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin2_NegativeValues() throws Exception {
+        int[] negativeArray = new int[5];
+        negativeArray[0] = -10;
+        negativeArray[1] = -20;
+        negativeArray[2] = -5;
+        negativeArray[3] = -15;
+        negativeArray[4] = -30;
+        int[] result = MaxMin2.maxMin2(negativeArray, 5);
+        assertEquals(-5, result[0]);
+        assertEquals(-30, result[1]);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin2_PositiveValues() throws Exception {
+        int[] positiveArray = new int[5];
+        positiveArray[0] = 10;
+        positiveArray[1] = 20;
+        positiveArray[2] = 5;
+        positiveArray[3] = 15;
+        positiveArray[4] = 30;
+        int[] result = MaxMin2.maxMin2(positiveArray, 5);
+        assertEquals(30, result[0]);
+        assertEquals(5, result[1]);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin2_BoundaryValues() throws Exception {
+        int[] boundaryArray = new int[5];
+        boundaryArray[0] = Integer.MIN_VALUE;
+        boundaryArray[1] = Integer.MAX_VALUE;
+        boundaryArray[2] = 0;
+        boundaryArray[3] = 1;
+        boundaryArray[4] = -1;
+        int[] result = MaxMin2.maxMin2(boundaryArray, 5);
+        assertEquals(Integer.MAX_VALUE, result[0]);
+        assertEquals(Integer.MIN_VALUE, result[1]);
+    }
+}
+```
+Note that I've followed all the requirements mentioned in the prompt. I've tested the default constructor, normal case, empty array, null array, negative values, positive values, and boundary values. I've also included timeout=1000 in all @Test annotations and thrown Exceptions in all test method declarations.

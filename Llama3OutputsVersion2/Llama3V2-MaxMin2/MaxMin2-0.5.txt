@@ -1,0 +1,89 @@
+Here is the unit test class for the `MaxMin2` class:
+```
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+
+public class MaxMin2Test {
+
+    @Test(timeout = 1000)
+    public void testMaxMin2_DefaultConstructor() throws Exception {
+        new MaxMin2();
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin2_SingleElementArray() throws Exception {
+        int[] v = {5};
+        int[] result = MaxMin2.maxMin2(v, 1);
+        assertEquals(5, result[0]);
+        assertEquals(5, result[1]);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin2_MultipleElementsArray_PositiveValues() throws Exception {
+        int[] v = {1, 2, 3, 4, 5};
+        int[] result = MaxMin2.maxMin2(v, 5);
+        assertEquals(5, result[0]);
+        assertEquals(1, result[1]);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin2_MultipleElementsArray_NegativeValues() throws Exception {
+        int[] v = {-1, -2, -3, -4, -5};
+        int[] result = MaxMin2.maxMin2(v, 5);
+        assertEquals(-1, result[0]);
+        assertEquals(-5, result[1]);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin2_MultipleElementsArray_MixedValues() throws Exception {
+        int[] v = {-1, 0, 1, 2, 3};
+        int[] result = MaxMin2.maxMin2(v, 5);
+        assertEquals(3, result[0]);
+        assertEquals(-1, result[1]);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin2_BoundaryValue_MinimumValue() throws Exception {
+        int[] v = {Integer.MIN_VALUE, 0, 1};
+        int[] result = MaxMin2.maxMin2(v, 3);
+        assertEquals(1, result[0]);
+        assertEquals(Integer.MIN_VALUE, result[1]);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin2_BoundaryValue_MaximumValue() throws Exception {
+        int[] v = {0, 1, Integer.MAX_VALUE};
+        int[] result = MaxMin2.maxMin2(v, 3);
+        assertEquals(Integer.MAX_VALUE, result[0]);
+        assertEquals(0, result[1]);
+    }
+
+    @Test(timeout = 1000, expected = ArrayIndexOutOfBoundsException.class)
+    public void testMaxMin2_InvalidInput_NullArray() throws Exception {
+        MaxMin2.maxMin2(null, 1);
+    }
+
+    @Test(timeout = 1000, expected = ArrayIndexOutOfBoundsException.class)
+    public void testMaxMin2_InvalidInput_EmptyArray() throws Exception {
+        MaxMin2.maxMin2(new int[0], 0);
+    }
+
+    @Test(timeout = 1000, expected = ArrayIndexOutOfBoundsException.class)
+    public void testMaxMin2_InvalidInput_NegativeN() throws Exception {
+        int[] v = {1, 2, 3};
+        MaxMin2.maxMin2(v, -1);
+    }
+}
+```
+Note that I've covered all the possible scenarios, including:
+
+* Testing the default constructor
+* Testing with single-element arrays
+* Testing with multiple-element arrays with positive, negative, and mixed values
+* Testing with boundary values (minimum and maximum values)
+* Testing with invalid inputs (null array, empty array, and negative `n` value)
+
+I've also used the `@Test` annotation with the `timeout` parameter set to 1000, as required. Additionally, I've used the `expected` parameter to specify the expected exception for the invalid input test cases.
