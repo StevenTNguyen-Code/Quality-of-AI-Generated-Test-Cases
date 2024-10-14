@@ -1,0 +1,94 @@
+Here is the JUnit 4 test class for the `MaxMin1` class:
+```
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+import ds.*;
+
+public class MaxMin1Test {
+
+    @Before
+    public void setUp() throws Exception {
+        // No setup needed for this test class
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin1_DefaultConstructor() throws Exception {
+        // Test that the default constructor doesn't throw an exception
+        new MaxMin1();
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin1_EmptyArray() throws Exception {
+        int[] v = new int[0];
+        try {
+            MaxMin1.maxMin1(v, 0);
+            fail("Expected ArrayIndexOutOfBoundsException");
+        } catch (ArrayIndexOutOfBoundsException e) {
+            // Expected exception
+        }
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin1_NullArray() throws Exception {
+        int[] v = null;
+        try {
+            MaxMin1.maxMin1(v, 0);
+            fail("Expected NullPointerException");
+        } catch (NullPointerException e) {
+            // Expected exception
+        }
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin1_SingleElementArray() throws Exception {
+        int[] v = new int[] {5};
+        int[] result = MaxMin1.maxMin1(v, 1);
+        assertEquals(5, result[0]);
+        assertEquals(5, result[1]);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin1_MultipleElementsArray_PositiveNumbers() throws Exception {
+        int[] v = new int[] {3, 1, 4, 2};
+        int[] result = MaxMin1.maxMin1(v, 4);
+        assertEquals(4, result[0]);
+        assertEquals(1, result[1]);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin1_MultipleElementsArray_NegativeNumbers() throws Exception {
+        int[] v = new int[] {-3, -1, -4, -2};
+        int[] result = MaxMin1.maxMin1(v, 4);
+        assertEquals(-1, result[0]);
+        assertEquals(-4, result[1]);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin1_MultipleElementsArray_MixedNumbers() throws Exception {
+        int[] v = new int[] {-3, 1, 4, -2};
+        int[] result = MaxMin1.maxMin1(v, 4);
+        assertEquals(4, result[0]);
+        assertEquals(-3, result[1]);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin1_BoundaryValues_MinInt() throws Exception {
+        int[] v = new int[] {Integer.MIN_VALUE, 0, 1};
+        int[] result = MaxMin1.maxMin1(v, 3);
+        assertEquals(1, result[0]);
+        assertEquals(Integer.MIN_VALUE, result[1]);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin1_BoundaryValues_MaxInt() throws Exception {
+        int[] v = new int[] {Integer.MAX_VALUE, 0, 1};
+        int[] result = MaxMin1.maxMin1(v, 3);
+        assertEquals(Integer.MAX_VALUE, result[0]);
+        assertEquals(0, result[1]);
+    }
+}
+```
+Note that I've followed all the requirements you specified, including testing the default constructor, testing with empty arrays, null arrays, single-element arrays, and arrays with positive, negative, and mixed numbers. I've also included tests for boundary values such as `Integer.MIN_VALUE` and `Integer.MAX_VALUE`.

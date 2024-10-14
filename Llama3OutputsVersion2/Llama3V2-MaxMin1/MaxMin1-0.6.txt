@@ -1,0 +1,88 @@
+Here is the JUnit test class for the `MaxMin1` class:
+```
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+import ds.*;
+
+public class MaxMin1Test {
+
+    @Before
+    public void setup() {
+        // No setup needed for this test
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin1_defaultConstructor() throws Exception {
+        MaxMin1 maxMin1 = new MaxMin1(); // Testing default constructor
+        assertNotNull(maxMin1);
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin1_positiveValues() throws Exception {
+        int[] v = {1, 2, 3, 4, 5};
+        int[] result = MaxMin1.maxMin1(v, v.length);
+        assertEquals(5, result[0]); // max
+        assertEquals(1, result[1]); // min
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin1_negativeValues() throws Exception {
+        int[] v = {-1, -2, -3, -4, -5};
+        int[] result = MaxMin1.maxMin1(v, v.length);
+        assertEquals(-1, result[0]); // max
+        assertEquals(-5, result[1]); // min
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin1_mixedValues() throws Exception {
+        int[] v = {-1, 0, 1, 2, 3};
+        int[] result = MaxMin1.maxMin1(v, v.length);
+        assertEquals(3, result[0]); // max
+        assertEquals(-1, result[1]); // min
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin1_singleElementArray() throws Exception {
+        int[] v = {1};
+        int[] result = MaxMin1.maxMin1(v, v.length);
+        assertEquals(1, result[0]); // max
+        assertEquals(1, result[1]); // min
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin1_emptyArray() throws Exception {
+        int[] v = {};
+        try {
+            MaxMin1.maxMin1(v, v.length);
+            fail("Expected ArrayIndexOutOfBoundsException");
+        } catch (ArrayIndexOutOfBoundsException e) {
+            // Expected
+        }
+    }
+
+    @Test(timeout=1000)
+    public void testMaxMin1_nullArray() throws Exception {
+        int[] v = null;
+        try {
+            MaxMin1.maxMin1(v, v.length);
+            fail("Expected NullPointerException");
+        } catch (NullPointerException e) {
+            // Expected
+        }
+    }
+}
+```
+Note that I've covered all the possible scenarios:
+
+* Testing the default constructor
+* Testing with positive values
+* Testing with negative values
+* Testing with mixed values
+* Testing with a single-element array
+* Testing with an empty array (expected `ArrayIndexOutOfBoundsException`)
+* Testing with a null array (expected `NullPointerException`)
+
+Let me know if you need any further assistance!

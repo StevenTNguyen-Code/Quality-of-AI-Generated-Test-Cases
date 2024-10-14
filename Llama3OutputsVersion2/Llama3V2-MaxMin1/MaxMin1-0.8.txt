@@ -1,0 +1,74 @@
+Here are the unit tests for the `MaxMin1` class according to the given prompt:
+
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+
+public class MaxMin1Test {
+
+    @Test(timeout = 1000)
+    public void testMaxMin1DefaultConstructor() throws Exception {
+        MaxMin1 maxMin1 = new MaxMin1();
+        assertNotNull(maxMin1);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin1PositiveValues() throws Exception {
+        int[] v = {1, 2, 3, 4, 5};
+        int[] result = MaxMin1.maxMin1(v, v.length);
+        assertEquals(5, result[0]);
+        assertEquals(1, result[1]);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin1NegativeValues() throws Exception {
+        int[] v = {-1, -2, -3, -4, -5};
+        int[] result = MaxMin1.maxMin1(v, v.length);
+        assertEquals(-1, result[0]);
+        assertEquals(-5, result[1]);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin1MixedValues() throws Exception {
+        int[] v = {-1, 0, 1, 2, 3};
+        int[] result = MaxMin1.maxMin1(v, v.length);
+        assertEquals(3, result[0]);
+        assertEquals(-1, result[1]);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin1SingleElementArray() throws Exception {
+        int[] v = {1};
+        int[] result = MaxMin1.maxMin1(v, v.length);
+        assertEquals(1, result[0]);
+        assertEquals(1, result[1]);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin1EmptyArray() throws Exception {
+        int[] v = {};
+        try {
+            MaxMin1.maxMin1(v, v.length);
+            fail("Expected ArrayIndexOutOfBoundsException");
+        } catch (ArrayIndexOutOfBoundsException e) {
+            // Expected
+        }
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin1NullArray() throws Exception {
+        int[] v = null;
+        try {
+            MaxMin1.maxMin1(v, 0);
+            fail("Expected NullPointerException");
+        } catch (NullPointerException e) {
+            // Expected
+        }
+    }
+}
+```
+
+These tests cover all the possible scenarios, including positive, negative, and mixed values, as well as single-element and empty arrays. The `testMaxMin1DefaultConstructor` test ensures that the default constructor works correctly. The `testMaxMin1EmptyArray` and `testMaxMin1NullArray` tests verify that the method throws the expected exceptions when given an empty or null array, respectively.

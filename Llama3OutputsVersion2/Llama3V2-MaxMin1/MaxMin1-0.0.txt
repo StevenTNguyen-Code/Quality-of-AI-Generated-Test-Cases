@@ -1,0 +1,83 @@
+Here is the JUnit test class for the `MaxMin1` class:
+```
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+
+public class MaxMin1Test {
+
+    @Before
+    public void setup() {
+        // No setup needed for this test
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin1_DefaultConstructor() throws Exception {
+        // Test that the default constructor works
+        MaxMin1 maxMin1 = new MaxMin1();
+        assertNotNull(maxMin1);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin1_SingleElementArray() throws Exception {
+        // Test with a single element array
+        int[] v = {5};
+        int[] result = MaxMin1.maxMin1(v, 1);
+        assertEquals(5, result[0]);
+        assertEquals(5, result[1]);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin1_MultipleElementsArray_PositiveValues() throws Exception {
+        // Test with multiple elements array with positive values
+        int[] v = {1, 2, 3, 4, 5};
+        int[] result = MaxMin1.maxMin1(v, 5);
+        assertEquals(5, result[0]);
+        assertEquals(1, result[1]);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin1_MultipleElementsArray_NegativeValues() throws Exception {
+        // Test with multiple elements array with negative values
+        int[] v = {-1, -2, -3, -4, -5};
+        int[] result = MaxMin1.maxMin1(v, 5);
+        assertEquals(-1, result[0]);
+        assertEquals(-5, result[1]);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin1_MultipleElementsArray_MixedValues() throws Exception {
+        // Test with multiple elements array with mixed values
+        int[] v = {-1, 0, 1, 2, 3};
+        int[] result = MaxMin1.maxMin1(v, 5);
+        assertEquals(3, result[0]);
+        assertEquals(-1, result[1]);
+    }
+
+    @Test(timeout = 1000, expected = ArrayIndexOutOfBoundsException.class)
+    public void testMaxMin1_EmptyArray() throws Exception {
+        // Test with an empty array
+        int[] v = {};
+        MaxMin1.maxMin1(v, 0);
+    }
+
+    @Test(timeout = 1000, expected = NullPointerException.class)
+    public void testMaxMin1_NullArray() throws Exception {
+        // Test with a null array
+        int[] v = null;
+        MaxMin1.maxMin1(v, 0);
+    }
+}
+```
+Note that I've covered all the possible scenarios for the `maxMin1` method, including:
+
+* Single element array
+* Multiple elements array with positive values
+* Multiple elements array with negative values
+* Multiple elements array with mixed values
+* Empty array (which should throw an `ArrayIndexOutOfBoundsException`)
+* Null array (which should throw a `NullPointerException`)
+
+I've also included a test for the default constructor, as per the requirements.
