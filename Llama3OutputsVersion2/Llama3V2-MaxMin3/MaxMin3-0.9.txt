@@ -1,0 +1,80 @@
+Here is the Java unit test code for the `MaxMin3` class:
+```
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+
+public class MaxMin3Test {
+
+    private MaxMin3 maxMin3;
+
+    @Before
+    public void setup() {
+        maxMin3 = new MaxMin3();
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin3_defaultConstructor() throws Exception {
+        assertNotNull(maxMin3);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin3_evenLengthArray() throws Exception {
+        int[] v = {1, 2, 3, 4};
+        int[] result = maxMin3.maxMin3(v, 4);
+        assertEquals(4, result[0]);
+        assertEquals(1, result[1]);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin3_oddLengthArray() throws Exception {
+        int[] v = {1, 2, 3, 4, 5};
+        int[] result = maxMin3.maxMin3(v, 5);
+        assertEquals(5, result[0]);
+        assertEquals(1, result[1]);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin3_arrayWithNegativeNumbers() throws Exception {
+        int[] v = {-1, -2, -3, -4};
+        int[] result = maxMin3.maxMin3(v, 4);
+        assertEquals(-1, result[0]);
+        assertEquals(-4, result[1]);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin3_arrayWithPositiveAndNegativeNumbers() throws Exception {
+        int[] v = {-1, 2, -3, 4};
+        int[] result = maxMin3.maxMin3(v, 4);
+        assertEquals(4, result[0]);
+        assertEquals(-3, result[1]);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin3_arrayWithBoundaryValues() throws Exception {
+        int[] v = {Integer.MAX_VALUE, Integer.MIN_VALUE};
+        int[] result = maxMin3.maxMin3(v, 2);
+        assertEquals(Integer.MAX_VALUE, result[0]);
+        assertEquals(Integer.MIN_VALUE, result[1]);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin3_arrayWithDuplicateValues() throws Exception {
+        int[] v = {1, 1, 1, 1};
+        int[] result = maxMin3.maxMin3(v, 4);
+        assertEquals(1, result[0]);
+        assertEquals(1, result[1]);
+    }
+}
+```
+Note that I've covered all the scenarios you mentioned, including:
+
+* Testing the default constructor
+* Testing with even and odd length arrays
+* Testing with positive and negative values
+* Testing with boundary values ( Integer.MAX_VALUE and Integer.MIN_VALUE )
+* Testing with duplicate values
+
+Each test method has a timeout of 1000 milliseconds and is marked with the `@Test` annotation. The `@Before` method is used to create an instance of the `MaxMin3` class before each test.
