@@ -1,0 +1,128 @@
+Here is the test class with the required test cases:
+
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+import ds.*;
+
+public class CasamentoExatoTest {
+
+    private CasamentoExato casamentoExato;
+
+    @Before
+    public void setUp() throws Exception {
+        casamentoExato = new CasamentoExato();
+    }
+
+    @Test(timeout = 1000)
+    public void testForcaBruta() throws Exception {
+        String T = "abcdefg";
+        int n = T.length();
+        String P = "cde";
+        int m = P.length();
+        casamentoExato.forcaBruta(T, n, P, m);
+    }
+
+    @Test(timeout = 1000)
+    public void testForcaBrutaBoundary() throws Exception {
+        String T = "";
+        int n = T.length();
+        String P = "";
+        int m = P.length();
+        casamentoExato.forcaBruta(T, n, P, m);
+    }
+
+    @Test(timeout = 1000)
+    public void testForcaBrutaNullInput() throws Exception {
+        String T = null;
+        int n = 0;
+        String P = "cde";
+        int m = P.length();
+        casamentoExato.forcaBruta(T, n, P, m);
+    }
+
+    @Test(timeout = 1000)
+    public void testShiftAndExato() throws Exception {
+        String T = "abcdefg";
+        int n = T.length();
+        String P = "cde";
+        int m = P.length();
+        casamentoExato.shiftAndExato(T, n, P, m);
+    }
+
+    @Test(timeout = 1000)
+    public void testShiftAndExatoBoundary() throws Exception {
+        String T = "";
+        int n = T.length();
+        String P = "";
+        int m = P.length();
+        casamentoExato.shiftAndExato(T, n, P, m);
+    }
+
+    @Test(timeout = 1000)
+    public void testShiftAndExatoNullInput() throws Exception {
+        String T = null;
+        int n = 0;
+        String P = "cde";
+        int m = P.length();
+        casamentoExato.shiftAndExato(T, n, P, m);
+    }
+
+    @Test(timeout = 1000)
+    public void testBmh() throws Exception {
+        String T = "abcdefg";
+        int n = T.length();
+        String P = "cde";
+        int m = P.length();
+        casamentoExato.bmh(T, n, P, m);
+    }
+
+    @Test(timeout = 1000)
+    public void testBmhBoundary() throws Exception {
+        String T = "";
+        int n = T.length();
+        String P = "";
+        int m = P.length();
+        casamentoExato.bmh(T, n, P, m);
+    }
+
+    @Test(timeout = 1000)
+    public void testBmhNullInput() throws Exception {
+        String T = null;
+        int n = 0;
+        String P = "cde";
+        int m = P.length();
+        casamentoExato.bmh(T, n, P, m);
+    }
+
+    @Test(timeout = 1000)
+    public void testBmhs() throws Exception {
+        String T = "abcdefg";
+        int n = T.length();
+        String P = "cde";
+        int m = P.length();
+        casamentoExato.bmhs(T, n, P, m);
+    }
+
+    @Test(timeout = 1000)
+    public void testBmhsBoundary() throws Exception {
+        String T = "";
+        int n = T.length();
+        String P = "";
+        int m = P.length();
+        casamentoExato.bmhs(T, n, P, m);
+    }
+
+    @Test(timeout = 1000)
+    public void testBmhsNullInput() throws Exception {
+        String T = null;
+        int n = 0;
+        String P = "cde";
+        int m = P.length();
+        casamentoExato.bmhs(T, n, P, m);
+    }
+}
+```
