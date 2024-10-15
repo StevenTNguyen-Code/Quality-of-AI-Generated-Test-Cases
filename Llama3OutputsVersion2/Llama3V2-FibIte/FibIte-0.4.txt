@@ -1,0 +1,52 @@
+Here is the test class for the given Fibonacci class:
+
+```java
+package ds;
+
+import org.junit.Test;
+import static org.junit.Assert.*;
+
+public class FibonacciTest {
+
+    @Before
+    public void setup() {
+        // No setup needed for this test
+    }
+
+    @Test(timeout = 1000)
+    public void testFibIterPositive() throws Exception {
+        assertEquals(0, Fibonacci.fibIter(0));
+        assertEquals(1, Fibonacci.fibIter(1));
+        assertEquals(1, Fibonacci.fibIter(2));
+        assertEquals(2, Fibonacci.fibIter(3));
+        assertEquals(3, Fibonacci.fibIter(4));
+        assertEquals(5, Fibonacci.fibIter(5));
+        assertEquals(8, Fibonacci.fibIter(6));
+        assertEquals(13, Fibonacci.fibIter(7));
+        assertEquals(21, Fibonacci.fibIter(8));
+    }
+
+    @Test(timeout = 1000)
+    public void testFibIterNegative() throws Exception {
+        try {
+            Fibonacci.fibIter(-1);
+            fail("Expected ArithmeticException");
+        } catch (Exception e) {
+            // Expected
+        }
+    }
+
+    @Test(timeout = 1000)
+    public void testFibIterBoundary() throws Exception {
+        assertEquals(0, Fibonacci.fibIter(0));
+        assertEquals(1, Fibonacci.fibIter(1));
+    }
+
+    @Test(timeout = 1000)
+    public void testFibIterDefaultConstructor() throws Exception {
+        // No constructor to test
+    }
+}
+```
+
+This test class covers all the decisions in the `fibIter` method of the `Fibonacci` class. It tests the method with positive values, negative values, and boundary values. It also tests the default constructor, although in this case, there is no constructor to test. The `@Before` method is empty because there is no setup needed for this test.

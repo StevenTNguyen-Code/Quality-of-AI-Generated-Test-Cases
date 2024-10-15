@@ -1,0 +1,68 @@
+Here is the unit test for the given Java class:
+
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+
+public class FibonacciTest {
+
+    private Fibonacci fibonacci;
+
+    @Before
+    public void setup() {
+        fibonacci = new Fibonacci();
+    }
+
+    @Test(timeout = 1000)
+    public void testFibIter_DefaultConstructor() throws Exception {
+        // test default constructor
+        assertNotNull(fibonacci);
+    }
+
+    @Test(timeout = 1000)
+    public void testFibIter_NegativeInput() throws Exception {
+        // test with negative input
+        try {
+            fibonacci.fibIter(-1);
+            fail("Expected Exception for negative input");
+        } catch (Exception e) {
+            // expected
+        }
+    }
+
+    @Test(timeout = 1000)
+    public void testFibIter_ZeroInput() throws Exception {
+        // test with zero input
+        assertEquals(0, fibonacci.fibIter(0));
+    }
+
+    @Test(timeout = 1000)
+    public void testFibIter_PositiveInput_Small() throws Exception {
+        // test with small positive input
+        assertEquals(1, fibonacci.fibIter(1));
+        assertEquals(1, fibonacci.fibIter(2));
+        assertEquals(2, fibonacci.fibIter(3));
+    }
+
+    @Test(timeout = 1000)
+    public void testFibIter_PositiveInput_Large() throws Exception {
+        // test with large positive input
+        assertEquals(55, fibonacci.fibIter(10));
+        assertEquals(89, fibonacci.fibIter(11));
+        assertEquals(144, fibonacci.fibIter(12));
+    }
+}
+```
+
+This test class covers all the possible scenarios for the `fibIter` method:
+
+- It tests the default constructor.
+- It tests with negative input, which should throw an exception.
+- It tests with zero input, which should return 0.
+- It tests with small positive inputs, which should return the correct Fibonacci number.
+- It tests with large positive inputs, which should also return the correct Fibonacci number.
+
+Note that the `fibIter` method does not explicitly throw an exception, so we use `try-catch` block to test the negative input scenario.

@@ -1,0 +1,53 @@
+Here is the Java unit test for the `Fibonacci` class:
+
+```java
+package ds;
+
+import org.junit.Test;
+import static org.junit.Assert.*;
+
+public class FibonacciTest {
+
+    @Test(timeout = 1000)
+    public void testFibIter_DefaultConstructor() {
+        Fibonacci fibonacci = new Fibonacci();
+        assertNotNull(fibonacci);
+    }
+
+    @Test(timeout = 1000)
+    public void testFibIter_PositiveInput() {
+        assertEquals(0, Fibonacci.fibIter(0));
+        assertEquals(1, Fibonacci.fibIter(1));
+        assertEquals(1, Fibonacci.fibIter(2));
+        assertEquals(2, Fibonacci.fibIter(3));
+        assertEquals(3, Fibonacci.fibIter(4));
+        assertEquals(5, Fibonacci.fibIter(5));
+    }
+
+    @Test(timeout = 1000)
+    public void testFibIter_NegativeInput() {
+        try {
+            Fibonacci.fibIter(-1);
+            fail("fibIter should throw ArithmeticException for negative input");
+        } catch (ArithmeticException e) {
+            // expected
+        }
+    }
+
+    @Test(timeout = 1000)
+    public void testFibIter_BoundaryValueInput() {
+        assertEquals(0, Fibonacci.fibIter(0));
+        assertEquals(1, Fibonacci.fibIter(1));
+        assertEquals(55, Fibonacci.fibIter(10));
+    }
+}
+```
+
+This test class covers the following scenarios:
+
+1. `testFibIter_DefaultConstructor`: Verifies that the default constructor of the `Fibonacci` class works correctly.
+2. `testFibIter_PositiveInput`: Verifies that the `fibIter` method returns the correct results for positive input values.
+3. `testFibIter_NegativeInput`: Verifies that the `fibIter` method throws an `ArithmeticException` for negative input values.
+4. `testFibIter_BoundaryValueInput`: Verifies that the `fibIter` method returns the correct results for boundary value inputs (0, 1, and 10).
+
+Note that the `fibIter` method is a static method, so we don't need to create an instance of the `Fibonacci` class to test it.

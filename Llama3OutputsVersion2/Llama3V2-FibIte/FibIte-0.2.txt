@@ -1,0 +1,58 @@
+Here is the Java unit test class for the given Fibonacci class:
+
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+
+public class FibonacciTest {
+
+    private Fibonacci fibonacci;
+
+    @Before
+    public void setup() {
+        fibonacci = new Fibonacci();
+    }
+
+    @Test(timeout = 1000)
+    public void testFibIter_DefaultConstructor() {
+        assertNotNull(fibonacci);
+    }
+
+    @Test(timeout = 1000)
+    public void testFibIter_NegativeInput() {
+        try {
+            fibonacci.fibIter(-1);
+            fail("Expected IllegalArgumentException");
+        } catch (Exception e) {
+            assertTrue(e instanceof IllegalArgumentException);
+        }
+    }
+
+    @Test(timeout = 1000)
+    public void testFibIter_ZeroInput() {
+        assertEquals(0, fibonacci.fibIter(0));
+    }
+
+    @Test(timeout = 1000)
+    public void testFibIter_PositiveInput() {
+        assertEquals(1, fibonacci.fibIter(1));
+        assertEquals(1, fibonacci.fibIter(2));
+        assertEquals(2, fibonacci.fibIter(3));
+        assertEquals(3, fibonacci.fibIter(4));
+        assertEquals(5, fibonacci.fibIter(5));
+    }
+
+    @Test(timeout = 1000)
+    public void testFibIter_BoundaryValueInput() {
+        assertEquals(13, fibonacci.fibIter(7));
+        assertEquals(21, fibonacci.fibIter(8));
+        assertEquals(34, fibonacci.fibIter(9));
+        assertEquals(55, fibonacci.fibIter(10));
+    }
+}
+```
+
+This test class covers all the decisions in the `fibIter` method of the `Fibonacci` class. It tests the default constructor, negative input, zero input, positive input, and boundary values. It also includes tests for the method with valid inputs. The `@Test` annotation is used with a timeout of 1000 milliseconds. The `@Before` annotation is used to setup the `Fibonacci` object before each test.

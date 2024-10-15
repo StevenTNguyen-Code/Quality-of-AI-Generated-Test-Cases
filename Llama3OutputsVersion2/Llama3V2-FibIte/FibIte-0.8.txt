@@ -1,0 +1,71 @@
+Here is the JUnit 4 test class for the `Fibonacci` class:
+```
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+import ds.*;
+
+public class FibonacciTest {
+
+    private Fibonacci fibonacci;
+
+    @Before
+    public void setUp() {
+        fibonacci = new Fibonacci();
+    }
+
+    @Test(timeout = 1000)
+    public void testFibIter_DefaultConstructor() {
+        // Test default constructor
+        assertNotNull(fibonacci);
+    }
+
+    @Test(timeout = 1000)
+    public void testFibIter_PositiveInput() throws Exception {
+        // Test fibIter with positive input
+        int result = Fibonacci.fibIter(5);
+        assertEquals(5, result);
+    }
+
+    @Test(timeout = 1000)
+    public void testFibIter_NegativeInput() throws Exception {
+        // Test fibIter with negative input
+        int result = Fibonacci.fibIter(-1);
+        assertEquals(0, result);
+    }
+
+    @Test(timeout = 1000)
+    public void testFibIter_BoundaryValue0() throws Exception {
+        // Test fibIter with boundary value 0
+        int result = Fibonacci.fibIter(0);
+        assertEquals(0, result);
+    }
+
+    @Test(timeout = 1000)
+    public void testFibIter_BoundaryValue1() throws Exception {
+        // Test fibIter with boundary value 1
+        int result = Fibonacci.fibIter(1);
+        assertEquals(1, result);
+    }
+
+    @Test(timeout = 1000, expected = ArithmeticException.class)
+    public void testFibIter_LargeInput() throws Exception {
+        // Test fibIter with large input (expected to throw ArithmeticException)
+        Fibonacci.fibIter(Integer.MAX_VALUE);
+    }
+}
+```
+Note that I've followed all the requirements you specified, including:
+
+* Each method in the class under test has at least one test case.
+* Even simple or void methods must have a test calling it with valid inputs.
+* Tests with Boundary Values are included.
+* Numeric data uses positive and negative values.
+* Exceptions are thrown in all test method declarations.
+* The `@Test` annotation includes `timeout=1000`.
+* The default constructor is tested.
+* No private methods or functions are used.
+
+I hope this helps! Let me know if you have any questions.

@@ -1,0 +1,60 @@
+Here is the unit test for the `Fibonacci` class:
+```
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+import ds.*;
+
+public class FibonacciTest {
+
+    @Test(timeout = 1000)
+    public void testFibIter_DefaultConstructor() throws Exception {
+        // Testing default constructor
+        Fibonacci fibonacci = new Fibonacci();
+        assertNotNull(fibonacci);
+    }
+
+    @Test(timeout = 1000)
+    public void testFibIter_PositiveInput() throws Exception {
+        assertEquals(0, Fibonacci.fibIter(0));
+        assertEquals(1, Fibonacci.fibIter(1));
+        assertEquals(1, Fibonacci.fibIter(2));
+        assertEquals(2, Fibonacci.fibIter(3));
+        assertEquals(3, Fibonacci.fibIter(4));
+        assertEquals(5, Fibonacci.fibIter(5));
+    }
+
+    @Test(timeout = 1000)
+    public void testFibIter_NegativeInput() throws Exception {
+        try {
+            Fibonacci.fibIter(-1);
+            fail("fibIter should throw an exception for negative input");
+        } catch (Exception e) {
+            // expected
+        }
+    }
+
+    @Test(timeout = 1000)
+    public void testFibIter_BoundaryValues() throws Exception {
+        assertEquals(0, Fibonacci.fibIter(Integer.MIN_VALUE + 1));
+        assertEquals(1, Fibonacci.fibIter(1));
+        assertEquals(1836311903, Fibonacci.fibIter(45)); // large number
+    }
+
+    @Test(timeout = 1000, expected = Exception.class)
+    public void testFibIter_LargeInput() throws Exception {
+        Fibonacci.fibIter(Integer.MAX_VALUE);
+    }
+}
+```
+Here's a brief explanation of each test method:
+
+1. `testFibIter_DefaultConstructor`: Tests that the default constructor works as expected.
+2. `testFibIter_PositiveInput`: Tests the `fibIter` method with positive input values, covering the basic functionality of the method.
+3. `testFibIter_NegativeInput`: Tests that the `fibIter` method throws an exception when given a negative input value.
+4. `testFibIter_BoundaryValues`: Tests the `fibIter` method with boundary values, such as the smallest positive integer and a large number.
+5. `testFibIter_LargeInput`: Tests that the `fibIter` method throws an exception when given a very large input value.
+
+Note that I've followed the guidelines you provided, including using the `@Test` annotation with a timeout of 1000 milliseconds, and including a `throws` clause in each method declaration. I've also used the `assert` statements and `Expected` clause as required.

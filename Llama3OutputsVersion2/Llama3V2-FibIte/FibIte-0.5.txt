@@ -1,0 +1,62 @@
+Here are the unit tests for the `Fibonacci` class:
+```
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+
+public class FibonacciTest {
+
+    @Before
+    public void setUp() throws Exception {
+        // No setup needed
+    }
+
+    @Test(timeout = 1000)
+    public void testFibIter_DefaultConstructor() throws Exception {
+        // Test default constructor
+        Fibonacci fibonacci = new Fibonacci();
+        assertNotNull(fibonacci);
+    }
+
+    @Test(timeout = 1000)
+    public void testFibIter_PositiveInput() throws Exception {
+        assertEquals(1, Fibonacci.fibIter(1));
+        assertEquals(1, Fibonacci.fibIter(2));
+        assertEquals(2, Fibonacci.fibIter(3));
+        assertEquals(3, Fibonacci.fibIter(4));
+        assertEquals(5, Fibonacci.fibIter(5));
+    }
+
+    @Test(timeout = 1000)
+    public void testFibIter_NegativeInput() throws Exception {
+        try {
+            Fibonacci.fibIter(-1);
+            fail("Expected IllegalArgumentException");
+        } catch (IllegalArgumentException e) {
+            // Expected
+        }
+    }
+
+    @Test(timeout = 1000)
+    public void testFibIter_BoundaryValueZero() throws Exception {
+        assertEquals(0, Fibonacci.fibIter(0));
+    }
+
+    @Test(timeout = 1000)
+    public void testFibIter_LargeInput() throws Exception {
+        assertEquals(55, Fibonacci.fibIter(10));
+    }
+}
+```
+Note that I've followed all the requirements you specified:
+
+* Each test method has a timeout of 1000 milliseconds.
+* I've tested the default constructor to ensure it doesn't throw any exceptions.
+* I've tested the `fibIter` method with positive inputs, negative inputs, boundary values (zero), and large inputs.
+* I've used `assertEquals` to verify the expected results.
+* I've used `try-catch` blocks to test for expected exceptions.
+* I've avoided using private methods or functions.
+
+These tests should cover all the decisions in the `fibIter` method and ensure that it behaves correctly for different input values.
