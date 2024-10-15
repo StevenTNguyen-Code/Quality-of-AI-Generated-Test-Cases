@@ -1,0 +1,108 @@
+Here is the JUnit test class for the `Ordenacao` class:
+```
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+
+public class OrdenacaoTest {
+
+    private int[] array;
+    private int n;
+
+    @Before
+    public void setup() {
+        array = new int[] {5, 2, 8, 3, 1, 4};
+        n = array.length;
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdena_DefaultConstructor() {
+        Ordenacao ordenacao = new Ordenacao();
+        assertNotNull(ordenacao);
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdena_SortedArray() throws Exception {
+        ordena(array, n);
+        int[] expected = new int[] {1, 2, 3, 4, 5, 8};
+        assertArrayEquals(expected, array);
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdena_ReversedArray() throws Exception {
+        int[] reversedArray = new int[] {8, 5, 4, 3, 2, 1};
+        ordena(reversedArray, reversedArray.length);
+        int[] expected = new int[] {1, 2, 3, 4, 5, 8};
+        assertArrayEquals(expected, reversedArray);
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdena_ArrayWithDuplicates() throws Exception {
+        int[] arrayWithDuplicates = new int[] {5, 2, 8, 3, 1, 4, 2, 5};
+        ordena(arrayWithDuplicates, arrayWithDuplicates.length);
+        int[] expected = new int[] {1, 2, 2, 3, 4, 5, 5, 8};
+        assertArrayEquals(expected, arrayWithDuplicates);
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdena_EmptyArray() throws Exception {
+        int[] emptyArray = new int[] {};
+        ordena(emptyArray, emptyArray.length);
+        int[] expected = new int[] {};
+        assertArrayEquals(expected, emptyArray);
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdena_ArrayWithOneElement() throws Exception {
+        int[] arrayWithOneElement = new int[] {5};
+        ordena(arrayWithOneElement, arrayWithOneElement.length);
+        int[] expected = new int[] {5};
+        assertArrayEquals(expected, arrayWithOneElement);
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdena_ArrayWithTwoElements() throws Exception {
+        int[] arrayWithTwoElements = new int[] {5, 2};
+        ordena(arrayWithTwoElements, arrayWithTwoElements.length);
+        int[] expected = new int[] {2, 5};
+        assertArrayEquals(expected, arrayWithTwoElements);
+    }
+
+    @Test(timeout = 1000, expected = NullPointerException.class)
+    public void testOrdena_NullArray() throws Exception {
+        ordena(null, 0);
+    }
+
+    @Test(timeout = 1000, expected = ArrayIndexOutOfBoundsException.class)
+    public void testOrdena_NegativeN() throws Exception {
+        ordena(array, -1);
+    }
+
+    @Test(timeout = 1000, expected = ArrayIndexOutOfBoundsException.class)
+    public void testOrdena_NGreaterThanArrayLength() throws Exception {
+        ordena(array, array.length + 1);
+    }
+
+    private void ordena(int[] v, int n) {
+        Ordenacao.ordena(v, n);
+    }
+}
+```
+Note that I've added a `setup` method to initialize the `array` and `n` variables, which are used in multiple test methods. I've also added a `ordena` method in the test class to call the `ordena` method of the `Ordenacao` class, since it's a static method.
+
+I've covered all the possible scenarios, including:
+
+* Testing the default constructor
+* Testing with a sorted array
+* Testing with a reversed array
+* Testing with an array with duplicates
+* Testing with an empty array
+* Testing with an array with one element
+* Testing with an array with two elements
+* Testing with a null array (expected to throw a `NullPointerException`)
+* Testing with a negative `n` value (expected to throw an `ArrayIndexOutOfBoundsException`)
+* Testing with an `n` value greater than the array length (expected to throw an `ArrayIndexOutOfBoundsException`)
+
+All test methods have a timeout of 1000 milliseconds, as required.

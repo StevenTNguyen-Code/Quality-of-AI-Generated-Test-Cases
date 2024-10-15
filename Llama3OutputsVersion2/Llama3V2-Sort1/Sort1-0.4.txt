@@ -1,0 +1,111 @@
+Here is the Java unit test for the `Ordenacao` class:
+```
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+import ds.*;
+
+public class OrdenacaoTest {
+
+    private int[] v;
+    private int n;
+
+    @Before
+    public void setup() {
+        v = new int[5];
+        n = 5;
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdena_DefaultConstructor() {
+        Ordenacao ordenacao = new Ordenacao();
+        assertNotNull(ordenacao);
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdena_SortedArray() throws Exception {
+        v[0] = 1;
+        v[1] = 2;
+        v[2] = 3;
+        v[3] = 4;
+        v[4] = 5;
+        Ordenacao.ordena(v, n);
+        assertArrayEquals(new int[]{1, 2, 3, 4, 5}, v);
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdena_ReversedArray() throws Exception {
+        v[0] = 5;
+        v[1] = 4;
+        v[2] = 3;
+        v[3] = 2;
+        v[4] = 1;
+        Ordenacao.ordena(v, n);
+        assertArrayEquals(new int[]{1, 2, 3, 4, 5}, v);
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdena_ArrayWithDuplicates() throws Exception {
+        v[0] = 2;
+        v[1] = 4;
+        v[2] = 1;
+        v[3] = 3;
+        v[4] = 2;
+        Ordenacao.ordena(v, n);
+        assertArrayEquals(new int[]{1, 2, 2, 3, 4}, v);
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdena_EmptyArray() throws Exception {
+        v = new int[0];
+        n = 0;
+        Ordenacao.ordena(v, n);
+        assertArrayEquals(new int[0], v);
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdena_NullArray() throws Exception {
+        v = null;
+        n = 5;
+        try {
+            Ordenacao.ordena(v, n);
+            fail("Expected NullPointerException");
+        } catch (NullPointerException e) {
+            // expected
+        }
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdena_NegativeValues() throws Exception {
+        v[0] = -5;
+        v[1] = -2;
+        v[2] = -3;
+        v[3] = -1;
+        v[4] = -4;
+        Ordenacao.ordena(v, n);
+        assertArrayEquals(new int[]{-5, -4, -3, -2, -1}, v);
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdena_BoundaryValues() throws Exception {
+        v[0] = Integer.MAX_VALUE;
+        v[1] = Integer.MIN_VALUE;
+        v[2] = 0;
+        v[3] = 1;
+        v[4] = -1;
+        Ordenacao.ordena(v, n);
+        assertArrayEquals(new int[]{-1, 0, 1, Integer.MIN_VALUE, Integer.MAX_VALUE}, v);
+    }
+}
+```
+Note that I've covered all the scenarios you mentioned, including:
+
+* Testing the default constructor
+* Testing with sorted, reversed, and duplicate arrays
+* Testing with empty and null arrays
+* Testing with negative values and boundary values (Integer.MAX_VALUE and Integer.MIN_VALUE)
+* Using `assertArrayEquals` to compare the expected and actual results
+* Using `try-catch` block to test for `NullPointerException` when passing a null array
+* Using `timeout = 1000` in all `@Test` annotations as required.

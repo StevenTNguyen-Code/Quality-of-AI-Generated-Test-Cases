@@ -1,0 +1,103 @@
+Here is the unit test class for the `Ordenacao` class:
+```
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+
+public class OrdenacaoTest {
+
+    private int[] array;
+    private int n;
+
+    @Before
+    public void setup() {
+        array = new int[] {4, 2, 7, 1, 3};
+        n = array.length;
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdena() throws Exception {
+        Ordenacao.ordena(array, n);
+        int[] expected = new int[] {1, 2, 3, 4, 7};
+        assertArrayEquals(expected, array);
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdenaEmptyArray() throws Exception {
+        array = new int[0];
+        n = array.length;
+        Ordenacao.ordena(array, n);
+        assertEquals(0, array.length);
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdenaSingleElementArray() throws Exception {
+        array = new int[] {5};
+        n = array.length;
+        Ordenacao.ordena(array, n);
+        assertEquals(5, array[0]);
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdenaAlreadySortedArray() throws Exception {
+        array = new int[] {1, 2, 3, 4, 5};
+        n = array.length;
+        Ordenacao.ordena(array, n);
+        assertArrayEquals(new int[] {1, 2, 3, 4, 5}, array);
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdenaNegativeValues() throws Exception {
+        array = new int[] {-4, -2, -7, -1, -3};
+        n = array.length;
+        Ordenacao.ordena(array, n);
+        assertArrayEquals(new int[] {-7, -4, -3, -2, -1}, array);
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdenaMixedValues() throws Exception {
+        array = new int[] {-4, 2, -7, 1, -3};
+        n = array.length;
+        Ordenacao.ordena(array, n);
+        assertArrayEquals(new int[] {-7, -4, -3, 1, 2}, array);
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdenaNullArray() throws Exception {
+        array = null;
+        n = 0;
+        try {
+            Ordenacao.ordena(array, n);
+            fail("Expected NullPointerException");
+        } catch (NullPointerException e) {
+            // expected
+        }
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdenaNegativeN() throws Exception {
+        array = new int[] {4, 2, 7, 1, 3};
+        n = -1;
+        try {
+            Ordenacao.ordena(array, n);
+            fail("Expected ArrayIndexOutOfBoundsException");
+        } catch (ArrayIndexOutOfBoundsException e) {
+            // expected
+        }
+    }
+}
+```
+Note that I've covered all the possible scenarios, including:
+
+* Testing the `ordena` method with a valid array and `n` value
+* Testing with an empty array
+* Testing with a single-element array
+* Testing with an already sorted array
+* Testing with negative values
+* Testing with mixed values (positive and negative)
+* Testing with a null array (expected `NullPointerException`)
+* Testing with a negative `n` value (expected `ArrayIndexOutOfBoundsException`)
+
+I've also included the `@Before` method to setup the test data, and used the `assertArrayEquals` method to compare the expected and actual arrays.

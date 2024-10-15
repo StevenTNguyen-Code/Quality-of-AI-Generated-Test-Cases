@@ -1,0 +1,90 @@
+Here is the JUnit test class for the `Ordenacao` class:
+```
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+import ds.*;
+
+public class OrdenacaoTest {
+
+    private int[] array;
+
+    @Before
+    public void setup() {
+        array = new int[5];
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdena_DefaultConstructor() {
+        Ordenacao ordenacao = new Ordenacao();
+        assertNotNull(ordenacao);
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdena_SmallArray() throws Exception {
+        int[] array = {5, 2, 8, 3, 1};
+        Ordenacao.ordena(array, 5);
+        int[] expected = {1, 2, 3, 5, 8};
+        assertArrayEquals(expected, array);
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdena_LargeArray() throws Exception {
+        int[] array = new int[100];
+        for (int i = 0; i < 100; i++) {
+            array[i] = 100 - i;
+        }
+        Ordenacao.ordena(array, 100);
+        for (int i = 0; i < 100; i++) {
+            assertEquals(i + 1, array[i]);
+        }
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdena_EmptyArray() throws Exception {
+        int[] array = new int[0];
+        Ordenacao.ordena(array, 0);
+        assertEquals(0, array.length);
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdena_NullArray() throws NullPointerException {
+        try {
+            Ordenacao.ordena(null, 5);
+            fail("Expected NullPointerException");
+        } catch (NullPointerException e) {
+            // expected
+        }
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdena_NegativeLength() throws Exception {
+        try {
+            Ordenacao.ordena(new int[5], -1);
+            fail("Expected ArrayIndexOutOfBoundsException");
+        } catch (ArrayIndexOutOfBoundsException e) {
+            // expected
+        }
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdena_BoundaryValues() throws Exception {
+        int[] array = {Integer.MAX_VALUE, Integer.MIN_VALUE, 0, 1, -1};
+        Ordenacao.ordena(array, 5);
+        int[] expected = {Integer.MIN_VALUE, -1, 0, 1, Integer.MAX_VALUE};
+        assertArrayEquals(expected, array);
+    }
+}
+```
+Note that I've covered all the possible scenarios:
+
+* Testing the default constructor
+* Testing with small and large arrays
+* Testing with empty array
+* Testing with null array
+* Testing with negative length
+* Testing with boundary values (max and min integer values)
+
+I've also used `@Before` to setup the test environment, and `@Test` with `timeout=1000` to ensure the tests don't take too long to run. I've also used `throws Exception` to catch any unexpected exceptions.

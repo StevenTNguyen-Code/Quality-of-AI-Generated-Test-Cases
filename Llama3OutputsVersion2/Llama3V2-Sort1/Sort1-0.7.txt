@@ -1,0 +1,101 @@
+Here is the test class for the `Ordenacao` class:
+```
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+
+public class OrdenacaoTest {
+
+    private int[] array;
+
+    @Before
+    public void setUp() {
+        array = new int[5];
+    }
+
+    @Test(timeout=1000)
+    public void testOrdernaDefaultConstructor() throws Exception {
+        new Ordenacao();
+    }
+
+    @Test(timeout=1000)
+    public void testOrdernaNullArray() throws Exception {
+        try {
+            Ordenacao.ordena(null, 5);
+            fail("Expected NullPointerException");
+        } catch (NullPointerException e) {
+            // expected
+        }
+    }
+
+    @Test(timeout=1000)
+    public void testOrdernaEmptyArray() throws Exception {
+        int[] emptyArray = new int[0];
+        Ordenacao.ordena(emptyArray, 0);
+        assertEquals(0, emptyArray.length);
+    }
+
+    @Test(timeout=1000)
+    public void testOrdernaSingleElementArray() throws Exception {
+        int[] singleElementArray = new int[] {5};
+        Ordenacao.ordena(singleElementArray, 1);
+        assertEquals(5, singleElementArray[0]);
+    }
+
+    @Test(timeout=1000)
+    public void testOrdernaAlreadySortedArray() throws Exception {
+        int[] alreadySortedArray = new int[] {1, 2, 3, 4, 5};
+        Ordenacao.ordena(alreadySortedArray, 5);
+        assertArrayEquals(new int[] {1, 2, 3, 4, 5}, alreadySortedArray);
+    }
+
+    @Test(timeout=1000)
+    public void testOrdernaUnsortedArray() throws Exception {
+        int[] unsortedArray = new int[] {5, 3, 1, 4, 2};
+        Ordenacao.ordena(unsortedArray, 5);
+        assertArrayEquals(new int[] {1, 2, 3, 4, 5}, unsortedArray);
+    }
+
+    @Test(timeout=1000)
+    public void testOrdernaNegativeValuesArray() throws Exception {
+        int[] negativeValuesArray = new int[] {-5, -3, -1, -4, -2};
+        Ordenacao.ordena(negativeValuesArray, 5);
+        assertArrayEquals(new int[] {-5, -4, -3, -2, -1}, negativeValuesArray);
+    }
+
+    @Test(timeout=1000)
+    public void testOrdernaMixedValuesArray() throws Exception {
+        int[] mixedValuesArray = new int[] {5, -3, 1, -4, 2};
+        Ordenacao.ordena(mixedValuesArray, 5);
+        assertArrayEquals(new int[] {-4, -3, 1, 2, 5}, mixedValuesArray);
+    }
+
+    @Test(timeout=1000)
+    public void testOrdernaLargeArray() throws Exception {
+        int[] largeArray = new int[100];
+        for (int i = 0; i < 100; i++) {
+            largeArray[i] = 100 - i;
+        }
+        Ordenacao.ordena(largeArray, 100);
+        for (int i = 0; i < 100; i++) {
+            assertEquals(i + 1, largeArray[i]);
+        }
+    }
+}
+```
+Note that I've tested the `ordena` method with various input scenarios, including:
+
+* A null array
+* An empty array
+* A single-element array
+* An already sorted array
+* An unsorted array
+* An array with negative values
+* An array with mixed positive and negative values
+* A large array
+
+I've also tested the default constructor to ensure it doesn't throw any exceptions.
+
+Please note that I've used the `assertArrayEquals` method to compare the expected and actual array values, and the `assertEquals` method to compare individual values.

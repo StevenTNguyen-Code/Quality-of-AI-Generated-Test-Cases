@@ -1,0 +1,113 @@
+Here is the JUnit test class for the `Ordenacao` class:
+```
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+
+public class OrdenacaoTest {
+
+    private int[] array;
+    private int n;
+
+    @Before
+    public void setup() {
+        array = new int[5];
+        n = 5;
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdena_DefaultConstructor() {
+        Ordenacao ordenacao = new Ordenacao();
+        assertNotNull(ordenacao);
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdena_EmptyArray() {
+        int[] emptyArray = new int[0];
+        ordena(emptyArray, 0);
+        assertEquals(0, emptyArray.length);
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdena_SingleElementArray() {
+        int[] singleElementArray = new int[] {5};
+        ordena(singleElementArray, 1);
+        assertEquals(5, singleElementArray[0]);
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdena_PositiveNumbers() {
+        array[0] = 5;
+        array[1] = 3;
+        array[2] = 1;
+        array[3] = 4;
+        array[4] = 2;
+        ordena(array, n);
+        assertEquals(1, array[0]);
+        assertEquals(2, array[1]);
+        assertEquals(3, array[2]);
+        assertEquals(4, array[3]);
+        assertEquals(5, array[4]);
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdena_NegativeNumbers() {
+        array[0] = -5;
+        array[1] = -3;
+        array[2] = -1;
+        array[3] = -4;
+        array[4] = -2;
+        ordena(array, n);
+        assertEquals(-5, array[0]);
+        assertEquals(-4, array[1]);
+        assertEquals(-3, array[2]);
+        assertEquals(-2, array[3]);
+        assertEquals(-1, array[4]);
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdena_MixedNumbers() {
+        array[0] = 5;
+        array[1] = -3;
+        array[2] = 1;
+        array[3] = -4;
+        array[4] = 2;
+        ordena(array, n);
+        assertEquals(-4, array[0]);
+        assertEquals(-3, array[1]);
+        assertEquals(1, array[2]);
+        assertEquals(2, array[3]);
+        assertEquals(5, array[4]);
+    }
+
+    @Test(timeout = 1000, expected = NullPointerException.class)
+    public void testOrdena_NullArray() {
+        ordena(null, n);
+    }
+
+    @Test(timeout = 1000, expected = ArrayIndexOutOfBoundsException.class)
+    public void testOrdena_InvalidIndex() {
+        ordena(array, -1);
+    }
+
+    private void ordena(int[] v, int n) {
+        Ordenacao.ordena(v, n);
+    }
+}
+```
+Note that I've added a `setup` method to initialize the `array` and `n` variables, which are used in multiple test methods. I've also added a `ordena` method in the test class to call the `ordena` method of the `Ordenacao` class, since it's a static method.
+
+I've covered the following test cases:
+
+* Default constructor
+* Empty array
+* Single element array
+* Positive numbers
+* Negative numbers
+* Mixed numbers
+* Null array (expected `NullPointerException`)
+* Invalid index (expected `ArrayIndexOutOfBoundsException`)
+
+Each test method has a timeout of 1000 milliseconds, as required.

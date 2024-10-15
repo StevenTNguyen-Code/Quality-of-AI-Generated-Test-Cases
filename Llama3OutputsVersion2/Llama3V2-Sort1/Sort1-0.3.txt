@@ -1,0 +1,96 @@
+Here is the test class for the `Ordenacao` class:
+```
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+
+public class OrdenacaoTest {
+
+    private int[] array;
+    private int n;
+
+    @Before
+    public void setup() {
+        array = new int[]{5, 2, 8, 3, 1, 6, 4};
+        n = array.length;
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdena_DefaultConstructor() {
+        Ordenacao ordenacao = new Ordenacao();
+        assertNotNull(ordenacao);
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdena_SortedArray() throws Exception {
+        ordena(array, n);
+        int[] expected = new int[]{1, 2, 3, 4, 5, 6, 8};
+        assertArrayEquals(expected, array);
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdena_ReversedArray() throws Exception {
+        int[] reversedArray = new int[]{8, 6, 5, 4, 3, 2, 1};
+        ordena(reversedArray, reversedArray.length);
+        int[] expected = new int[]{1, 2, 3, 4, 5, 6, 8};
+        assertArrayEquals(expected, reversedArray);
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdena_SingleElementArray() throws Exception {
+        int[] singleElementArray = new int[]{5};
+        ordena(singleElementArray, singleElementArray.length);
+        int[] expected = new int[]{5};
+        assertArrayEquals(expected, singleElementArray);
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdena_EmptyArray() throws Exception {
+        int[] emptyArray = new int[0];
+        ordena(emptyArray, emptyArray.length);
+        int[] expected = new int[0];
+        assertArrayEquals(expected, emptyArray);
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdena_NegativeValues() throws Exception {
+        int[] negativeArray = new int[]{-5, -2, -8, -3, -1, -6, -4};
+        ordena(negativeArray, negativeArray.length);
+        int[] expected = new int[]{-8, -6, -5, -4, -3, -2, -1};
+        assertArrayEquals(expected, negativeArray);
+    }
+
+    @Test(timeout = 1000)
+    public void testOrdena_MixedValues() throws Exception {
+        int[] mixedArray = new int[]{-5, 2, 8, -3, 1, -6, 4};
+        ordena(mixedArray, mixedArray.length);
+        int[] expected = new int[]{-6, -5, -3, 1, 2, 4, 8};
+        assertArrayEquals(expected, mixedArray);
+    }
+
+    @Test(timeout = 1000, expected = NullPointerException.class)
+    public void testOrdena_NullArray() throws Exception {
+        ordena(null, 5);
+    }
+
+    @Test(timeout = 1000, expected = ArrayIndexOutOfBoundsException.class)
+    public void testOrdena_InvalidIndex() throws Exception {
+        ordena(array, -1);
+    }
+}
+```
+Note that I've covered all the possible scenarios, including:
+
+* Testing the default constructor
+* Testing with a sorted array
+* Testing with a reversed array
+* Testing with a single-element array
+* Testing with an empty array
+* Testing with negative values
+* Testing with mixed values (positive and negative)
+* Testing with a null array (expected to throw a NullPointerException)
+* Testing with an invalid index (expected to throw an ArrayIndexOutOfBoundsException)
+
+I've also made sure to include the `timeout = 1000` parameter in all `@Test` annotations, as required.
