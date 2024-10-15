@@ -1,0 +1,91 @@
+Here is the JUnit test class for the `MaxMin4` class:
+```
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+
+public class MaxMin4Test {
+
+    @Before
+    public void setup() {
+        // No setup needed for this test
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4_DefaultConstructor() throws Exception {
+        // Test the default constructor
+        MaxMin4 maxMin4 = new MaxMin4();
+        assertNotNull(maxMin4);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4_SimpleCase() throws Exception {
+        int v[] = {1, 2, 3, 4, 5};
+        int linf = 0;
+        int lsup = 4;
+        int[] result = MaxMin4.maxMin4(v, linf, lsup);
+        assertEquals(5, result[0]);
+        assertEquals(1, result[1]);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4_BoundaryValues() throws Exception {
+        int v[] = {1, 2, 3, 4, 5};
+        int linf = 0;
+        int lsup = 0;
+        int[] result = MaxMin4.maxMin4(v, linf, lsup);
+        assertEquals(1, result[0]);
+        assertEquals(1, result[1]);
+
+        v = new int[] {1, 2, 3, 4, 5};
+        linf = 4;
+        lsup = 4;
+        result = MaxMin4.maxMin4(v, linf, lsup);
+        assertEquals(5, result[0]);
+        assertEquals(5, result[1]);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4_PositiveValues() throws Exception {
+        int v[] = {10, 20, 30, 40, 50};
+        int linf = 0;
+        int lsup = 4;
+        int[] result = MaxMin4.maxMin4(v, linf, lsup);
+        assertEquals(50, result[0]);
+        assertEquals(10, result[1]);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4_NegativeValues() throws Exception {
+        int v[] = {-10, -20, -30, -40, -50};
+        int linf = 0;
+        int lsup = 4;
+        int[] result = MaxMin4.maxMin4(v, linf, lsup);
+        assertEquals(-10, result[0]);
+        assertEquals(-50, result[1]);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4_EqualValues() throws Exception {
+        int v[] = {5, 5, 5, 5, 5};
+        int linf = 0;
+        int lsup = 4;
+        int[] result = MaxMin4.maxMin4(v, linf, lsup);
+        assertEquals(5, result[0]);
+        assertEquals(5, result[1]);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4_ReversedValues() throws Exception {
+        int v[] = {5, 4, 3, 2, 1};
+        int linf = 0;
+        int lsup = 4;
+        int[] result = MaxMin4.maxMin4(v, linf, lsup);
+        assertEquals(5, result[0]);
+        assertEquals(1, result[1]);
+    }
+}
+```
+Note that I've covered all the decisions in the `maxMin4` method, including the boundary values, positive and negative values, and equal values. I've also tested the default constructor and the method with valid inputs.

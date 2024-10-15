@@ -1,0 +1,103 @@
+Here is the test class for the `MaxMin4` class:
+```
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+
+public class MaxMin4Test {
+
+    @Before
+    public void setUp() {
+        // No setup needed for this test class
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4_DefaultConstructor() throws Exception {
+        // Test the default constructor
+        MaxMin4 maxMin4 = new MaxMin4();
+        assertNotNull(maxMin4);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4_SingleElementArray() throws Exception {
+        // Test with a single element array
+        int[] v = {1};
+        int[] result = MaxMin4.maxMin4(v, 0, 0);
+        assertEquals(1, result[0]);
+        assertEquals(1, result[1]);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4_TwoElementArray_Swap() throws Exception {
+        // Test with a two element array, where the elements need to be swapped
+        int[] v = {2, 1};
+        int[] result = MaxMin4.maxMin4(v, 0, 1);
+        assertEquals(2, result[0]);
+        assertEquals(1, result[1]);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4_TwoElementArray_NoSwap() throws Exception {
+        // Test with a two element array, where the elements do not need to be swapped
+        int[] v = {1, 2};
+        int[] result = MaxMin4.maxMin4(v, 0, 1);
+        assertEquals(2, result[0]);
+        assertEquals(1, result[1]);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4_MultiElementArray() throws Exception {
+        // Test with a multi element array
+        int[] v = {3, 1, 4, 2};
+        int[] result = MaxMin4.maxMin4(v, 0, 3);
+        assertEquals(4, result[0]);
+        assertEquals(1, result[1]);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4_NegativeValues() throws Exception {
+        // Test with negative values
+        int[] v = {-3, -1, -4, -2};
+        int[] result = MaxMin4.maxMin4(v, 0, 3);
+        assertEquals(-1, result[0]);
+        assertEquals(-4, result[1]);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4_MixedValues() throws Exception {
+        // Test with mixed values (positive and negative)
+        int[] v = {-3, 1, -4, 2};
+        int[] result = MaxMin4.maxMin4(v, 0, 3);
+        assertEquals(2, result[0]);
+        assertEquals(-4, result[1]);
+    }
+
+    @Test(timeout = 1000, expected = ArrayIndexOutOfBoundsException.class)
+    public void testMaxMin4_InvalidLowerBound() throws Exception {
+        // Test with an invalid lower bound
+        int[] v = {1, 2, 3, 4};
+        MaxMin4.maxMin4(v, -1, 3);
+    }
+
+    @Test(timeout = 1000, expected = ArrayIndexOutOfBoundsException.class)
+    public void testMaxMin4_InvalidUpperBound() throws Exception {
+        // Test with an invalid upper bound
+        int[] v = {1, 2, 3, 4};
+        MaxMin4.maxMin4(v, 0, 5);
+    }
+}
+```
+Note that I've covered all the possible scenarios, including:
+
+* Testing the default constructor
+* Testing with a single element array
+* Testing with a two element array, where the elements need to be swapped
+* Testing with a two element array, where the elements do not need to be swapped
+* Testing with a multi element array
+* Testing with negative values
+* Testing with mixed values (positive and negative)
+* Testing with invalid lower and upper bounds
+
+I've also used the `timeout=1000` annotation to ensure that each test method completes within 1 second. Additionally, I've used the `expected` annotation to specify the expected exception for certain test cases.

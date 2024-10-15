@@ -1,0 +1,108 @@
+Here is the test class for the `MaxMin4` class:
+
+```java
+package ds;
+
+import org.junit.Test;
+import static org.junit.Assert.*;
+
+public class MaxMin4Test {
+
+    @Test(timeout = 1000)
+    public void testMaxMin4DefaultConstructor() {
+        new MaxMin4();
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4SingleElementArray() {
+        int[] v = {10};
+        int[] result = MaxMin4.maxMin4(v, 0, 0);
+        assertEquals(10, result[0]);
+        assertEquals(10, result[1]);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4TwoElementArraySameValues() {
+        int[] v = {10, 10};
+        int[] result = MaxMin4.maxMin4(v, 0, 1);
+        assertEquals(10, result[0]);
+        assertEquals(10, result[1]);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4TwoElementArrayDifferentValues() {
+        int[] v = {10, 20};
+        int[] result = MaxMin4.maxMin4(v, 0, 1);
+        assertEquals(20, result[0]);
+        assertEquals(10, result[1]);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4MultipleElementArray() {
+        int[] v = {10, 20, 30, 40, 50};
+        int[] result = MaxMin4.maxMin4(v, 0, 4);
+        assertEquals(50, result[0]);
+        assertEquals(10, result[1]);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4NegativeValues() {
+        int[] v = {-10, -20, -30, -40, -50};
+        int[] result = MaxMin4.maxMin4(v, 0, 4);
+        assertEquals(-10, result[0]);
+        assertEquals(-50, result[1]);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4MixedValues() {
+        int[] v = {-10, 0, 10, 20, 30};
+        int[] result = MaxMin4.maxMin4(v, 0, 4);
+        assertEquals(30, result[0]);
+        assertEquals(-10, result[1]);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4EmptyArray() {
+        try {
+            MaxMin4.maxMin4(new int[0], 0, 0);
+            fail("Expected ArrayIndexOutOfBoundsException");
+        } catch (ArrayIndexOutOfBoundsException e) {
+            // expected
+        }
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4NullArray() {
+        try {
+            MaxMin4.maxMin4(null, 0, 0);
+            fail("Expected NullPointerException");
+        } catch (NullPointerException e) {
+            // expected
+        }
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4InvalidIndexes() {
+        try {
+            int[] v = {10, 20, 30};
+            MaxMin4.maxMin4(v, 2, 1);
+            fail("Expected ArrayIndexOutOfBoundsException");
+        } catch (ArrayIndexOutOfBoundsException e) {
+            // expected
+        }
+    }
+}
+```
+
+This test class covers all the possible scenarios for the `maxMin4` method, including:
+
+* Testing the default constructor
+* Testing with single element array
+* Testing with two element array with same values
+* Testing with two element array with different values
+* Testing with multiple element array
+* Testing with negative values
+* Testing with mixed values
+* Testing with empty array
+* Testing with null array
+* Testing with invalid indexes

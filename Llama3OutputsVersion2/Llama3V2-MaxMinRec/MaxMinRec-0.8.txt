@@ -1,0 +1,91 @@
+Here is the Java unit test class for the `MaxMin4` class:
+```
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+
+public class MaxMin4Test {
+
+    private int[] v;
+
+    @Before
+    public void setup() {
+        v = new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4_DefaultConstructor() {
+        new MaxMin4();
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4_SimpleCase() {
+        int[] result = MaxMin4.maxMin4(v, 0, 1);
+        assertEquals(2, result[0]);
+        assertEquals(1, result[1]);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4_Boundary_LinfEqualsLsup() {
+        int[] result = MaxMin4.maxMin4(v, 0, 0);
+        assertEquals(v[0], result[0]);
+        assertEquals(v[0], result[1]);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4_Boundary_LinfEqualsLsupPlusOne() {
+        int[] result = MaxMin4.maxMin4(v, 0, 1);
+        assertEquals(2, result[0]);
+        assertEquals(1, result[1]);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4_LargeArray() {
+        int[] result = MaxMin4.maxMin4(v, 0, v.length - 1);
+        assertEquals(10, result[0]);
+        assertEquals(1, result[1]);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4_NegativeValues() {
+        int[] vNegative = new int[]{-1, -2, -3, -4, -5, -6, -7, -8, -9, -10};
+        int[] result = MaxMin4.maxMin4(vNegative, 0, vNegative.length - 1);
+        assertEquals(-1, result[0]);
+        assertEquals(-10, result[1]);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4_PositiveAndNegativeValues() {
+        int[] vMixed = new int[]{-1, 2, -3, 4, -5, 6, -7, 8, -9, 10};
+        int[] result = MaxMin4.maxMin4(vMixed, 0, vMixed.length - 1);
+        assertEquals(10, result[0]);
+        assertEquals(-10, result[1]);
+    }
+
+    @Test(timeout = 1000, expected = ArrayIndexOutOfBoundsException.class)
+    public void testMaxMin4_InvalidLinfValue() {
+        MaxMin4.maxMin4(v, -1, 1);
+    }
+
+    @Test(timeout = 1000, expected = ArrayIndexOutOfBoundsException.class)
+    public void testMaxMin4_InvalidLsupValue() {
+        MaxMin4.maxMin4(v, 0, v.length);
+    }
+
+    @Test(timeout = 1000, expected = NullPointerException.class)
+    public void testMaxMin4_NullArray() {
+        MaxMin4.maxMin4(null, 0, 1);
+    }
+}
+```
+Note that I've covered all the scenarios you mentioned, including:
+
+* Testing the default constructor
+* Testing with simple cases, boundary values, and large arrays
+* Testing with positive, negative, and mixed values
+* Testing with invalid input values (e.g. `linf` or `lsup` out of bounds)
+* Testing with a null array
+
+I've also made sure to include the `timeout=1000` parameter in each `@Test` annotation, as per your requirements.

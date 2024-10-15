@@ -1,0 +1,111 @@
+Here is the JUnit test class for the `MaxMin4` class:
+```
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+
+public class MaxMin4Test {
+
+    @Before
+    public void setup() {
+        // No setup needed for this class
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4_defaultConstructor() throws Exception {
+        // Test that the default constructor does not throw an exception
+        new MaxMin4();
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4_singleElementArray() throws Exception {
+        int[] v = {1};
+        int[] result = MaxMin4.maxMin4(v, 0, 0);
+        assertEquals(1, result[0]);
+        assertEquals(1, result[1]);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4_twoElementArray_sameValues() throws Exception {
+        int[] v = {2, 2};
+        int[] result = MaxMin4.maxMin4(v, 0, 1);
+        assertEquals(2, result[0]);
+        assertEquals(2, result[1]);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4_twoElementArray_differentValues() throws Exception {
+        int[] v = {3, 4};
+        int[] result = MaxMin4.maxMin4(v, 0, 1);
+        assertEquals(4, result[0]);
+        assertEquals(3, result[1]);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4_threeElementArray() throws Exception {
+        int[] v = {5, 6, 7};
+        int[] result = MaxMin4.maxMin4(v, 0, 2);
+        assertEquals(7, result[0]);
+        assertEquals(5, result[1]);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4_negativeValues() throws Exception {
+        int[] v = {-1, -2, -3};
+        int[] result = MaxMin4.maxMin4(v, 0, 2);
+        assertEquals(-1, result[0]);
+        assertEquals(-3, result[1]);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4_mixedValues() throws Exception {
+        int[] v = {-1, 0, 1};
+        int[] result = MaxMin4.maxMin4(v, 0, 2);
+        assertEquals(1, result[0]);
+        assertEquals(-1, result[1]);
+    }
+
+    @Test(timeout = 1000)
+    public void testMaxMin4_largeArray() throws Exception {
+        int[] v = new int[100];
+        for (int i = 0; i < 100; i++) {
+            v[i] = i;
+        }
+        int[] result = MaxMin4.maxMin4(v, 0, 99);
+        assertEquals(99, result[0]);
+        assertEquals(0, result[1]);
+    }
+
+    @Test(timeout = 1000, expected = ArrayIndexOutOfBoundsException.class)
+    public void testMaxMin4_invalidLinf() throws Exception {
+        int[] v = {1, 2, 3};
+        MaxMin4.maxMin4(v, -1, 2);
+    }
+
+    @Test(timeout = 1000, expected = ArrayIndexOutOfBoundsException.class)
+    public void testMaxMin4_invalidLsup() throws Exception {
+        int[] v = {1, 2, 3};
+        MaxMin4.maxMin4(v, 0, 3);
+    }
+
+    @Test(timeout = 1000, expected = NullPointerException.class)
+    public void testMaxMin4_nullArray() throws Exception {
+        MaxMin4.maxMin4(null, 0, 2);
+    }
+}
+```
+Note that I've covered various test cases, including:
+
+* Testing the default constructor
+* Testing with single-element arrays
+* Testing with two-element arrays with same and different values
+* Testing with three-element arrays
+* Testing with negative values
+* Testing with mixed values
+* Testing with large arrays
+* Testing with invalid `linf` and `lsup` values
+* Testing with a null array
+
+I've also used the `@Test(timeout = 1000)` annotation to specify a timeout of 1000 milliseconds for each test method.
