@@ -1,0 +1,74 @@
+Here is the test class for the Pilha class:
+
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+
+public class PilhaTest {
+
+    private Pilha pilha;
+
+    @Before
+    public void setup() throws Exception {
+        pilha = new Pilha();
+    }
+
+    @Test(timeout = 1000)
+    public void testPilhaConstructor() {
+        assertNotNull(pilha);
+        assertEquals(0, pilha.tamanho());
+    }
+
+    @Test(timeout = 1000)
+    public void testEmpilha() throws Exception {
+        pilha.empilha("Item 1");
+        assertEquals(1, pilha.tamanho());
+    }
+
+    @Test(timeout = 1000)
+    public void testEmpilhaFull() throws Exception {
+        for (int i = 0; i < 1000; i++) {
+            pilha.empilha("Item " + i);
+        }
+        try {
+            pilha.empilha("Item 1000");
+            fail("Should have thrown an exception");
+        } catch (Exception e) {
+            assertEquals("Erro: A pilha esta cheia", e.getMessage());
+        }
+    }
+
+    @Test(timeout = 1000)
+    public void testDesempilha() throws Exception {
+        pilha.empilha("Item 1");
+        assertEquals("Item 1", pilha.desempilha());
+        assertEquals(0, pilha.tamanho());
+    }
+
+    @Test(timeout = 1000, expected = Exception.class)
+    public void testDesempilhaEmpty() throws Exception {
+        pilha.desempilha();
+    }
+
+    @Test(timeout = 1000)
+    public void testVazia() {
+        assertTrue(pilha.vazia());
+        pilha.empilha("Item 1");
+        assertFalse(pilha.vazia());
+    }
+
+    @Test(timeout = 1000)
+    public void testTamanho() {
+        assertEquals(0, pilha.tamanho());
+        pilha.empilha("Item 1");
+        assertEquals(1, pilha.tamanho());
+        pilha.empilha("Item 2");
+        assertEquals(2, pilha.tamanho());
+    }
+}
+```
+
+This test class covers all the methods in the Pilha class. It tests the default constructor, the empilha method with a valid input and with a full stack, the desempilha method with a valid input and with an empty stack, the vazia method, and the tamanho method.

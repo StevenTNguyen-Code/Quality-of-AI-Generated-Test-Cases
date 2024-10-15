@@ -1,0 +1,76 @@
+Here is the Java unit test class for the `Pilha` class:
+
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+
+public class PilhaTest {
+
+    private Pilha pilha;
+
+    @Before
+    public void setup() {
+        pilha = new Pilha();
+    }
+
+    @Test(timeout=1000)
+    public void testPilhaConstructor() {
+        assertNotNull(pilha.item);
+        assertEquals(1000, pilha.item.length);
+        assertEquals(0, pilha.topo);
+    }
+
+    @Test(timeout=1000)
+    public void testVazia() {
+        assertTrue(pilha.vazia());
+        pilha.empilha(new Object());
+        assertFalse(pilha.vazia());
+    }
+
+    @Test(timeout=1000)
+    public void testTamanho() {
+        assertEquals(0, pilha.tamanho());
+        pilha.empilha(new Object());
+        assertEquals(1, pilha.tamanho());
+    }
+
+    @Test(timeout=1000)
+    public void testEmpilha() throws Exception {
+        pilha.empilha(new Object());
+        assertEquals(1, pilha.topo);
+        assertEquals(new Object(), pilha.item[0]);
+    }
+
+    @Test(timeout=1000, expected=Exception.class)
+    public void testEmpilhaFull() throws Exception {
+        for (int i = 0; i < 1000; i++) {
+            pilha.empilha(new Object());
+        }
+        pilha.empilha(new Object()); // this should throw an exception
+    }
+
+    @Test(timeout=1000, expected=Exception.class)
+    public void testDesempilhaEmpty() throws Exception {
+        pilha.desempilha(); // this should throw an exception
+    }
+
+    @Test(timeout=1000)
+    public void testDesempilha() throws Exception {
+        pilha.empilha(new Object());
+        assertEquals(1, pilha.topo);
+        assertEquals(new Object(), pilha.desempilha());
+        assertEquals(0, pilha.topo);
+    }
+}
+```
+
+In this test class, we cover all the methods of the `Pilha` class. We test the constructor, `vazia`, `tamanho`, `empilha`, and `desempilha` methods.
+
+We test the `empilha` method with both empty and full stack scenarios, and we test the `desempilha` method with both empty and non-empty stack scenarios.
+
+We use `@Test(timeout=1000)` to set a timeout of 1 second for each test method, and we use `@Test(expected=Exception.class)` to test the exception-throwing scenarios.
+
+Note that we use the `@Before` annotation to create a new instance of the `Pilha` class before each test method, so that we can test the methods in isolation.
