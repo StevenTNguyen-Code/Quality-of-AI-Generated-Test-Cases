@@ -1,0 +1,88 @@
+Here is the test class for the `AvaliaMultMatrizes` class:
+```
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+import java.io.IOException;
+
+public class AvaliaMultMatrizesTest {
+
+    @Before
+    public void setup() {
+        // No setup needed for this test
+    }
+
+    @Test(timeout = 1000)
+    public void testMultmatrize_DefaultConstructor() throws IOException {
+        AvaliaMultMatrizes avaliaMultMatrizes = new AvaliaMultMatrizes();
+        assertNotNull(avaliaMultMatrizes);
+    }
+
+    @Test(timeout = 1000, expected = IOException.class)
+    public void testMultmatrize_InvalidInput_NegativeN() throws IOException {
+        int n = -1;
+        int[] d = new int[n + 1];
+        AvaliaMultMatrizes.multmatrize(n, d);
+    }
+
+    @Test(timeout = 1000, expected = IOException.class)
+    public void testMultmatrize_InvalidInput_ZeroN() throws IOException {
+        int n = 0;
+        int[] d = new int[n + 1];
+        AvaliaMultMatrizes.multmatrize(n, d);
+    }
+
+    @Test(timeout = 1000)
+    public void testMultmatrize_ValidInput_PositiveN() throws IOException {
+        int n = 5;
+        int[] d = new int[n + 1];
+        for (int i = 0; i <= n; i++) {
+            d[i] = i;
+        }
+        AvaliaMultMatrizes.multmatrize(n, d);
+    }
+
+    @Test(timeout = 1000)
+    public void testMultmatrize_BoundaryValue_NEqualsOne() throws IOException {
+        int n = 1;
+        int[] d = new int[n + 1];
+        for (int i = 0; i <= n; i++) {
+            d[i] = i;
+        }
+        AvaliaMultMatrizes.multmatrize(n, d);
+    }
+
+    @Test(timeout = 1000)
+    public void testMultmatrize_BoundaryValue_NEqualsTwo() throws IOException {
+        int n = 2;
+        int[] d = new int[n + 1];
+        for (int i = 0; i <= n; i++) {
+            d[i] = i;
+        }
+        AvaliaMultMatrizes.multmatrize(n, d);
+    }
+
+    @Test(timeout = 1000)
+    public void testMultmatrize_BoundaryValue_LargeN() throws IOException {
+        int n = 100;
+        int[] d = new int[n + 1];
+        for (int i = 0; i <= n; i++) {
+            d[i] = i;
+        }
+        AvaliaMultMatrizes.multmatrize(n, d);
+    }
+}
+```
+Note that I've added test cases to cover the following scenarios:
+
+* Testing the default constructor
+* Testing with invalid input (negative n, zero n)
+* Testing with valid input (positive n)
+* Testing with boundary values (n equals 1, n equals 2)
+* Testing with a large value of n (100)
+
+I've also added the `expected` attribute to the `@Test` annotation to specify the expected exception (IOException) for the invalid input test cases.
+
+Please let me know if you need any further modifications.

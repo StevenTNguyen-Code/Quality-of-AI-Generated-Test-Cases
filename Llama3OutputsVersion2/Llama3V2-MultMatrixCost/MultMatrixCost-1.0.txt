@@ -1,0 +1,74 @@
+Here is the Java unit test class for the `AvaliaMultMatrizes` class using JUnit 4 framework:
+```
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+
+public class AvaliaMultMatrizesTest {
+
+    private AvaliaMultMatrizes avaliaMultMatrizes;
+
+    @Before
+    public void setup() {
+        avaliaMultMatrizes = new AvaliaMultMatrizes();
+    }
+
+    @Test(timeout=1000)
+    public void testDefaultConstructor() throws Exception {
+        assertNotNull(avaliaMultMatrizes);
+    }
+
+    @Test(timeout=1000)
+    public void testMultmatrize_HappyPath() throws IOException {
+        int n = 3;
+        int[] d = {1, 2, 3, 4};
+        avaliaMultMatrizes.multmatrize(n, d);
+        // Verify output
+    }
+
+    @Test(timeout=1000, expected=IOException.class)
+    public void testMultmatrize_IOException() throws IOException {
+        int n = 0;
+        int[] d = null;
+        avaliaMultMatrizes.multmatrize(n, d);
+    }
+
+    @Test(timeout=1000)
+    public void testMultmatrize_NegativeValues() throws IOException {
+        int n = -3;
+        int[] d = {-1, -2, -3, -4};
+        avaliaMultMatrizes.multmatrize(n, d);
+        // Verify output
+    }
+
+    @Test(timeout=1000)
+    public void testMultmatrize_BoundaryValues() throws IOException {
+        int n = 1;
+        int[] d = {1};
+        avaliaMultMatrizes.multmatrize(n, d);
+        // Verify output
+    }
+
+    @Test(timeout=1000)
+    public void testMultmatrize_LargeInput() throws IOException {
+        int n = 100;
+        int[] d = new int[n];
+        for (int i = 0; i < n; i++) {
+            d[i] = i + 1;
+        }
+        avaliaMultMatrizes.multmatrize(n, d);
+        // Verify output
+    }
+}
+```
+Note that I've added a `setup()` method to create an instance of the `AvaliaMultMatrizes` class before each test, and I've added test cases to cover different scenarios, including:
+
+* Happy path with positive values
+* IOException when input is null or invalid
+* Negative values
+* Boundary values (e.g. n = 1)
+* Large input
+
+I've also added a `testDefaultConstructor()` method to verify that the default constructor works as expected.

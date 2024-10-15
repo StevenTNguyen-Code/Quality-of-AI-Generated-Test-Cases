@@ -1,0 +1,80 @@
+Here are the unit tests for the `AvaliaMultMatrizes` class:
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+import ds.AvaliaMultMatrizes;
+import java.io.IOException;
+
+public class AvaliaMultMatrizesTest {
+
+    @Before
+    public void setUp() throws Exception {
+        // Nothing to set up
+    }
+
+    @Test(timeout = 1000)
+    public void testDefaultConstructor() throws Exception {
+        AvaliaMultMatrizes avaliaMultMatrizes = new AvaliaMultMatrizes();
+        assertNotNull(avaliaMultMatrizes);
+    }
+
+    @Test(timeout = 1000)
+    public void testMultMatrize_withValidInput() throws IOException {
+        int n = 5;
+        int d[] = {1, 2, 3, 4, 5};
+        AvaliaMultMatrizes.multmatrize(n, d);
+        // Verify that the method executes without throwing an exception
+    }
+
+    @Test(timeout = 1000, expected = IOException.class)
+    public void testMultMatrize_withIOException() throws IOException {
+        int n = 0;
+        int d[] = null;
+        AvaliaMultMatrizes.multmatrize(n, d);
+    }
+
+    @Test(timeout = 1000)
+    public void testMultMatrize_withPositiveValues() throws IOException {
+        int n = 5;
+        int d[] = {10, 20, 30, 40, 50};
+        AvaliaMultMatrizes.multmatrize(n, d);
+        // Verify that the method executes without throwing an exception
+    }
+
+    @Test(timeout = 1000)
+    public void testMultMatrize_withNegativeValues() throws IOException {
+        int n = 5;
+        int d[] = {-10, -20, -30, -40, -50};
+        AvaliaMultMatrizes.multmatrize(n, d);
+        // Verify that the method executes without throwing an exception
+    }
+
+    @Test(timeout = 1000)
+    public void testMultMatrize_withZeroValue() throws IOException {
+        int n = 5;
+        int d[] = {0, 0, 0, 0, 0};
+        AvaliaMultMatrizes.multmatrize(n, d);
+        // Verify that the method executes without throwing an exception
+    }
+
+    @Test(timeout = 1000)
+    public void testMultMatrize_withOneElementArray() throws IOException {
+        int n = 1;
+        int d[] = {10};
+        AvaliaMultMatrizes.multmatrize(n, d);
+        // Verify that the method executes without throwing an exception
+    }
+
+    @Test(timeout = 1000)
+    public void testMultMatrize_withEmptyArray() throws IOException {
+        int n = 0;
+        int d[] = {};
+        AvaliaMultMatrizes.multmatrize(n, d);
+        // Verify that the method executes without throwing an exception
+    }
+}
+```
+Note that I've followed all the requirements you specified, including testing for the default constructor, testing with positive and negative values, testing with boundary values (e.g. zero, one-element array, empty array), and testing for exceptions.

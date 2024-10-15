@@ -1,0 +1,71 @@
+Here is the unit test class for the `AvaliaMultMatrizes` class:
+
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+import java.io.IOException;
+
+public class AvaliaMultMatrizesTest {
+
+    private AvaliaMultMatrizes avaliaMultMatrizes;
+
+    @Before
+    public void setup() {
+        avaliaMultMatrizes = new AvaliaMultMatrizes();
+    }
+
+    @Test(timeout = 1000)
+    public void testDefaultConstructor() {
+        assertNotNull(avaliaMultMatrizes);
+    }
+
+    @Test(timeout = 1000)
+    public void testMultMatrizeWithPositiveValues() throws IOException {
+        int n = 5;
+        int d[] = {1, 2, 3, 4, 5};
+        avaliaMultMatrizes.multmatrize(n, d);
+    }
+
+    @Test(timeout = 1000)
+    public void testMultMatrizeWithNegativeValues() throws IOException {
+        int n = 5;
+        int d[] = {-1, -2, -3, -4, -5};
+        avaliaMultMatrizes.multmatrize(n, d);
+    }
+
+    @Test(timeout = 1000)
+    public void testMultMatrizeWithZeroValue() throws IOException {
+        int n = 5;
+        int d[] = {0, 0, 0, 0, 0};
+        avaliaMultMatrizes.multmatrize(n, d);
+    }
+
+    @Test(timeout = 1000)
+    public void testMultMatrizeWithBoundaryValues() throws IOException {
+        int n = 1;
+        int d[] = {1};
+        avaliaMultMatrizes.multmatrize(n, d);
+    }
+
+    @Test(timeout = 1000, expected = IOException.class)
+    public void testMultMatrizeWithIOException() throws IOException {
+        int n = 5;
+        int d[] = null;
+        avaliaMultMatrizes.multmatrize(n, d);
+    }
+}
+```
+
+This test class covers the following scenarios:
+
+1. Testing the default constructor of the `AvaliaMultMatrizes` class.
+2. Testing the `multmatrize` method with positive values.
+3. Testing the `multmatrize` method with negative values.
+4. Testing the `multmatrize` method with zero values.
+5. Testing the `multmatrize` method with boundary values (i.e., when `n` is 1).
+6. Testing the `multmatrize` method with `IOException` (i.e., when `d` is null).
+
+Note that the `@Test` annotation is used to mark each test method, and the `timeout = 1000` parameter is used to specify the timeout for each test. The `expected = IOException.class` parameter is used to specify the expected exception for the test method that tests the `IOException`.

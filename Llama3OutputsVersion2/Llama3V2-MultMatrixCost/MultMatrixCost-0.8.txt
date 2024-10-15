@@ -1,0 +1,77 @@
+Here is the Java unit test class for the provided `AvaliaMultMatrizes` class:
+
+```java
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+import java.io.IOException;
+
+public class AvaliaMultMatrizesTest {
+
+    private AvaliaMultMatrizes avaliaMultMatrizes;
+
+    @Before
+    public void setUp() throws Exception {
+        avaliaMultMatrizes = new AvaliaMultMatrizes();
+    }
+
+    @Test(timeout=1000)
+    public void testMultmatrizeDefaultConstructor() throws IOException {
+        assertNotNull(avaliaMultMatrizes);
+    }
+
+    @Test(timeout=1000)
+    public void testMultmatrizePositiveValues() throws IOException {
+        int n = 5;
+        int d[] = {1, 2, 3, 4, 5};
+        avaliaMultMatrizes.multmatrize(n, d);
+    }
+
+    @Test(timeout=1000)
+    public void testMultmatrizeNegativeValues() throws IOException {
+        int n = -5;
+        int d[] = {-1, -2, -3, -4, -5};
+        avaliaMultMatrizes.multmatrize(n, d);
+    }
+
+    @Test(timeout=1000, expected=IOException.class)
+    public void testMultmatrizeIOException() throws IOException {
+        int n = 5;
+        int d[] = null;
+        avaliaMultMatrizes.multmatrize(n, d);
+    }
+
+    @Test(timeout=1000)
+    public void testMultmatrizeBoundaryValues() throws IOException {
+        int n = 0;
+        int d[] = {};
+        avaliaMultMatrizes.multmatrize(n, d);
+    }
+
+    @Test(timeout=1000)
+    public void testMultmatrizeOneElementArray() throws IOException {
+        int n = 1;
+        int d[] = {1};
+        avaliaMultMatrizes.multmatrize(n, d);
+    }
+
+    @Test(timeout=1000)
+    public void testMultmatrizeTwoElementArray() throws IOException {
+        int n = 2;
+        int d[] = {1, 2};
+        avaliaMultMatrizes.multmatrize(n, d);
+    }
+}
+```
+
+This test class covers all decisions in the `multmatrize` method of the `AvaliaMultMatrizes` class, including:
+
+* Testing the default constructor
+* Testing with positive and negative values
+* Testing with boundary values (e.g., 0, 1, 2)
+* Testing with null inputs to check for `IOException`
+* Testing with one-element and two-element arrays
+
+Each test method is annotated with `@Test` and includes the `timeout=1000` attribute to specify a timeout of 1000 milliseconds. The `expected` attribute is used in one test method to specify that an `IOException` is expected to be thrown.

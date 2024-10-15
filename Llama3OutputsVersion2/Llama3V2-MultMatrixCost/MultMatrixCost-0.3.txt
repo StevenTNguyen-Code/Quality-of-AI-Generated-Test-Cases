@@ -1,0 +1,98 @@
+Here is the test class for the `AvaliaMultMatrizes` class:
+```
+package ds;
+
+import org.junit.Test;
+import org.junit.Before;
+import static org.junit.Assert.*;
+import java.io.IOException;
+
+public class AvaliaMultMatrizesTest {
+
+    private AvaliaMultMatrizes avaliaMultMatrizes;
+
+    @Before
+    public void setup() {
+        avaliaMultMatrizes = new AvaliaMultMatrizes();
+    }
+
+    @Test(timeout = 1000)
+    public void testMultmatrize_DefaultConstructor() throws IOException {
+        // Test default constructor
+        assertNotNull(avaliaMultMatrizes);
+    }
+
+    @Test(timeout = 1000)
+    public void testMultmatrize_PositiveN() throws IOException {
+        // Test multmatrize with positive n
+        int n = 5;
+        int d[] = {1, 2, 3, 4, 5};
+        avaliaMultMatrizes.multmatrize(n, d);
+    }
+
+    @Test(timeout = 1000)
+    public void testMultmatrize_NegativeN() throws IOException {
+        // Test multmatrize with negative n
+        int n = -5;
+        int d[] = {1, 2, 3, 4, 5};
+        try {
+            avaliaMultMatrizes.multmatrize(n, d);
+            fail("Expected IOException for negative n");
+        } catch (IOException e) {
+            // Expected
+        }
+    }
+
+    @Test(timeout = 1000)
+    public void testMultmatrize_ZeroN() throws IOException {
+        // Test multmatrize with zero n
+        int n = 0;
+        int d[] = {1, 2, 3, 4, 5};
+        try {
+            avaliaMultMatrizes.multmatrize(n, d);
+            fail("Expected IOException for zero n");
+        } catch (IOException e) {
+            // Expected
+        }
+    }
+
+    @Test(timeout = 1000)
+    public void testMultmatrize_NullD() throws IOException {
+        // Test multmatrize with null d
+        int n = 5;
+        int d[] = null;
+        try {
+            avaliaMultMatrizes.multmatrize(n, d);
+            fail("Expected NullPointerException for null d");
+        } catch (NullPointerException e) {
+            // Expected
+        }
+    }
+
+    @Test(timeout = 1000)
+    public void testMultmatrize_EmptyD() throws IOException {
+        // Test multmatrize with empty d
+        int n = 5;
+        int d[] = {};
+        try {
+            avaliaMultMatrizes.multmatrize(n, d);
+            fail("Expected IOException for empty d");
+        } catch (IOException e) {
+            // Expected
+        }
+    }
+
+    @Test(timeout = 1000)
+    public void testMultmatrize_BoundaryValues() throws IOException {
+        // Test multmatrize with boundary values
+        int n = 1;
+        int d[] = {1};
+        avaliaMultMatrizes.multmatrize(n, d);
+
+        n = 2;
+        d = new int[] {1, 2};
+        avaliaMultMatrizes.multmatrize(n, d);
+    }
+}
+```
+Note that I've added tests for the default constructor, as well as tests for positive, negative, and zero values of `n`. I've also added tests for null, empty, and boundary values of `d`. Additionally, I've added a test for the `multmatrize` method with valid inputs to ensure it doesn't throw any unexpected exceptions.
