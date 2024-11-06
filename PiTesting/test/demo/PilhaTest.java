@@ -1,0 +1,104 @@
+/*Sure, here are the unit tests for the given `Pilha` class following your requirements:
+
+        ```java */
+package demo;
+
+import org.junit.Test;
+import org.junit.Before;
+
+import static org.junit.Assert.*;
+
+public class PilhaTest {
+
+    private Pilha pilha;
+
+    @Before
+    public void setUp() {
+        pilha = new Pilha();
+    }
+
+    @Test(timeout = 1000)
+    public void testPilhaConstructor() throws Exception {
+        assertNotNull("Pilha object should be created", pilha);
+        assertEquals("Newly created stack should be empty", 0, pilha.tamanho());
+    }
+
+    @Test(timeout = 1000)
+    public void testEmpilha() throws Exception {
+        pilha.empilha("Item 1");
+        assertEquals("Stack should have one item", 1, pilha.tamanho());
+        assertEquals("Top item should be 'Item 1'", "Item 1", pilha.desempilha());
+    }
+
+    @Test(timeout = 1000, expected = Exception.class)
+    public void testEmpilha_StackFull() throws Exception {
+        for (int i = 0; i < 1000; i++) {
+            pilha.empilha(i);
+        }
+        pilha.empilha(1001); // This should throw an exception
+    }
+
+    @Test(timeout = 1000)
+    public void testDesempilha() throws Exception {
+        pilha.empilha("Item 1");
+        Object item = pilha.desempilha();
+        assertEquals("Item 1", item);
+        assertEquals("Stack should be empty after popping", 0, pilha.tamanho());
+    }
+
+    @Test(timeout = 1000, expected = Exception.class)
+    public void testDesempilha_EmptyStack() throws Exception {
+        pilha.desempilha(); // This should throw an exception
+    }
+
+    @Test(timeout = 1000)
+    public void testVazia_True() throws Exception {
+        assertTrue("Newly created stack should be empty", pilha.vazia());
+    }
+
+    @Test(timeout = 1000)
+    public void testVazia_False() throws Exception {
+        pilha.empilha("Item 1");
+        assertFalse("Stack should not be empty after pushing an item", pilha.vazia());
+    }
+
+    @Test(timeout = 1000)
+    public void testTamanho_Empty() throws Exception {
+        assertEquals("Newly created stack should have size 0", 0, pilha.tamanho());
+    }
+
+    @Test(timeout = 1000)
+    public void testTamanho_NonEmpty() throws Exception {
+        pilha.empilha("Item 1");
+        assertEquals("Stack should have size 1 after one push", 1, pilha.tamanho());
+    }
+
+    @Test(timeout = 1000)
+    public void testBoundaryValues() throws Exception {
+        pilha.empilha(Integer.MIN_VALUE);
+        assertEquals("Stack should accept Integer.MIN_VALUE", 1, pilha.tamanho());
+        assertEquals(Integer.MIN_VALUE, pilha.desempilha());
+
+        pilha.empilha(Integer.MAX_VALUE);
+        assertEquals("Stack should accept Integer.MAX_VALUE", 1, pilha.tamanho());
+        assertEquals(Integer.MAX_VALUE, pilha.desempilha());
+    }
+}
+/*```
+
+        ### Explanation:
+        1. **Constructor Test:**
+        - Tests that the default constructor correctly initializes an empty stack.
+
+        2. **Methods Test:**
+        - `empilha`: Tests normal push operation and exception handling when the stack is full.
+        - `desempilha`: Tests normal pop operation and exception handling when the stack is empty.
+        - `vazia`: Tests for both true and false outcomes.
+   - `tamanho`: Tests stack size in both empty and non-empty states.
+
+        3. **Boundary Values:**
+        - Ensures the stack can handle boundary values like `Integer.MIN_VALUE` and `Integer.MAX_VALUE`.
+
+        ### JUnit Annotations:
+        - Each test method is annotated with `@Test(timeout=1000)` to ensure they complete within 1 second.
+- Specific tests are annotated with `@Test(expected=Exception.class)` to verify exception handling. */
