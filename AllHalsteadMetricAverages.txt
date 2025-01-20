@@ -1,0 +1,46 @@
+ChatGPT Prompt 1 Halstead Metric Averages
+Program Length: 159.24675324675326
+Program Vocabulary Size: 25.792207792207794
+Program Volume: 754.0653246753245
+Program Difficulty or Error Proneness: 24.898831168831165
+Program Level 0.04597402597402594
+Program Effort: 20139.70805194805
+Program Time: 1118.8725974025976
+Program Bugs: 0.2355844155844156
+
+
+
+Llama3 Prompt 1 Halstead Metric Averages
+Program Length: 140.1219512195122
+Program Vocabulary Size: 25.146341463414632
+Program Volume: 657.2851219512195
+Program Difficulty or Error Proneness: 22.61024390243902
+Program Level 0.047804878048780516
+Program Effort: 15854.089268292686
+Program Time: 880.7824390243903
+Program Bugs: 0.20219512195121958
+
+
+
+Halstead Metrics for Prompt 2
+ChatGPT Prompt 2 Halstead Metric Averages
+Program Length: 165.7792207792208
+Program Vocabulary Size: 26.90909090909091
+Program Volume: 790.9962337662339
+Program Difficulty or Error Proneness: 24.22415584415584
+Program Level 0.049740259740259696
+Program Effort: 20736.537662337665
+Program Time: 1152.0298701298702
+Program Bugs: 0.24051948051948047
+
+
+
+Llama3 Prompt 2 Halstead Metric Averages
+Program Length: 147.17948717948718
+Program Vocabulary Size: 25.205128205128204
+Program Volume: 685.0548717948717
+Program Difficulty or Error Proneness: 22.57794871794872
+Program Level 0.048205128205128234
+Program Effort: 16720.18717948718
+Program Time: 928.8987179487178
+Program Bugs: 0.20974358974358978
