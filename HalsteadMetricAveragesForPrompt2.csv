@@ -1,0 +1,17 @@
+﻿Category,Halstead Metric,Average Value
+ChatGPT,Program Length,165.7792208
+ChatGPT,Program Vocabulary Size,26.90909091
+ChatGPT,Program Volume,790.9962338
+ChatGPT,Program Difficulty/Error Proneness,24.22415584
+ChatGPT,Program Level,0.04974026
+ChatGPT,Program Effort,20736.53766
+ChatGPT,Programming Time,1152.02987
+ChatGPT,Program Bugs,0.240519481
+Llama3,Program Length,147.1794872
+Llama3,Program Vocabulary Size,25.20512821
+Llama3,Program Volume,685.0548718
+Llama3,Program Difficulty/Error Proneness,22.57794872
+Llama3,Program Level,0.048205128
+Llama3,Program Effort,16720.18718
+Llama3,Programming Time,928.8987179
+Llama3,Program Bugs,0.20974359
