@@ -1,0 +1,17 @@
+﻿Category,Halstead Metric,Average Value
+Llama3P1,Program Length,140.1219512
+Llama3P1,Program Vocabulary Size,25.14634146
+Llama3P1,Program Volume,657.285122
+Llama3P1,Program Difficulty/Error Proneness,22.6102439
+Llama3P1,Program Level,0.047804878
+Llama3P1,Program Effort,15854.08927
+Llama3P1,Programming Time,880.782439
+Llama3P1,Program Bugs,0.202195122
+Llama3P2,Program Length,147.1794872
+Llama3P2,Program Vocabulary Size,25.20512821
+Llama3P2,Program Volume,685.0548718
+Llama3P2,Program Difficulty/Error Proneness,22.57794872
+Llama3P2,Program Level,0.048205128
+Llama3P2,Program Effort,16720.18718
+Llama3P2,Programming Time,928.8987179
+Llama3P2,Program Bugs,0.20974359

@@ -1,0 +1,17 @@
+﻿Category,Halstead Metric,Average Value
+ChatGPTP1,Program Length,159.2467532
+ChatGPTP1,Program Vocabulary Size,25.79220779
+ChatGPTP1,Program Volume,754.0653247
+ChatGPTP1,Program Difficulty/Error Proneness,24.89883117
+ChatGPTP1,Program Level,0.045974026
+ChatGPTP1,Program Effort,20139.70805
+ChatGPTP1,Programming Time,1118.872597
+ChatGPTP1,Program Bugs,0.235584416
+ChatGPTP2,Program Length,165.7792208
+ChatGPTP2,Program Vocabulary Size,26.90909091
+ChatGPTP2,Program Volume,790.9962338
+ChatGPTP2,Program Difficulty/Error Proneness,24.22415584
+ChatGPTP2,Program Level,0.04974026
+ChatGPTP2,Program Effort,20736.53766
+ChatGPTP2,Programming Time,1152.02987
+ChatGPTP2,Program Bugs,0.240519481
